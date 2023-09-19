@@ -1,4 +1,4 @@
-@extends('layouts.base')
+{{-- @extends('layouts.base')
 
 @section('content')
 
@@ -144,4 +144,15 @@
       <div id="item-4">&nbsp;</div>
     </div>
 
+@endsection --}}
+
+
+@extends('layouts.app-master')
+
+@section('header')
+
 @endsection
+
+<link href="/css/style.css" rel="stylesheet"/>
+
+<p class="test">adfadf</p>
