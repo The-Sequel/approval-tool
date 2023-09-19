@@ -149,10 +149,6 @@
 
 @extends('layouts.app-master')
 
-@section('header')
+@section('content')
 
 @endsection
-
-<link href="/css/style.css" rel="stylesheet"/>
-
-<p class="test">adfadf</p>

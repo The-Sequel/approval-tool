@@ -1,127 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Approval Tool</title>
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
-</head>
-<body>
-    <div class="container">
+@extends('layouts.app-master')
 
-        {{-- Sidebar --}}
+@section('content')
+    {{-- Table and other content --}}
 
-        <div class="sidebar">
-            <img width="200" height="122" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" class="attachment-full size-full entered lazyloaded" alt="" decoding="async" data-lazy-src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" data-ll-status="loaded">
-            <ul>
-                <a href="{{route('admin.index')}}"><li>Dashboard</li></a>
-                <div class="customerSidebar">
-                    <a href="{{route('admin.customers.index')}}"><li>Klanten</li></a><button onclick="createCustomer()" style="height: 50%; width: 10%;">+</button>
-                </div>
-                <a id="create-customer" style="display: none;" href="{{route('admin.customers.create')}}"><li>Klant aanmaken</li></a>
-                {{-- The list items under this comment still need to be finished --}}
-                <li>Projecten</li>
-                <li>Taken</li>
-                <li>Berichten</li>
-                <li>Deadlines</li>
-            </ul>
-        </div>
-
-        {{-- Header --}}
-        <div class="header">
-            <h1>Dashboard</h1>
-        </div>
-
-        {{-- Table and other content --}}
-
-        <table class="table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Klanten</th>
+                <th>Logo</th>
+                <th>Status</th>
+                <th>Contact personen</th>
+                <th>Debiteur nummer</th>
+                {{-- <th>Actions</th> --}}
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($customers as $customer)
+                <tr onclick="customerInformation('{{$customer->id}}', '{{$customer->name}}', '{{$customer->logo}}', '{{$customer->status}}', '{{$customer->debor_number}}', '{{$customer->users}}')">
+                    <td style="width: 50%;" id="customer-name-{{$customer->id}}">{{$customer->name}}</td>
+                    <td style="width: 15%;" id="customer-logo"><img src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" alt="{{$customer->name}}" width="50"></td>
+                    @if($customer->status == 'active')
+                        <td style="width: 15%;" id="customer-status"><span>Actief</span></td>
+                    @else
+                        <td style="width: 15%;" id="customer-status"><span>Non-actief</span></td>
+                    @endif
+                    <td style="width: 15%;">
+                        @foreach($customer->users as $user)
+                            <p>{{$user->name}}</p>
+                        @endforeach
+                    </td>
+                    <td style="width: 20%;">{{$customer->debtor_number}}</td>
+                    {{-- <td>
+                        <form action="{{route('admin.customers.destroy', $customer)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td> --}}
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <div style="display: block;" class="card-customer-create">
+        <h3>Nieuwe klant aanmaken</h3>
+        <p>Laten we dit meteen regelen</p>
+        <form action="{{route('admin.customers.create')}}" method="GET">
+            @csrf 
+            @method('GET')
+            <button type="submit">Create customer</button>
+        </form>
+    </div>
+    <div class="card" style="display: none;">
+        {{-- Put contract information here --}}
+        <p id="name" style="font-weight: normal;"></p>
+        <img id="logo" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" alt="customer-logo">
+        <table class="card-table">
             <thead>
                 <tr>
-                    <th>Klanten</th>
-                    <th>Logo</th>
+                    <th>Contracten</th>
+                    <th>Uren per maand</th>
                     <th>Status</th>
-                    <th>Contact personen</th>
-                    <th>Debiteur nummer</th>
-                    {{-- <th>Actions</th> --}}
                 </tr>
             </thead>
             <tbody>
-                @foreach($customers as $customer)
-                    <tr onclick="customerInformation('{{$customer->id}}', '{{$customer->name}}', '{{$customer->logo}}', '{{$customer->status}}', '{{$customer->debor_number}}', '{{$customer->users}}')">
-                        <td style="width: 50%;" id="customer-name-{{$customer->id}}">{{$customer->name}}</td>
-                        <td style="width: 15%;" id="customer-logo"><img src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" alt="{{$customer->name}}" width="50"></td>
-                        @if($customer->status == 'active')
-                            <td style="width: 15%;" id="customer-status"><span>Actief</span></td>
-                        @else
-                            <td style="width: 15%;" id="customer-status"><span>Non-actief</span></td>
-                        @endif
-                        <td style="width: 15%;">
-                            @foreach($customer->users as $user)
-                                <p>{{$user->name}}</p>
-                            @endforeach
-                        </td>
-                        <td style="width: 20%;">{{$customer->debtor_number}}</td>
-                        {{-- <td>
-                            <form action="{{route('admin.customers.destroy', $customer)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Delete</button>
-                            </form>
-                        </td> --}}
-                    </tr>
+                @foreach($contracts as $contract)
+                    @if($contract->customer_id == $customer->id)
+                        <tr>
+                            <td>{{$contract->name}}</td>
+                            <td>{{$contract->hours}}</td>
+                            @if($contract->status == 'active')
+                                <td><span>Actief</span></td>
+                            @else
+                                <td><span>Non-actief</span></td>
+                            @endif
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>
-        <div style="display: block;" class="card-customer-create">
-            <h3>Nieuwe klant aanmaken</h3>
-            <p>Laten we dit meteen regelen</p>
-            <form action="{{route('admin.customers.create')}}" method="GET">
-                @csrf 
-                @method('GET')
-                <button type="submit">Create customer</button>
-            </form>
-        </div>
-        <div class="card" style="display: none;">
-            {{-- Put contract information here --}}
-            <p id="name" style="font-weight: normal;"></p>
-            <img id="logo" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" alt="customer-logo">
-            <table class="card-table">
-                <thead>
-                    <tr>
-                        <th>Contracten</th>
-                        <th>Uren per maand</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($contracts as $contract)
-                        @if($contract->customer_id == $customer->id)
-                            <tr>
-                                <td>{{$contract->name}}</td>
-                                <td>{{$contract->hours}}</td>
-                                @if($contract->status == 'active')
-                                    <td><span>Actief</span></td>
-                                @else
-                                    <td><span>Non-actief</span></td>
-                                @endif
-                            </tr>
-                        @endif
-                    @endforeach
-                </tbody>
-            </table>
-            <form action="{{route('admin.contracts.create')}}" method="GET">
-                @csrf
-                @method('GET')
-                {{-- If this input is deleted no contracts will be shown anymore --}}
-                {{-- Don't remove this input --}}
-                <input type="text" name="customer_id" id="customer_id" value="" hidden>
-                <button type="submit">Add contract</button>
-            </form>
-            <h4>Contact personen</h4>
-        </div>
+        <form action="{{route('admin.contracts.create')}}" method="GET">
+            @csrf
+            @method('GET')
+            {{-- If this input is deleted no contracts will be shown anymore --}}
+            {{-- Don't remove this input --}}
+            <input type="text" name="customer_id" id="customer_id" value="" hidden>
+            <button type="submit">Add contract</button>
+        </form>
+        <h4>Contact personen</h4>
     </div>
-</body>
+@endsection
 
 
 {{-- script --}}
@@ -211,50 +178,6 @@
 {{-- css --}}
 
 <style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Header */
-
-    /* .header{
-        background-color: #f5f5f5;
-        padding: 1rem;
-        text-align: center;
-    } */
-
-    /* Sidebar */
-
-    .sidebar{
-        background-color: #f5f5f5;
-        height: 100vh;
-        width: 250px;
-        padding: 1rem;
-        resize: none;
-        float: left;
-    }
-
-    .sidebar ul a{
-        list-style: none;
-        text-decoration: none;
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-    }
-
-    .sidebar ul li{
-        padding: 1rem;
-        cursor: pointer;
-        /* These 2 under this comment can be removed when all of the other <a> elements are fixed */
-        list-style: none;
-        font-family: Arial, Helvetica, sans-serif; 
-    }
-
-    .sidebar ul li:hover{
-        background-color: #e6e6e6;
-        border-radius: 5px;
-    }
-
     .customerSidebar{
         display: flex;
     }
@@ -266,12 +189,6 @@
         border: none;
         background-color: #e6e6e6;
         cursor: pointer;
-    }
-
-    /* Change name of container1 to container */
-
-    .container{
-        display: flex;
     }
 
     /* Table */

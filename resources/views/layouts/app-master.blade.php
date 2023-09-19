@@ -7,6 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    
+    @include('layouts.header')
+    <div class="container">
+        @include('layouts.sidebar')
+        <div class="content">
+            @yield('content')
+        </div>
+    </div>
 </body>
 </html>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    .container{
+        display: flex;
+    }
+
+    .content{
+        width: 100%;
+    }
+</style>
