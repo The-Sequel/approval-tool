@@ -20,5 +20,12 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => 1, // admin
         ]);
+
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@thesequel.nl',
+            'password' => bcrypt('password'),
+            'role_id' => 1, // admin
+        ]);
     }
 }

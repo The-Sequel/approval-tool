@@ -16,7 +16,13 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->date('deadline');
-            // $table->string('status');
+            $table->string('image')->nullable();
+            $table->enum('status', ['approved', 'denied', 'pending', 'completed']);
+            $table->enum('department', ['design', 'development', 'marketing', 'sales']);
+            $table->foreignId('approved_by')
+                ->nullable()
+                ->references('id')
+                ->on('users');
             $table->foreignId('project_id')
                 ->references('id')
                 ->on('projects')
@@ -24,6 +30,9 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users');
+            $table->foreignId('customer_id')
+                ->references('id')
+                ->on('customers');
             $table->timestamps();
         });
     }

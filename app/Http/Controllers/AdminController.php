@@ -8,7 +8,6 @@ use App\Models\Customer;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Role;
-use App\Models\Contract;
 
 class AdminController extends Controller
 {
@@ -71,53 +70,32 @@ class AdminController extends Controller
 
     // Customer
 
-    public function customerIndex(){
-        $customers = Customer::all();
-        $contracts = Contract::all();
-        return view('admin.customers.index', compact('customers', 'contracts'));
-    }
+    // public function customerIndex(){
+    //     $customers = Customer::all();
+    //     return view('admin.customers.index', compact('customers', 'contracts'));
+    // }
 
-    public function createCustomer()
-    {
-        return view('admin.customers.create');
-    }
+    // public function createCustomer()
+    // {
+    //     return view('admin.customers.create');
+    // }
 
-    public function storeCustomer()
-    {
-        // Validate the user input
-        $attributes = request()->validate([
-            'name' => 'required',
-        ]);
+    // public function storeCustomer()
+    // {
+    //     // Validate the user input
+    //     $attributes = request()->validate([
+    //         'name' => 'required',
+    //     ]);
 
-        // Create the user
-        Customer::create($attributes);
+    //     // Create the user
+    //     Customer::create($attributes);
 
-        // Redirect the user
-        return redirect('/admin');
-    }
+    //     // Redirect the user
+    //     return redirect('/admin');
+    // }
 
-    public function destroyCustomer(Customer $customer){
-        $customer->delete();
-        return redirect('/admin')->with('success', 'Klant is verwijderd!');
-    }
-
-    // Contracts
-    public function createContract(Request $request){
-        $customer_id = $request->customer_id;
-        return view('admin.contracts.create', compact('customer_id'));
-    }
-
-    public function storeContract(Request $request){
-        $customer_id = $request->customer_id;
-        $name = $request->name;
-        $hours = $request->hours;
-
-        Contract::create([
-            'customer_id' => $customer_id,
-            'name' => $name,
-            'hours' => $hours,
-        ]);
-
-        return redirect('/admin')->with('success', 'Contract is aangemaakt!');
-    }
+    // public function destroyCustomer(Customer $customer){
+    //     $customer->delete();
+    //     return redirect('/admin')->with('success', 'Klant is verwijderd!');
+    // }
 }

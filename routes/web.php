@@ -8,6 +8,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TaskController;
 
 // Models
 use App\Models\Customer;
@@ -29,6 +31,7 @@ use App\Models\User;
 // Admin routes
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    // Admin side
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     // User
     Route::get('/admin/users', [AdminController::class, 'userIndex'])->name('admin.users.index');
@@ -38,14 +41,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
 
     // Customer
-    Route::get('/admin/customers', [AdminController::class, 'customerIndex'])->name('admin.customers.index');
-    Route::get('/admin/customers/create', [AdminController::class, 'createCustomer'])->name('admin.customers.create');
-    Route::post('/admin/customers', [AdminController::class, 'storeCustomer'])->name('admin.customers.store');
-    Route::delete('/admin/customers/{customer}', [AdminController::class, 'destroyCustomer'])->name('admin.customers.destroy');
+    Route::get('/admin/customers', [CustomerController::class, 'customerIndex'])->name('admin.customers.index');
+    Route::get('/admin/customers/create', [CustomerController::class, 'createCustomer'])->name('admin.customers.create');
+    Route::post('/admin/customers', [CustomerController::class, 'storeCustomer'])->name('admin.customers.store');
+    Route::delete('/admin/customers/{customer}', [CustomerController::class, 'destroyCustomer'])->name('admin.customers.destroy');
 
-    // Contracts
-    Route::get('/admin/contracts/create/', [AdminController::class, 'createContract'])->name('admin.contracts.create');
-    Route::post('/admin/contracts', [AdminController::class, 'storeContract'])->name('admin.contracts.store');
+    // Project
+    Route::get('/admin/projects', [ProjectController::class, 'adminIndex'])->name('admin.projects.index');
+    Route::get('admin/project/create', [ProjectController::class, 'adminCreate'])->name('admin.project.create');
+
+    // Task
+    Route::get('/admin/tasks', [TaskController::class, 'adminIndex'])->name('admin.tasks.index');
+    Route::get('/admin/tasks/create', [TaskController::class, 'adminCreate'])->name('admin.tasks.create');
 
     Route::get('/admin/logs', [LogController::class, 'index'])->name('admin.logs.index');
 

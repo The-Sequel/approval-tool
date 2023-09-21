@@ -7,8 +7,8 @@
         </div>
         <a id="create-customer" style="display: none;" href="{{route('admin.customers.create')}}"><li>Klant aanmaken</li></a>
         {{-- The list items under this comment still need to be finished --}}
-        <li>Projecten</li>
-        <li>Taken</li>
+        <a href="{{route('admin.projects.index')}}"><li>Projecten</li></a>
+        <a href="{{route('admin.tasks.index')}}"><li>Taken</li></a>
         <li>Berichten</li>
         <li>Deadlines</li>
     </ul>
@@ -43,4 +43,38 @@
         background-color: #e6e6e6;
         border-radius: 5px;
     }
+
+    .customerSidebar{
+        display: flex;
+    }
+
+    .customerSidebar button {
+        height: 100%;
+        width: 10%;
+        border-radius: 5px;
+        border: none;
+        background-color: #e6e6e6;
+        cursor: pointer;
+    }
 </style>
+
+<script>
+    function createCustomer(){
+        var createCustomer = document.getElementById('create-customer');
+        if (createCustomer.style.display === 'block') {
+            createCustomer.style.display = 'none';
+        } else {
+            createCustomer.style.display = 'block';
+        }
+    }
+
+    function createCustomerCard(){
+        var createCustomerCard = document.getElementById('create-customer-card');
+        if (createCustomerCard.style.display === 'block') {
+            createCustomerCard.style.display = 'none';
+        } else {
+            createCustomerCard.style.display = 'block';
+        }
+    }
+
+</script>

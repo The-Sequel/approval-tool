@@ -17,6 +17,13 @@ use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
+    // Admin side
+    public function adminIndex(){
+        $user = auth()->user();
+        $customers = Customer::all();
+        return view('admin.projects.index', compact('customers', 'user'));
+    }
+
     public function index()
     {
         $user = auth()->user();

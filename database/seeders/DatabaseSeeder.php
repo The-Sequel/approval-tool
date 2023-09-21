@@ -10,7 +10,6 @@ use Database\Seeders\UserSeeder;
 use Database\Seeders\ProjectSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\TaskSeeder;
-use Database\Seeders\ContractSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,7 +32,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProjectSeeder::class,
             TaskSeeder::class,
-            ContractSeeder::class,
         ]);
 
     }

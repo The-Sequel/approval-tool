@@ -22,5 +22,23 @@ class ProjectSeeder extends Seeder
             'deadline' => '2021-09-08',
             'status' => 'pending',
         ]);
+
+        Project::create([
+            'customer_id' => 1,
+            'title' => 'Social media Oktober',
+            'description' => 'Social media posts voor de maand oktober',
+            'created_by' => 'admin',
+            'deadline' => '2021-10-01',
+            'status' => 'pending',
+        ]);
+
+        Project::create([
+            'customer_id' => 1,
+            'title' => 'Website',
+            'description' => 'Maak een website voor ons bedrijf',
+            'created_by' => 'admin',
+            'deadline' => '2021-09-15',
+            'status' => 'pending',
+        ]);
     }
 }

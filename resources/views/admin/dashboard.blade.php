@@ -1,18 +1,18 @@
-@extends('layouts.base')
+@extends('layouts.app-master')
 
 @section('content')
 
 @endsection()
 
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-</head>
-<style>
+</head> --}}
+{{-- <style>
     *{
         margin: 0;
         padding: 0;
@@ -82,8 +82,8 @@
         background-color:red;
     }
 
-</style>
-<body>
+</style> --}}
+{{-- <body>
     <header>
         
     </header>
@@ -93,27 +93,27 @@
                 <img width="200" height="122" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" class="attachment-full size-full entered lazyloaded" alt="" decoding="async" data-lazy-src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" data-ll-status="loaded">
                 <ul>
                     <a href="{{route('admin.index')}}"><li>Dashboard</li></a>
-                    <a href="{{route('admin.customers.index')}}"><li>Klanten</li></a>
+                    <a href="{{route('admin.customers.index')}}"><li>Klanten</li></a> --}}
                     {{-- The list items under this comment still need to be finished --}}
-                    <li>Projecten</li>
+                    {{-- <li>Projecten</li>
                     <li>Taken</li>
                     <li>Berichten</li>
                     <li>Deadlines</li>
                 </ul>
             </div>
             <div class="grid-even-columns">
-                <h1>Taken in brand <span style="color: grey;">(05)</span></h1>
+                <h1>Taken in brand <span style="color: grey;">(05)</span></h1> --}}
                 {{-- This needs to be put in a foreach loop to show all the tasks --}}
-                <div>
+                {{-- <div> --}}
                     {{-- <div class="grid-item">1</div>
                     <div style="grid-column: 2 / 4; grid-row: 1; background-color:blue;">2</div>
                     <div><img width="100" height="100" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" class="attachment-full size-full entered lazyloaded" alt="" decoding="async" data-lazy-src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" data-ll-status="loaded"></div>
                     <div>4</div>
                     <div>5</div>
                     <div>6</div> --}}
-                </div>
+                {{-- </div> --}}
                 {{-- This needs to be removed if everything works 'check above code' --}}
-                <div>Klant: <span>Houten Kozijn Online</span></div>
+                {{-- <div>Klant: <span>Houten Kozijn Online</span></div>
                 <div>Klant: <span>Houten Kozijn Online</span></div>
             </div>
             <div class="grid-even-columns">
@@ -128,18 +128,18 @@
 
     </footer>
 </body>
-</html>
+</html> --}}
 
 {{-- Old dashboard is under here --}}
 
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Admin Dashboard') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
-    <div class="py-12">
+    {{-- <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
@@ -151,8 +151,8 @@
                                 document.getElementById('success-message').style.display = 'none';
                             }, 5000); // 5000 milliseconds (5 seconds) - adjust as needed
                         </script>
-                    @endif
-                    <button>
+                    @endif --}}
+                    {{-- <button>
                         <a href="{{ route('admin.users.create') }}">Add User</a>
                     </button>
                     <button style="margin-left:10px;">
@@ -298,8 +298,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    @foreach($projects as $project)
+    </div> --}}
+    {{-- @foreach($projects as $project)
         <a href="{{route('project.show', $project)}}">
             <div class="container" name="{{$project->id}}">
                 <div>
@@ -307,8 +307,8 @@
                 </div>
             </div>
         </a>
-    @endforeach
-    <script>
+    @endforeach --}}
+    {{-- <script>
         // Wait for the DOM to load
         document.addEventListener('DOMContentLoaded', function () {
             // Get the filter elements
@@ -343,5 +343,5 @@
         // document.querySelector('#filter').addEventListener("change", function() {
         //     this.form.submit();
         // });
-    </script>
-</x-app-layout>
+    </script> --}}
+{{-- </x-app-layout> --}}

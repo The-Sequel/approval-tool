@@ -19,7 +19,20 @@ class TaskSeeder extends Seeder
             'description' => 'Dit is een taak',
             'deadline' => '2021-09-08',
             'project_id' => '1',
+            'department' => 'design',
             'user_id' => '1',
+            'customer_id' => '1',
+        ]);
+
+        Task::create([
+            'title' => 'Instagram post',
+            'description' => 'Plaats een instagram post voor ons bedrijf',
+            'deadline' => '2021-09-08',
+            'project_id' => '2',
+            'department' => 'marketing',
+            'image' => 'uploads/instagram-apple.png',
+            'user_id' => '1',
+            'customer_id' => '1',
         ]);
     }
 }

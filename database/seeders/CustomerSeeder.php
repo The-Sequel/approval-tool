@@ -16,35 +16,35 @@ class CustomerSeeder extends Seeder
     {
         Customer::create([
             'name' => 'Mac Donalds',
-            'logo' => 'macdonalds.png',
+            'logo' => 'uploads/macdonalds.png',
             'status' => 'active',
             'debtor_number' => '123456789',
         ]);
 
         Customer::create([
             'name' => 'The Sequel',
-            'logo' => 'thesequel.png',
+            'logo' => 'uploads/thesequel.png',
             'status' => 'active',
             'debtor_number' => '987654321',
         ]);
 
         Customer::create([
             'name' => 'Apple',
-            'logo' => 'apple.png',
+            'logo' => 'uploads/apple.png',
             'status' => 'active',
             'debtor_number' => '123456789',
         ]);
 
         Customer::create([
             'name' => 'Microsoft',
-            'logo' => 'microsoft.png',
+            'logo' => 'uploads/microsoft.png',
             'status' => 'active',
             'debtor_number' => '987654321',
         ]);
 
         Customer::create([
             'name' => 'Google',
-            'logo' => 'google.png',
+            'logo' => 'uploads/google.png',
             'status' => 'active',
             'debtor_number' => '123456789',
         ]);

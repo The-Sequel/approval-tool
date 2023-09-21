@@ -7,9 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    @include('layouts.header')
+    @include('layouts.sidebar')
     <div class="container">
-        @include('layouts.sidebar')
+        @include('layouts.header')
         <div class="content">
             @yield('content')
         </div>
@@ -25,9 +25,37 @@
 
     .container{
         display: flex;
+        flex-direction: column;
     }
 
     .content{
         width: 100%;
+    }
+
+    /* Table */
+    .table{
+        width: 50%;
+        height: 50%;
+        margin-left: 1rem;
+        border-collapse: collapse;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .table tr {
+        height: 10px;
+    }
+
+    .table th{
+        padding: 1rem;
+        text-align: left;
+        border: 1px solid #e6e6e6;
+    }
+
+    .table td{
+        font-weight: normal;
+        cursor: pointer;
+        padding: 1rem;
+        text-align: left;
+        border: 1px solid #e6e6e6;
     }
 </style>

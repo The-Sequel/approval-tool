@@ -18,11 +18,12 @@
             @foreach($customers as $customer)
                 <tr onclick="customerInformation('{{$customer->id}}', '{{$customer->name}}', '{{$customer->logo}}', '{{$customer->status}}', '{{$customer->debor_number}}', '{{$customer->users}}')">
                     <td style="width: 50%;" id="customer-name-{{$customer->id}}">{{$customer->name}}</td>
-                    <td style="width: 15%;" id="customer-logo"><img src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" alt="{{$customer->name}}" width="50"></td>
+                    <td><img src="{{ asset('storage/'.$customer->logo) }}" alt="{{$customer->name}}" width="50"></td>
+                    {{-- <td style="width: 15%;" id="customer-logo"><img src="{{ asset($customer->logo) }}" alt="{{$customer->name}}" width="50"></td> --}}
                     @if($customer->status == 'active')
-                        <td style="width: 15%;" id="customer-status"><span>Actief</span></td>
+                        <td id="customer-status"><p style="border-radius: 5px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; background-color: rgb(0, 255, 0); text-color: rgb(75, 226, 75);">Actief</p></td>
                     @else
-                        <td style="width: 15%;" id="customer-status"><span>Non-actief</span></td>
+                    <td id="customer-status"><p style="border-radius: 5px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; background-color: red; text-color: rgb(75, 226, 75);">Non-Actief</p></td>
                     @endif
                     <td style="width: 15%;">
                         @foreach($customer->users as $user)
@@ -50,135 +51,12 @@
             <button type="submit">Create customer</button>
         </form>
     </div>
-    <div class="card" style="display: none;">
-        {{-- Put contract information here --}}
-        <p id="name" style="font-weight: normal;"></p>
-        <img id="logo" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" alt="customer-logo">
-        <table class="card-table">
-            <thead>
-                <tr>
-                    <th>Contracten</th>
-                    <th>Uren per maand</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($contracts as $contract)
-                    @if($contract->customer_id == $customer->id)
-                        <tr>
-                            <td>{{$contract->name}}</td>
-                            <td>{{$contract->hours}}</td>
-                            @if($contract->status == 'active')
-                                <td><span>Actief</span></td>
-                            @else
-                                <td><span>Non-actief</span></td>
-                            @endif
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
-        <form action="{{route('admin.contracts.create')}}" method="GET">
-            @csrf
-            @method('GET')
-            {{-- If this input is deleted no contracts will be shown anymore --}}
-            {{-- Don't remove this input --}}
-            <input type="text" name="customer_id" id="customer_id" value="" hidden>
-            <button type="submit">Add contract</button>
-        </form>
-        <h4>Contact personen</h4>
-    </div>
 @endsection
-
-
-{{-- script --}}
-
-<script>
-    // This function displays the customer information
-    // function customerInformation(id, name, logo, status, debtor_number, users) {
-    //     var infoDiv = document.querySelector('.card');
-    //     var createCustomerCard = document.querySelector('.card-customer-create');
-    
-    //     if (infoDiv.style.display === 'block') {
-    //         if(document.getElementById('name').innerHTML == name){
-    //             infoDiv.style.display = 'none';
-    //             createCustomerCard.style.display = 'block';
-    //             // document.getElementById('customer-name-' + i).style = 'font-weight: normal;';
-    //         }
-    //     } else {
-    //         infoDiv.style.display = 'block';
-    //         createCustomerCard.style.display = 'none';
-    //         // document.getElementById('customer-name').style = 'font-weight: bold;';
-    //     }
-
-    //     // if (createCustomerCard.style.display === 'block') {
-    //     //     createCustomerCard.style.display = 'none';
-    //     // } else {
-    //     //     createCustomerCard.style.display = 'block';
-    //     // }
-
-    //     var name = name;
-    //     var logo = logo;
-    //     var status = status;
-    //     var debtor_number = debtor_number;
-    //     var users = users;
-
-    //     // document.getElementById('name').innerHTML = name;
-    //     // document.getElementById('logo').src = logo;
-    //     // document.getElementById('customer-status').innerHTML = status;
-    //     // document.getElementById('customer_id').value = id;
-
-
-    //     displayContractsForCustomer(id);
-    // }
-
-    // // This function displays the contracts for the customer
-
-    // function displayContractsForCustomer(customerId) {
-    //     var contracts = {!! json_encode($contracts) !!}; // Assuming $contracts is the PHP array of contracts
-
-    //     var contractsTable = document.querySelector('.card table tbody');
-    //     contractsTable.innerHTML = '';
-
-    //     for (var i = 0; i < contracts.length; i++) {
-    //         if (contracts[i].customer_id == customerId) {
-    //             var row = contractsTable.insertRow();
-    //             var cell1 = row.insertCell(0);
-    //             var cell2 = row.insertCell(1);
-    //             var cell3 = row.insertCell(2);
-    //             cell1.innerHTML = contracts[i].name;
-    //             cell2.innerHTML = contracts[i].hours;
-    //             cell3.innerHTML = contracts[i].status;
-    //         }
-    //     }
-    // }
-
-    // This function is for the button that creates a customer
-
-    function createCustomer(){
-        var createCustomer = document.getElementById('create-customer');
-        if (createCustomer.style.display === 'block') {
-            createCustomer.style.display = 'none';
-        } else {
-            createCustomer.style.display = 'block';
-        }
-    }
-
-    function createCustomerCard(){
-        var createCustomerCard = document.getElementById('create-customer-card');
-        if (createCustomerCard.style.display === 'block') {
-            createCustomerCard.style.display = 'none';
-        } else {
-            createCustomerCard.style.display = 'block';
-        }
-    }
-
-</script>
 
 {{-- css --}}
 
 <style>
-    .customerSidebar{
+    /* .customerSidebar{
         display: flex;
     }
 
@@ -189,7 +67,7 @@
         border: none;
         background-color: #e6e6e6;
         cursor: pointer;
-    }
+    } */
 
     /* Table */
 
