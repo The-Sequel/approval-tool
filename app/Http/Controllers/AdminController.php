@@ -20,42 +20,6 @@ class AdminController extends Controller
     }
 
     // User
-
-    public function userIndex()
-    {
-        $users = User::all();
-        $customers = Customer::all();
-        $roles = Role::all();
-        return view('admin.users.index', compact('users', 'customers', 'roles'));
-    }
-
-    public function createUser()
-    {
-        return view('admin.users.create');
-    }
-
-    public function storeUser()
-    {
-        // Validate the user input
-        $attributes = request()->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        // Create the user
-        User::create($attributes);
-
-        // Redirect the user
-        return redirect('/admin')->with('success', 'Gebruiker is aangemaakt!');
-    }
-
-    public function updateUser(Request $request, User $user){
-        $user->customer_id = $request->customer_id;
-        $user->role_id = $request->role_id;
-        $user->save();      
-        return redirect('/admin')->with('success', 'Gebruiker is aangepast!');
-    }
     
     // Add user to customer
     public function addUser(){
@@ -63,10 +27,6 @@ class AdminController extends Controller
     }
 
     // Delete user
-    public function destroyUser(User $user){
-        $user->delete();
-        return redirect('/admin')->with('success', 'Gebruiker is verwijderd!');
-    }
 
     // Customer
 

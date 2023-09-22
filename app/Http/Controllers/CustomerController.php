@@ -17,7 +17,7 @@ class CustomerController extends Controller
 
     // Admin side
 
-    public function customerIndex(){
+    public function index(){
         // $customers = Customer::all();
 
         $options_array = Customer::get()->toArray();;
@@ -75,11 +75,11 @@ class CustomerController extends Controller
         // return view('admin.customers.index', compact('customers'));
     }
 
-    public function createCustomer(){
+    public function create(){
         return view('admin.customers.create');
     }
 
-    public function storeCustomer(Request $request){
+    public function store(Request $request){
         $request->validate([
             'name' => 'required',
             'debtor_number' => 'required',
@@ -113,7 +113,7 @@ class CustomerController extends Controller
         return redirect('/admin/customers');
     }
 
-    public function destroyCustomer(Customer $customer){
+    public function destory(Customer $customer){
         $customer->delete();
         return redirect('/admin')->with('success', 'Klant is verwijderd!');
     }

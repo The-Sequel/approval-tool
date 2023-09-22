@@ -7,7 +7,9 @@
         'admin/projects' => 'Projecten',
         'admin/projects/create' => 'Project aanmaken',
         'admin/tasks' => 'Taken',
-        'admin/tasks/create' => 'Taak aanmaken'
+        'admin/tasks/create' => 'Taak aanmaken',
+        'admin/users' => 'Gebruikers',
+        'admin/users/create' => 'Gebruiker aanmaken',
         // Customer side
     ];
     $route = Request::path();

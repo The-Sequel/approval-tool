@@ -10,6 +10,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 
 // Models
 use App\Models\Customer;
@@ -34,17 +35,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Admin side
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     // User
-    Route::get('/admin/users', [AdminController::class, 'userIndex'])->name('admin.users.index');
-    Route::get('/admin/users/create', [AdminController::class, 'createUser'])->name('admin.users.create');
-    Route::post('/admin/users', [AdminController::class, 'storeUser'])->name('admin.users.store');
-    Route::put('/admin/users/{user}', [AdminController::class, 'updateUser'])->name('admin.users.update');
-    Route::delete('/admin/users/{user}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/admin/users/{user}', [UserController::class, 'destory'])->name('admin.users.destroy');
 
     // Customer
-    Route::get('/admin/customers', [CustomerController::class, 'customerIndex'])->name('admin.customers.index');
-    Route::get('/admin/customers/create', [CustomerController::class, 'createCustomer'])->name('admin.customers.create');
-    Route::post('/admin/customers', [CustomerController::class, 'storeCustomer'])->name('admin.customers.store');
-    Route::delete('/admin/customers/{customer}', [CustomerController::class, 'destroyCustomer'])->name('admin.customers.destroy');
+    Route::get('/admin/customers', [CustomerController::class, 'index'])->name('admin.customers.index');
+    Route::get('/admin/customers/create', [CustomerController::class, 'create'])->name('admin.customers.create');
+    Route::post('/admin/customers', [CustomerController::class, 'store'])->name('admin.customers.store');
+    Route::delete('/admin/customers/{customer}', [CustomerController::class, 'destroy'])->name('admin.customers.destroy');
 
     // Project
     Route::get('/admin/projects', [ProjectController::class, 'adminIndex'])->name('admin.projects.index');

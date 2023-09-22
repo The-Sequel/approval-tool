@@ -10,6 +10,6 @@
         <a href="{{route('admin.projects.index')}}"><li>Projecten</li></a>
         <a href="{{route('admin.tasks.index')}}"><li>Taken</li></a>
         <li>Berichten</li>
-        <li>Deadlines</li>
+        <a href="{{route('admin.users.index')}}"><li>Gebruikers</li></a>
     </ul>
 </div>

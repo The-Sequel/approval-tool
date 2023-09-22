@@ -34,45 +34,13 @@
                 @endforeach
             </tbody>
         </table> --}}
-        {{-- <div class="button-customer-create">
+        <div class="button-customer-create">
             <form action="{{route('admin.customers.create')}}" method="GET">
                 @csrf 
                 @method('GET')
                 <button type="submit">+ Create customer</button>
             </form>
-        </div> --}}
+        </div>
     </div>
 </div>
-    {{-- Table and other content --}}
-
-    {{-- <div style="display: block;" class="card-customer-create">
-        <h3>Nieuwe klant aanmaken</h3>
-        <p>Laten we dit meteen regelen</p>
-        <form action="{{route('admin.customers.create')}}" method="GET">
-            @csrf 
-            @method('GET')
-            <button type="submit">Create customer</button>
-        </form>
-    </div> --}}
 @endsection
-
-{{-- css --}}
-
-<style>
-
-
-    .button-customer-create{
-        margin-left: 1rem;
-        margin-top: 50px;
-        /* padding-left: */
-        /* box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        background-color: #f5f5f5; */
-        /* float: left; */
-    }
-
-    .button-customer-create button{
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-</style>
