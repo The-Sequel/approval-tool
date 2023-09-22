@@ -18,8 +18,61 @@ class CustomerController extends Controller
     // Admin side
 
     public function customerIndex(){
-        $customers = Customer::all();
-        return view('admin.customers.index', compact('customers'));
+        // $customers = Customer::all();
+
+        $options_array = Customer::get()->toArray();;
+
+        // get all users from customer
+        foreach ($options_array as $key => $value) {
+            $options_array[$key]['users'] = Customer::find($value['id'])->users()->get()->toArray();
+        }
+
+        // dd($options_array);
+
+        $tbody = [];
+        foreach ($options_array as $key => $value) {
+            // dd($value['users']['name']);
+            $tbody[$value['id']] = [
+                [
+                    'field' => 'text',
+                    'content' => $value['name'],
+                ],
+                [
+                    'field' => 'image',
+                    // send the image with also a <img> element
+                    'content' => $value['logo'] ? '<img src="' . asset('storage/'. $value['logo']) . '" alt="logo" width="100px">' : '',
+                ],
+                [
+                    'field' => 'text',
+                    'content' => $value['status'],
+                ],
+                [
+                    'field' => 'text',
+                    // get all user names from the customer
+                    'content' => implode(', ', array_column($value['users'], 'name')),
+                ],
+                [
+                    'field' => 'text',
+                    'content' => $value['debtor_number'],
+                ],
+            ];
+        }
+
+        $table = [
+            'thead' => [
+                'Klanten',
+                'Logo',
+                'Status',
+                'Contactpersoon',
+                'Debiteur nummer',
+            ],
+
+            'tbody' => $tbody,
+        ];
+
+        return view('admin.customers.index', compact('table'));
+        // $customers = Customer::all();
+        // return view('admin.customers.index', compact('customers'));
     }
 
     public function createCustomer(){

@@ -12,6 +12,7 @@
     ];
     $route = Request::path();
 @endphp
+
 <div class="header">
     @if(isset($routeTitles[$route]))
         <div class="header-1">
@@ -23,21 +24,3 @@
         </div>
     @endif
 </div>
-
-
-<style>
-    .header{
-        background-color: #f5f5f5;
-        padding: 1rem;
-        margin-top: 20px;
-        margin-left: 20px;
-        margin-right: 20px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        height: 100%;
-    }
-
-    .header h1{
-        font-size: 2rem;
-        font-weight: bold;
-    }
-</style>

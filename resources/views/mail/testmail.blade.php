@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,4 +10,4 @@
     <div>Hello, {{ $name }}</div>
     <p>User changed project status from {{$oldProjectStatus}} to {{ $newProjectStatus }}</p>
 </body>
-</html>
+</html> --}}

@@ -1,0 +1,25 @@
+/* Table */
+.table{
+    margin-top: 120px;
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
+    tr{
+        height: 10px;
+    }
+
+    th{
+        padding: 1rem;
+        text-align: left;
+        border: 1px solid #e6e6e6;
+    }
+
+    td{
+        font-weight: normal;
+        cursor: pointer;
+        padding: 1rem;
+        text-align: left;
+        border: 1px solid #e6e6e6;
+    }
+}

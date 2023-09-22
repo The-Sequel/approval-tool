@@ -1,7 +1,37 @@
 @extends('layouts.app-master')
 
 @section('content')
+    <div class="projects">
+        @foreach($projects as $project)
 
+            <div class="project">
+                {{$project->title}}
+            </div>  
+
+        @endforeach
+        <div class="project">
+            Test
+        </div>  
+        <div class="project">
+            Test
+        </div>  
+        <div class="project">
+            Test
+        </div>  
+    </div>
+
+    <style>
+        .projects{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project{
+            height: 200px;
+            width: 200px;
+            background-color: yellow;
+        }
+    </style>
 @endsection()
 
 {{-- <!DOCTYPE html>
