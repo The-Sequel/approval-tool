@@ -48,7 +48,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/admin/customers/{customer}', [CustomerController::class, 'destroy'])->name('admin.customers.destroy');
 
     // Project
-    Route::get('/admin/projects', [ProjectController::class, 'adminIndex'])->name('admin.projects.index');
+    Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
+    // Route::get('/admin/projects', [ProjectController::class, 'adminIndex'])->name('admin.projects.index');
     Route::get('admin/project/create', [ProjectController::class, 'adminCreate'])->name('admin.project.create');
 
     // Task

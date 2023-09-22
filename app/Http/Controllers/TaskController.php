@@ -12,12 +12,8 @@ class TaskController extends Controller
 
     public function adminIndex()
     {
-        $tasks = Task::all();
-
-
         $options_array = Task::get()->toArray();;
 
-        // get all of the customer names
         foreach ($options_array as $key => $value) {
             $options_array[$key]['customer'] = Task::find($value['id'])->customer()->get()->toArray();
         }
@@ -26,7 +22,6 @@ class TaskController extends Controller
             $options_array[$key]['user'] = Task::find($value['id'])->user()->get()->toArray();
         }
 
-        // get the user that approved the task if approved_by is not null
         foreach ($options_array as $key => $value) {
             if ($value['approved_by'] != null) {
                 $options_array[$key]['approved_by'] = Task::find($value['id'])->user()->get()->toArray();
@@ -35,11 +30,8 @@ class TaskController extends Controller
             }
         }
 
-        // dd($options_array);
-
         $tbody = [];
         foreach ($options_array as $key => $value) {
-            // dd($value['users']['name']);
             $tbody[$value['id']] = [
                 [
                     'field' => 'text',
@@ -92,8 +84,7 @@ class TaskController extends Controller
             'tbody' => $tbody,
         ];
 
-        return view('admin.tasks.index', compact('table', 'tasks'));
-        // return view('admin.tasks.index', compact('tasks'));
+        return view('admin.tasks.index', compact('table'));
     }
 
     public function adminCreateTask()

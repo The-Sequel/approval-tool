@@ -10,16 +10,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        // $users = User::all();
-        // $customers = Customer::all();
-        // $roles = Role::all();
         $options_array = User::get()->toArray();;
-
-        // dd($options_array);
 
         $tbody = [];
         foreach ($options_array as $key => $value) {
-            // dd($value['users']['name']);
             $tbody[$value['id']] = [
                 [
                     'field' => 'text',
@@ -31,7 +25,7 @@ class UserController extends Controller
                 ],
                 [
                     'field' => 'text',
-                    'content' => $value['customer_id'] ? Customer::find($value['customer_id'])->name : '',
+                    'content' => $value['customer_id'] ? Customer::find($value['customer_id'])->name : '-',
                 ],
                 [
                     'field' => 'text',

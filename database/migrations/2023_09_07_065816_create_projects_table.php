@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('description');
             $table->enum('status', ['approved', 'denied', 'pending', 'completed']);
             $table->string('created_by');
+            $table->string('approved_by')->nullable();
             $table->date('deadline');
+            $table->enum('department', ['design', 'development', 'marketing', 'sales', 'management']);
             $table->foreignId('customer_id')
                 ->references('id')
                 ->on('customers');

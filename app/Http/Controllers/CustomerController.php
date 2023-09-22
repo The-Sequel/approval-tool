@@ -18,20 +18,14 @@ class CustomerController extends Controller
     // Admin side
 
     public function index(){
-        // $customers = Customer::all();
-
         $options_array = Customer::get()->toArray();;
 
-        // get all users from customer
         foreach ($options_array as $key => $value) {
             $options_array[$key]['users'] = Customer::find($value['id'])->users()->get()->toArray();
         }
 
-        // dd($options_array);
-
         $tbody = [];
         foreach ($options_array as $key => $value) {
-            // dd($value['users']['name']);
             $tbody[$value['id']] = [
                 [
                     'field' => 'text',
@@ -48,7 +42,6 @@ class CustomerController extends Controller
                 ],
                 [
                     'field' => 'text',
-                    // get all user names from the customer
                     'content' => implode(', ', array_column($value['users'], 'name')),
                 ],
                 [

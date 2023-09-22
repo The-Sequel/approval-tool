@@ -21,6 +21,7 @@ class ProjectSeeder extends Seeder
             'created_by' => 'admin',
             'deadline' => '2021-09-08',
             'status' => 'pending',
+            'department' => 'marketing',
         ]);
 
         Project::create([
@@ -30,6 +31,7 @@ class ProjectSeeder extends Seeder
             'created_by' => 'admin',
             'deadline' => '2021-10-01',
             'status' => 'pending',
+            'department' => 'marketing',
         ]);
 
         Project::create([
@@ -39,6 +41,8 @@ class ProjectSeeder extends Seeder
             'created_by' => 'admin',
             'deadline' => '2021-09-15',
             'status' => 'pending',
+            'department' => 'development',
+            'approved_by' => 'admin',
         ]);
     }
 }

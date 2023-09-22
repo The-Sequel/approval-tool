@@ -4,32 +4,88 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Customer;
 use App\Models\Project;
-use App\Models\File;
 use App\Models\Task;
 
 use Illuminate\Support\Facades\Log;
 
-// Mail
-use App\Mail\TestMail;
-use Illuminate\Support\Facades\Mail;
-
 class ProjectController extends Controller
 {
     // Admin side
-    public function adminIndex(){
-        $user = auth()->user();
-        $customers = Customer::all();
-        return view('admin.projects.index', compact('customers', 'user'));
+    public function index(){
+        $options_array = Project::get()->toArray();;
+
+        foreach ($options_array as $key => $value) {
+            $options_array[$key]['customer'] = Project::find($value['id'])->customer()->get()->toArray();
+        }
+
+        foreach ($options_array as $key => $value) {
+            $customer = Project::find($value['id'])->customer;
+            $options_array[$key]['users'] = $customer->users()->get()->toArray();
+        }
+
+        $tbody = [];
+        foreach ($options_array as $key => $value) {
+            $tbody[$value['id']] = [
+                [
+                    'field' => 'text',
+                    'content' => $value['title'],
+                ],
+                [
+                    'field' => 'text',
+                    'content' => $value['customer'][0]['name'],
+                ],
+                [
+                    'field' => 'text',
+                    'content' => implode(', ', array_column($value['users'], 'name')),
+                ],
+                [
+                    'field' => 'date',
+                    'content' => $value['deadline'],
+                ],
+                [
+                    'field' => 'text',
+                    'content' => $value['department'],
+                ],
+                [
+                    'field' => 'text',
+                    'content' => $value['status'],
+                ],
+                [
+                    'field' => 'text',
+                    'content' => $value['approved_by'],
+                ],
+                [
+                    'field' => 'date',
+                    'content' => $value['updated_at'],
+                ],
+            ];
+        }
+
+        $table = [
+            'thead' => [
+                'Projecten',
+                'Klant',
+                'Personen',
+                'Deadline',
+                'Afdelingen',
+                'Status',
+                'Akkoord door',
+                'Bewerkt op:'
+            ],
+
+            'tbody' => $tbody,
+        ];
+
+        return view('admin.projects.index', compact('table'));
     }
 
-    public function index()
-    {
-        $user = auth()->user();
-        $customers = Customer::all();
-        return view('project.index', compact('customers', 'user'));
-    }
+    // public function index()
+    // {
+    //     $user = auth()->user();
+    //     $customers = Customer::all();
+    //     return view('project.index', compact('customers', 'user'));
+    // }
 
     public function store(Request $request){
         $request->validate([
@@ -66,7 +122,7 @@ class ProjectController extends Controller
         return redirect('/admin')->with('success', 'Project is aangemaakt!');
     }
 
-    public function updateProject(Request $request, Project $project){
+    public function update(Request $request, Project $project){
         $project->status = $request->status;
         $project->prio_level = $request->prio_level;
 
