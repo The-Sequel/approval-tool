@@ -19,7 +19,7 @@ class TaskSeeder extends Seeder
             'description' => 'Dit is een taak',
             'deadline' => '2021-09-08',
             'project_id' => '1',
-            'department' => 'design',
+            'department_id' => 1,
             'user_id' => '1',
             'customer_id' => '1',
         ]);
@@ -29,7 +29,7 @@ class TaskSeeder extends Seeder
             'description' => 'Plaats een instagram post voor ons bedrijf',
             'deadline' => '2021-09-08',
             'project_id' => '2',
-            'department' => 'marketing',
+            'department_id' => 2,
             'image' => 'uploads/instagram-apple.png',
             'user_id' => '1',
             'customer_id' => '1',

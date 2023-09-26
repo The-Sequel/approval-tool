@@ -5,29 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Department extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
-    }
-
-    public function subProjects()
-    {
-        return $this->hasMany(SubProject::class);
-    }
 
     public function tasks()
     {
         return $this->hasMany(Task::class);
     }
 
-    public function department()
+    public function projects()
     {
-        return $this->belongsTo(Department::class);
+        return $this->hasMany(Project::class);
     }
 
     public function messages()

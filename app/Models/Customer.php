@@ -25,11 +25,6 @@ class Customer extends Model
         return $this->hasManyThrough(Task::class, Project::class);
     }
 
-    public function contracts()
-    {
-        return $this->hasMany(Contract::class);
-    }
-
     // public function users()
     // {
     //     return $this->hasManyThrough(User::class, Project::class);

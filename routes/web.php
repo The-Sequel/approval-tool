@@ -11,6 +11,7 @@ use App\Http\Controllers\FilterController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessageController;
 
 // Models
 use App\Models\Customer;
@@ -50,13 +51,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Project
     Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
     // Route::get('/admin/projects', [ProjectController::class, 'adminIndex'])->name('admin.projects.index');
-    Route::get('admin/project/create', [ProjectController::class, 'adminCreate'])->name('admin.project.create');
+    Route::get('admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');
 
     // Task
     Route::get('/admin/tasks', [TaskController::class, 'adminIndex'])->name('admin.tasks.index');
     Route::get('/admin/tasks/create', [TaskController::class, 'adminCreate'])->name('admin.tasks.create');
 
     Route::get('/admin/logs', [LogController::class, 'index'])->name('admin.logs.index');
+
+    // Messages
+    Route::get('/admin/messages', [MessageController::class, 'index'])->name('admin.messages.index');
 
 
     // Filter

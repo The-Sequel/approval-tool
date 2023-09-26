@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Customer;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index(){
         $options_array = User::get()->toArray();;
+
+        // dd($options_array);
 
         $tbody = [];
         foreach ($options_array as $key => $value) {
@@ -22,6 +25,11 @@ class UserController extends Controller
                 [
                     'field' => 'text',
                     'content' => $value['email'],
+                ],
+                [
+                    'field' => 'text',
+                    // get department name
+                    'content' => $value['department_id'] ? Department::find($value['department_id'])->title : '-',
                 ],
                 [
                     'field' => 'text',
@@ -38,6 +46,7 @@ class UserController extends Controller
             'thead' => [
                 'Gebruikers naam',
                 'Email',
+                'Afdeling',
                 'Klant',
                 'Rol',
             ],

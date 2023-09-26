@@ -7,11 +7,13 @@
 
     </div>
 </div>
-    <form>
-        Nieuwe taak
+    <form action='{{route('admin.tasks.create')}}' method="GET">
+        @csrf
+        @method('GET')
+        <div class="form-group">
+            <button type="submit">Maak</button>
+        </div>
     </form>
-    
-    <button onclick="">Maak een nieuwe taak aan</button>
 
     <script>
         

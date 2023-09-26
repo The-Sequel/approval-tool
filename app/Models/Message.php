@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Message extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
-    public function project()
+    public function department()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Department::class);
     }
 
     public function user()
@@ -25,13 +25,8 @@ class Task extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function department()
+    public function task()
     {
-        return $this->belongsTo(Department::class);
-    }
-
-    public function messages()
-    {
-        return $this->hasMany(Message::class);
+        return $this->belongsTo(Task::class);
     }
 }

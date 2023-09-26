@@ -19,11 +19,13 @@ return new class extends Migration
             $table->string('created_by');
             $table->string('approved_by')->nullable();
             $table->date('deadline');
-            $table->enum('department', ['design', 'development', 'marketing', 'sales', 'management']);
+            $table->foreignId('department_id')
+                ->references('id')
+                ->on('departments');
             $table->foreignId('customer_id')
                 ->references('id')
                 ->on('customers');
-            $table->integer('prio_level')->default(3);
+            // $table->integer('prio_level')->default(3);
             $table->string('file_path')->nullable();
             $table->timestamps();
         });

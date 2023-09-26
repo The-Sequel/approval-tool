@@ -1,13 +1,46 @@
-.header{
+.header {
+    font-family:Arial, Helvetica, sans-serif;
     background-color: #f5f5f5;
     padding: 1rem;
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space items evenly */
+    align-items: center; /* Align items vertically */
 
-    h1{
+    h1 {
         font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .header-2 {
+        display: flex; /* Use flexbox */
+        align-items: center; /* Align items vertically */
+
+        .user-image {
+            height: 15px;
+            width: 15px;
+            padding: 25px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            font-size: 18px; /* Adjust the font size as needed */
+            color: white;
+        }
+    }
+
+    .header-3{
+        margin-left: 20px;
+
+        .header-customer-name{
+            color: gray;
+        }
+    }
+
+    .header-4{
+        margin-left: 20px;
     }
 }

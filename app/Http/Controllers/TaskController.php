@@ -30,6 +30,12 @@ class TaskController extends Controller
             }
         }
 
+        // get the department title
+        foreach ($options_array as $key => $value) {
+            $department = Task::find($value['id'])->department;
+            $options_array[$key]['department'] = $department->title;
+        }
+
         $tbody = [];
         foreach ($options_array as $key => $value) {
             $tbody[$value['id']] = [
@@ -87,7 +93,7 @@ class TaskController extends Controller
         return view('admin.tasks.index', compact('table'));
     }
 
-    public function adminCreateTask()
+    public function adminCreate()
     {
         return view('admin.tasks.create');
     }

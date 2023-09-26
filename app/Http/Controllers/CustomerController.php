@@ -18,7 +18,10 @@ class CustomerController extends Controller
     // Admin side
 
     public function index(){
-        $options_array = Customer::get()->toArray();;
+
+        $customers = Customer::all();
+
+        $options_array = Customer::get()->toArray();
 
         foreach ($options_array as $key => $value) {
             $options_array[$key]['users'] = Customer::find($value['id'])->users()->get()->toArray();
@@ -33,8 +36,8 @@ class CustomerController extends Controller
                 ],
                 [
                     'field' => 'image',
-                    // send the image with also a <img> element
-                    'content' => $value['logo'] ? '<img src="' . asset('storage/'. $value['logo']) . '" alt="logo" width="100px">' : '',
+                    'content' => $value['logo'] ? '<img src="/storage/' . $value['logo'] . '" width="100px" height="100px">' : 'No image',
+                    
                 ],
                 [
                     'field' => 'text',
@@ -42,7 +45,7 @@ class CustomerController extends Controller
                 ],
                 [
                     'field' => 'text',
-                    'content' => implode(', ', array_column($value['users'], 'name')),
+                    'content' => $value['users'] ? implode(', ', array_column($value['users'], 'name')) : '-',
                 ],
                 [
                     'field' => 'text',
@@ -63,7 +66,7 @@ class CustomerController extends Controller
             'tbody' => $tbody,
         ];
 
-        return view('admin.customers.index', compact('table'));
+        return view('admin.customers.index', compact('table', 'customers'));
         // $customers = Customer::all();
         // return view('admin.customers.index', compact('customers'));
     }

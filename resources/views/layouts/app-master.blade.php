@@ -7,7 +7,7 @@
     <title>Document</title>
 
 
-    @vite(['resources/css/style.css', 'resources/js/customers.js']);
+    @vite(['resources/css/style.css', 'resources/js/customers.js'])
 </head>
 <body>
     @include('layouts.sidebar')
@@ -16,6 +16,7 @@
         <div class="content">
             @yield('content')
         </div>
+        @include('layouts.footer')
     </div>
 </body>
 </html>

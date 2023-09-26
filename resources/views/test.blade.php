@@ -152,3 +152,20 @@
 @section('content')
 
 @endsection
+
+<div class="dot">
+    <p>S</p>
+</div>
+
+<style>
+    .dot {
+        height: 50px;
+        width: 50px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: flex;
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        font-size: 18px; /* Adjust the font size as needed */
+    }
+</style>

@@ -1,6 +1,13 @@
 @extends('layouts.app-master')
 
 @section('content')
+    @if (session('error'))
+        <div class="col-12">
+            <div class="alert alert-success">
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
     <form action="{{route('project.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
@@ -20,16 +27,34 @@
         </div>
 
         <div class="form-group">
-            <label for="prio_level">Prio level</label>
-            <select name="prio_level" id="prio_level">
-                <option value="3">Low</option>
-                <option value="2">Medium</option>
-                <option value="1">High</option>
+            <label for="department">Department</label>
+            <select class="form-control" name="department" id="department">
+                <option value="">Select department</option>
+                @foreach($departments as $department)
+                    <option value="{{$department->id}}">{{$department->title}}</option>
+                @endforeach
             </select>
         </div>
 
-        {{-- hidden fields --}}
+        <div class="form-group">
+            <label for="customer_id">Customer</label>
+            <select class="form-control" name="customer_id" id="customer_id">
+                <option value="">Select customer</option>
+                @foreach($customers as $customer)
+                    <option value="{{$customer->id}}">{{$customer->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
         <input type="hidden" type="text" name="status" id="status" value="pending">
+        <input type="hidden" type="text" name="created_by" id="created_by" value="{{Auth::user()->id}}">
+
+        <div class="form-group">
+            <button>Maak</button>
+        </div>
+
+        {{-- hidden fields --}}
+        {{-- <input type="hidden" type="text" name="status" id="status" value="pending">
 
         @foreach($customers as $customer)
             @if($customer->id == $user->customer_id)
@@ -42,5 +67,5 @@
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-primary">
         </div>
-    </form>
+    </form> --}}
 @endsection

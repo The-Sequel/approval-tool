@@ -24,9 +24,9 @@
                         @else
                         <td id="customer-status"><p style="border-radius: 5px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; background-color: red; text-color: rgb(75, 226, 75);">Non-Actief</p></td>
                         @endif
-                        <td style="width: 15%;">
+                        <td class="user-logo">
                             @foreach($customer->users as $user)
-                                <p>{{$user->name}}</p>
+                                {{substr($user->name, 0, 1)}}
                             @endforeach
                         </td>
                         <td style="width: 20%;">{{$customer->debtor_number}}</td>
@@ -38,10 +38,11 @@
             <form action="{{route('admin.customers.create')}}" method="GET">
                 @csrf 
                 @method('GET')
-                <button type="submit">+ Create customer</button>
+                <div class="form-group">
+                    <button class="button" type="submit">+ Maak nieuwe klant</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
-<p>test</p>
 @endsection

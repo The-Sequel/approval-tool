@@ -16,12 +16,12 @@ class ProjectSeeder extends Seeder
     {
         Project::create([
             'customer_id' => 1,
-            'title' => 'Instagram post',
+            'title' => 'Sociale media Januari',
             'description' => 'Plaats een instagram post voor ons bedrijf',
             'created_by' => 'admin',
             'deadline' => '2021-09-08',
             'status' => 'pending',
-            'department' => 'marketing',
+            'department_id' => 2,
         ]);
 
         Project::create([
@@ -31,17 +31,17 @@ class ProjectSeeder extends Seeder
             'created_by' => 'admin',
             'deadline' => '2021-10-01',
             'status' => 'pending',
-            'department' => 'marketing',
+            'department_id' => 1,
         ]);
 
         Project::create([
             'customer_id' => 1,
-            'title' => 'Website',
+            'title' => 'Social media December',
             'description' => 'Maak een website voor ons bedrijf',
             'created_by' => 'admin',
             'deadline' => '2021-09-15',
             'status' => 'pending',
-            'department' => 'development',
+            'department_id' => 3,
             'approved_by' => 'admin',
         ]);
     }

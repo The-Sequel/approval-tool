@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Models\Project;
 use App\Models\Task;
 
+use App\Models\User;
+use App\Models\Project;
+use App\Models\Customer;
+use App\Models\Department;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class ProjectController extends Controller
@@ -24,6 +27,12 @@ class ProjectController extends Controller
             $options_array[$key]['users'] = $customer->users()->get()->toArray();
         }
 
+        // get the department title
+        foreach ($options_array as $key => $value) {
+            $department = Project::find($value['id'])->department;
+            $options_array[$key]['department'] = $department->title;
+        }
+
         $tbody = [];
         foreach ($options_array as $key => $value) {
             $tbody[$value['id']] = [
@@ -37,11 +46,11 @@ class ProjectController extends Controller
                 ],
                 [
                     'field' => 'text',
-                    'content' => implode(', ', array_column($value['users'], 'name')),
+                    'content' => $value['users'] ? implode(', ', array_column($value['users'], 'name')) : '-',
                 ],
                 [
                     'field' => 'date',
-                    'content' => $value['deadline'],
+                    'content' => $value['deadline'] ? $value['deadline'] : '-',
                 ],
                 [
                     'field' => 'text',
@@ -53,7 +62,7 @@ class ProjectController extends Controller
                 ],
                 [
                     'field' => 'text',
-                    'content' => $value['approved_by'],
+                    'content' => $value['approved_by'] ? $value['approved_by'] : '-',
                 ],
                 [
                     'field' => 'date',
@@ -80,6 +89,13 @@ class ProjectController extends Controller
         return view('admin.projects.index', compact('table'));
     }
 
+    public function create(){
+        $customers = Customer::all();
+        $users = User::all();
+        $departments = Department::all();
+        return view('admin.projects.create', compact('customers', 'users', 'departments'));
+    }
+
     // public function index()
     // {
     //     $user = auth()->user();
@@ -88,23 +104,22 @@ class ProjectController extends Controller
     // }
 
     public function store(Request $request){
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'status' => 'required',
-            'deadline' => 'required',
-            'customer_id' => 'required',
-            'prio_level' => 'required',
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'description' => 'required',
+        //     'status' => 'required',
+        //     'deadline' => 'required',
+        //     'customer_id' => 'required',
+        // ]);
 
         // Handle file upload
-        if ($request->file('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads', $fileName); // Store the file in the 'uploads' directory
-        } else {
-            $filePath = null;
-        }
+        // if ($request->file('file')) {
+        //     $file = $request->file('file');
+        //     $fileName = time() . '_' . $file->getClientOriginalName();
+        //     $filePath = $file->storeAs('uploads', $fileName); // Store the file in the 'uploads' directory
+        // } else {
+        //     $filePath = null;
+        // }
 
         $project = Project::create([
             'title' => $request->title,
@@ -113,8 +128,8 @@ class ProjectController extends Controller
             'created_by' => auth()->user()->name,
             'deadline' => $request->deadline,
             'customer_id' => $request->customer_id,
-            'prio_level' => $request->prio_level,
-            'file_path' => $filePath, // Save the file path in the database
+            'department_id' => $request->department,
+            // 'file_path' => $filePath, // Save the file path in the database
         ]);
 
         Log::channel('log')->info('Project is aangemaakt door ' . auth()->user()->name . ' met id ' . $project->id);

@@ -1,7 +1,73 @@
 @extends('layouts.app-master')
 
 @section('content')
-    <div class="projects">
+<div class="grid">
+    <div class="col-4">
+        <h1>Taken in brand <span style="color: grey;">(05)</span></h1>
+        @foreach($tasks as $task)
+            <div class="task-card">
+                
+            </div>
+        @endforeach
+        {{-- Align this in the right corner of the project-card --}}
+        <p>Bekijk alle taken</p>
+    </div>
+    <div class="col-4">
+        <h1>Lopende projecten <span style="color: grey;">(03)</span></h1>
+        @foreach($projects as $project)
+            <div class="project-card">
+                <div class="project-card-title">
+                    {{$project->title}}
+                </div>
+                <div class="project-card-image">
+                    <img src="{{ asset('storage/'.$project->customer->logo) }}" alt="{{$project->customer->name}}" width="50">
+                </div>
+                <div class="project-card-customer">
+                    <p>Klant: {{$project->customer->name}}</p>
+                </div>
+                <div class="project-card-description">
+                    <p>{{$project->description}}</p>
+                </div>
+                {{-- Get the amount of tasks that are connected to this project --}}
+                <div class="project-card-tasks">
+                    <p>Tasks: {{$project->tasks->count()}}</p>
+                </div>
+                <div class="project-card-created_at">
+                    <p>{{$project->created_at}}</p>
+                </div>
+                <div class="project-card-department">
+                    <p>Afdeling: {{$project->department->title}}</p>
+                </div>
+                <div class="project-card-users">
+                    {{-- <p>Gebruikers: {{$project->users->count()}}</p> --}}
+                </div>
+            </div>
+        @endforeach
+        <p>Bekijk alle project</p>
+    </div>
+    <div class="col-4">
+        <div class="dashboard-cards">
+            <div class="create-customer-card">
+                <h3>Nieuwe klant aanmaken</h3>
+                <p>Laten we dit meteen regelen</p>
+            </div>
+            <div class="create-user-card">
+                <h3>Nieuwe gebruiker aanmaken</h3>
+                <p>Laten we dit meteen regelen</p>
+            </div>
+            <div class="active-users-card">
+                <h1>Gebruikers: {{$users->count()}}</h1>
+                <hp>Actieve gebruikers</hp>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    {{-- <div class="projects">
         @foreach($projects as $project)
 
             <div class="project">
@@ -31,7 +97,7 @@
             width: 200px;
             background-color: yellow;
         }
-    </style>
+    </style> --}}
 @endsection()
 
 {{-- <!DOCTYPE html>

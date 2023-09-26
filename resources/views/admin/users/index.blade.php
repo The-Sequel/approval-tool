@@ -9,7 +9,9 @@
     <form action="{{route('admin.users.create')}}" method="GET">
         @csrf
         @method('GET')
-        <button type="submit">+ Create user</button>
+        <div class="form-group">
+            <button>Maak</button>
+        </div>
     </form>
 </div>
 @endsection

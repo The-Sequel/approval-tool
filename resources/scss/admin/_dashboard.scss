@@ -1,0 +1,44 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.project-card{
+    width: 350px;
+    height: 220px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.task-card{
+    width: 350px;
+    height: 220px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.dashboard-cards{
+
+    .create-customer-card{
+        width: 300px;
+        height: 150px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .create-user-card{
+        margin-top: 35px;
+        width: 300px;
+        height: 150px;
+        color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        background-color: gray;
+    }
+
+    .active-users-card{
+        margin-top: 35px;
+        width: 300px;
+        height: 150px;
+        color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        background-color: rgb(44, 136, 44);
+    }
+}

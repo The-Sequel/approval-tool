@@ -4,13 +4,14 @@
 <div class="grid">
     @include('sections.table' , $table);
     <div class="col-12">
-        
+
     </div>
-    <form action="" method="GET">
+    <form action="{{route('admin.projects.create')}}" method="GET">
         @csrf
         @method('GET')
-        <button type="submit">+ Create user</button>
+        <div class="form-group">
+            <button type="submit">Maak</button>
+        </div>
     </form>
 </div>
-<p>Projects</p>
 @endsection

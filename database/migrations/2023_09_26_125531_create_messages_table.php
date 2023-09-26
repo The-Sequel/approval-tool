@@ -11,23 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->string('logo')->nullable();
-            $table->foreignId('customer_id')->nullable()
-                ->references('id')
-                ->on('customers');
-            $table->foreignId('role_id')->nullable()
-                ->references('id')
-                ->on('roles');
-            $table->foreignId('department_id')->nullable()
+            $table->foreignId('department_id')
                 ->references('id')
                 ->on('departments');
+            $table->foreignId('user_id')
+                ->references('id')
+                ->on('users');
+            $table->foreignId('customer_id')
+                ->references('id')
+                ->on('customers');
+            $table->foreignId('project_id')
+                ->nullable()
+                ->references('id')
+                ->on('projects');
+            $table->foreignId('task_id')
+                ->nullable()
+                ->references('id')
+                ->on('tasks');
             $table->timestamps();
         });
     }
@@ -37,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('messages');
     }
 };

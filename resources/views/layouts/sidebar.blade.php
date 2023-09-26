@@ -9,7 +9,7 @@
         {{-- The list items under this comment still need to be finished --}}
         <a href="{{route('admin.projects.index')}}"><li>Projecten</li></a>
         <a href="{{route('admin.tasks.index')}}"><li>Taken</li></a>
-        <li>Berichten</li>
+        <a href="{{route('admin.messages.index')}}"><li>Berichten</li></a>
         <a href="{{route('admin.users.index')}}"><li>Gebruikers</li></a>
     </ul>
 </div>

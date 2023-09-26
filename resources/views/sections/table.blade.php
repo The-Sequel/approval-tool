@@ -13,6 +13,12 @@
                     @foreach ($values as $key2 => $value)
                         <td>
                             @switch($value['field'])
+                                // check if the value is a image and if so, display it
+                                @case('image')
+                                    @if(!empty($value['content']))
+                                        <img src="{{ $value['content'] }}" alt="{{ $value['content'] }}" class="{{ $value['class'] ?? '' }}">
+                                    @endif
+                                @break
                                 @case('text')
                                     {{ $value['content'] }}
                                 @break
