@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\Task;
+
+use App\Models\Customer;
+use App\Models\Department;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -95,9 +97,27 @@ class TaskController extends Controller
 
     public function adminCreate()
     {
-        return view('admin.tasks.create');
+        $departments = Department::all();
+        $customers = Customer::all();
+        return view('admin.tasks.create', compact('departments', 'customers'));
     }
 
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        Task::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+            'status' => $request->status,
+            'approved_by' => $request->approved_by,
+            'department_id' => $request->department_id,
+            'customer_id' => $request->customer_id,
+            'user_id' => $request->user_id,
+        ]);
+
+        return redirect('/admin/tasks');
+    }
 
     // User side
 }

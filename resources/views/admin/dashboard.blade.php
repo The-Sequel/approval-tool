@@ -10,7 +10,7 @@
             </div>
         @endforeach
         {{-- Align this in the right corner of the project-card --}}
-        <p>Bekijk alle taken</p>
+        <a href="/admin/tasks">Bekijk alle taken</a>
     </div>
     <div class="col-4">
         <h1>Lopende projecten <span style="color: grey;">(03)</span></h1>
@@ -43,7 +43,9 @@
                 </div>
             </div>
         @endforeach
-        <p>Bekijk alle project</p>
+
+        <a href="/admin/projects">Bekijk alle projecten</a>
+
     </div>
     <div class="col-4">
         <div class="dashboard-cards">

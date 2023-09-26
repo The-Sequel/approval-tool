@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<form action="{{route('admin.tasks.create')}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('admin.tasks.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('POST')
     <div class="form-group">
@@ -25,14 +25,25 @@
     </div>
 
     <div class="form-group">
-        <label for="department">Department</label>
-        <select name="department" id="department">
-            <option value="1">Development</option>
-            <option value="2">Design</option>
-            <option value="3">Marketing</option>
-            <option value="4">Sales</option>
+        <label for="customer_id">Customer</label>
+        <select name="customer_id" id="customer_id">
+            @foreach($customers as $customer)
+                <option value="{{$customer->id}}">{{$customer->name}}</option>
+            @endforeach
         </select>
     </div>
+
+    <div class="form-group">
+        <label for="department_id">Department</label>
+        <select name="department_id" id="department_id">
+            @foreach($departments as $department)
+                <option value="{{$department->id}}">{{$department->title}}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <input type="hidden" type="text" name="status" id="status" value="pending">
+    <input type="hidden" type="text" name="user_id" id="user_id" value={{Auth::user()->id}}>
 
     <div class="form-group">
         <button>Maak</button>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->enum('status', ['approved', 'denied', 'pending', 'completed']);
+            $table->enum('status', ['approved', 'denied', 'pending', 'completed'])->default('pending');
             $table->string('created_by');
             $table->string('approved_by')->nullable();
             $table->date('deadline');

@@ -29,6 +29,10 @@
             justify-content: center; /* Center horizontally */
             font-size: 18px; /* Adjust the font size as needed */
             color: white;
+
+            &:hover{
+                background-color: #999;
+            }
         }
     }
 

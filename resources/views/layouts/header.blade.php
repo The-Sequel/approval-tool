@@ -39,13 +39,13 @@
         </div>
         <div class="header-2">
             <p class="user-image">{{$firstLetter}}</p>
-        <div class="header-3">
-            <p>{{ Auth::user()->name }}</p>
-            <p class="header-customer-name">{{ $customer }}</p>
-        </div>
-        <div class="header-4">
-            
-        </div>
+            <div class="header-3">
+                <p>{{ Auth::user()->name }}</p>
+                <p class="header-customer-name">{{ $customer }}</p>
+            </div>
+            <div class="header-4">
+                
+            </div>
         </div>
     @endif
 </div>

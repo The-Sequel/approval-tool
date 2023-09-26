@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->date('deadline');
             $table->string('image')->nullable();
-            $table->enum('status', ['approved', 'denied', 'pending', 'completed']);
+            $table->enum('status', ['approved', 'denied', 'pending', 'completed'])->default('pending');
             $table->foreignId('department_id')
                 ->references('id')
                 ->on('departments');
