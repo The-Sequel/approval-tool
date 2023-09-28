@@ -51,6 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
     // Route::get('/admin/projects', [ProjectController::class, 'adminIndex'])->name('admin.projects.index');
     Route::get('admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');
+    Route::get('admin/show/{id}', [ProjectController::class, 'show'])->name('admin.projects.show');
 
     // Task
     Route::get('/admin/tasks', [TaskController::class, 'adminIndex'])->name('admin.tasks.index');

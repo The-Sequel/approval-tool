@@ -58,16 +58,23 @@ class UserController extends Controller
     }
 
     public function create(){
-        return view('admin.users.create');
+        $customers = Customer::all();
+        $roles = Role::all();
+        $departments = Department::all();
+
+        return view('admin.users.create', compact('customers', 'roles', 'departments'));
     }
 
     public function store(){
-        // Validate the user input
         $attributes = request()->validate([
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            'role_id' => 'required',
+            'customer_id' => 'nullable',
+            'department_id' => 'nullable',
         ]);
+
 
         // Create the user
         User::create($attributes);

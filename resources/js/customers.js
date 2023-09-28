@@ -1,5 +1,3 @@
-console.log('hallow');
-
 function createCustomer(){
     var createCustomer = document.getElementById('create-customer');
     if (createCustomer.style.display === 'block') {

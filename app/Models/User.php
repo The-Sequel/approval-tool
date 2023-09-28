@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'department_id',
+        'customer_id',
     ];
 
     /**
@@ -43,9 +46,21 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $guarded = [];
+
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 
     public function projects(){

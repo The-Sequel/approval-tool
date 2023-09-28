@@ -7,7 +7,7 @@
     <title>Document</title>
 
 
-    @vite(['resources/css/style.css', 'resources/js/customers.js'])
+    @vite(['resources/css/style.css', 'resources/js/customers.js', 'resources/js/users.js'])
 </head>
 <body>
     @include('layouts.sidebar')
@@ -22,7 +22,7 @@
 </html>
 
 <style>
-    *{
+    /* *{
         margin: 0;
         padding: 0;
     }
@@ -34,5 +34,5 @@
 
     .content{
         width: 100%;
-    }
+    } */
 </style>

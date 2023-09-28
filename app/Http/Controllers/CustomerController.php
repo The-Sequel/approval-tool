@@ -65,10 +65,8 @@ class CustomerController extends Controller
 
             'tbody' => $tbody,
         ];
-
+        
         return view('admin.customers.index', compact('table', 'customers'));
-        // $customers = Customer::all();
-        // return view('admin.customers.index', compact('customers'));
     }
 
     public function create(){
@@ -80,14 +78,6 @@ class CustomerController extends Controller
             'name' => 'required',
             'debtor_number' => 'required',
         ]);
-        
-        // if(!Storage::disk('public_uploads')->put($request->file('logo'), 'public') {
-        //     return false;
-        // }
-
-        // if(!Storage::disk('public/uploads')->put($request->file('logo'), 'public')) {
-        //     return false;
-        // }
 
         if($file = $request->file('logo')){
             $fileName = $file->getClientOriginalName();

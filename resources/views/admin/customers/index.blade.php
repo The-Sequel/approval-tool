@@ -34,7 +34,14 @@
                 @endforeach
             </tbody>
         </table> --}}
-        <div class="button-customer-create">
+        <form action="{{route('admin.customers.create')}}" method="GET">
+            @csrf 
+            @method('GET')
+            <div class="form-group">
+                <button class="button" type="submit">Maak</button>
+            </div>
+        </form>
+        {{-- <div class="button-customer-create">
             <form action="{{route('admin.customers.create')}}" method="GET">
                 @csrf 
                 @method('GET')
@@ -42,7 +49,7 @@
                     <button class="button" type="submit">+ Maak nieuwe klant</button>
                 </div>
             </form>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection
