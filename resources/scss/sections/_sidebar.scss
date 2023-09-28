@@ -32,6 +32,8 @@
 
     .customerSidebar{
         display: flex;
+        // align items next to each other
+        flex-direction: row;
     }
 
     .customerSidebar button {
@@ -41,5 +43,13 @@
         border: none;
         background-color: #e6e6e6;
         cursor: pointer;
+        margin-top: 17px;
+    }
+
+    .logout{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
     }
 }

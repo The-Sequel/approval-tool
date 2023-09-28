@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        $options_array = User::get()->toArray();;
+        $users = User::all();
 
-        // dd($options_array);
+        $options_array = User::get()->toArray();;
 
         $tbody = [];
         foreach ($options_array as $key => $value) {
@@ -54,7 +54,7 @@ class UserController extends Controller
             'tbody' => $tbody,
         ];
 
-        return view('admin.users.index', compact('table'));
+        return view('admin.users.index', compact('table', 'users'));
     }
 
     public function create(){
@@ -83,15 +83,30 @@ class UserController extends Controller
         return redirect('/admin/users')->with('success', 'Gebruiker is aangemaakt!');
     }
 
-    public function update(Request $request, User $user){
-        $user->customer_id = $request->customer_id;
+    public function update(User $user, Request $request)
+    {
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = isset($request->password) ? $request->password : $user->password;
         $user->role_id = $request->role_id;
-        $user->save();      
+        $user->customer_id = $request->customer_id;
+        $user->department_id = $request->department_id;
+
+        $user->update();
+
         return redirect('/admin/users')->with('success', 'Gebruiker is aangepast!');
     }
 
     public function destroy(User $user){
         $user->delete();
         return redirect('/admin/users')->with('success', 'Gebruiker is verwijderd!');
+    }
+
+    public function edit(User $user){
+        $customers = Customer::all();
+        $roles = Role::all();
+        $departments = Department::all();
+
+        return view('admin.users.edit', compact('user', 'customers', 'roles', 'departments'));
     }
 }

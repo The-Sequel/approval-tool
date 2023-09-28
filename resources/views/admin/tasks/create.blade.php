@@ -5,12 +5,12 @@
     @csrf
     @method('POST')
     <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title">Titel</label>
         <input class="form-control" type="text" name="title" id="title">
     </div>
 
     <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">Beschrijving</label>
         <textarea class="form-control" name="description" id="description"></textarea>
     </div>
 
@@ -20,13 +20,14 @@
     </div>
 
     <div class="form-group">
-        <label for="image">Image</label>
+        <label for="image">Afbeelding</label>
         <input class="form-control" type="file" name="image" id="image">
     </div>
 
     <div class="form-group">
-        <label for="customer_id">Customer</label>
+        <label for="customer_id">Klant</label>
         <select name="customer_id" id="customer_id">
+            <option value="">Selecteer een klant</option>
             @foreach($customers as $customer)
                 <option value="{{$customer->id}}">{{$customer->name}}</option>
             @endforeach
@@ -34,8 +35,9 @@
     </div>
 
     <div class="form-group">
-        <label for="department_id">Department</label>
+        <label for="department_id">Afdeling</label>
         <select name="department_id" id="department_id">
+            <option value="">Selecteer een afdeling</option>
             @foreach($departments as $department)
                 <option value="{{$department->id}}">{{$department->title}}</option>
             @endforeach
@@ -46,7 +48,7 @@
     <input type="hidden" type="text" name="user_id" id="user_id" value={{Auth::user()->id}}>
 
     <div class="form-group">
-        <button>Maak</button>
+        <button>Maak nieuwe taak</button>
     </div>
 </form>
 

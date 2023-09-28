@@ -2,8 +2,39 @@
 
 @section('content')
 <div class="grid">
-    @include('sections.table' , $table);
+    {{-- @include('sections.table' , $table); --}}
     <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Gebruikers naam</th>
+                    <th>Email</th>
+                    <th>Afdeling</th>
+                    <th>Klant</th>
+                    <th>Rol</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($users as $user)
+                    <tr onclick="window.location.href='{{ route('admin.users.edit', ['user' => $user]) }}';">
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        {{-- Check if department not null --}}
+                        @if($user->department)
+                            <td>{{$user->department->name}}</td>
+                        @else
+                            <td>-</td>
+                        @endif
+                        @if($user->customer)
+                            <td>{{$user->customer->name}}</td>
+                        @else
+                            <td>-</td>
+                        @endif
+                        <td>{{$user->role->name}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
         <form action="{{route('admin.users.create')}}" method="GET">
             @csrf
             @method('GET')

@@ -103,4 +103,29 @@ class CustomerController extends Controller
         $customer->delete();
         return redirect('/admin')->with('success', 'Klant is verwijderd!');
     }
+
+    public function edit(Customer $customer)
+    {
+        return view('admin.customers.edit', compact('customer'));
+    }
+
+    public function update(Customer $customer, Request $request)
+    {
+        $customer->name = $request->name;
+        $customer->debtor_number = $request->debtor_number;
+        $customer->status = $request->status;
+
+        if($file = $request->file('logo')){
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads', $fileName, 'public');
+        } else {
+            $filePath = null;
+        }
+
+        $customer->logo = $filePath;
+        
+        $customer->update();
+
+        return redirect('/admin/customers')->with('success', 'Klant is aangepast!');
+    }
 }

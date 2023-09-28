@@ -30,7 +30,7 @@
             
 
         <div class="form-group">
-            <button>Maak</button>
+            <button>Maak nieuwe klant</button>
         </div>
     </form>
 @endsection

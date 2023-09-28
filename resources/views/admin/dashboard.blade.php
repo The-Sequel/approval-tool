@@ -6,7 +6,31 @@
         <h1>Taken in brand <span style="color: grey;">(05)</span></h1>
         @foreach($tasks as $task)
             <div class="task-card">
-                
+                <div class="task-card-title">
+                    {{$task->title}} {{$task->deadline}}
+                </div>
+                <div class="task-card-image">
+                    @if($task->image == null)
+                        <img src="{{ asset('storage/'.$task->project->customer->logo) }}" alt="{{$task->project->customer->name}}" width="50">
+                    @else
+                        <img src="{{ asset('storage/'.$task->image) }}" alt="task-image" width="50">
+                    @endif
+                </div>
+                <div class="task-card-customer">
+                    Klant: {{$task->project->customer->name}}
+                </div>
+                <div class="task-card-description">
+                    <p>{{$task->description}}</p>
+                </div>
+                <div class="task-card-created_at">
+                    <p>{{$task->created_at}}</p>
+                </div>
+                <div class="task-card-department">
+                    <p>Afdeling: {{$task->department->title}}</p>
+                </div>
+                <div class="task-card-users">
+                    {{-- <p>Gebruikers: {{$task->users->count()}}</p> --}}
+                </div>
             </div>
         @endforeach
         {{-- Align this in the right corner of the project-card --}}
@@ -28,8 +52,12 @@
                 <div class="project-card-description">
                     <p>{{$project->description}}</p>
                 </div>
-                {{-- Get the amount of tasks that are connected to this project --}}
                 <div class="project-card-tasks">
+                    {{-- @foreach($project->tasks as $task)
+                        @if($task->status == 'completed')
+                            {{$taskcount+ 1}}
+                        @endif
+                    @endforeach --}}
                     <p>Tasks: {{$project->tasks->count()}}</p>
                 </div>
                 <div class="project-card-created_at">
@@ -52,14 +80,24 @@
             <div class="create-customer-card">
                 <h3>Nieuwe klant aanmaken</h3>
                 <p>Laten we dit meteen regelen</p>
+                <form action="{{route('admin.customers.create')}}" method="GET">
+                    @csrf
+                    @method('GET')
+                    <button>Klant aanmaken</button>
+                </form>
             </div>
             <div class="create-user-card">
                 <h3>Nieuwe gebruiker aanmaken</h3>
                 <p>Laten we dit meteen regelen</p>
+                <form action="{{route('admin.users.create')}}" method="GET">
+                    @csrf
+                    @method('GET')
+                    <button>Nieuwe gebruiker aanmaken</button>
+                </form>
             </div>
             <div class="active-users-card">
-                <h1>Gebruikers: {{$users->count()}}</h1>
-                <hp>Actieve gebruikers</hp>
+                <h1>{{$users->count()}}</h1>
+                <p>Actieve gebruikers</p>
             </div>
         </div>
     </div>

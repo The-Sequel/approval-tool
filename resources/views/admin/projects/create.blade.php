@@ -12,12 +12,12 @@
         @csrf
         @method('POST')
         <div class="form-group">
-            <label for="title">Title</label>
+            <label for="title">Titel</label>
             <input class="form-control" type="text" name="title" id="title">
         </div>
 
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description">Beschrijving</label>
             <textarea class="form-control" name="description" id="description"></textarea>
         </div>
 
@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            <label for="department">Department</label>
+            <label for="department">Afdeling</label>
             <select class="form-control" name="department" id="department">
                 <option value="">Select department</option>
                 @foreach($departments as $department)
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            <label for="customer_id">Customer</label>
+            <label for="customer_id">Klant</label>
             <select class="form-control" name="customer_id" id="customer_id">
                 <option value="">Select customer</option>
                 @foreach($customers as $customer)
@@ -50,7 +50,7 @@
         <input type="hidden" type="text" name="created_by" id="created_by" value="{{Auth::user()->id}}">
 
         <div class="form-group">
-            <button>Maak</button>
+            <button>Maak nieuw project</button>
         </div>
 
         {{-- hidden fields --}}

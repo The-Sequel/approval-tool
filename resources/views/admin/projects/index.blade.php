@@ -9,7 +9,7 @@
             @csrf
             @method('GET')
             <div class="form-group">
-                <button type="submit">Maak</button>
+                <button type="submit">Maak nieuw project</button>
             </div>
         </form>
     </div>

@@ -1,4 +1,8 @@
 @php
+    use App\Models\Customer;
+    use App\Models\User;
+
+
     $routeTitles = [
         // Admin side
         'admin' => 'Dashboard',
@@ -13,10 +17,18 @@
         'admin/messages' => 'Berichten',
         // Customer side
     ];
+
+    foreach (User::all() as $user) {
+        $routeTitles['admin/users/' . $user->id . '/edit'] = 'Gebruiker bewerken: ' . $user->name;
+    }
+
+    foreach (Customer::all() as $customer) {
+        $routeTitles['admin/customers/' . $customer->id . '/edit'] = 'Klant bewerken: ' . $customer->name;
+    }
+
     $route = Request::path();
     
     // use customer model
-    use App\Models\Customer;
 @endphp
 
 @php

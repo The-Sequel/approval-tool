@@ -3,6 +3,7 @@
 }
 
 .project-card{
+    display: grid;
     width: 350px;
     height: 220px;
     margin-top: 10px;
@@ -14,31 +15,72 @@
     height: 220px;
     margin-top: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+    
 }
 
 .dashboard-cards{
 
+    margin-top: 20px;
+
     .create-customer-card{
-        width: 300px;
-        height: 150px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        width: 280px;
+        height: 130px;
+        padding-top: 25px;
+        padding-left: 15px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        background-color: #f8f4f4;
+
+        p{
+            margin-top: 10px;
+        }
+
+        button{
+            margin-top: 10px;
+            background-color: gray;
+            color: white;
+            padding: 4px;
+            border: none;
+            border-radius: 4px;
+        }
     }
     
     .create-user-card{
         margin-top: 35px;
-        width: 300px;
-        height: 150px;
+        width: 280px;
+        height: 130px;
         color: white;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        background-color: gray;
+        background-color: #807c7c;
+        padding-top: 25px;
+        padding-left: 15px;
+
+        p{
+            margin-top: 10px;
+        }
+
+        button{
+            margin-top: 10px;
+            background-color: black;
+            color: white;
+            padding: 4px;
+            border: none;
+            border-radius: 4px;
+        }
     }
 
     .active-users-card{
         margin-top: 35px;
-        width: 300px;
-        height: 150px;
+        width: 280px;
+        height: 130px;
         color: white;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        background-color: rgb(44, 136, 44);
+        background-color: #90a424;
+        padding-top: 25px;
+        padding-left: 20px;
+
+        p{
+            margin-top: 5px;
+        }
     }
 }
