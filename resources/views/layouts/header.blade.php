@@ -1,6 +1,7 @@
 @php
     use App\Models\Customer;
     use App\Models\User;
+    use App\Models\Project;
 
 
     $routeTitles = [
@@ -24,6 +25,10 @@
 
     foreach (Customer::all() as $customer) {
         $routeTitles['admin/customers/' . $customer->id . '/edit'] = 'Klant bewerken: ' . $customer->name;
+    }
+
+    foreach(Project::all() as $project) {
+        $routeTitles['admin/projects/show/' . $project->id] = 'Project: ' . $project->title;
     }
 
     $route = Request::path();

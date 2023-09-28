@@ -16,6 +16,8 @@ class ProjectController extends Controller
 {
     // Admin side
     public function index(){
+        $projects = Project::all();
+
         $options_array = Project::get()->toArray();;
 
         foreach ($options_array as $key => $value) {
@@ -86,7 +88,7 @@ class ProjectController extends Controller
             'tbody' => $tbody,
         ];
 
-        return view('admin.projects.index', compact('table'));
+        return view('admin.projects.index', compact('table', 'projects'));
     }
 
     public function create(){
@@ -149,11 +151,11 @@ class ProjectController extends Controller
         return redirect('/admin')->with('success', 'Project is aangepast!');
     }
 
-    public function show($id){
-        $project = Project::findOrFail($id);
+    public function show(Project $project){
+        // $project = Project::findOrFail($id);
 
-        $tasks = Task::where('project_id', $id)->get();
+        $tasks = Task::where('project_id', $project->id)->get();
 
-        return view('project.show', compact('project', 'tasks'));
+        return view('admin.projects.show', compact('project', 'tasks'));
     }
 }

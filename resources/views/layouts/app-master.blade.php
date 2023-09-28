@@ -20,19 +20,3 @@
     </div>
 </body>
 </html>
-
-<style>
-    /* *{
-        margin: 0;
-        padding: 0;
-    }
-
-    .container{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .content{
-        width: 100%;
-    } */
-</style>
