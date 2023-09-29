@@ -2,6 +2,7 @@
     use App\Models\Customer;
     use App\Models\User;
     use App\Models\Project;
+    use App\Models\Task;
 
 
     $routeTitles = [
@@ -29,6 +30,14 @@
 
     foreach(Project::all() as $project) {
         $routeTitles['admin/projects/show/' . $project->id] = 'Project: ' . $project->title;
+    }
+
+    foreach(Project::all() as $project) {
+        $routeTitles['admin/tasks/create/' . $project->id] = 'Taak aanmaken voor project: ' . $project->title;
+    }
+
+    foreach(Task::all() as $task) {
+        $routeTitles['admin/tasks/show/' . $task->id] = 'Taak: ' . $task->title;
     }
 
     $route = Request::path();

@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 @foreach($tasks as $task)
-                    <tr>
+                    <tr onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
                         <td>{{$task->title}}</td>
                         <td>{{$task->project->customer->name}}</td>
                         <td class="user-logo">
@@ -38,6 +38,13 @@
                 @endforeach
             </tbody>
         </table>
+        <form action='{{route('admin.tasks.project.create', $project)}}' method="GET">
+            @csrf
+            @method('GET')
+            <div class="form-group">
+                <button type="submit">Maak nieuwe taak</button>
+            </div>
+        </form>
     </div>
 </div>
 @endsection

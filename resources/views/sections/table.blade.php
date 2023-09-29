@@ -23,11 +23,11 @@
                                     {{ $value['content'] }}
                                 @break
                                 @case('link')
-                                    @can($editCheck)
+                                    {{-- @can($editCheck) --}}
                                         <a class="{{ $value['class'] ?? '' }}" href="{{ $value['href'] }}">{{ $value['content'] }}</a>
-                                    @else
+                                    {{-- @else --}}
                                         <span class="{{ $value['class'] ?? '' }}">{{ $value['content'] }}</span>
-                                    @endcan
+                                    {{-- @endcan --}}
                                 @break
                                 @case('label')
                                     @include('components.label', [

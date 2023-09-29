@@ -45,12 +45,39 @@
     </div>
 
     <input type="hidden" type="text" name="status" id="status" value="pending">
-    <input type="hidden" type="text" name="user_id" id="user_id" value={{Auth::user()->id}}>
+    <input type="hidden" type="text" name="user_id" id="user_id" value={{Auth::user()->id}}>`
 
     <div class="form-group">
         <button>Maak nieuwe taak</button>
     </div>
 </form>
+
+{{-- <script>
+    var customerSelect = document.getElementById('customer_id');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var roleSelect = document.getElementById('customer_id');
+
+        var selectedRoleId = roleSelect.value;
+
+        if(selectedRoleId == 1){
+            document.getElementById('project_id').disabled = true;
+        } else {
+            document.getElementById('project_id').disabled = false;
+        }
+    });
+
+    customerSelect.addEventListener('change', function() {
+        var selectedCustomerId = this.value;
+
+        if(selectedCustomerId == '') {
+            document.getElementById('project_id').disabled = true;
+        } else {
+            document.getElementById('project_id').disabled = false;
+        }
+
+    })
+</script> --}}
 
 {{-- <form action="{{route('project.store')}}" method="POST" enctype="multipart/form-data">
     @csrf

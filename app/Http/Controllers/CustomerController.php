@@ -31,12 +31,14 @@ class CustomerController extends Controller
         foreach ($options_array as $key => $value) {
             $tbody[$value['id']] = [
                 [
-                    'field' => 'text',
+                    'field' => 'link',
                     'content' => $value['name'],
+                    'href' => '/admin/customers/edit' . $value['id'] . '/edit',
                 ],
                 [
                     'field' => 'image',
-                    'content' => $value['logo'] ? '<img src="/storage/' . $value['logo'] . '" width="100px" height="100px">' : 'No image',
+                    'content' => $value['logo'] ? '/storage/' . $value['logo'] : 'No image',
+                    'class' => 'table img',
                     
                 ],
                 [

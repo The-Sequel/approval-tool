@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 
+use App\Models\Project;
 use App\Models\Customer;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -99,11 +100,26 @@ class TaskController extends Controller
     {
         $departments = Department::all();
         $customers = Customer::all();
-        return view('admin.tasks.create', compact('departments', 'customers'));
+        $projects = Project::all();
+        return view('admin.tasks.create', compact('departments', 'customers', 'projects'));
+    }
+
+    public function projectCreate(Project $project)
+    {
+        $departments = Department::all();
+        $customers = Customer::all();
+        $projects = Project::all();
+        return view('admin.tasks.project.create', compact('departments', 'customers', 'projects', 'project'));
     }
 
     public function store(Request $request)
     {
+        if($request->project_id != null) {
+            $project_id = $request->project_id;
+        } else {
+            $project_id = null;
+        }
+        
         Task::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -113,9 +129,15 @@ class TaskController extends Controller
             'department_id' => $request->department_id,
             'customer_id' => $request->customer_id,
             'user_id' => $request->user_id,
+            'project_id' => $project_id,
         ]);
 
         return redirect('/admin/tasks');
+    }
+
+    public function show(Task $task)
+    {
+        return view('admin.tasks.show', compact('task'));
     }
 
     // User side
