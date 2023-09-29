@@ -26,37 +26,6 @@ class AdminController extends Controller
     public function addUser(){
         return view('admin.users.add');
     }
-
-    // Delete user
-
+    
     // Customer
-
-    // public function customerIndex(){
-    //     $customers = Customer::all();
-    //     return view('admin.customers.index', compact('customers', 'contracts'));
-    // }
-
-    // public function createCustomer()
-    // {
-    //     return view('admin.customers.create');
-    // }
-
-    // public function storeCustomer()
-    // {
-    //     // Validate the user input
-    //     $attributes = request()->validate([
-    //         'name' => 'required',
-    //     ]);
-
-    //     // Create the user
-    //     Customer::create($attributes);
-
-    //     // Redirect the user
-    //     return redirect('/admin');
-    // }
-
-    // public function destroyCustomer(Customer $customer){
-    //     $customer->delete();
-    //     return redirect('/admin')->with('success', 'Klant is verwijderd!');
-    // }
 }

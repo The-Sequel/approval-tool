@@ -143,8 +143,6 @@ class ProjectController extends Controller
         $project->status = $request->status;
         $project->prio_level = $request->prio_level;
 
-        // Mail::to('fake@mail.com')->send(new TestMail($oldProjectStatus, $newProjectStatus, $name));
-
         Log::channel('log')->info('Project status is aangepast door ' . auth()->user()->name . ' met id ' . $project->id . ' naar ' . $request->status . ' en prioriteit is aangepast naar ' . $request->prio_level);
 
         $project->save();
@@ -152,8 +150,6 @@ class ProjectController extends Controller
     }
 
     public function show(Project $project){
-        // $project = Project::findOrFail($id);
-
         $tasks = Task::where('project_id', $project->id)->get();
 
         return view('admin.projects.show', compact('project', 'tasks'));

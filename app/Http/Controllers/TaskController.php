@@ -13,7 +13,7 @@ class TaskController extends Controller
 {
     // Admin side
 
-    public function adminIndex()
+    public function adminIndex(Request $request)
     {
         $options_array = Task::get()->toArray();;
 

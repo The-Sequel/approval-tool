@@ -7,7 +7,7 @@
 
     $routeTitles = [
         // Admin side
-        'admin' => 'Dashboard',
+        'admin' => 'Hi, ' . Auth::user()->name,
         'admin/customers' => 'Klanten',
         'admin/customers/create' => 'Klant aanmaken',
         'admin/projects' => 'Projecten',
