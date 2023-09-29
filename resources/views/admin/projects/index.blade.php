@@ -9,13 +9,25 @@
                 <tr>
                     <th>Projecten</th>
                     <th>Klant</th>
+                    <th>Personen</th>
+                    <th>Deadline</th>
+                    <th>Afdelingen</th>
+                    <th>Status</th>
+                    <th>Akkoord door</th>
+                    <th>Bewerkt op:</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($projects as $project)
                     <tr onclick="window.location.href='{{ route('admin.projects.show', ['project' => $project]) }}';">
-                        <td style="width: 50%;">{{$project->title}}</td>
-                        <td style="width: 50%;">{{$project->customer->name}}</td>
+                        <td>{{$project->title}}</td>
+                        <td>{{$project->customer->name}}</td>
+                        <td></td>
+                        <td>{{$project->deadline}}</td>
+                        <td>{{$project->department->title}}</td>
+                        <td>{{$project->status}}</td>
+                        <td>{{$project->approved_by}}</td>
+                        <td>{{$project->updated_at}}</td>
                     </tr>
                 @endforeach
             </tbody>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 
+use App\Models\User;
 use App\Models\Project;
 use App\Models\Customer;
 use App\Models\Department;
@@ -15,6 +16,9 @@ class TaskController extends Controller
 
     public function adminIndex(Request $request)
     {
+        $tasks = Task::all();
+        $today = date('Y-m-d');
+
         $options_array = Task::get()->toArray();;
 
         foreach ($options_array as $key => $value) {
@@ -93,7 +97,7 @@ class TaskController extends Controller
             'tbody' => $tbody,
         ];
 
-        return view('admin.tasks.index', compact('table'));
+        return view('admin.tasks.index', compact('table', 'tasks', 'today'));
     }
 
     public function adminCreate()
@@ -119,6 +123,13 @@ class TaskController extends Controller
         } else {
             $project_id = null;
         }
+
+        if($file = $request->file('image')){
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads', $fileName, 'public');
+        } else {
+            $filePath = null;
+        }
         
         Task::create([
             'title' => $request->title,
@@ -130,6 +141,7 @@ class TaskController extends Controller
             'customer_id' => $request->customer_id,
             'user_id' => $request->user_id,
             'project_id' => $project_id,
+            'image' => $filePath,
         ]);
 
         return redirect('/admin/tasks');
@@ -137,7 +149,35 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
-        return view('admin.tasks.show', compact('task'));
+        $users = User::all();
+        return view('admin.tasks.show', compact('task', 'users'));
+    }
+
+    public function finish(Request $request, Task $task)
+    {
+
+        if($files = $request->file('files')){
+            $filePaths = [];
+
+            foreach($files as $file){
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeAs('uploads', $fileName, 'public');
+                $filePaths[] = $filePath;
+            }
+        } else {
+            $filePaths = [];
+        }
+
+        $task->image_completed = json_encode($filePaths);
+        $task->description_completed = $request->description;
+        $task->assigned_users = json_encode($request->assigned_users);
+        $task->date_completed = date('Y-m-d');
+        $task->completed_by = Auth()->user()->id;
+        $task->status = 'completed';
+
+        $task->save();
+
+        return redirect('/admin/tasks');
     }
 
     // User side

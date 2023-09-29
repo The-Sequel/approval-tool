@@ -22,6 +22,19 @@
             </div>
 
             <div class="form-group">
+                <label for="status">Status</label>
+                <select name="status" id="status">
+                    @if($user->status == 'active')
+                        <option value="active" selected>Active</option>
+                        <option value="inactive">Inactive</option>
+                    @else
+                        <option value="inactive" selected>Inactive</option>
+                        <option value="active">Active</option>
+                    @endif
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="role">Rol</label>
                 <select name="role_id" id="role_id">
                     <option value="{{$user->role->id}}">{{ ucfirst($user->role->name)}}</option>

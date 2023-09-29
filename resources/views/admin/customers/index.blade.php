@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="grid">
-    @include('sections.table' , $table)
+    {{-- @include('sections.table' , $table) --}}
     <div class="col-12">
         <table class="table">
             <thead>

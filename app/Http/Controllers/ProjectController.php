@@ -18,6 +18,8 @@ class ProjectController extends Controller
     public function index(){
         $projects = Project::all();
 
+        $users = User::all();
+
         $options_array = Project::get()->toArray();;
 
         foreach ($options_array as $key => $value) {
@@ -88,7 +90,7 @@ class ProjectController extends Controller
             'tbody' => $tbody,
         ];
 
-        return view('admin.projects.index', compact('table', 'projects'));
+        return view('admin.projects.index', compact('table', 'projects', 'users'));
     }
 
     public function create(){
@@ -150,7 +152,8 @@ class ProjectController extends Controller
     }
 
     public function show(Project $project){
-        $tasks = Task::where('project_id', $project->id)->get();
+        // get the tasks and put the most recent above
+        $tasks = Task::where('project_id', $project->id)->orderBy('created_at', 'desc')->get();
 
         return view('admin.projects.show', compact('project', 'tasks'));
     }

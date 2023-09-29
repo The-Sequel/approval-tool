@@ -22,8 +22,8 @@
                         <p>{{$task->description}}</p>
                         <div class="task-card-items">
                             <div class="task-card-data">
-                                <p>{{date('d-m-Y', strtotime($task->created_at))}}</p>
-                                <p>{{$task->department->title}}</p>
+                                <p class="task-card-created_at">{{date('d-m-Y', strtotime($task->created_at))}}</p>
+                                <p class="task-card-department">{{$task->department->title}}</p>
                             </div>
                             <div class="task-card-persons">
                                 @foreach($users as $user)
@@ -44,7 +44,7 @@
     <div class="col-4">
         <h1>Lopende projecten <span style="color: grey;">(03)</span></h1>
         @foreach($projects as $project)
-            <div class="project-card">
+            <div onclick="window.location.href='{{ route('admin.projects.show', ['project' => $project]) }}';" class="project-card">
                 <div class="project-card-head">
                     <p>{{$project->title}}</p>
                 </div>
@@ -53,8 +53,8 @@
                         <img src="{{ asset('storage/'.$project->customer->logo) }}" alt="{{$project->customer->name}}" width="50">
                     </div>
                     <div class="project-card-body">
-                        <p>{{$project->description}}</p>
-                        <p style="display: none;">Tasks: {{$project->tasks->count()}}</p>
+                        <p class="project-card-description">{{$project->description}}</p>
+                        <p class="project-card-tasks" style="display: none;">Tasks: {{$project->tasks->count()}}</p>
                         <div class="myProgress" id="progress-{{$project->id}}">
                             <div class="myBar"></div>
                         </div>
@@ -74,8 +74,8 @@
                         </script>
                         <div class="project-card-items">
                             <div class="project-card-data">
-                                <p>{{date('d-m-Y', strtotime($project->created_at))}}</p>
-                                <p>{{$project->department->title}}</p>
+                                <p class="project-card-create_at">{{date('d-m-Y', strtotime($project->created_at))}}</p>
+                                <p class="project-card-department">{{$project->department->title}}</p>
                             </div>
                             <div class="project-card-persons">
                                 @foreach($users as $user)

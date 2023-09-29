@@ -35,6 +35,16 @@ return new class extends Migration
             $table->foreignId('customer_id')
                 ->references('id')
                 ->on('customers');
+
+            // Completed
+            $table->string('image_completed')->nullable();
+            $table->text('description_completed')->nullable();
+            $table->date('date_completed')->nullable();
+            $table->foreignId('completed_by')
+                ->nullable()
+                ->references('id')
+                ->on('users');
+            $table->json('assigned_users')->nullable();
             $table->timestamps();
         });
     }

@@ -51,6 +51,18 @@
                     align-items: center;
                 }
 
+                .task-card-created_at{
+                    background-color: gray;
+                    padding: 2px;
+                    border-radius: 5%;
+                }
+
+                .task-card-department{
+                    background-color: #ddd;
+                    padding: 2px;
+                    border-radius: 5%;
+                }
+
                 .task-card-persons{
                     display: flex;
                     gap: 1px;
@@ -80,6 +92,7 @@
     margin-top: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 12px;
+    cursor: pointer;
 
     .project-card-head{
         flex: 100%;
@@ -213,11 +226,11 @@
 .myProgress{
     margin-top: 12px;
     width: 100%;
-    background-color: black;
+    background-color: #dddddd;
 }
 
 .myBar{
     width: 1%;
     height: 10px;
-    background-color: #ddd;
+    background-color: #c0c0c0;
 }
