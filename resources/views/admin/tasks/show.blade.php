@@ -23,7 +23,7 @@
                 @endforeach
             </div>
             <div class="form-group">
-                <button>Goedkeuren</button>
+                <button>Voltooi taak</button>
             </div>
         </form>
     </div>

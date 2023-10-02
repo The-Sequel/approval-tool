@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Controllers
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\FilterController;
@@ -72,6 +72,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Filter
     Route::get('/filter-projects', [FilterController::class, 'filterProjects'])->name('filter.projects');
+
+    // Customer side
+
+    // Route::get('/', )
 });
 
 // Project routes

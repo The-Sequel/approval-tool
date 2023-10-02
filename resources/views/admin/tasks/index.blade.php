@@ -4,7 +4,7 @@
 <div class="grid">
     @include('sections.table' , $table)
     <div class="col-12">
-        <table class="table">
+        {{-- <table class="table">
             <thead>
                 <tr>
                     <th>Taken</th>
@@ -35,7 +35,7 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table>
+        </table> --}}
     </div>
     <div class="col-12">
         <form action='{{route('admin.tasks.create')}}' method="GET">

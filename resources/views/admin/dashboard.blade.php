@@ -37,7 +37,6 @@
                 </div>
             </div>
         @endforeach
-        {{-- Align this in the right corner of the project-card --}}
         <a href="/admin/tasks">Bekijk alle taken</a>
     </div>
 
@@ -90,7 +89,6 @@
                
             </div>
         @endforeach
-
         <a href="/admin/projects">Bekijk alle projecten</a>
 
     </div>

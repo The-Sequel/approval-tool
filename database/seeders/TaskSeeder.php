@@ -25,6 +25,16 @@ class TaskSeeder extends Seeder
         ]);
 
         Task::create([
+            'title' => 'Taak 2',
+            'description' => 'Dit is een taak',
+            'deadline' => '2021-09-08',
+            'project_id' => '1',
+            'department_id' => 1,
+            'user_id' => '1',
+            'customer_id' => '1',
+        ]);
+
+        Task::create([
             'title' => 'Instagram post',
             'description' => 'Plaats een instagram post voor ons bedrijf',
             'deadline' => '2021-09-08',

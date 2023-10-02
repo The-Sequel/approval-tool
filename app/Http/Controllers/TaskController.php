@@ -47,8 +47,9 @@ class TaskController extends Controller
         foreach ($options_array as $key => $value) {
             $tbody[$value['id']] = [
                 [
-                    'field' => 'text',
+                    'field' => 'link',
                     'content' => $value['title'],
+                    'href' => route('admin.tasks.show', $value['id']),
                 ],
                 [
                     'field' => 'text',

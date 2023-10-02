@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
-
-use App\Models\Customer;
-use App\Models\Project;
-use App\Models\User;
 use App\Models\Task;
+use App\Models\User;
+use App\Models\Project;
+use App\Models\Customer;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
