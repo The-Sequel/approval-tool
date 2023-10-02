@@ -3,20 +3,21 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Controllers
+// Admin Controllers
 use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\LogController;
-use App\Http\Controllers\FilterController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\admin\ProjectController;
+use App\Http\Controllers\admin\CustomerController;
+use App\Http\Controllers\admin\TaskController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\MessageController;
 
-// Models
-use App\Models\Customer;
-use App\Models\Project;
-use App\Models\User;
+// Customer Controllers
+use App\Http\Controllers\customer\ProjectController as CustomerProjectController;
+use App\Http\Controllers\customer\TaskController as CustomerTaskController;
+use App\Http\Controllers\customer\MessageController as CustomerMessageController;
+use App\Http\Controllers\customer\UserController as CustomerUserController;
+use App\Http\Controllers\customer\CustomerController as CustomerCustomerController;
+use App\Http\Controllers\customer\ContactController as CustomerContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ use App\Models\User;
 Route::middleware(['auth', 'verified'])->group(function () {
     // Admin side
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
     // User
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
@@ -64,18 +66,29 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/tasks/show/{task}', [TaskController::class, 'show'])->name('admin.tasks.show');
     Route::put('/admin/tasks/finish/{task}', [TaskController::class, 'finish'])->name('admin.tasks.finish');
 
-    Route::get('/admin/logs', [LogController::class, 'index'])->name('admin.logs.index');
-
     // Messages
     Route::get('/admin/messages', [MessageController::class, 'index'])->name('admin.messages.index');
 
-
-    // Filter
-    Route::get('/filter-projects', [FilterController::class, 'filterProjects'])->name('filter.projects');
-
     // Customer side
+    Route::get('/', [CustomerCustomerController::class, 'index'])->name('customer.dashboard');
+    Route::get('/contact', [CustomerContactController::class, 'index'])->name('customer.contact');
+    Route::post('/contact', [CustomerContactController::class, 'send'])->name('customer.contact.send');
 
-    // Route::get('/', )
+    // User
+    Route::get('/users', [CustomerUserController::class, 'index'])->name('customer.users.index');
+
+    // Project
+    Route::get('/projects', [CustomerProjectController::class, 'index'])->name('customer.projects.index');
+    Route::get('/projects/show/{project}', [CustomerProjectController::class, 'show'])->name('customer.projects.show');
+
+    // Task
+    Route::get('/tasks', [CustomerTaskController::class, 'index'])->name('customer.tasks.index');
+    Route::get('/tasks/show/{task}', [CustomerTaskController::class, 'show'])->name('customer.tasks.show');
+    Route::put('/tasks/finish/{task}', [CustomerTaskController::class, 'finish'])->name('customer.tasks.finish');
+    Route::get('/tasks/approve/{task}', [CustomerTaskController::class, 'approve'])->name('customer.tasks.approve');
+
+    // Messages
+    Route::get('/messages', [CustomerMessageController::class, 'index'])->name('customer.messages.index');
 });
 
 // Project routes
@@ -87,11 +100,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/project/{project}', [ProjectController::class, 'updateProject'])->name('project.update');
 });
 
-Route::get('/', function () {
-    $customers = Customer::all();
-    $projects = Project::all();
-    return view('dashboard', compact('customers', 'projects'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/', function () {
+//     $customers = Customer::all();
+//     $projects = Project::all();
+//     return view('dashboard', compact('customers', 'projects'));
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

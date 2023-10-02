@@ -44,5 +44,46 @@ class TaskSeeder extends Seeder
             'user_id' => '1',
             'customer_id' => '1',
         ]);
+
+        Task::create([
+            'title' => 'Taak 3',
+            'description' => 'Dit is een taak',
+            'deadline' => '2021-09-08',
+            'project_id' => '1',
+            'department_id' => 2,
+            'user_id' => '1',
+            'customer_id' => '1',
+        ]);
+
+        Task::create([
+            'title' => 'Taak 4',
+            'description' => 'Dit is een taak',
+            'deadline' => '2021-09-08',
+            'project_id' => '1',
+            'department_id' => 3,
+            'user_id' => '1',
+            'customer_id' => '1',
+        ]);
+
+        Task::create([
+            'title' => 'Taak 5',
+            'description' => 'Dit is een taak',
+            'deadline' => '2021-09-08',
+            'project_id' => '1',
+            'department_id' => 3,
+            'user_id' => '1',
+            'customer_id' => '1',
+        ]);
+
+        Task::create([
+            'title' => 'Taak 6',
+            'description' => 'Dit is een taak',
+            'deadline' => '2021-09-08',
+            'project_id' => '1',
+            'department_id' => 2,
+            'user_id' => '1',
+            'customer_id' => '1',
+        ]);
+        
     }
 }

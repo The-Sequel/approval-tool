@@ -37,7 +37,7 @@ return new class extends Migration
                 ->on('customers');
 
             // Completed
-            $table->string('image_completed')->nullable();
+            $table->json('image_completed')->nullable();
             $table->text('description_completed')->nullable();
             $table->date('date_completed')->nullable();
             $table->foreignId('completed_by')
@@ -45,6 +45,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('users');
             $table->json('assigned_users')->nullable();
+            $table->text('reason')->nullable();
             $table->timestamps();
         });
     }

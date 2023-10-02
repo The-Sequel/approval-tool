@@ -19,7 +19,8 @@
                     </div>
                     <div class="task-card-body">
                         <p>Klant: {{$task->customer->name}}</p>
-                        <p>{{$task->description}}</p>
+                        <p>{{ implode(' ', array_slice(explode(' ', $task->description), 0, 4)) }}...</p>
+
                         <div class="task-card-items">
                             <div class="task-card-data">
                                 <p class="task-card-created_at">{{date('d-m-Y', strtotime($task->created_at))}}</p>

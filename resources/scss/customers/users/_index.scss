@@ -1,0 +1,68 @@
+.customer-information-card{
+    width: 500px;
+    height: 300px;
+    padding-top: 25px;
+    padding-left: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+
+    .customer-information-address{
+        margin-top: 30px;
+    }
+
+    .customer-information-contact{
+        margin-top: 30px;
+    }
+
+    .customer-information-more{
+        margin-top: 30px;
+    }
+}
+
+.information-card{
+    width: 280px;
+    height: 130px;
+    padding-top: 25px;
+    padding-left: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    background-color: #f8f4f4;
+
+    p{
+        margin-top: 10px;
+    }
+
+    button{
+        margin-top: 10px;
+        background-color: gray;
+        color: white;
+        padding: 4px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}
+
+.new-user-card{
+    margin-top: 35px;
+    width: 280px;
+    height: 130px;
+    color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #807c7c;
+    padding-top: 25px;
+    padding-left: 15px;
+
+    p{
+        margin-top: 10px;
+    }
+
+    button{
+        margin-top: 10px;
+        background-color: black;
+        color: white;
+        padding: 4px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+}

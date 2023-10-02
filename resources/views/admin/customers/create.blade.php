@@ -6,7 +6,7 @@
         @method('POST')
         <div class="form-group">
             <label for="name">Naam</label>
-            <input class="form-control" type="text" name="name" id="name">
+            <input class="form-control" type="text" name="name" id="name" placeholder="Vereist">
         </div>
 
         {{-- <div class="form-group">
@@ -25,7 +25,42 @@
 
         <div class="form-group">
             <label for="name">Debiteur nummer</label>
-            <input class="form-control" type="text" name="debtor_number" id="debtor_number">
+            <input class="form-control" type="text" name="debtor_number" id="debtor_number" placeholder="Vereist">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Adres</label>
+            <input class="form-control" type="text" name="address" id="address" placeholder="Optioneel">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Postcode</label>
+            <input class="form-control" type="text" name="postal_code" id="postal_code" placeholder="Optioneel">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Plaats</label>
+            <input class="form-control" type="text" name="city" id="city" placeholder="Optioneel">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Telefoonnummer</label>
+            <input class="form-control" type="text" name="phone_number" id="phone_number" placeholder="Optioneel">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Email</label>
+            <input class="form-control" type="text" name="email" id="email" placeholder="Optioneel">
+        </div>
+
+        <div class="form-group">
+            <label for="name">KVK nummer</label>
+            <input class="form-control" type="text" name="kvk_number" id="kvk_number" placeholder="Optioneel">
+        </div>
+
+        <div class="form-group">
+            <label for="name">BTW nummer</label>
+            <input class="form-control" type="text" name="btw_number" id="btw_number" placeholder="Optioneel">
         </div>
             
 

@@ -18,6 +18,12 @@
         'admin/users/create' => 'Gebruiker aanmaken',
         'admin/messages' => 'Berichten',
         // Customer side
+        '/' => 'Hi, ' . Auth::user()->name,
+        'projects' => 'Projecten',
+        'users' => 'Gebruikers',
+        'tasks' => 'Taken',
+        'messages' => 'Berichten',
+        'contact' => 'Contact',
     ];
 
     foreach (User::all() as $user) {
@@ -38,6 +44,14 @@
 
     foreach(Task::all() as $task) {
         $routeTitles['admin/tasks/show/' . $task->id] = 'Taak: ' . $task->title;
+    }
+
+    foreach(Project::all() as $project) {
+        $routeTitles['projects/show/' . $project->id] = 'Project: ' . $project->title;
+    }
+
+    foreach(Task::all() as $task){
+        $routeTitles['tasks/show/' . $task->id] = 'Taak: ' . $task->title;
     }
 
     $route = Request::path();

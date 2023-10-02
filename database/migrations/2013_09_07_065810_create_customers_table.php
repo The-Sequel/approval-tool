@@ -17,6 +17,16 @@ return new class extends Migration
             $table->string('logo');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->string('debtor_number');
+
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postal_code')->nullable();
+            
+            $table->string('phone')->nullable();
+
+            $table->string('email')->nullable();
+            $table->string('kvk')->nullable();
+            $table->string('btw')->nullable();
             $table->timestamps();
         });
     }

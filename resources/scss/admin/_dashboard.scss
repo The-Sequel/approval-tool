@@ -10,6 +10,7 @@
     margin-top: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 12px;
+    border-radius: 2%;
 
     .task-card-head{
         flex: 100%;
@@ -33,6 +34,7 @@
 
             img{
                 width: 100%;
+                border-radius: 5%;
             }
         }
 
@@ -43,7 +45,7 @@
             .task-card-items{
                 display: flex;
                 justify-content: space-between;
-                margin-top: 12px;
+                margin-top: 49px;
 
                 .task-card-data{
                     display: flex;
@@ -52,20 +54,24 @@
                 }
 
                 .task-card-created_at{
-                    background-color: gray;
-                    padding: 2px;
+                    background-color: rgb(61, 61, 61);
+                    border: none;
+                    color: white;
+                    padding: 4px;
                     border-radius: 5%;
                 }
 
                 .task-card-department{
                     background-color: #ddd;
-                    padding: 2px;
+                    border: none;
+                    padding: 4px;
                     border-radius: 5%;
                 }
 
                 .task-card-persons{
                     display: flex;
                     gap: 1px;
+                    margin-top: 4px;
 
                     .task-card-person{
                         height: 20px;
@@ -93,6 +99,7 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 12px;
     cursor: pointer;
+    border-radius: 2%;
 
     .project-card-head{
         flex: 100%;
