@@ -49,7 +49,7 @@
                         <img src="{{ asset('storage/'.$project->customer->logo) }}" alt="{{$project->customer->name}}" width="50">
                     </div>
                     <div class="project-card-body">
-                        <p class="project-card-description">{{$project->description}}</p>
+                        <p class="project-card-description">{{ implode(' ', array_slice(explode(' ', $project->description), 0, 4)) }}...</p>
                         <p class="project-card-tasks" style="display: none;">Tasks: {{$project->tasks->count()}}</p>
                         <div class="myProgress" id="progress-{{$project->id}}">
                             <div class="myBar"></div>

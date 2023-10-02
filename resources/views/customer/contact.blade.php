@@ -11,6 +11,8 @@
                 <select name="subject" id="subject">
                     <option value="1">Ik heb een vraag</option>
                     <option value="2">Technisch probleem</option>
+                    <option value="3">Ik wil een nieuwe gebruiker aanvragen</option>
+                    <option value="4">Ik wil mijn gegevens aanpassen</option>
                 </select>
             </div>
 

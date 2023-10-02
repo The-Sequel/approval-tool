@@ -86,6 +86,13 @@ class CustomerController extends Controller
             'name' => $request->name,
             'debtor_number' => $request->debtor_number,
             'logo' => $filePath,
+            'address' => $request->address,
+            'postal_code' => $request->zipcode,
+            'city' => $request->city,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'kvk' => $request->kvk,
+            'btw' => $request->btw,
         ]);
        
         // Redirect the user
@@ -107,12 +114,19 @@ class CustomerController extends Controller
         $customer->name = $request->name;
         $customer->debtor_number = $request->debtor_number;
         $customer->status = $request->status;
+        $customer->address = $request->address;
+        $customer->postal_code = $request->postal_code;
+        $customer->city = $request->city;
+        $customer->phone = $request->phone_number;
+        $customer->email = $request->email;
+        $customer->kvk = $request->kvk_number;
+        $customer->btw = $request->btw_number;
 
         if($file = $request->file('logo')){
             $fileName = $file->getClientOriginalName();
             $filePath = $file->storeAs('uploads', $fileName, 'public');
         } else {
-            $filePath = null;
+            $filePath = '';
         }
 
         $customer->logo = $filePath;

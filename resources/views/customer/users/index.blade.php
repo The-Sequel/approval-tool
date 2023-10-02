@@ -14,17 +14,18 @@
     <div class="col-4">
         <div class="customer-information-card">
             <h3>Algemene gegevens {{$user->customer->name}}</h3>
+            {{-- @dd($user->customer) --}}
             <div class="customer-information-address">
-                <p>Adres: {{$user->customer->address}}</p>
-                <p>Postcode: {{$user->customer->postal_code}}</p>
+                <p>{{$user->customer->address}}</p>
+                <p>{{$user->customer->postal_code}}</p>
             </div>
             <div class="customer-information-contact">
-                <p>Telefoonnummer: {{$user->customer->phone_number}}</p>
-                <p>Email: {{$user->customer->email}}</p>
+                <p>{{$user->customer->phone}}</p>
+                <p>{{$user->customer->email}}</p>
             </div>
             <div class="customer-information-more">
-                <p>KVK nummer: {{$user->customer->kvk_number}}</p>
-                <p>BTW nummer: {{$user->customer->btw_number}}</p>
+                <p>KVK {{$user->customer->kvk}}</p>
+                <p>BTW {{$user->customer->btw}}</p>
             </div>
         </div>
         <div class="user-cards">

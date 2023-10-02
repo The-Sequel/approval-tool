@@ -35,7 +35,42 @@
             </div>
 
             <div class="form-group">
-                <button>Bewerk gebruiker</button>
+                <label for="name">Adres</label>
+                <input class="form-control" type="text" name="address" id="address" placeholder="Optioneel" value="{{$customer->address}}">
+            </div>
+    
+            <div class="form-group">
+                <label for="name">Postcode</label>
+                <input class="form-control" type="text" name="postal_code" id="postal_code" placeholder="Optioneel" value="{{$customer->postal_code}}">
+            </div>
+    
+            <div class="form-group">
+                <label for="name">Plaats</label>
+                <input class="form-control" type="text" name="city" id="city" placeholder="Optioneel" value="{{$customer->city}}">
+            </div>
+    
+            <div class="form-group">
+                <label for="name">Telefoonnummer</label>
+                <input class="form-control" type="text" name="phone_number" id="phone_number" placeholder="Optioneel" value="{{$customer->phone}}">
+            </div>
+    
+            <div class="form-group">
+                <label for="name">Email</label>
+                <input class="form-control" type="text" name="email" id="email" placeholder="Optioneel" value="{{$customer->email}}">
+            </div>
+    
+            <div class="form-group">
+                <label for="name">KVK nummer</label>
+                <input class="form-control" type="text" name="kvk_number" id="kvk_number" placeholder="Optioneel" value="{{$customer->kvk}}">
+            </div>
+    
+            <div class="form-group">
+                <label for="name">BTW nummer</label>
+                <input class="form-control" type="text" name="btw_number" id="btw_number" placeholder="Optioneel" value="{{$customer->btw}}">
+            </div>
+
+            <div class="form-group">
+                <button>Bewerk klant</button>
             </div>
         </form>
     </div>
