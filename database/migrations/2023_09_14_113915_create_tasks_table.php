@@ -35,6 +35,11 @@ return new class extends Migration
             $table->foreignId('customer_id')
                 ->references('id')
                 ->on('customers');
+            $table->foreignId('assigned_to')
+                ->nullable()
+                ->json()
+                ->references('id')
+                ->on('users');
 
             // Completed
             $table->json('image_completed')->nullable();

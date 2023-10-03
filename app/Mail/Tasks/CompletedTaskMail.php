@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Tasks;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,28 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class TestMail extends Mailable
+class CompletedTaskMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $oldProjectStatus;
-    public $newProjectStatus;
-    public $oldProjectPrio;
-    public $newProjectPrio;
-
-    public $name;
+    public $task;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($oldProjectStatus, $newProjectStatus, $name)
+    public function __construct($task)
     {
-        $this->oldProjectStatus = $oldProjectStatus;
-        $this->newProjectStatus = $newProjectStatus;
-        // $this->oldProjectPrio = $oldProjectPrio;
-        // $this->newProjectPrio = $newProjectPrio;
-        $this->name = $name;
-
+        $this->task = $task;
     }
 
     /**
@@ -39,7 +29,7 @@ class TestMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Test Mail',
+            subject: 'Completed Task Mail',
         );
     }
 
@@ -49,7 +39,7 @@ class TestMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.testmail',
+            view: 'mail.tasks.completed',
         );
     }
 

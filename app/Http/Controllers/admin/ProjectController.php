@@ -10,6 +10,8 @@ use App\Models\Customer;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Projects\NewProjectMail;
 
 class ProjectController extends Controller
 {
@@ -135,7 +137,15 @@ class ProjectController extends Controller
             // 'file_path' => $filePath, // Save the file path in the database
         ]);
 
-        Log::channel('log')->info('Project is aangemaakt door ' . auth()->user()->name . ' met id ' . $project->id);
+        if($request->send_mail == 'on'){
+            $project = Project::where('title', $request->title)->first();
+            $users = User::all();
+            foreach($users as $user){
+                if($user->customer_id == $request->customer_id){
+                    Mail::to($user->email)->send(new NewProjectMail($project));
+                }
+            }
+        }
 
         return redirect('/admin')->with('success', 'Project is aangemaakt!');
     }

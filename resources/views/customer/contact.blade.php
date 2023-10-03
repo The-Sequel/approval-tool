@@ -9,10 +9,10 @@
             <div class="form-group">
                 <label for="subject">Onderwerp</label>
                 <select name="subject" id="subject">
-                    <option value="1">Ik heb een vraag</option>
-                    <option value="2">Technisch probleem</option>
-                    <option value="3">Ik wil een nieuwe gebruiker aanvragen</option>
-                    <option value="4">Ik wil mijn gegevens aanpassen</option>
+                    <option value="0">Ik heb een vraag</option>
+                    <option value="1">Technisch probleem</option>
+                    <option value="2">Ik wil een nieuwe gebruiker aanvragen</option>
+                    <option value="3">Ik wil mijn gegevens aanpassen</option>
                 </select>
             </div>
 
@@ -20,6 +20,9 @@
                 <label for="message">Bericht</label>
                 <textarea name="message" id="message" rows="10"></textarea>
             </div>
+
+            <input type="hidden" name="user" value="{{Auth::user()->name}}">
+            <input type="hidden" name="customer" value="{{Auth::user()->customer->name}}">
 
             <div class="form-group">
                 <button type="submit">Verstuur</button>

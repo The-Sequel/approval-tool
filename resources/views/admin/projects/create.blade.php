@@ -46,6 +46,11 @@
             </select>
         </div>
 
+        <div style="margin-bottom: 20px;">
+            <input type="checkbox" name="send_mail" id="send_mail">
+            <label for="send_mail">Stuur mail</label>
+        </div>
+
         <input type="hidden" type="text" name="status" id="status" value="pending">
         <input type="hidden" type="text" name="created_by" id="created_by" value="{{Auth::user()->id}}">
 

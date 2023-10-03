@@ -50,7 +50,7 @@
 
 <script>
     function redirectToTaskPage(status, taskId) {
-        if (status === 'completed') {
+        if (status === 'completed' || status === 'denied') {
             console.log('redirecting to approve page');
             window.location.href = '{{ route('customer.tasks.approve', ['task' => ':taskId']) }}'.replace(':taskId', taskId);
         } else {

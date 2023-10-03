@@ -14,6 +14,10 @@
                 <label for="description">Beschrijving</label>
                 <textarea name="description" id="description" cols="30" rows="10"></textarea>
             </div>
+            <div style="margin-bottom: 20px;">
+                <input type="checkbox" name="send_mail" id="send_mail">
+                <label for="send_mail">Stuur mail</label>
+            </div>
             <div>
                 @foreach($users as $user)
                     @if($task->customer == $user->customer)

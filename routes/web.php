@@ -89,6 +89,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Messages
     Route::get('/messages', [CustomerMessageController::class, 'index'])->name('customer.messages.index');
+
+
+    // Test mails
+    Route::get('/mail', function () {
+        $task = App\Models\Task::find(1);
+        return new App\Mail\Tasks\NewTaskMail($task);
+    });
 });
 
 // Project routes

@@ -18,8 +18,11 @@
                         @endif
                     </div>
                     <div class="task-card-body">
-                        <p>Klant: {{$task->customer->name}}</p>
-                        <p>{{$task->description}}</p>
+                        @if(Str::length($task->description) < 20)
+                            <p>{{$task->description}}</p>
+                        @else
+                            <p>{{ implode(' ', array_slice(explode(' ', $task->description), 0, 4)) }}...</p>
+                        @endif
                         <div class="task-card-items">
                             <div class="task-card-data">
                                 <p class="task-card-created_at">{{date('d-m-Y', strtotime($task->created_at))}}</p>
@@ -49,7 +52,11 @@
                         <img src="{{ asset('storage/'.$project->customer->logo) }}" alt="{{$project->customer->name}}" width="50">
                     </div>
                     <div class="project-card-body">
-                        <p class="project-card-description">{{ implode(' ', array_slice(explode(' ', $project->description), 0, 4)) }}...</p>
+                        @if(Str::length($project->description) < 20)
+                            <p>{{$project->description}}</p>
+                        @else
+                            <p>{{ implode(' ', array_slice(explode(' ', $project->description), 0, 4)) }}...</p>
+                        @endif
                         <p class="project-card-tasks" style="display: none;">Tasks: {{$project->tasks->count()}}</p>
                         <div class="myProgress" id="progress-{{$project->id}}">
                             <div class="myBar"></div>
@@ -59,7 +66,7 @@
 
                             projects.forEach(project => {
                                 const totalTasks = project.tasks ? project.tasks.length : 0;
-                                const completedTasks = project.tasks ? project.tasks.filter(task => task.status === 'completed').length : 0;
+                                const completedTasks = project.tasks ? project.tasks.filter(task => task.status === 'approved').length : 0;
 
                                 const progressBar = document.querySelector(`#progress-${project.id} .myBar`);
                                 if (progressBar) {

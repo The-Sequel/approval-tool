@@ -9,9 +9,9 @@
                 <tr>
                     <th>Klanten</th>
                     <th>Logo</th>
-                    {{-- <th>Status</th>
+                    <th>Status</th>
                     <th>Contact personen</th>
-                    <th>Debiteur nummer</th> --}}
+                    <th>Debiteur nummer</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,18 +19,18 @@
                     <tr onclick="window.location.href='{{ route('admin.customers.edit', ['customer' => $customer]) }}';">
                         <td style="width: 50%;" id="customer-name-{{$customer->id}}">{{$customer->name}}</td>
                         <td><img src="{{ asset('storage/'.$customer->logo) }}" alt="{{$customer->name}}" width="50"></td>
-                        {{-- @if($customer->status == 'active')
+                        @if($customer->status == 'active')
                             <td id="customer-status"><p style="border-radius: 5px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; background-color: rgb(0, 255, 0); text-color: rgb(75, 226, 75);">Actief</p></td>
                         @else
                         <td id="customer-status"><p style="border-radius: 5px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; background-color: red; text-color: rgb(75, 226, 75);">Non-Actief</p></td>
                         @endif
-                        <td class="user-logo">
+                        <td>
                             @foreach($customer->users as $user)
-                                {{substr($user->name, 0, 1)}}
+                                <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
                             @endforeach
                         </td>
                         <td style="width: 20%;">{{$customer->debtor_number}}</td>
-                    </tr> --}}
+                    </tr>
                 @endforeach
             </tbody>
         </table>

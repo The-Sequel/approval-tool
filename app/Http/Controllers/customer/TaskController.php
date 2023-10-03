@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\customer;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\Tasks\DeniedTaskMail;
 use App\Http\Controllers\Controller;
+use App\Mail\Tasks\ApprovedTaskMail;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
@@ -31,11 +35,24 @@ class TaskController extends Controller
             $task->update([
                 'status' => 'approved'
             ]);
+
+            $users = User::where('role_id', 1)->get();
+            
+            foreach ($users as $user) {
+                Mail::to($user->email)->send(new ApprovedTaskMail($task));
+            }
+
         } else {
             $task->update([
                 'status' => 'denied',
                 'reason' => $request->message
             ]);
+
+            $users = User::where('role_id', 1)->get();
+
+            foreach($users as $user){
+                Mail::to($user->email)->send(new DeniedTaskMail($task));
+            }
         }
 
         return redirect()->route('customer.projects.show', $task->project_id);

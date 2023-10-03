@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="grid">
-    @include('sections.table' , $table)
+    {{-- @include('sections.table' , $table) --}}
     <div class="col-12">
-        {{-- <table class="table">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Projecten</th>
@@ -19,19 +19,29 @@
             </thead>
             <tbody>
                 @foreach($projects as $project)
-                    <tr onclick="window.location.href='{{ route('admin.projects.show', ['project' => $project]) }}';">
-                        <td>{{$project->title}}</td>
-                        <td>{{$project->customer->name}}</td>
-                        <td></td>
-                        <td>{{$project->deadline}}</td>
-                        <td>{{$project->department->title}}</td>
-                        <td>{{$project->status}}</td>
-                        <td>{{$project->approved_by}}</td>
-                        <td>{{$project->updated_at}}</td>
-                    </tr>
+                    @if($project->status != 'approved')
+                        <tr onclick="window.location.href='{{ route('admin.projects.show', ['project' => $project]) }}';">
+                            <td>{{$project->title}}</td>
+                            <td>{{$project->customer->name}}</td>
+                            <td>
+                                @foreach($users as $user)
+                                    
+                                @endforeach
+                            </td>
+                            <td>{{$project->deadline}}</td>
+                            <td>{{$project->department->title}}</td>
+                            <td>{{$project->status}}</td>
+                            @if($project->approved_by == null)
+                                <td>-</td>
+                            @else
+                                <td>{{$project->approved_by}}</td>
+                            @endif
+                            <td>{{$project->updated_at}}</td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
-        </table> --}}
+        </table>
         <form action="{{route('admin.projects.create')}}" method="GET">
             @csrf
             @method('GET')

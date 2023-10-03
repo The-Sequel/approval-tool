@@ -4,11 +4,15 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\Task;
 use App\Models\User;
+use App\Mail\EventMail;
 use App\Models\Project;
 use App\Models\Customer;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\Tasks\CompletedTaskMail;
+use App\Mail\Tasks\NewTaskMail;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
@@ -143,6 +147,16 @@ class TaskController extends Controller
             'image' => $filePath,
         ]);
 
+        $task = Task::where('title', $request->title)->first();
+
+        // Email
+        $users = User::all();
+        foreach($users as $user){
+            if($user->customer_id == $request->customer_id){
+                Mail::to($user->email)->send(new NewTaskMail($task));
+            }
+        }
+
         return redirect('/admin/tasks');
     }
 
@@ -160,7 +174,6 @@ class TaskController extends Controller
 
     public function finish(Request $request, Task $task)
     {
-
         if($files = $request->file('files')){
             $filePaths = [];
 
@@ -181,6 +194,21 @@ class TaskController extends Controller
         $task->status = 'completed';
 
         $task->save();
+
+
+        // Email
+        if($request->send_mail == 'on'){
+            $task = Task::find($task->id);
+            $users = User::all();
+
+            foreach ($users as $user) {
+                foreach (json_decode($task->assigned_users) as $assignedUser) {
+                    if ((int) $user->id === (int) $assignedUser) {
+                        Mail::to($user->email)->send(new CompletedTaskMail($task));
+                    }
+                }
+            }
+        }
 
         return redirect('/admin/tasks');
     }
