@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreignId('department_id')->nullable()
                 ->references('id')
                 ->on('departments');
+            $table->text('phone_number')->nullable();
             $table->timestamps();
         });
     }

@@ -54,6 +54,10 @@
         $routeTitles['tasks/show/' . $task->id] = 'Taak: ' . $task->title;
     }
 
+    foreach(Task::all() as $task){
+        $routeTitles['tasks/approve/' . $task->id] = 'Taak goedkeuren: ' . $task->title;
+    }
+
     $route = Request::path();
     
     // use customer model

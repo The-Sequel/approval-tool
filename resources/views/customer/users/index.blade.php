@@ -6,15 +6,16 @@
         {{-- Put 3 users here --}}
         @foreach($users as $user)
             <div class="user-card">
-                {{$user->name}}
+                {{-- User name --}}
+                {{-- Function --}}
                 {{-- Phone number --}}
+                {{-- Email --}}
             </div>
         @endforeach
     </div>
     <div class="col-4">
         <div class="customer-information-card">
             <h3>Algemene gegevens {{$user->customer->name}}</h3>
-            {{-- @dd($user->customer) --}}
             <div class="customer-information-address">
                 <p>{{$user->customer->address}}</p>
                 <p>{{$user->customer->postal_code}}</p>

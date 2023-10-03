@@ -17,7 +17,6 @@
             </thead>
             <tbody>
                 @foreach($tasks as $task)
-                    {{-- <tr onclick="@if($task->status === 'completed') window.location.href='{{ route('customer.tasks.approve', ['task' => $task]) }}';" @else onclick="window.location.href='{{ route('customer.tasks.show', ['task' => $task])}}' @endif"> --}}
                     <tr onclick="redirectToTaskPage('{{ $task->status }}', '{{ $task->id }}')">
                         <td>{{$task->title}}</td>
                         <td >
@@ -52,8 +51,10 @@
 <script>
     function redirectToTaskPage(status, taskId) {
         if (status === 'completed') {
+            console.log('redirecting to approve page');
             window.location.href = '{{ route('customer.tasks.approve', ['task' => ':taskId']) }}'.replace(':taskId', taskId);
         } else {
+            console.log('redirecting to task page');
             window.location.href = '{{ route('customer.tasks.show', ['task' => ':taskId']) }}'.replace(':taskId', taskId);
         }
     }
