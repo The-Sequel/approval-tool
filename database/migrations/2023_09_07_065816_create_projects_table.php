@@ -18,13 +18,15 @@ return new class extends Migration
             $table->enum('status', ['approved', 'denied', 'pending', 'completed'])->default('pending');
             $table->string('created_by');
             $table->string('approved_by')->nullable();
-            $table->date('deadline');
+            $table->date('deadline')->nullable();
             $table->foreignId('department_id')
                 ->references('id')
                 ->on('departments');
             $table->foreignId('customer_id')
                 ->references('id')
                 ->on('customers');
+            $table->json('assigned_to')
+                ->nullable();
             // $table->integer('prio_level')->default(3);
             $table->string('file_path')->nullable();
             $table->timestamps();

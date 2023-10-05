@@ -13,11 +13,13 @@
             </thead>
             <tbody>
                 @foreach($messages as $message)
-                    <tr>
-                        <td>{{$message->name}}</td>
-                        <td>{{$message->created_at}}</td>
-                        <td>{{$message->department->title}}</td>
-                    </tr>
+                    @if($message->customer_id == Auth::user()->customer_id)
+                        <tr>
+                            <td>{{$message->name}}</td>
+                            <td>{{$message->created_at}}</td>
+                            <td>{{$message->department->title}}</td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>

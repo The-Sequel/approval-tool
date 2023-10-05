@@ -19,6 +19,13 @@ class CustomerSeeder extends Seeder
             'logo' => 'uploads/macdonalds.png',
             'status' => 'active',
             'debtor_number' => '123456789',
+            'address' => 'Burgerstreet 1',
+            'city' => 'Amsterdam',
+            'postal_code' => '1234 AB',
+            'phone' => '0612345678',
+            'email' => 'macdonalds@gmail.com',
+            'kvk' => '12345678',
+            'btw' => 'NL123456789B01',
         ]);
 
         Customer::create([

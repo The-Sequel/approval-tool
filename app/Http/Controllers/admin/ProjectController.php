@@ -16,9 +16,10 @@ use App\Mail\Projects\NewProjectMail;
 class ProjectController extends Controller
 {
     public function index(){
+        // $projects = Project::where('status', '!=', 'Afgerond')->get();
         $projects = Project::all();
 
-        $users = User::all();
+        $users = User::where('deleted_at', null)->get();
 
         $options_array = Project::get()->toArray();;
 
@@ -96,7 +97,7 @@ class ProjectController extends Controller
 
     public function create(){
         $customers = Customer::all();
-        $users = User::all();
+        $users = User::where('deleted_at', null)->get();
         $departments = Department::all();
         return view('admin.projects.create', compact('customers', 'users', 'departments'));
     }
@@ -126,6 +127,13 @@ class ProjectController extends Controller
         //     $filePath = null;
         // }
 
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'department' => 'required',
+            'customer_id' => 'required',
+        ]);
+
         $project = Project::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -139,7 +147,7 @@ class ProjectController extends Controller
 
         if($request->send_mail == 'on'){
             $project = Project::where('title', $request->title)->first();
-            $users = User::all();
+            $users = User::where('deleted_at', null)->get();
             foreach($users as $user){
                 if($user->customer_id == $request->customer_id){
                     Mail::to($user->email)->send(new NewProjectMail($project));
@@ -153,10 +161,8 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project){
         $project->status = $request->status;
         $project->prio_level = $request->prio_level;
-
-        Log::channel('log')->info('Project status is aangepast door ' . auth()->user()->name . ' met id ' . $project->id . ' naar ' . $request->status . ' en prioriteit is aangepast naar ' . $request->prio_level);
-
         $project->save();
+        
         return redirect('/admin')->with('success', 'Project is aangepast!');
     }
 
@@ -165,5 +171,22 @@ class ProjectController extends Controller
         $tasks = Task::where('project_id', $project->id)->orderBy('created_at', 'desc')->get();
 
         return view('admin.projects.show', compact('project', 'tasks'));
+    }
+
+    public function finish(Project $project){
+        $project->status = 'completed';
+        $project->save();
+        return redirect('/admin/projects')->with('success', 'Project is afgerond!');
+    }
+
+    public function destroy(Project $project){
+        $tasks = Task::where('project_id', $project->id)->get();
+
+        foreach($tasks as $task){
+            $task->delete();
+        }
+
+        $project->delete();
+        return redirect('/admin/projects/')->with('success', 'Project is verwijderd!');
     }
 }

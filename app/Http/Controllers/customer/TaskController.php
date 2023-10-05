@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $tasks = Task::where('user_id', $user->customer_id)->get();
+        $tasks = Task::where('customer_id', $user->customer_id)->get();
         return view('customer.tasks.index', compact('tasks'));
     }
 
@@ -36,7 +36,7 @@ class TaskController extends Controller
                 'status' => 'approved'
             ]);
 
-            $users = User::where('role_id', 1)->get();
+            $users = User::where('role_id', 1)->where('deleted_at', null)->get();
             
             foreach ($users as $user) {
                 Mail::to($user->email)->send(new ApprovedTaskMail($task));
@@ -48,7 +48,7 @@ class TaskController extends Controller
                 'reason' => $request->message
             ]);
 
-            $users = User::where('role_id', 1)->get();
+            $users = User::where('role_id', 1)->where('deleted_at', null)->get();
 
             foreach($users as $user){
                 Mail::to($user->email)->send(new DeniedTaskMail($task));

@@ -5,12 +5,12 @@
     @csrf
     @method('POST')
     <div class="form-group">
-        <label for="title">Titel</label>
+        <label for="title">Titel *</label>
         <input class="form-control" type="text" name="title" id="title">
     </div>
 
     <div class="form-group">
-        <label for="description">Beschrijving</label>
+        <label for="description">Beschrijving *</label>
         <textarea class="form-control" name="description" id="description"></textarea>
     </div>
 
@@ -25,7 +25,7 @@
     </div>
 
     <div class="form-group">
-        <label for="customer_id">Klant</label>
+        <label for="customer_id">Klant *</label>
         <select name="customer_id" id="customer_id">
             <option value="">Selecteer een klant</option>
             @foreach($customers as $customer)
@@ -35,7 +35,7 @@
     </div>
 
     <div class="form-group">
-        <label for="department_id">Afdeling</label>
+        <label for="department_id">Afdeling *</label>
         <select name="department_id" id="department_id">
             <option value="">Selecteer een afdeling</option>
             @foreach($departments as $department)
@@ -44,7 +44,15 @@
         </select>
     </div>
 
-    <div style="margin-bottom: 20px;">
+    <div>
+        <p style="margin-bottom: 8px;">Voeg gebruikers toe aan taak</p>
+        @foreach($users as $user)
+            <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}">
+            {{$user->name}} <br>
+        @endforeach
+    </div>
+
+    <div style="margin-bottom: 20px; margin-top: 20px;">
         <input type="checkbox" name="send_mail" id="send_mail">
         <label for="send_mail">Stuur mail</label>
     </div>
@@ -83,47 +91,4 @@
 
     })
 </script> --}}
-
-{{-- <form action="{{route('project.store')}}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('POST')
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input class="form-control" type="text" name="title" id="title">
-    </div>
-
-    <div class="form-group">
-        <label for="description">Description</label>
-        <textarea class="form-control" name="description" id="description"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="deadline">Deadline</label>
-        <input class="form-control" type="date" name="deadline" id="deadline">
-    </div>
-
-    <div class="form-group">
-        <label for="prio_level">Prio level</label>
-        <select name="prio_level" id="prio_level">
-            <option value="3">Low</option>
-            <option value="2">Medium</option>
-            <option value="1">High</option>
-        </select>
-    </div> --}}
-
-    {{-- hidden fields --}}
-    {{-- <input type="hidden" type="text" name="status" id="status" value="pending">
-
-    @foreach($customers as $customer)
-        @if($customer->id == $user->customer_id)
-            <input type="hidden" type="text" name="customer_id" id="customer_id" value={{$customer->id}}>
-            <input type="hidden" type="text" name="user_id" id="user_id" value={{$user->id}}>
-            <input type="hidden" type="text" name="created_by" id="created_by" value={{$user->name}}>
-        @endif
-    @endforeach
-
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary">
-    </div>
-</form> --}}
 @endsection

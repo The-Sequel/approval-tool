@@ -25,10 +25,13 @@ class ContactController extends Controller
         $contact->subject = $request->subject;
         $contact->customer = $request->customer;
 
-        $users = User::where('role_id', 1)->get();
+        $users = User::where('role_id', 1)->where('deleted_at', null)->get();
+
 
         foreach($users as $user) {
             Mail::to($user->email)->send(new ContactMail($contact));
         }
+
+        return redirect()->route('/')->with('success', 'Uw bericht is verzonden!');
     }
 }

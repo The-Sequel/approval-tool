@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->date('deadline');
+            $table->date('deadline')->nullable();
             $table->string('image')->nullable();
             $table->enum('status', ['approved', 'denied', 'pending', 'completed'])->default('pending');
             $table->foreignId('department_id')
@@ -35,11 +35,8 @@ return new class extends Migration
             $table->foreignId('customer_id')
                 ->references('id')
                 ->on('customers');
-            $table->foreignId('assigned_to')
-                ->nullable()
-                ->json()
-                ->references('id')
-                ->on('users');
+            $table->json('assigned_to')
+                ->nullable();
 
             // Completed
             $table->json('image_completed')->nullable();

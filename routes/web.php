@@ -54,9 +54,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Project
     Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
-    // Route::get('/admin/projects', [ProjectController::class, 'adminIndex'])->name('admin.projects.index');
     Route::get('admin/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');
     Route::get('admin/projects/show/{project}', [ProjectController::class, 'show'])->name('admin.projects.show');
+    Route::delete('/admin/project/{project}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
+    Route::post('/admin/projects/finish/{project}', [ProjectController::class, 'finish'])->name('admin.projects.finish');
 
     // Task
     Route::get('/admin/tasks', [TaskController::class, 'adminIndex'])->name('admin.tasks.index');
@@ -65,9 +66,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/tasks/create/{project}', [TaskController::class, 'projectCreate'])->name('admin.tasks.project.create');
     Route::get('/admin/tasks/show/{task}', [TaskController::class, 'show'])->name('admin.tasks.show');
     Route::put('/admin/tasks/finish/{task}', [TaskController::class, 'finish'])->name('admin.tasks.finish');
+    Route::delete('/admin/tasks/{task}', [TaskController::class, 'destroy'])->name('admin.tasks.destroy');
 
     // Messages
     Route::get('/admin/messages', [MessageController::class, 'index'])->name('admin.messages.index');
+
+
 
     // Customer side
     Route::get('/', [CustomerCustomerController::class, 'index'])->name('customer.dashboard');

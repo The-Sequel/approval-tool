@@ -9,10 +9,10 @@ use App\Models\Project;
 use App\Models\Customer;
 use App\Models\Department;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Mail\Tasks\CompletedTaskMail;
 use App\Mail\Tasks\NewTaskMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\Tasks\CompletedTaskMail;
 
 class TaskController extends Controller
 {
@@ -108,7 +108,8 @@ class TaskController extends Controller
         $departments = Department::all();
         $customers = Customer::all();
         $projects = Project::all();
-        return view('admin.tasks.create', compact('departments', 'customers', 'projects'));
+        $users = User::where('role_id', 1)->get();
+        return view('admin.tasks.create', compact('departments', 'customers', 'projects', 'users'));
     }
 
     public function projectCreate(Project $project)
@@ -116,11 +117,23 @@ class TaskController extends Controller
         $departments = Department::all();
         $customers = Customer::all();
         $projects = Project::all();
-        return view('admin.tasks.project.create', compact('departments', 'customers', 'projects', 'project'));
+        $users = User::where('role_id', 1)->get();
+        return view('admin.tasks.project.create', compact('departments', 'customers', 'projects', 'project', 'users'));
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'customer_id' => 'required',
+            'department_id' => 'required',
+        ]);
+
+        $userIds = $request->input('user_ids', []);
+
+        $assignedTo = json_encode($userIds);
+
         if($request->project_id != null) {
             $project_id = $request->project_id;
         } else {
@@ -142,15 +155,16 @@ class TaskController extends Controller
             'approved_by' => $request->approved_by,
             'department_id' => $request->department_id,
             'customer_id' => $request->customer_id,
-            'user_id' => $request->user_id,
+            'user_id' => $request->created_by,
             'project_id' => $project_id,
             'image' => $filePath,
+            'assigned_to' => $assignedTo,
         ]);
 
         // Email
         if($request->send_mail == 'on'){
             $task = Task::where('title', $request->title)->first();
-            $users = User::all();
+            $users = User::where('deleted_at', null)->get();
             foreach($users as $user){
                 if($user->customer_id == $request->customer_id){
                     Mail::to($user->email)->send(new NewTaskMail($task));
@@ -163,13 +177,13 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
-        $users = User::all();
+        $users = User::where('deleted_at', null)->get();
         return view('admin.tasks.show', compact('task', 'users'));
     }
 
     public function complete(Task $task)
     {
-        $users = User::all();
+        $users = User::where('deleted_at', null)->get();
         return view('admin.tasks.complete', compact('task', 'users'));
     }
 
@@ -200,7 +214,7 @@ class TaskController extends Controller
         // Email
         if($request->send_mail == 'on'){
             $task = Task::find($task->id);
-            $users = User::all();
+            $users = User::where('deleted_at', null)->get();
 
             foreach ($users as $user) {
                 foreach (json_decode($task->assigned_users) as $assignedUser) {
@@ -211,6 +225,11 @@ class TaskController extends Controller
             }
         }
 
+        return redirect('/admin/tasks');
+    }
+
+    public function destroy(Task $task){
+        $task->delete();
         return redirect('/admin/tasks');
     }
 }

@@ -49,7 +49,13 @@ class AuthenticatedSessionController extends Controller
         if (Auth::guard('web')->attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->intended(RouteServiceProvider::HOME);
+            if($user->role_id == 1){
+                return redirect('/admin');
+            } else {
+                return redirect('/');
+            }
+
+            // return redirect()->intended(RouteServiceProvider::HOME);
         }
 
         return redirect()->route('login')->withErrors([
