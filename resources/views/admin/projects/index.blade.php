@@ -25,7 +25,9 @@
                             <td>{{$project->customer->name}}</td>
                             <td>
                                 @foreach($users as $user)
-                                    
+                                    @if($user->customer_id == $project->customer_id)
+                                        {{$user->name}},
+                                    @endif
                                 @endforeach
                             </td>
                             <td>{{$project->deadline}}</td>

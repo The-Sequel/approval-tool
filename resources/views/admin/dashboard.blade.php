@@ -5,7 +5,7 @@
     <div class="col-4">
         <h1>Taken in brand <span style="color: grey;">(05)</span>🔥</h1>
         @foreach($tasks as $task)
-            <div class="task-card">
+            <div class="task-card" onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
                 <div class="task-card-head">
                     <p>{{$task->title}}</p>
                 </div>

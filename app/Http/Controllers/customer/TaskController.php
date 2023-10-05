@@ -33,13 +33,16 @@ class TaskController extends Controller
     {
         if($request->accept == 'accept'){
             $task->update([
-                'status' => 'approved'
+                'status' => 'approved',
+                'approved_by' => auth()->user()->id,
             ]);
 
             $users = User::where('role_id', 1)->where('deleted_at', null)->get();
             
             foreach ($users as $user) {
-                Mail::to($user->email)->send(new ApprovedTaskMail($task));
+                if(in_array($user->id, json_decode($task->assigned_to))){
+                    Mail::to($user->email)->send(new ApprovedTaskMail($task));
+                }
             }
 
         } else {
@@ -51,11 +54,17 @@ class TaskController extends Controller
             $users = User::where('role_id', 1)->where('deleted_at', null)->get();
 
             foreach($users as $user){
-                Mail::to($user->email)->send(new DeniedTaskMail($task));
+                if(in_array($user->id, json_decode($task->assigned_to))){
+                    Mail::to($user->email)->send(new DeniedTaskMail($task));
+                }
             }
         }
 
-        return redirect()->route('customer.projects.show', $task->project_id);
+        if($task->project_id != null){
+            return redirect()->route('customer.projects.show', ['project' => $task->project_id]);
+        } else {
+            return redirect()->route('customer.tasks.index');
+        }
 
         // $task->update($request->all());
         // return redirect()->route('customer.tasks.index');

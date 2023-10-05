@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('logo');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->string('debtor_number');
+            $table->date('deleted_at')->nullable();
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();

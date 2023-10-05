@@ -19,6 +19,7 @@ class TaskController extends Controller
     public function adminIndex(Request $request)
     {
         $tasks = Task::all();
+        $users = User::where('role_id', 1)->where('deleted_at', null)->get();
         $today = date('Y-m-d');
 
         $options_array = Task::get()->toArray();;
@@ -100,7 +101,7 @@ class TaskController extends Controller
             'tbody' => $tbody,
         ];
 
-        return view('admin.tasks.index', compact('table', 'tasks', 'today'));
+        return view('admin.tasks.index', compact('table', 'tasks', 'today', 'users'));
     }
 
     public function adminCreate()
@@ -123,11 +124,15 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
+
         $request->validate([
             'title' => 'required',
             'description' => 'required',
             'customer_id' => 'required',
             'department_id' => 'required',
+            'deadline' => 'nullable',
+            'created_by' => 'required',
         ]);
 
         $userIds = $request->input('user_ids', []);

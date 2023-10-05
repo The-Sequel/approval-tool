@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\User;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -99,8 +100,9 @@ class CustomerController extends Controller
         return redirect('/admin/customers');
     }
 
-    public function destory(Customer $customer){
-        $customer->delete();
+    public function destroy(Customer $customer){
+        dd($customer);
+
         return redirect('/admin')->with('success', 'Klant is verwijderd!');
     }
 

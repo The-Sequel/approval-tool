@@ -58,7 +58,7 @@
     </div>
 
     <input type="hidden" type="text" name="status" id="status" value="pending">
-    <input type="hidden" type="text" name="user_id" id="user_id" value={{Auth::user()->id}}>
+    <input type="hidden" type="text" name="created_by" id="created_by" value={{Auth::user()->id}}>
 
     <div class="form-group">
         <button>Maak nieuwe taak</button>

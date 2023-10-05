@@ -168,9 +168,10 @@ class ProjectController extends Controller
 
     public function show(Project $project){
         // get the tasks and put the most recent above
+        $users = User::where('role_id', 1)->where('deleted_at', null)->get();
         $tasks = Task::where('project_id', $project->id)->orderBy('created_at', 'desc')->get();
 
-        return view('admin.projects.show', compact('project', 'tasks'));
+        return view('admin.projects.show', compact('project', 'tasks', 'users'));
     }
 
     public function finish(Project $project){

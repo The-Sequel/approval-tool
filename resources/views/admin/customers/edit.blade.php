@@ -71,8 +71,24 @@
 
             <div class="form-group">
                 <button>Bewerk klant</button>
+                <button class="delete" onclick="event.preventDefault(); deleteCustomer();">Verwijder klant</button>
             </div>
+        </form>
+        
+        <form id="delete-form" action="{{route('admin.customers.destroy', $customer)}}" method="POST">
+            @csrf
+            @method('DELETE')
         </form>
     </div>
 </div>
+
+<script>
+    function deleteCustomer() {
+        var result = confirm("Weet je zeker dat je deze taak wilt verwijderen?");
+
+        if(result){
+            document.getElementById('delete-form').submit();
+        }
+    }
+</script>
 @endsection

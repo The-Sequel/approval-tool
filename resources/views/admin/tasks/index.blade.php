@@ -23,7 +23,13 @@
                         <tr onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
                             <td>{{$task->title}}</a></td>
                             <td>{{$task->customer->name}}</td>
-                            <td>{{$task->user->name}}</td>
+                            <td>
+                                @foreach($users as $user)
+                                    @if(in_array($user->id, json_decode($task->assigned_to)))
+                                        {{$user->name}},
+                                    @endif
+                                @endforeach
+                            </td>
                             @if($task->deadline == date('Y-m-d', strtotime('+2 days')))
                                 <td>{{$task->deadline}}🔥</td>
                             @else

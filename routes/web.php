@@ -48,9 +48,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/customers', [CustomerController::class, 'index'])->name('admin.customers.index');
     Route::get('/admin/customers/create', [CustomerController::class, 'create'])->name('admin.customers.create');
     Route::post('/admin/customers', [CustomerController::class, 'store'])->name('admin.customers.store');
-    Route::delete('/admin/customers/{customer}', [CustomerController::class, 'destroy'])->name('admin.customers.destroy');
     Route::get('/admin/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('admin.customers.edit');
     Route::put('/admin/customers/{customer}', [CustomerController::class, 'update'])->name('admin.customers.update');
+    Route::delete('/admin/customers/{customer}', [CustomerController::class, 'destroy'])->name('admin.customers.destroy');
 
     // Project
     Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');

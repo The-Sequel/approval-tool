@@ -73,6 +73,7 @@ class TaskSeeder extends Seeder
             'department_id' => 3,
             'user_id' => '1',
             'customer_id' => '1',
+            'assigned_to' => '2',
         ]);
 
         Task::create([

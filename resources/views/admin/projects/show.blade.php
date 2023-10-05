@@ -22,17 +22,13 @@
                     <tr onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
                         <td>{{$task->title}}</td>
                         <td>{{$task->project->customer->name}}</td>
-                        <td class="user-logo">\
-                            {{-- @if ($task->assigned_to)
-                                @foreach($task->assigned_to as $user)
-                                    {{ substr($user->name, 0, 1) }}
-                                @endforeach
-                            @else
-                                No users assigned.
-                            @endif --}}
-                            {{-- @foreach($task->assigned_to as $user)
-                                {{substr($user->name, 0, 1)}}
-                            @endforeach --}}
+                        <td>
+                            @foreach($users as $user)
+                                @if(in_array($user->id, json_decode($task->assigned_to)))
+                                    {{$user->name}},
+                                    {{-- {{substr($user->name, 0, 1)}}, --}}
+                                @endif
+                            @endforeach
                         </td>
                         <td>{{$task->deadline}}</td>
                         <td>{{$task->department->title}}</td>
