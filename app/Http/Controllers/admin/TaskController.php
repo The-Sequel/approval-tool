@@ -147,13 +147,14 @@ class TaskController extends Controller
             'image' => $filePath,
         ]);
 
-        $task = Task::where('title', $request->title)->first();
-
         // Email
-        $users = User::all();
-        foreach($users as $user){
-            if($user->customer_id == $request->customer_id){
-                Mail::to($user->email)->send(new NewTaskMail($task));
+        if($request->send_mail == 'on'){
+            $task = Task::where('title', $request->title)->first();
+            $users = User::all();
+            foreach($users as $user){
+                if($user->customer_id == $request->customer_id){
+                    Mail::to($user->email)->send(new NewTaskMail($task));
+                }
             }
         }
 

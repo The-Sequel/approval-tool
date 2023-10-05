@@ -86,7 +86,13 @@
 
             <div class="form-group">
                 <button>Bewerk gebruiker</button>
+                {{-- put prevent default on this button --}}
+                <button class="delete" onclick="event.preventDefault(); deleteUser();">Verwijder gebruiker</button>
             </div>
+        </form>
+        <form id="delete-form" action="{{route('admin.users.destroy', $user)}}" method="POST">
+            @csrf
+            @method('DELETE')
         </form>
     </div>
 </div>
@@ -119,5 +125,13 @@
             document.getElementById('department_id').disabled = false;
         }
     })
+
+    function deleteUser() {
+        var result = confirm("Weet je zeker dat je deze gebruiker wilt verwijderen?");
+
+        if(result){
+            document.getElementById('delete-form').submit();
+        }
+    }
 </script>
 @endsection

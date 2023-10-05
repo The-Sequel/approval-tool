@@ -100,7 +100,8 @@ class UserController extends Controller
     }
 
     public function destroy(User $user){
-        $user->delete();
+        $user->deleted_at = date('Y-m-d H:i:s');
+        $user->update();
         return redirect('/admin/users')->with('success', 'Gebruiker is verwijderd!');
     }
 

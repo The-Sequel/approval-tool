@@ -1,15 +1,34 @@
 @extends('layouts.app-master')
 
 @section('content')
+
+<style>
+    .user-card {
+        height: 150px;
+        width: 300px;
+        margin: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .user-card-header{
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+
 <div class="grid">
     <div class="col-8">
         {{-- Put 3 users here --}}
         @foreach($users as $user)
             <div class="user-card">
-                {{-- User name --}}
-                {{-- Function --}}
+                <div class="user-card-header">
+                    {{$user->name}}
+                    {{substr($user->name, 0, 1)}}
+                </div>
                 {{-- Phone number --}}
                 {{-- Email --}}
+                {{-- Status --}}
             </div>
         @endforeach
     </div>
@@ -51,13 +70,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    .user-card {
-        height: 150px;
-        width: 300px;
-        margin: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-</style>
 @endsection
