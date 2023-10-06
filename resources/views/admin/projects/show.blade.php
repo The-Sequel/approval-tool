@@ -11,10 +11,11 @@
                     <th>Klant</th>
                     <th>Persoon</th>
                     <th>Deadline</th>
-                    <th>Afdeling</th>
                     <th>Status</th>
                     <th>Akkoord door</th>
+                    <th>Gemaakt op:</th>
                     <th>Bewerkt op:</th>
+                    <th>Bewerk</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,14 +32,27 @@
                             @endforeach
                         </td>
                         <td>{{$task->deadline}}</td>
-                        <td>{{$task->department->title}}</td>
                         <td>{{$task->status}}</td>
                         @if($task->approved_by == null)
                             <td>-</td>
                         @else
-                            <td>{{$task->approved_by}}</td>
+                            @foreach($users as $user)
+                                @if($user->id == $task->approved_by)
+                                    <td>{{$user->name}}</td>
+                                @endif
+                            @endforeach
                         @endif
-                        <td>{{$task->updated_at}}</td>
+                        {{-- @foreach($users as $user)
+                            @if($user->id == $task->approved_by)
+                                <td>{{$user->name}}</td>
+                            @endif
+                            @if($task->approved_by == null)
+                                <td>-</td>
+                            @endif
+                        @endforeach --}}
+                        <td>{{$task->created_at->format('d-m-Y')}}</td>
+                        <td>{{$task->updated_at->format('d-m-Y')}}</td>
+                        <td><a href="{{route('admin.tasks.edit', $task)}}">Klik hier</a></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -56,10 +70,6 @@
             @csrf
             @method('DELETE')
         </form>
-        <form id="complete-form" action="{{route('admin.projects.finish', $project)}}" method="POST">
-            @csrf
-            @method('POST')
-        </form>
     </div>
 </div>
 
@@ -70,10 +80,6 @@
         if(result){
             document.getElementById('delete-form').submit();
         }
-    }
-
-    function finishProject() {
-        document.getElementById('complete-form').submit();
     }
 </script>
 @endsection

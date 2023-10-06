@@ -9,7 +9,6 @@
                     <th>Taken</th>
                     <th>Personen</th>
                     <th>Deadline</th>
-                    <th>Afdeling</th>
                     <th>Status</th>
                     <th>Akkoord door</th>
                     <th>Bewerkt op:</th>
@@ -25,7 +24,6 @@
                             @endforeach
                         </td>
                         <td>{{$task->deadline}}</td>
-                        <td>{{$task->department->title}}</td>
                         @if($task->status == 'pending')
                             <td>In afwachting</td>
                         @elseif($task->status == 'completed')

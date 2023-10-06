@@ -14,33 +14,35 @@
                     <th>Afdelingen</th>
                     <th>Status</th>
                     <th>Akkoord door</th>
+                    <th>Gemaakt op:</th>
                     <th>Bewerkt op:</th>
+                    <th>Bewerk</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($projects as $project)
-                    @if($project->status != 'approved')
-                        <tr onclick="window.location.href='{{ route('admin.projects.show', ['project' => $project]) }}';">
-                            <td>{{$project->title}}</td>
-                            <td>{{$project->customer->name}}</td>
-                            <td>
-                                @foreach($users as $user)
-                                    @if($user->customer_id == $project->customer_id)
-                                        {{$user->name}},
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>{{$project->deadline}}</td>
-                            <td>{{$project->department->title}}</td>
-                            <td>{{$project->status}}</td>
-                            @if($project->approved_by == null)
-                                <td>-</td>
-                            @else
-                                <td>{{$project->approved_by}}</td>
-                            @endif
-                            <td>{{$project->updated_at}}</td>
-                        </tr>
-                    @endif
+                    <tr onclick="window.location.href='{{ route('admin.projects.show', ['project' => $project]) }}';">
+                        <td>{{$project->title}}</td>
+                        <td>{{$project->customer->name}}</td>
+                        <td>
+                            @foreach($users as $user)
+                                @if($user->customer_id == $project->customer_id)
+                                    {{$user->name}},
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>{{$project->deadline}}</td>
+                        <td>{{$project->department->title}}</td>
+                        <td>{{$project->status}}</td>
+                        @if($project->approved_by == null)
+                            <td>-</td>
+                        @else
+                            <td>{{$project->approved_by}}</td>
+                        @endif
+                        <td>{{$project->created_at->format('d-m-Y')}}</td>
+                        <td>{{$project->updated_at->format('d-m-Y')}}</td>
+                        <td><a href="{{route('admin.projects.edit', $project)}}">Klik hier</a></td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

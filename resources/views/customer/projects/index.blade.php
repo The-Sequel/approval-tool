@@ -21,7 +21,8 @@
                         <td>{{$project->title}}</td>
                         <td>
                             @foreach($project->customer->users as $user)
-                                {{substr($user->name, 0, 1)}},
+                                {{$user->name}},
+                                {{-- {{substr($user->name, 0, 1)}}, --}}
                             @endforeach
                         </td>
                         <td>{{$project->deadline}}</td>

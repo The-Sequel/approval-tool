@@ -34,16 +34,6 @@
         </select>
     </div>
 
-    <div class="form-group">
-        <label for="department_id">Afdeling *</label>
-        <select name="department_id" id="department_id">
-            <option value="">Selecteer een afdeling</option>
-            @foreach($departments as $department)
-                <option value="{{$department->id}}">{{$department->title}}</option>
-            @endforeach
-        </select>
-    </div>
-
     <div>
         <p style="margin-bottom: 8px;">Voeg gebruikers toe aan taak</p>
         @foreach($users as $user)

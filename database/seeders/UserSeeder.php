@@ -36,5 +36,12 @@ class UserSeeder extends Seeder
             'customer_id' => 1,
             'department_id' => 1,
         ]);
+
+        User::create([
+            'name' => 'Quintin',
+            'email' => 'quintin@thesequel.nl',
+            'password' => bcrypt('password'),
+            'role_id' => 1, // admin
+        ]);
     }
 }

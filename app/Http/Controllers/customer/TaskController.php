@@ -37,13 +37,13 @@ class TaskController extends Controller
                 'approved_by' => auth()->user()->id,
             ]);
 
-            $users = User::where('role_id', 1)->where('deleted_at', null)->get();
+            // $users = User::where('role_id', 1)->where('deleted_at', null)->get();
             
-            foreach ($users as $user) {
-                if(in_array($user->id, json_decode($task->assigned_to))){
-                    Mail::to($user->email)->send(new ApprovedTaskMail($task));
-                }
-            }
+            // foreach ($users as $user) {
+            //     if(in_array($user->id, json_decode($task->assigned_to))){
+            //         Mail::to($user->email)->send(new ApprovedTaskMail($task));
+            //     }
+            // }
 
         } else {
             $task->update([
@@ -51,13 +51,13 @@ class TaskController extends Controller
                 'reason' => $request->message
             ]);
 
-            $users = User::where('role_id', 1)->where('deleted_at', null)->get();
+            // $users = User::where('role_id', 1)->where('deleted_at', null)->get();
 
-            foreach($users as $user){
-                if(in_array($user->id, json_decode($task->assigned_to))){
-                    Mail::to($user->email)->send(new DeniedTaskMail($task));
-                }
-            }
+            // foreach($users as $user){
+            //     if(in_array($user->id, json_decode($task->assigned_to))){
+            //         Mail::to($user->email)->send(new DeniedTaskMail($task));
+            //     }
+            // }
         }
 
         if($task->project_id != null){

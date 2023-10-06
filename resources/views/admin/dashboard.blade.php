@@ -28,7 +28,7 @@
                         <div class="task-card-items">
                             <div class="task-card-data">
                                 <p class="task-card-created_at">{{date('d-m-Y', strtotime($task->created_at))}}</p>
-                                <p class="task-card-department">{{$task->department->title}}</p>
+                                {{-- <p class="task-card-department">{{$task->department->title}}</p> --}}
                             </div>
                             <div class="task-card-persons">
                                 @foreach($users as $user)

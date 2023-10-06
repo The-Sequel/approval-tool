@@ -145,25 +145,34 @@ class ProjectController extends Controller
             // 'file_path' => $filePath, // Save the file path in the database
         ]);
 
-        if($request->send_mail == 'on'){
-            $project = Project::where('title', $request->title)->first();
-            $users = User::where('deleted_at', null)->get();
-            foreach($users as $user){
-                if($user->customer_id == $request->customer_id){
-                    Mail::to($user->email)->send(new NewProjectMail($project));
-                }
-            }
-        }
+        // if($request->send_mail == 'on'){
+        //     $project = Project::where('title', $request->title)->first();
+        //     $users = User::where('deleted_at', null)->get();
+        //     foreach($users as $user){
+        //         if($user->customer_id == $request->customer_id){
+        //             Mail::to($user->email)->send(new NewProjectMail($project));
+        //         }
+        //     }
+        // }
 
-        return redirect('/admin')->with('success', 'Project is aangemaakt!');
+        return redirect('/admin/projects')->with('success', 'Project is aangemaakt!');
     }
 
     public function update(Request $request, Project $project){
-        $project->status = $request->status;
-        $project->prio_level = $request->prio_level;
+
+        $project->title = $request->title;
+        $project->description = $request->description;
+        $project->deadline = $request->deadline;
+        $project->customer_id = $request->customer_id;
+        $project->department_id = $request->department_id;
+
+        if($request->status != null){
+            $project->status = $request->status;
+        }
+        
         $project->save();
         
-        return redirect('/admin')->with('success', 'Project is aangepast!');
+        return redirect('/admin/projects')->with('success', 'Project is aangepast!');
     }
 
     public function show(Project $project){
@@ -172,12 +181,6 @@ class ProjectController extends Controller
         $tasks = Task::where('project_id', $project->id)->orderBy('created_at', 'desc')->get();
 
         return view('admin.projects.show', compact('project', 'tasks', 'users'));
-    }
-
-    public function finish(Project $project){
-        $project->status = 'completed';
-        $project->save();
-        return redirect('/admin/projects')->with('success', 'Project is afgerond!');
     }
 
     public function destroy(Project $project){
@@ -189,5 +192,12 @@ class ProjectController extends Controller
 
         $project->delete();
         return redirect('/admin/projects/')->with('success', 'Project is verwijderd!');
+    }
+
+    public function edit(Project $project)
+    {
+        $departments = Department::all();
+        $customers = Customer::all();
+        return view('admin.projects.edit', compact('project', 'departments', 'customers'));
     }
 }

@@ -24,6 +24,7 @@
             <a href="{{route('customer.tasks.index')}}"><li>Taken</li></a>
             <a href="{{route('customer.messages.index')}}"><li>Berichten</li></a>
             <a href="{{route('customer.users.index')}}"><li>Gebruikers</li></a>
+            <a href="{{route('customer.contact')}}"><li>Contact</li></a>
             {{-- logout --}}
             <img style="margin-bottom: 50px; margin-left: 20px;" class="logout" src="{{ asset('storage/'.Auth::user()->customer->logo) }}" width="50px">
             <form method="POST" action="{{ route('logout') }}">

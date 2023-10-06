@@ -10,6 +10,7 @@
                     <th>Onderwerp</th>
                     <th>Datum</th>
                     <th>Afdeling</th>
+                    <th>Tijd</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,6 +20,7 @@
                         <td><span>{{ $message->name }}!</span> Voor {{$message->task->title}}</td>
                         <td>{{ $message->created_at }}</td>
                         <td>{{ $message->department->title }}</td>
+                        <td>{{ $message->created_at->format('d-m-Y')}}</td>
                     </tr>
                 @endforeach
             </tbody>

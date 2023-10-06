@@ -11,40 +11,40 @@
                     <th>Klant</th>
                     <th>Persoon</th>
                     <th>Deadline</th>
-                    <th>Afdeling</th>
                     <th>Status</th>
                     <th>Akkoord door</th>
+                    <th>Gemaakt op:</th>
                     <th>Bewerkt op:</th>
+                    <th>Bewerk</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($tasks as $task)
-                    @if($task->status != 'approved')
-                        <tr onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
-                            <td>{{$task->title}}</a></td>
-                            <td>{{$task->customer->name}}</td>
-                            <td>
-                                @foreach($users as $user)
-                                    @if(in_array($user->id, json_decode($task->assigned_to)))
-                                        {{$user->name}},
-                                    @endif
-                                @endforeach
-                            </td>
-                            @if($task->deadline == date('Y-m-d', strtotime('+2 days')))
-                                <td>{{$task->deadline}}🔥</td>
-                            @else
-                                <td>{{$task->deadline}}</td>
-                            @endif
-                            <td>{{$task->department->title}}</td>
-                            <td>{{$task->status}}</td>
-                            @if($task->approved_by == null)
-                                <td>-</td>
-                            @else
-                                <td>{{$task->approved_by}}</td>
-                            @endif
-                            <td>{{$task->updated_at}}</td>
-                        </tr>
-                    @endif
+                    <tr onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
+                        <td>{{$task->title}}</a></td>
+                        <td>{{$task->customer->name}}</td>
+                        <td>
+                            @foreach($users as $user)
+                                @if(in_array($user->id, json_decode($task->assigned_to)))
+                                    {{$user->name}},
+                                @endif
+                            @endforeach
+                        </td>
+                        @if($task->deadline == date('Y-m-d', strtotime('+2 days')))
+                            <td>{{$task->deadline}}🔥</td>
+                        @else
+                            <td>{{$task->deadline}}</td>
+                        @endif
+                        <td>{{$task->status}}</td>
+                        @if($task->approved_by == null)
+                            <td>-</td>
+                        @else
+                            <td>{{$task->approved_by}}</td>
+                        @endif
+                        <td>{{$task->created_at->format('d-m-Y')}}</td>
+                        <td>{{$task->updated_at->format('d-m-Y')}}</td>
+                        <td style=""><a href="{{route('admin.tasks.edit', $task)}}">Klik hier</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

@@ -46,6 +46,14 @@
         $routeTitles['admin/tasks/show/' . $task->id] = 'Taak: ' . $task->title;
     }
 
+    foreach(Task::all() as $task){
+        $routeTitles['admin/tasks/edit/' . $task->id] = 'Taak: ' . $task->title;
+    }
+
+    foreach(Project::all() as $project){
+        $routeTitles['admin/projects/edit/' . $project->id] = 'Project: ' . $project->title;
+    }
+
     foreach(Project::all() as $project) {
         $routeTitles['projects/show/' . $project->id] = 'Project: ' . $project->title;
     }

@@ -40,12 +40,6 @@ class TaskController extends Controller
             }
         }
 
-        // get the department title
-        foreach ($options_array as $key => $value) {
-            $department = Task::find($value['id'])->department;
-            $options_array[$key]['department'] = $department->title;
-        }
-
         $tbody = [];
         foreach ($options_array as $key => $value) {
             $tbody[$value['id']] = [
@@ -65,10 +59,6 @@ class TaskController extends Controller
                 [
                     'field' => 'date',
                     'content' => $value['deadline'],
-                ],
-                [
-                    'field' => 'text',
-                    'content' => $value['department'],
                 ],
                 [
                     'field' => 'text',
@@ -130,7 +120,7 @@ class TaskController extends Controller
             'title' => 'required',
             'description' => 'required',
             'customer_id' => 'required',
-            'department_id' => 'required',
+            'department_id' => 'nullable',
             'deadline' => 'nullable',
             'created_by' => 'required',
         ]);
@@ -217,24 +207,59 @@ class TaskController extends Controller
 
 
         // Email
-        if($request->send_mail == 'on'){
-            $task = Task::find($task->id);
-            $users = User::where('deleted_at', null)->get();
-
-            foreach ($users as $user) {
-                foreach (json_decode($task->assigned_users) as $assignedUser) {
-                    if ((int) $user->id === (int) $assignedUser) {
-                        Mail::to($user->email)->send(new CompletedTaskMail($task));
-                    }
-                }
-            }
-        }
+        // if ($request->send_mail == 'on') {
+        //     $task = Task::find($task->id);
+        //     $assignedUsers = json_decode($task->assigned_users);
+        
+        //     if ($assignedUsers) {
+        //         $users = User::where('deleted_at', null)->get();
+        
+        //         foreach ($users as $user) {
+        //             foreach ($assignedUsers as $assignedUser) {
+        //                 if ((int) $user->id === (int) $assignedUser) {
+        //                     Mail::to($user->email)->send(new CompletedTaskMail($task));
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         return redirect('/admin/tasks');
     }
 
     public function destroy(Task $task){
         $task->delete();
+        return redirect('/admin/tasks');
+    }
+
+    public function edit(Task $task)
+    {
+        $assignedUsers = json_decode($task->assigned_to);
+        $users = User::where('role_id', 1)->where('deleted_at', null)->get();
+
+        return view('admin.tasks.edit', compact('task', 'users', 'assignedUsers'));
+    }
+
+    public function update(Task $task, Request $request)
+    {
+        if($file = $request->file('image')){
+            $fileName = $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads', $fileName, 'public');
+        } else {
+            $filePath = null;
+        }
+
+        $userIds = $request->input('user_ids', []);
+        $assignedTo = json_encode($userIds);
+
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->deadline = $request->deadline;
+        $task->image = $filePath;
+        $task->assigned_to = $assignedTo;
+        
+        $task->save();
+
         return redirect('/admin/tasks');
     }
 }
