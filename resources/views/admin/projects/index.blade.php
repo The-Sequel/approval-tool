@@ -24,10 +24,10 @@
                     <tr onclick="window.location.href='{{ route('admin.projects.show', ['project' => $project]) }}';">
                         <td>{{$project->title}}</td>
                         <td>{{$project->customer->name}}</td>
-                        <td>
+                        <td class="user-logo-main">
                             @foreach($users as $user)
                                 @if($user->customer_id == $project->customer_id)
-                                    {{$user->name}},
+                                    <span class="user-logo">{{substr($user->name, 0, 1)}}</span>
                                 @endif
                             @endforeach
                         </td>

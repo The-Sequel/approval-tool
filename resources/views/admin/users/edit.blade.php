@@ -22,6 +22,11 @@
             </div>
 
             <div class="form-group">
+                <label for="phone_number">Telefoonnummer</label>
+                <input type="text" name="phone_number" id="phone_number" value="{{$user->phone_number}}">
+            </div>
+
+            <div class="form-group">
                 <label for="status">Status</label>
                 <select name="status" id="status">
                     @if($user->status == 'active')

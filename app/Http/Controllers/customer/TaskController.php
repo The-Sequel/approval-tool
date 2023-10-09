@@ -4,6 +4,7 @@ namespace App\Http\Controllers\customer;
 
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Mail\Tasks\DeniedTaskMail;
 use App\Http\Controllers\Controller;
@@ -15,8 +16,10 @@ class TaskController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $users = User::Where('role_id', 1)->where('deleted_at', null)->get();
+        $normalUsers = User::Where('customer_id', $user->customer_id)->where('deleted_at', null)->get();
         $tasks = Task::where('customer_id', $user->customer_id)->get();
-        return view('customer.tasks.index', compact('tasks'));
+        return view('customer.tasks.index', compact('tasks', 'users', 'normalUsers'));
     }
 
     public function show(Task $task)
@@ -35,6 +38,13 @@ class TaskController extends Controller
             $task->update([
                 'status' => 'approved',
                 'approved_by' => auth()->user()->id,
+            ]);
+
+            Message::create([
+                'user_id' => auth()->user()->id,
+                'customer_id' => auth()->user()->customer_id,
+                'task_id' => $task->id,
+                'name' => 'Er is een taak goedgekeurd! 🎉',
             ]);
 
             // $users = User::where('role_id', 1)->where('deleted_at', null)->get();

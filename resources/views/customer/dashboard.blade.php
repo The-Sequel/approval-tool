@@ -5,7 +5,7 @@
     <div class="col-4">
         <h1>Taken in brand <span style="color: grey;">(05)</span>🔥</h1>
         @foreach($tasks as $task)
-            <div class="task-card">
+            <div onclick="window.location.href='{{ route('customer.tasks.show', ['task' => $task]) }}';" class="task-card">
                 <div class="task-card-head">
                     <p>{{$task->title}}</p>
                 </div>
@@ -26,7 +26,7 @@
                         <div class="task-card-items">
                             <div class="task-card-data">
                                 <p class="task-card-created_at">{{date('d-m-Y', strtotime($task->created_at))}}</p>
-                                <p class="task-card-department">{{$task->department->title}}</p>
+                                {{-- <p class="task-card-department">{{$task->department->title}}</p> --}}
                             </div>
                             <div class="task-card-persons">
                                 @foreach($task->customer->users as $user)

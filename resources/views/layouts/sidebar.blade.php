@@ -1,7 +1,6 @@
 <div class="sidebar">
     <img width="200" height="122" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" class="attachment-full size-full entered lazyloaded" alt="" decoding="async" data-lazy-src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" data-ll-status="loaded">
     <ul>
-        {{-- @dd(Auth::user()->role->name) --}}
         @if(Auth::user()->role->name == 'admin')
             <a href="{{route('admin.index')}}"><li>Dashboard</li></a>
             <div class="customerSidebar">

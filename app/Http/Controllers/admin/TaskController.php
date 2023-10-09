@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\Task;
 use App\Models\User;
 use App\Mail\EventMail;
+use App\Models\Message;
 use App\Models\Project;
 use App\Models\Customer;
 use App\Models\Department;
@@ -20,6 +21,7 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
         $users = User::where('role_id', 1)->where('deleted_at', null)->get();
+        $normalUsers = User::where('deleted_at', null)->get();
         $today = date('Y-m-d');
 
         $options_array = Task::get()->toArray();;
@@ -91,7 +93,7 @@ class TaskController extends Controller
             'tbody' => $tbody,
         ];
 
-        return view('admin.tasks.index', compact('table', 'tasks', 'today', 'users'));
+        return view('admin.tasks.index', compact('table', 'tasks', 'today', 'users', 'normalUsers'));
     }
 
     public function adminCreate()
@@ -114,8 +116,6 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -123,6 +123,7 @@ class TaskController extends Controller
             'department_id' => 'nullable',
             'deadline' => 'nullable',
             'created_by' => 'required',
+            'user_ids' => 'required',
         ]);
 
         $userIds = $request->input('user_ids', []);
@@ -223,6 +224,14 @@ class TaskController extends Controller
         //         }
         //     }
         // }
+
+        // Message
+        // Message::create([
+        //     'user_id' => auth()->user()->id,
+        //     'customer_id' => $request->customer_id,
+        //     'task_id' => $task->id,
+        //     'name' => 'Er is een taak copmleet! 🎉',
+        // ]);
 
         return redirect('/admin/tasks');
     }

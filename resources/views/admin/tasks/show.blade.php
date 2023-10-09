@@ -46,24 +46,24 @@
             </div>
         </div>
     @else
-        {{-- <div class="col-4">
+        <div class="col-4">
             <div class="task-information-card">
-                <div class="task-information-card-header">
-                    <h3 class="task-information-card-header-title">{{$task->title}}</h3>
-                    <p class="task-information-card-header-subtitle">{{$task->customer->name}}</p>
-                </div>
                 <div class="task-information-card-body">
-                    <p class="task-information-card-body-description">{{$task->description}}</p>
-                    <p class="task-information-card-body-deadline">Deadline: {{$task->deadline}}</p>
-                    <p class="task-information-card-body-department">Afdeling: {{$task->department->title}}</p>
-                    <p class="task-information-card-body-status">Status: {{$task->status}}</p>
+                    <h2>{{$task->title}}</h2>
+                    <p>{{$task->customer->name}}</p>
+                    <p>{{$task->description}}</p>
+                    <p><span>Deadline:</span> {{$task->deadline}}</p>
+                    <p><span>Status:</span> {{$task->status}}</p>
+                    @if($task->image)
+                        <a href="{{asset('storage/' . $task->image)}}"><img src="{{asset('storage/' . $task->image)}}" style="width: 100%; height: 100%;"></a>
+                    @endif
                 </div>
             </div>
-        </div> --}}
+        </div>
     @endif
 </div>
 
-<style>
+{{-- <style>
     .denied-card {
         width: 100%;
         height: 256px;
@@ -82,13 +82,21 @@
         margin-bottom: 10px;
     }
 
+    .task-information-card{
+        width: 100%;
+        height: 256px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        margin-top: 25px;
+        display: flex;
+    }
+
     /* .task-information-card{
         width: 100%;
         height: 256px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         margin-top: 25px;
     } */
-</style>
+</style> --}}
 
 <script>
     function deleteTask() {

@@ -22,6 +22,11 @@
             </div>
 
             <div class="form-group">
+                <label for="phone_number">Telefoonnummer</label>
+                <input type="text" name="phone_number" id="phone_number">
+            </div>
+
+            <div class="form-group">
                 <label for="role">Rol</label>
                 <select name="role_id" id="role_id">
                     <option value="">Selecteer een rol</option>

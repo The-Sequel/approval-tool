@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('department_id')
-                ->references('id')
-                ->on('departments');
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users');

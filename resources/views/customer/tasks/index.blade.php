@@ -18,9 +18,11 @@
                 @foreach($tasks as $task)
                     <tr onclick="redirectToTaskPage('{{ $task->status }}', '{{ $task->id }}')">
                         <td>{{$task->title}}</td>
-                        <td >
-                            @foreach($task->customer->users as $user)
-                                {{$user->name}},
+                        <td class="user-logo-main">
+                            @foreach($users as $user)
+                                @if(in_array($user->id, json_decode($task->assigned_to)))
+                                <span class="user-logo">{{substr($user->name, 0, 1)}}</span>
+                                @endif
                             @endforeach
                         </td>
                         <td>{{$task->deadline}}</td>
@@ -36,7 +38,11 @@
                         @if($task->approved_by == null)
                             <td>-</td>
                         @else
-                            <td>{{$task->approved_by}}</td>
+                            @foreach($normalUsers as $user)
+                                @if($user->id == $task->approved_by)
+                                    <td>{{$user->name}}</td>
+                                @endif
+                            @endforeach
                         @endif
                         <td>{{$task->updated_at}}</td>
                     </tr>

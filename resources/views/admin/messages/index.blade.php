@@ -15,7 +15,6 @@
             </thead>
             <tbody>
                 @foreach($messages as $message)
-                    {{-- @dd($message); --}}
                     <tr>
                         <td><span>{{ $message->name }}!</span> Voor {{$message->task->title}}</td>
                         <td>{{ $message->created_at }}</td>

@@ -19,10 +19,11 @@
                 @foreach($projects as $project)
                     <tr onclick="window.location.href='{{ route('customer.projects.show', ['project' => $project]) }}';">
                         <td>{{$project->title}}</td>
-                        <td>
+                        <td class="user-logo-main">
                             @foreach($project->customer->users as $user)
-                                {{$user->name}},
-                                {{-- {{substr($user->name, 0, 1)}}, --}}
+                                @if($user->deleted_at == null)
+                                    <span class="user-logo">{{substr($user->name, 0, 1)}}</span>
+                                @endif
                             @endforeach
                         </td>
                         <td>{{$project->deadline}}</td>

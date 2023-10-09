@@ -71,6 +71,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            'phone_number' => 'nullable',
             'role_id' => 'required',
             'customer_id' => 'nullable',
             'department_id' => 'nullable',
@@ -89,6 +90,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = isset($request->password) ? $request->password : $user->password;
+        $user->phone_number = $request->phone_number;
         $user->status = $request->status;
         $user->role_id = $request->role_id;
         $user->customer_id = $request->customer_id;

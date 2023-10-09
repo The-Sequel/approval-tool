@@ -1,36 +1,26 @@
 @extends('layouts.app-master')
 
 @section('content')
-
-<style>
-    .user-card {
-        height: 150px;
-        width: 300px;
-        margin: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    .user-card-header{
-        display: flex;
-        flex-direction: column;
-    }
-</style>
-
-
 <div class="grid">
     <div class="col-8">
-        {{-- Put 3 users here --}}
-        @foreach($users as $user)
-            <div class="user-card">
-                <div class="user-card-header">
-                    {{$user->name}}
-                    {{substr($user->name, 0, 1)}}
+        <div class="user-row">
+            @foreach($users as $user)
+                <div class="user-card">
+                    <h3>{{$user->name}}</h3>
+                    <div class="user-card-body">
+                        <div>
+                            <p class="user-card-logo">{{substr($user->name, 0, 1)}}</p>
+                        </div>
+                        <div>
+                            <p><span>Naam:</span> {{$user->name}}</p>
+                            <p><span>Functie:</span> {{$user->department->title}}</p>
+                            <p>{{$user->phone_number}}</p>
+                            <p>{{$user->email}}</p>
+                        </div>
+                    </div>
                 </div>
-                {{-- Phone number --}}
-                {{-- Email --}}
-                {{-- Status --}}
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
     <div class="col-4">
         <div class="customer-information-card">

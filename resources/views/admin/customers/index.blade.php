@@ -24,7 +24,7 @@
                         @else
                         <td id="customer-status"><p style="border-radius: 5px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px; background-color: red; text-color: rgb(75, 226, 75);">Non-Actief</p></td>
                         @endif
-                        <td>
+                        <td class="user-logo-main">
                             @foreach($customer->users as $user)
                                 <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
                             @endforeach

@@ -23,11 +23,10 @@
                     <tr onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
                         <td>{{$task->title}}</td>
                         <td>{{$task->project->customer->name}}</td>
-                        <td>
+                        <td class="user-logo-main">
                             @foreach($users as $user)
                                 @if(in_array($user->id, json_decode($task->assigned_to)))
-                                    {{$user->name}},
-                                    {{-- {{substr($user->name, 0, 1)}}, --}}
+                                    <span class="user-logo">{{substr($user->name, 0, 1)}}</span>
                                 @endif
                             @endforeach
                         </td>
@@ -36,7 +35,7 @@
                         @if($task->approved_by == null)
                             <td>-</td>
                         @else
-                            @foreach($users as $user)
+                            @foreach($normalUsers as $user)
                                 @if($user->id == $task->approved_by)
                                     <td>{{$user->name}}</td>
                                 @endif
@@ -63,7 +62,6 @@
             <div class="form-group">
                 <button type="submit">Maak nieuwe taak</button>
                 <button class="delete" onclick="event.preventDefault(); deleteProject();">Verwijder project</button>
-                <button onclick="event.preventDefault(); finishProject();">Voltooi project</button>
             </div>
         </form>
         <form id="delete-form" action="{{route('admin.projects.destroy', $project)}}" method="POST">

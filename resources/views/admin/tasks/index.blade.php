@@ -23,10 +23,10 @@
                     <tr onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
                         <td>{{$task->title}}</a></td>
                         <td>{{$task->customer->name}}</td>
-                        <td>
+                        <td class="user-logo-main">
                             @foreach($users as $user)
                                 @if(in_array($user->id, json_decode($task->assigned_to)))
-                                    {{$user->name}},
+                                <span class="user-logo">{{substr($user->name, 0, 1)}}</span>
                                 @endif
                             @endforeach
                         </td>
@@ -35,11 +35,24 @@
                         @else
                             <td>{{$task->deadline}}</td>
                         @endif
-                        <td>{{$task->status}}</td>
+                        @if($task->status == 'pending')
+                            <td>In afwachting</td>
+                        @elseif($task->status == 'completed')
+                            <td>Afgerond</td>
+                        @elseif($task->status == 'approved')
+                            <td>Akkoord</td>
+                        @elseif($task->status == 'denied')
+                            <td>Afgekeurd</td>
+                        @endif
+
                         @if($task->approved_by == null)
                             <td>-</td>
                         @else
-                            <td>{{$task->approved_by}}</td>
+                            @foreach($normalUsers as $user)
+                                @if($user->id == $task->approved_by)
+                                    <td>{{$user->name}}</td>
+                                @endif
+                            @endforeach
                         @endif
                         <td>{{$task->created_at->format('d-m-Y')}}</td>
                         <td>{{$task->updated_at->format('d-m-Y')}}</td>

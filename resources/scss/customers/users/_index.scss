@@ -1,3 +1,75 @@
+.user-row {
+    display: flex;
+    flex-wrap: wrap;
+    
+    .user-card{
+        height: 180px;
+        width: 360px;
+        margin: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 15px;
+        display: flex;
+        flex-wrap: wrap;
+    
+        h3{
+            width: 100%;
+        }
+    
+        .user-card-logo{
+            margin-top: 10px;
+            height: 80px;
+            width: 80px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+    
+        .user-card-body{
+            display: flex;
+            gap: 20px;
+            
+            div{
+                &:last-of-type{
+                    margin-top: 20px;
+                }
+            }
+    
+            span{
+                &:first-of-type{
+                    font-weight: bold;
+                }
+    
+                &:last-of-type{
+                    font-weight: bold;
+                }
+            }
+    
+            p{
+                &:nth-child(2){
+                    margin-top: 5px;
+                }
+                
+                &:nth-child(3){
+                    margin-top: 5px;
+                }
+    
+                &:nth-child(4){
+                    margin-top: 5px;
+                }
+    
+                &:nth-child(5){
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+}
+
+
+
 .customer-information-card{
     width: 500px;
     height: 300px;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\Log;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Message;
 use App\Models\Project;
 use App\Models\Customer;
 use App\Models\Department;
@@ -155,6 +156,15 @@ class ProjectController extends Controller
         //     }
         // }
 
+
+        // Message
+        Message::create([
+            'user_id' => auth()->user()->id,
+            'customer_id' => $request->customer_id,
+            'project_id' => $project->id,
+            'name' => 'Er is een nieuw project aangemaakt! 🎉 ',
+        ]);
+
         return redirect('/admin/projects')->with('success', 'Project is aangemaakt!');
     }
 
@@ -176,11 +186,11 @@ class ProjectController extends Controller
     }
 
     public function show(Project $project){
-        // get the tasks and put the most recent above
         $users = User::where('role_id', 1)->where('deleted_at', null)->get();
+        $normalUsers = User::where('deleted_at', null)->get();
         $tasks = Task::where('project_id', $project->id)->orderBy('created_at', 'desc')->get();
 
-        return view('admin.projects.show', compact('project', 'tasks', 'users'));
+        return view('admin.projects.show', compact('project', 'tasks', 'users', 'normalUsers'));
     }
 
     public function destroy(Project $project){
