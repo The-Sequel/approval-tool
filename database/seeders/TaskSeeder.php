@@ -14,77 +14,76 @@ class TaskSeeder extends Seeder
      */
     public function run(): void
     {
-        Task::create([
-            'title' => 'Taak 1',
-            'description' => 'Dit is een taak',
-            'deadline' => '2021-09-08',
-            'project_id' => '1',
-            'department_id' => 1,
-            'user_id' => '1',
-            'customer_id' => '1',
-        ]);
+        // Task::create([
+        //     'title' => 'Taak 1',
+        //     'description' => 'Dit is een taak',
+        //     'deadline' => '2021-09-08',
+        //     'project_id' => '1',
+        //     'department_id' => 1,
+        //     'user_id' => '1',
+        //     'customer_id' => '1',
+        // ]);
 
-        Task::create([
-            'title' => 'Taak 2',
-            'description' => 'Dit is een taak',
-            'deadline' => '2021-09-08',
-            'project_id' => '1',
-            'department_id' => 1,
-            'user_id' => '1',
-            'customer_id' => '1',
-        ]);
+        // Task::create([
+        //     'title' => 'Taak 2',
+        //     'description' => 'Dit is een taak',
+        //     'deadline' => '2021-09-08',
+        //     'project_id' => '1',
+        //     'department_id' => 1,
+        //     'user_id' => '1',
+        //     'customer_id' => '1',
+        // ]);
 
-        Task::create([
-            'title' => 'Instagram post',
-            'description' => 'Plaats een instagram post voor ons bedrijf',
-            'deadline' => '2021-09-08',
-            'project_id' => '2',
-            'department_id' => 2,
-            'image' => 'uploads/instagram-apple.png',
-            'user_id' => '1',
-            'customer_id' => '1',
-        ]);
+        // Task::create([
+        //     'title' => 'Instagram post',
+        //     'description' => 'Plaats een instagram post voor ons bedrijf',
+        //     'deadline' => '2021-09-08',
+        //     'project_id' => '2',
+        //     'department_id' => 2,
+        //     'image' => 'uploads/instagram-apple.png',
+        //     'user_id' => '1',
+        //     'customer_id' => '1',
+        // ]);
 
-        Task::create([
-            'title' => 'Taak 3',
-            'description' => 'Dit is een taak',
-            'deadline' => '2021-09-08',
-            'project_id' => '1',
-            'department_id' => 2,
-            'user_id' => '1',
-            'customer_id' => '1',
-        ]);
+        // Task::create([
+        //     'title' => 'Taak 3',
+        //     'description' => 'Dit is een taak',
+        //     'deadline' => '2021-09-08',
+        //     'project_id' => '1',
+        //     'department_id' => 2,
+        //     'user_id' => '1',
+        //     'customer_id' => '1',
+        // ]);
 
-        Task::create([
-            'title' => 'Taak 4',
-            'description' => 'Dit is een taak',
-            'deadline' => '2021-09-08',
-            'project_id' => '1',
-            'department_id' => 3,
-            'user_id' => '1',
-            'customer_id' => '1',
-        ]);
+        // Task::create([
+        //     'title' => 'Taak 4',
+        //     'description' => 'Dit is een taak',
+        //     'deadline' => '2021-09-08',
+        //     'project_id' => '1',
+        //     'department_id' => 3,
+        //     'user_id' => '1',
+        //     'customer_id' => '1',
+        // ]);
 
-        Task::create([
-            'title' => 'Taak 5',
-            'description' => 'Dit is een taak',
-            'deadline' => '2021-09-08',
-            'project_id' => '1',
-            'department_id' => 3,
-            'user_id' => '1',
-            'customer_id' => '1',
-            'assigned_to' => '2',
-        ]);
+        // Task::create([
+        //     'title' => 'Taak 5',
+        //     'description' => 'Dit is een taak',
+        //     'deadline' => '2021-09-08',
+        //     'project_id' => '1',
+        //     'department_id' => 3,
+        //     'user_id' => '1',
+        //     'customer_id' => '1',
+        //     'assigned_to' => '2',
+        // ]);
 
-        Task::create([
-            'title' => 'Taak 6',
-            'description' => 'Dit is een taak',
-            'deadline' => '2021-09-08',
-            'project_id' => '1',
-            'department_id' => 2,
-            'user_id' => '1',
-            'customer_id' => '1',
-        ]);
-        
+        // Task::create([
+        //     'title' => 'Taak 6',
+        //     'description' => 'Dit is een taak',
+        //     'deadline' => '2021-09-08',
+        //     'project_id' => '1',
+        //     'department_id' => 2,
+        //     'user_id' => '1',
+        //     'customer_id' => '1',
+        // ]);
     }
 }

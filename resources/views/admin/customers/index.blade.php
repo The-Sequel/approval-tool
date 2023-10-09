@@ -26,7 +26,9 @@
                         @endif
                         <td class="user-logo-main">
                             @foreach($customer->users as $user)
-                                <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                @if($user->deleted_at == null)
+                                    <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                @endif
                             @endforeach
                         </td>
                         <td style="width: 20%;">{{$customer->debtor_number}}</td>

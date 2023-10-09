@@ -3,10 +3,11 @@
     <ul>
         @if(Auth::user()->role->name == 'admin')
             <a href="{{route('admin.index')}}"><li>Dashboard</li></a>
-            <div class="customerSidebar">
+            <a href="{{route('admin.customers.index')}}"><li>Klanten</li>
+            {{-- <div class="customerSidebar">
                 <a href="{{route('admin.customers.index')}}"><li>Klanten</li></a><button onclick="createCustomer()" style="height: 50%; width: 10%;">+</button>
                 <a id="create-customer" style="display: none;" href="{{route('admin.customers.create')}}"><li>Klant aanmaken</li></a>
-            </div>
+            </div> --}}
             {{-- The list items under this comment still need to be finished --}}
             <a href="{{route('admin.projects.index')}}"><li>Projecten</li></a>
             <a href="{{route('admin.tasks.index')}}"><li>Taken</li></a>

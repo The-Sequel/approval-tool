@@ -139,7 +139,7 @@ class ProjectController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'status' => $request->status,
-            'created_by' => auth()->user()->name,
+            'created_by' => auth()->user()->id,
             'deadline' => $request->deadline,
             'customer_id' => $request->customer_id,
             'department_id' => $request->department,

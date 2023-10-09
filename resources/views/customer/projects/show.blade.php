@@ -18,7 +18,7 @@
                 @foreach($tasks as $task)
                     <tr onclick="redirectToTaskPage('{{ $task->status }}', '{{ $task->id }}')">
                         <td>{{$task->title}}</td>
-                        <td >
+                        <td class="user-logo-main">
                             @foreach($users as $user)
                                 @if(in_array($user->id, json_decode($task->assigned_to)))
                                     <span class="user-logo">{{substr($user->name, 0, 1)}}</span>

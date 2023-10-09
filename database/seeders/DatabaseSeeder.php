@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             DepartmentSeeder::class,
             UserSeeder::class,
-            // ProjectSeeder::class,
+            ProjectSeeder::class,
             // TaskSeeder::class,
             // MessageSeeder::class,
         ]);

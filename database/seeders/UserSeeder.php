@@ -43,5 +43,21 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => 1, // admin
         ]);
+
+        User::create([
+            'name' => 'Bill Gates',
+            'email' => 'billgates@microsoft.com',
+            'password' => bcrypt('password'),
+            'role_id' => 2,
+            'customer_id' => 4,
+        ]);
+
+        User::create([
+            'name' => 'Steve Jobs',
+            'email' => 'stevejobs@apple.com',
+            'password' => bcrypt('password'),
+            'role_id' => 2,
+            'customer_id' => 3,
+        ]);
     }
 }
