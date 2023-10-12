@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             UserSeeder::class,
             ProjectSeeder::class,
-            // TaskSeeder::class,
+            TaskSeeder::class,
             // MessageSeeder::class,
         ]);
 

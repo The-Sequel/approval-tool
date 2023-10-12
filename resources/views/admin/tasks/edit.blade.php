@@ -98,7 +98,7 @@
                     <h3>Afbeeldingen</h3>
                 </div>
                 <div class="task-images-card-images">
-                    <img src="{{asset('storage/' . $task->image)}}" alt="" width=50>
+                    <img src="{{asset('storage/' . $task->image)}}" alt="" width=450>
                 </div>
             </div>
         </div>

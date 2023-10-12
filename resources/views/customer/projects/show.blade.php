@@ -3,6 +3,33 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
+        <form action="{{route('customer.search.tasks')}}" method="GET">
+            @csrf
+            @method('GET')
+            <div class="search-form-group">
+                <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
+            </div>
+            <input type="hidden" name="project_id" value="{{$project->id}}">
+        </form>
+        <form action="{{route('customer.status.tasks')}}" method="GET">
+            @csrf
+            @method('GET')
+            <select>
+                <option value="pending">In afwachting</option>
+                <option value="completed">Afgerond</option>
+                <option value="approved">Akkoord</option>
+                <option value="denied">Afgekeurd</option>
+            </select>
+
+            <input type="hidden" name="project_id" value="{{$project->id}}">
+
+            <button>Filter</button>
+        </form>
+        <form action="{{route('customer.projects.show', $project->id)}}" method="GET">
+            @csrf
+            @method('GET')
+            <button>Reset</button>
+        </form>
         <table class="table">
             <thead>
                 <tr>

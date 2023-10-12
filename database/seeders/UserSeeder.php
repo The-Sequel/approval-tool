@@ -18,7 +18,9 @@ class UserSeeder extends Seeder
             'name' => 'Silvin van Haestregt',
             'email' => 'silvinvanhaestregt@outlook.com',
             'password' => bcrypt('password'),
-            'role_id' => 1, // admin
+            'role_id' => 2,
+            'customer_id' => 1,
+            'department_id' => 2,
         ]);
 
         User::create([

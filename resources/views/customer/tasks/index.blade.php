@@ -3,6 +3,13 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
+        <form action="{{route('customer.search.tasks')}}" method="GET">
+            @csrf
+            @method('GET')
+            <div class="search-form-group">
+                <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
+            </div>
+        </form>
         <table class="table">
             <thead>
                 <tr>

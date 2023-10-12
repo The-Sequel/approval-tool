@@ -10,12 +10,16 @@
         'admin' => 'Hi, ' . Auth::user()->name,
         'admin/customers' => 'Klanten',
         'admin/customers/create' => 'Klant aanmaken',
+        'admin/search/customers' => 'Klanten',
         'admin/projects' => 'Projecten',
         'admin/projects/create' => 'Project aanmaken',
+        'admin/search/projects' => 'Projecten',
         'admin/tasks' => 'Taken',
         'admin/tasks/create' => 'Taak aanmaken',
+        'admin/search/tasks' => 'Taken',
         'admin/users' => 'Gebruikers',
         'admin/users/create' => 'Gebruiker aanmaken',
+        'admin/search/users' => 'Gebruikers',
         'admin/messages' => 'Berichten',
         // Customer side
         '/' => 'Hi, ' . Auth::user()->name,
@@ -24,6 +28,8 @@
         'tasks' => 'Taken',
         'messages' => 'Berichten',
         'contact' => 'Contact',
+        'search/tasks' => 'Taken',
+        'search/projects' => 'Projects',
     ];
 
     foreach (User::all() as $user) {

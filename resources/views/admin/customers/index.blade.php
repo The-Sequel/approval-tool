@@ -4,6 +4,13 @@
 <div class="grid">
     {{-- @include('sections.table' , $table) --}}
     <div class="col-12">
+        <form action="{{route('admin.search.customers')}}" method="GET">
+            @csrf
+            @method('GET')
+            <div class="search-form-group">
+                <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
+            </div>
+        </form>
         <table class="table">
             <thead>
                 <tr>

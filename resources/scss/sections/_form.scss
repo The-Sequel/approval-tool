@@ -57,3 +57,20 @@
         background-color: #f44336;
     }
 }
+
+.search-form-group{
+    
+    .search-form-input{
+        width: 10%;
+        padding: 12px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+
+        &:focus{
+            outline: none;
+        }
+    }
+}
