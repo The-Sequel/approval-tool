@@ -29,20 +29,59 @@
                         <td class="user-logo-main">
                             @foreach($project->customer->users as $user)
                                 @if($user->deleted_at == null)
-                                    <span class="user-logo">{{substr($user->name, 0, 1)}}</span>
+                                    <div class="user-information">
+                                        <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                        <span class="user-information-content">
+                                            <div class="user-information-content-logo">
+                                                <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                            </div>
+                                            <div class="user-information-content-data">
+                                                <p>{{$user->name}}</p>
+                                                <p>{{$user->email}}</p>
+                                            </div>
+                                        </span>
+                                    </div>
                                 @endif
                             @endforeach
                         </td>
-                        <td>{{$project->deadline}}</td>
-                        <td>{{$project->department->title}}</td>
+
+                        {{-- Deadline --}}
+
+                        @php
+                            $today = strtotime(date('Y-m-d'));
+                            $projectDeadline = strtotime($project->deadline);
+                            $daysDifference = round(($projectDeadline - $today) / (60 * 60 * 24));
+                        @endphp
+                        @if($daysDifference <= 5)
+                            <td>
+                                <p class="deadline">{{$project->deadline}}</p><span>🔥</span>
+                            </td>
+                        @else
+                            <td>
+                                <p class="deadline">{{$project->deadline}}</p>
+                            </td>
+                        @endif
+
+                        <td>
+                            <p class="department">{{$project->department->title}}</p>
+                        </td>
+
                         @if($project->status == 'pending')
-                            <td>In afwachting</td>
+                            <td>
+                                <p class="status-pending">In afwachting</p>
+                            </td>
                         @elseif($project->status == 'completed')
-                            <td>Afgerond</td>
+                            <td>
+                                <p class="status-completed">Afgerond</p>
+                            </td>
                         @elseif($project->status == 'approved')
-                            <td>Akkoord</td>
+                            <td>
+                                <p class="status-approved">Akkoord</p>
+                            </td>
                         @elseif($project->status == 'declined')
-                            <td>Afgekeurd</td>
+                            <td>
+                                <p class="status-denied">Afgekeurd</p>
+                            </td>
                         @endif
                         @if($project->approved_by == null)
                             <td>-</td>

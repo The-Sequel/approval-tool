@@ -43,10 +43,14 @@
             flex: 70%;
             max-width: 70%;
 
+            .task-card-customer{
+                margin-bottom: 20px;
+            }
+
             .task-card-items{
                 display: flex;
                 justify-content: space-between;
-                margin-top: 67px;
+                margin-top: 64px;
 
                 .task-card-data{
                     display: flex;
@@ -63,10 +67,12 @@
                 }
 
                 .task-card-department{
-                    background-color: #ddd;
+                    background-color: #e3e3e3;
+                    color: #686c71;
                     border: none;
                     padding: 4px;
                     border-radius: 5%;
+                    padding: 5px;
                 }
 
                 .task-card-persons{
@@ -131,20 +137,42 @@
             flex: 70%;
             max-width: 70%;
 
+            .project-card-customer{
+                margin-bottom: 15px;
+            }
+
             .project-card-items{
                 display: flex;
                 justify-content: space-between;
-                margin-top: 12px;
+                margin-top: 11px;
 
                 .project-card-data{
                     display: flex;
                     gap: 12px;
                     align-items: center;
+
+                    .project-card-created_at{
+                        background-color: rgb(61, 61, 61);
+                        border: none;
+                        color: white;
+                        padding: 4px;
+                        border-radius: 5%;
+                    }
+
+                    .project-card-department{
+                        background-color: #e3e3e3;
+                        color: #686c71;
+                        border: none;
+                        padding: 4px;
+                        border-radius: 5%;
+                        padding: 5px;
+                    }
                 }
 
                 .project-card-persons{
                     display: flex;
                     gap: 1px;
+                    margin-top: 4px;
 
                     .project-card-person{
                         height: 20px;
@@ -234,11 +262,11 @@
 .myProgress{
     margin-top: 53px;
     width: 100%;
-    background-color: #dddddd;
+    background-color: #f6f6f6;
 }
 
 .myBar{
     width: 1%;
     height: 10px;
-    background-color: #c0c0c0;
+    background-color: #d9d9d9;
 }

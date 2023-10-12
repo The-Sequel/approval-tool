@@ -3,6 +3,10 @@
     use App\Models\User;
     use App\Models\Project;
     use App\Models\Task;
+    use App\Models\Message;
+
+    // get 3 latest messages and check if the message is within the last 24 hours and if the message is for the current user
+    $messages = Message::where('created_at', '>=', \Carbon\Carbon::now()->subDays(1))->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(3)->get();
 
 
     $routeTitles = [
@@ -93,9 +97,41 @@
     @if(isset($routeTitles[$route]))
         <div class="header-1">
             <h1>{{ $routeTitles[$route] }}</h1>
-            <p>Laten we samen aan de slag gaan</p>
+            <p class="header-p">Laten we samen aan de slag gaan</p>
         </div>
         <div class="header-2">
+            <div class="notification" onclick="toogleNotificationContent(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                    <!-- Original notification icon path -->
+                    <path
+                      d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"
+                    />
+                  
+                    <!-- Red dot at the right upper corner -->
+                    <circle cx="420" cy="100" r="100" fill="red" />
+                </svg>
+                <span class="notification-content">
+                    <div class="notification-content-data">
+                        <p>Deze functie is nog niet beschikbaar</p>
+                        {{-- @dd($messages) --}}
+                        {{-- @if($messages != null)
+                            @foreach($messages as $message)
+                                @if($user->role_id == 2)
+                                    @if($message->task_id != null)
+                                        <p><a class="notification-item" href="{{route('customer.tasks.show', $message->task_id)}}">{{ date('d F Y', strtotime($message->created_at))}}: {{$message->name}}</a></p>
+                                    @elseif($message->project_id)
+                                        <p><a class="notification-item" href="{{route('customer.projects.show', $message->project_id)}}">{{ date('d F Y', strtotime($message->created_at))}}: {{$message->name}}</a></p>
+                                    @endif
+                                @else
+                                    
+                                @endif
+                            @endforeach
+                        @else
+                            <p>Geen nieuwe berichten</p>
+                        @endif --}}
+                    </div>
+                </span>
+            </div>
             <p class="user-image">{{$firstLetter}}</p>
             <div class="header-3">
                 <p>{{ Auth::user()->name }}</p>
@@ -107,22 +143,34 @@
         </div>
     @endif
 </div>
+  
+  
+  
 
-{{-- <div class="header">
-    @if(isset($routeTitles[$route]))
-        <div class="header-1">
-            <h1>{{ $routeTitles[$route] }}</h1>
-            <p>Laten we samen aan de slag gaan</p>
-        </div>
-        <div class="header-2">
-            <p class="user-image">{{$firstLetter}}</p>
-        </div>
-        <div class="header-3">
-            <p>{{ Auth::user()->name }}</p>
-            <p>{{ $customer->name }}</p>
-        </div>
-        <div class="header-4">
-            
-        </div>
-    @endif
-</div> --}}
+<script>
+    function toggleNotificationContent(notification) {
+        notification.classList.toggle('open');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const notifications = document.querySelectorAll('.notification');
+
+        // Toggle notification content on click
+        notifications.forEach(notification => {
+            notification.addEventListener('click', () => {
+                toggleNotificationContent(notification);
+            });
+        });
+
+        // Close notification content when clicking outside
+        document.addEventListener('click', (event) => {
+            const target = event.target;
+
+            for (const notification of notifications) {
+                if (!notification.contains(target)) {
+                    notification.classList.remove('open');
+                }
+            }
+        });
+    });
+</script>

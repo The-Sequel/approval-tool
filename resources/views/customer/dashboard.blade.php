@@ -3,7 +3,7 @@
 @section('content')
 <div class="grid">
     <div class="col-4">
-        <h1>Taken in brand <span style="color: grey;">(05)</span>🔥</h1>
+        <h2>Taken in brand <span style="color: grey;">(05)</span>🔥</h2>
         @foreach($tasks as $task)
             <div onclick="window.location.href='{{ route('customer.tasks.show', ['task' => $task]) }}';" class="task-card">
                 <div class="task-card-head">
@@ -26,11 +26,24 @@
                         <div class="task-card-items">
                             <div class="task-card-data">
                                 <p class="task-card-created_at">{{date('d-m-Y', strtotime($task->created_at))}}</p>
-                                {{-- <p class="task-card-department">{{$task->department->title}}</p> --}}
+                                @if($task->project_id != null)
+                                    <p class="task-card-department">{{$task->project->department->title}}</p>
+                                @endif
                             </div>
                             <div class="task-card-persons">
                                 @foreach($task->customer->users as $user)
-                                    <p class="task-card-person">{{Str::ucfirst(substr($user->name, 0, 1))}}</p>
+                                    <div class="user-information">
+                                        <p class="task-card-person">{{substr($user->name, 0, 1)}}</p>
+                                        <span class="user-information-content">
+                                            <div class="user-information-content-logo">
+                                                <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                            </div>
+                                            <div class="user-information-content-data">
+                                                <p>{{$user->name}}</p>
+                                                <p>{{$user->email}}</p>
+                                            </div>
+                                        </span>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -41,7 +54,7 @@
     </div>
     
     <div class="col-4">
-        <h1>Lopende projecten <span style="color: grey;">(03)</span></h1>
+        <h2>Lopende projecten <span style="color: grey;">(03)</span></h2>
         @foreach($projects as $project)
             <div onclick="window.location.href='{{ route('customer.projects.show', ['project' => $project]) }}';" class="project-card">
                 <div class="project-card-head">
@@ -58,7 +71,7 @@
                             <p>{{ implode(' ', array_slice(explode(' ', $project->description), 0, 4)) }}...</p>
                         @endif
                         <p class="project-card-tasks" style="display: none;">Tasks: {{$project->tasks->count()}}</p>
-                        <div class="myProgress" id="progress-{{$project->id}}">
+                        <div style="margin-top: 44px;" class="myProgress" id="progress-{{$project->id}}">
                             <div class="myBar"></div>
                         </div>
                         <script>
@@ -77,12 +90,23 @@
                         </script>
                         <div class="project-card-items">
                             <div class="project-card-data">
-                                <p class="project-card-create_at">{{date('d-m-Y', strtotime($project->created_at))}}</p>
+                                <p class="project-card-created_at">{{date('d-m-Y', strtotime($project->created_at))}}</p>
                                 <p class="project-card-department">{{$project->department->title}}</p>
                             </div>
                             <div class="project-card-persons">
                                 @foreach($project->customer->users as $user)
-                                    <p class="project-card-person">{{Str::ucfirst(substr($user->name, 0, 1))}}</p>
+                                    <div class="user-information">
+                                        <p class="project-card-person">{{substr($user->name, 0, 1)}}</p>
+                                        <span class="user-information-content">
+                                            <div class="user-information-content-logo">
+                                                <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                            </div>
+                                            <div class="user-information-content-data">
+                                                <p>{{$user->name}}</p>
+                                                <p>{{$user->email}}</p>
+                                            </div>
+                                        </span>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>

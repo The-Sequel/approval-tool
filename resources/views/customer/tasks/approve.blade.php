@@ -5,20 +5,22 @@
     <div class="col-6">
         <h1>{{$task->title}}</h1>
         <div class="task-information">
-            <div class="task-information-images">
-                @php
-                    $imagePaths = json_decode($task->image_completed, true);
-                @endphp
-                @foreach($imagePaths as $image)
-                    <img src="{{asset('storage/'.$image)}}" alt="">
-                @endforeach
-            </div>
             <div class="task-information-description">
                 {{$task->description_completed}}
             </div>
             <div class="task-information-completed_by">
                 <p>Voltooid door: {{$task->completed_by}}</p>
             </div>
+            @if($task->image_completed != null)
+                <div class="task-information-images">
+                    @php
+                        $imagePaths = json_decode($task->image_completed, true);
+                    @endphp
+                    @foreach($imagePaths as $image)
+                        <img src="{{asset('storage/'.$image)}}" alt="">
+                    @endforeach
+                </div>
+            @endif
         </div>
         
         <form action="{{route('customer.tasks.finish', $task)}}" method="POST">
@@ -63,7 +65,7 @@
     }
 
     .task-information-description{
-        margin-top: 20px;
+        /* margin-top: 20px; */
     }
 </style>
 

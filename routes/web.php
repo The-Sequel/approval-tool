@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\TaskController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\MessageController;
 use App\Http\Controllers\admin\SearchController;
+use App\Http\Controllers\admin\FilterController;
 
 // Customer Controllers
 use App\Http\Controllers\customer\ProjectController as CustomerProjectController;
@@ -80,6 +81,7 @@ Route::middleware(['auth', 'verified', 'admin.access'])->group(function () {
     Route::get('/admin/search/projects', [SearchController::class, 'searchProjects'])->name('admin.search.projects');
     Route::get('/admin/search/users', [SearchController::class, 'searchUser'])->name('admin.search.users');
     Route::get('/admin/search/customers', [SearchController::class, 'searchCustomer'])->name('admin.search.customers');
+    Route::get('/admin/filter/tasks', [FilterController::class, 'taskApproved'])->name('admin.filter.tasks');
 });
 
 Route::middleware(['auth', 'verified', 'customer.access'])->group(function () {

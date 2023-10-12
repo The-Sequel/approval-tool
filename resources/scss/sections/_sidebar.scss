@@ -6,6 +6,10 @@
     resize: none;
     float: left;
 
+    a{
+        text-decoration: none;
+    }
+
     ul{
         padding: 0;
     }
@@ -45,6 +49,15 @@
     //     cursor: pointer;
     //     margin-top: 17px;
     // }
+
+    .sidebar-item{
+        display: flex;
+
+        svg{
+            margin-top: 15px;
+            margin-left: 15px;
+        }
+    }
 
     .logout{
         position: absolute;

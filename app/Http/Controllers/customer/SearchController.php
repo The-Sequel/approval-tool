@@ -14,16 +14,15 @@ class SearchController extends Controller
     {
         $users = User::where('role_id', 1)->where('deleted_at', null)->get();
         $user = auth()->user();
+        $normalUsers = User::where('deleted_at', null)->get();
 
         // dd($request->project_id);
 
         if($request->project_id == null)
         {
             $tasks = Task::where('customer_id', $user->customer_id)->where('title', 'like', '%' . $request->search . '%')->get();
-    
-            dd('customer.tasks.index');
 
-            return view('customer.tasks.index', compact('tasks', 'users'));
+            return view('customer.tasks.index', compact('tasks', 'users', 'normalUsers'));
         } else {
             $project = Project::where('id', $request->project_id)->first();
 

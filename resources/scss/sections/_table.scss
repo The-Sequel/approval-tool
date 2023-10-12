@@ -1,6 +1,6 @@
 /* Table */
 .table{
-    margin-top: 120px;
+    margin-top: 50px;
     width: 100%;
     border-collapse: collapse;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -28,6 +28,81 @@
     img{
         width: 50px;
     }
+
+    .status-pending{
+        background-color: #efd6af;
+        color: #f4833d;
+        border-radius: 5%;
+        padding: 6px 12px 6px 12px;
+        width: fit-content;
+    }
+
+    .status-completed{
+        background-color: #dbe6b3;
+        color: #89a621;
+        border-radius: 5%;
+        padding: 6px 12px 6px 12px;
+        width: fit-content;
+    }
+
+    .status-approved{
+        background-color: #dbe6b3;
+        color: #89a621;
+        border-radius: 5%;
+        padding: 6px 12px 6px 12px;
+        width: fit-content;
+    }
+
+    .status-denied{
+        background-color: #fac5c5;
+        color: #fc5f5f;
+        border-radius: 5%;
+        padding: 6px 12px 6px 12px;
+        width: fit-content;
+    }
+
+    .status-active{
+        background-color: #dbe6b3;
+        color: #b1bc4d;
+        border-radius: 5%;
+        padding: 6px 12px 6px 12px;
+        width: fit-content;
+    }
+
+    .status-inactive{
+        background-color: #fac5c5;
+        color: #fb6c6f;
+        border-radius: 5%;
+        padding: 6px 12px 6px 12px;
+        width: fit-content;
+    }
+
+    .department{
+        background-color: #e3e3e3;
+        color: #676767;
+        border-radius: 5%;
+        padding: 6px 12px 6px 12px;
+        width: fit-content;
+    }
+
+    .deadline{
+        background-color: #4a4a4a;
+        color: #ffffff;
+        border-radius: 5%;
+        padding: 6px 12px 6px 12px;
+        width: fit-content;
+        // margin-left: auto;
+        // margin-right: auto;
+    }
+
+    .table-icons{
+        // display:flex;
+        .table-icons-item{
+            &:first-child{
+                margin-right: 10px;
+            }
+        }
+    }
 }
 
 .user-logo-main{
@@ -44,4 +119,40 @@
     justify-content: center;
     align-items: center;
     color: white;
+}
+
+.user-information {
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+}
+
+.user-information .user-information-content {
+    visibility: hidden;
+    width: 120px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -20px;
+    left: 105%;
+    width: 300px;
+    height: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.user-information-content{
+    display: flex;
+    gap: 12px;
+}
+
+.user-information:hover .user-information-content {
+    visibility: visible;
 }

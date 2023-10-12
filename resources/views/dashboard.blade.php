@@ -46,13 +46,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- @foreach($customers as $customer)
-                        {{ $customer->name }}
-                        
-                        @foreach($customer->products as $product)
-                            {{ $product->name }}
-                        @endforeach
-                    @endforeach --}}
                 </div>
             </div>
         </div>
