@@ -105,24 +105,6 @@
     @endif
 </div>
 
-<style>
-    .task-images-card{
-        margin-top: 25px;
-        height: 100%;
-        width: 100%;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        /* border-radius: 5%; */
-    }
-
-    .task-images-card-header{
-        padding: 20px;
-    }
-
-    .task-images-card-images{
-        padding: 20px;
-    }
-</style>
-
 <script>
     function deleteTask(){
         if(confirm('Weet je zeker dat je deze taak wilt verwijderen?')){

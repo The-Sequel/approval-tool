@@ -159,12 +159,12 @@ class TaskController extends Controller
 
         $task = Task::where('title', $request->title)->first();
 
-        Message::create([
-            'user_id' => auth()->user()->id,
-            'customer_id' => $task->customer_id,
-            'project_id' => $task->id,
-            'name' => 'Er is een nieuwe taak aangemaakt! 🎉 ',
-        ]);
+        // Message::create([
+        //     'user_id' => auth()->user()->id,
+        //     'customer_id' => $task->customer_id,
+        //     'project_id' => $task->id,
+        //     'name' => 'Er is een nieuwe taak aangemaakt! 🎉 ',
+        // ]);
 
         // Email
         if($request->send_mail == 'on'){

@@ -65,41 +65,6 @@
     @endif
 </div>
 
-{{-- <style>
-    .denied-card {
-        width: 100%;
-        height: 256px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        margin-top: 25px;
-        display: flex;
-    }
-
-    .denied-card-reason {
-        width: 100%;
-        height: 100%;
-        padding: 20px;
-    }
-
-    .denied-card-reason-header {
-        margin-bottom: 10px;
-    }
-
-    .task-information-card{
-        width: 100%;
-        height: 256px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        margin-top: 25px;
-        display: flex;
-    }
-
-    /* .task-information-card{
-        width: 100%;
-        height: 256px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        margin-top: 25px;
-    } */
-</style> --}}
-
 <script>
     function deleteTask() {
         var result = confirm("Weet je zeker dat je deze taak wilt verwijderen?");

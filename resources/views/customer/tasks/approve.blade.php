@@ -40,35 +40,6 @@
     </div>
 </div>
 
-<style>
-    .task-information{
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    }
-
-    .task-information-images{
-        display: flex;
-        flex-direction: row;
-        gap: 40px;
-        align-items: center;
-        /* keep the images in the task-information div */
-        overflow: auto;
-    }
-
-    .task-information-images img{
-        width: 250px;
-        height: 250px;
-        object-fit: cover;
-        border-radius: 5px;
-    }
-
-    .task-information-description{
-        /* margin-top: 20px; */
-    }
-</style>
-
 <script>
     // when the decline button is clicked, show the textarea
     document.getElementById('decline').addEventListener('click', function() {
