@@ -11,7 +11,7 @@
             </div>
             <input type="hidden" name="project_id" value="{{$project->id}}">
         </form>
-        <form action="{{route('customer.status.tasks')}}" method="GET">
+        {{-- <form action="{{route('customer.status.tasks')}}" method="GET">
             @csrf
             @method('GET')
             <select>
@@ -24,7 +24,7 @@
             <input type="hidden" name="project_id" value="{{$project->id}}">
 
             <button>Filter</button>
-        </form>
+        </form> --}}
         <form action="{{route('customer.projects.show', $project->id)}}" method="GET">
             @csrf
             @method('GET')

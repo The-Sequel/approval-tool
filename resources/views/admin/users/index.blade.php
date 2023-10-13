@@ -11,6 +11,11 @@
                 <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
             </div>
         </form>
+        <form action="{{route('admin.users.index')}}" method="GET">
+            @csrf
+            @method('GET')
+            <button>Reset</button>
+        </form>
         <table class="table">
             <thead>
                 <tr>

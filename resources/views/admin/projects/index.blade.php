@@ -4,12 +4,17 @@
 <div class="grid">
     {{-- @include('sections.table' , $table) --}}
     <div class="col-12">
-        <form action="{{route('customer.search.projects')}}" method="GET">
+        <form action="{{route('admin.search.projects')}}" method="GET">
             @csrf
             @method('GET')
             <div class="search-form-group">
                 <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
             </div>
+        </form>
+        <form action="{{route('admin.projects.index')}}" method="GET">
+            @csrf
+            @method('GET')
+            <button>Reset</button>
         </form>
         <table class="table">
             <thead>

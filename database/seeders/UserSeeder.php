@@ -24,11 +24,20 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'admin',
-            'email' => 'admin@thesequel.nl',
+            'name' => 'Silvin van Haestregt',
+            'email' => 'stage@thesequel.nl',
             'password' => bcrypt('password'),
-            'role_id' => 1, // admin
+            'role_id' => 2,
+            'customer_id' => 1,
+            'department_id' => 2,
         ]);
+
+        // User::create([
+        //     'name' => 'admin',
+        //     'email' => 'admin@thesequel.nl',
+        //     'password' => bcrypt('password'),
+        //     'role_id' => 1, // admin
+        // ]);
 
         User::create([
             'name' => 'Adawosgi Ameyalli',
