@@ -10,7 +10,8 @@ class MessageController extends Controller
 {
     public function index()
     {
-        $messages = Message::all();
+        // get all messages by most recently created
+        $messages = Message::orderBy('created_at', 'desc')->get();
 
         return view('admin.messages.index', compact('messages'));
         // $options_array = Message::get()->toArray();

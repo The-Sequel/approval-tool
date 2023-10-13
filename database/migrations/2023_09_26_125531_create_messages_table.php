@@ -18,6 +18,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('users');
             $table->foreignId('customer_id')
+                ->nullable()
                 ->references('id')
                 ->on('customers');
             $table->foreignId('project_id')

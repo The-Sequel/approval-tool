@@ -61,7 +61,6 @@ class TaskController extends Controller
 
             Message::create([
                 'user_id' => auth()->user()->id,
-                'customer_id' => auth()->user()->customer_id,
                 'task_id' => $task->id,
                 'name' => 'Er is een taak goedgekeurd! 🎉',
             ]);
@@ -78,6 +77,12 @@ class TaskController extends Controller
             $task->update([
                 'status' => 'denied',
                 'reason' => $request->message
+            ]);
+
+            Message::create([
+                'user_id' => auth()->user()->id,
+                'task_id' => $task->id,
+                'name' => 'Er is een taak afgekeurd! 😢',
             ]);
 
             // $users = User::where('role_id', 1)->where('deleted_at', null)->get();

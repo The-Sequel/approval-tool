@@ -143,7 +143,7 @@ class TaskController extends Controller
             $filePath = null;
         }
         
-        Task::create([
+        $task = Task::create([
             'title' => $request->title,
             'description' => $request->description,
             'deadline' => $request->deadline,
@@ -157,14 +157,12 @@ class TaskController extends Controller
             'assigned_to' => $assignedTo,
         ]);
 
-        $task = Task::where('title', $request->title)->first();
-
-        // Message::create([
-        //     'user_id' => auth()->user()->id,
-        //     'customer_id' => $task->customer_id,
-        //     'project_id' => $task->id,
-        //     'name' => 'Er is een nieuwe taak aangemaakt! 🎉 ',
-        // ]);
+        Message::create([
+            'user_id' => auth()->user()->id,
+            'customer_id' => $task->customer_id,
+            'task_id' => $task->id,
+            'name' => 'Er is een nieuwe taak aangemaakt! 🎉 ',
+        ]);
 
         // Email
         if($request->send_mail == 'on'){
@@ -214,6 +212,13 @@ class TaskController extends Controller
         $task->status = 'completed';
 
         $task->save();
+
+        Message::create([
+            'user_id' => auth()->user()->id,
+            'customer_id' => $task->customer_id,
+            'task_id' => $task->id,
+            'name' => 'Er is een taak copmleet! 🎉',
+        ]);
 
 
         // Email

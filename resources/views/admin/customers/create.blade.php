@@ -9,15 +9,6 @@
             <input class="form-control" type="text" name="name" id="name" placeholder="Vereist">
         </div>
 
-        {{-- <div class="form-group">
-            <label for="name">Status</label>
-            <select class="form-control" name="status">
-                <option></option>
-                <option value="active">Active</option>
-                <option value="inactive">Non-actief</option>
-            </select>
-        </div> --}}
-
         <div class="form-group">
             <label for="name">Logo</label>
             <input class="form-control" type="file" name="logo" id="logo">

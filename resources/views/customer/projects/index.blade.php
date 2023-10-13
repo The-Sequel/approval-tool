@@ -19,6 +19,7 @@
                     <th>Afdeling</th>
                     <th>Status</th>
                     <th>Akkoord door</th>
+                    <th>Gemaakt op:</th>
                     <th>Bewerkt op:</th>
                 </tr>
             </thead>
@@ -26,23 +27,25 @@
                 @foreach($projects as $project)
                     <tr onclick="window.location.href='{{ route('customer.projects.show', ['project' => $project]) }}';">
                         <td>{{$project->title}}</td>
-                        <td class="user-logo-main">
-                            @foreach($project->customer->users as $user)
-                                @if($user->deleted_at == null)
-                                    <div class="user-information">
-                                        <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                                        <span class="user-information-content">
-                                            <div class="user-information-content-logo">
-                                                <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                                            </div>
-                                            <div class="user-information-content-data">
-                                                <p>{{$user->name}}</p>
-                                                <p>{{$user->email}}</p>
-                                            </div>
-                                        </span>
-                                    </div>
-                                @endif
-                            @endforeach
+                        <td>
+                            <div class="user-logo-main">
+                                @foreach($project->customer->users as $user)
+                                    @if($user->deleted_at == null)
+                                        <div class="user-information">
+                                            <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                            <span class="user-information-content">
+                                                <div class="user-information-content-logo">
+                                                    <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                                </div>
+                                                <div class="user-information-content-data">
+                                                    <p>{{$user->name}}</p>
+                                                    <p>{{$user->email}}</p>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
                         </td>
 
                         {{-- Deadline --}}
@@ -88,7 +91,8 @@
                         @else
                             <td>{{$project->approved_by}}</td>
                         @endif
-                        <td>{{$project->updated_at}}</td>
+                        <td>{{date('d-m-Y', strtotime($project->created_at))}}</td>
+                        <td>{{date('d-m-Y', strtotime($project->updated_at))}}</td>
                     </tr>
                 @endforeach
             </tbody>

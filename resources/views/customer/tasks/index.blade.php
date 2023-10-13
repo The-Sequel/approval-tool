@@ -18,6 +18,7 @@
                     <th>Deadline</th>
                     <th>Status</th>
                     <th>Akkoord door</th>
+                    <th>Gemaakt op:</th>
                     <th>Bewerkt op:</th>
                 </tr>
             </thead>
@@ -25,23 +26,25 @@
                 @foreach($tasks as $task)
                     <tr onclick="redirectToTaskPage('{{ $task->status }}', '{{ $task->id }}')">
                         <td>{{$task->title}}</td>
-                        <td class="user-logo-main">
-                            @foreach($users as $user)
-                                @if(in_array($user->id, json_decode($task->assigned_to)))
-                                    <div class="user-information">
-                                        <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                                        <span class="user-information-content">
-                                            <div class="user-information-content-logo">
-                                                <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                                            </div>
-                                            <div class="user-information-content-data">
-                                                <p>{{$user->name}}</p>
-                                                <p>{{$user->email}}</p>
-                                            </div>
-                                        </span>
-                                    </div>
-                                @endif
-                            @endforeach
+                        <td>
+                            <div class="user-logo-main">
+                                @foreach($users as $user)
+                                    @if(in_array($user->id, json_decode($task->assigned_to)))
+                                        <div class="user-information">
+                                            <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                            <span class="user-information-content">
+                                                <div class="user-information-content-logo">
+                                                    <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                                </div>
+                                                <div class="user-information-content-data">
+                                                    <p>{{$user->name}}</p>
+                                                    <p>{{$user->email}}</p>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
                         </td>
                         
                         {{-- Deadline --}}
@@ -53,11 +56,11 @@
                         @endphp
                         @if($daysDifference <= 5)
                             <td>
-                                <p class="deadline">{{$task->deadline}}</p><span>🔥</span>
+                                <p class="deadline">{{date('d-m-Y', $task->deadline)}}</p><span>🔥</span>
                             </td>
                         @else
                             <td>
-                                <p class="deadline">{{$task->deadline}}</p>
+                                <p class="deadline">{{date('d-m-Y', strtotime($task->deadline))}}</p>
                             </td>
                         @endif
 
@@ -92,7 +95,28 @@
                                 @endif
                             @endforeach
                         @endif
-                        <td>{{$task->updated_at}}</td>
+                        <td>
+                            <div class="timestamp-information">
+                                <p>{{date('d-m-Y', strtotime($task->created_at))}}</p>
+                                <span class="timestamp-information-content">
+                                    <div class="timestamp-information-content-data">
+                                        <p>{{date('d-m-Y', strtotime($task->created_at))}}</p>
+                                        <p>{{date('H:i', strtotime($task->created_at))}}</p>
+                                    </div>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="timestamp-information">
+                                <p>{{date('d-m-Y', strtotime($task->updated_at))}}</p>
+                                <span class="timestamp-information-content">
+                                    <div class="timestamp-information-content-data">
+                                        <p>{{date('d-m-Y', strtotime($task->updated_at))}}</p>
+                                        <p>{{date('H:i', strtotime($task->updated_at))}}</p>
+                                    </div>
+                                </span>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
