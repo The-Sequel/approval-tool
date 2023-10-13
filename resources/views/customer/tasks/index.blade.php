@@ -1,5 +1,5 @@
 @extends('layouts.app-master')
-
+{{-- @dd($tasks) --}}
 @section('content')
 <div class="grid">
     <div class="col-12">
@@ -31,10 +31,10 @@
                                 @foreach($users as $user)
                                     @if(in_array($user->id, json_decode($task->assigned_to)))
                                         <div class="user-information">
-                                            <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                            <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
                                             <span class="user-information-content">
                                                 <div class="user-information-content-logo">
-                                                    <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                                    <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
                                                 </div>
                                                 <div class="user-information-content-data">
                                                     <p>{{$user->name}}</p>
@@ -50,19 +50,31 @@
                         {{-- Deadline --}}
 
                         @php
-                            $today = strtotime(date('Y-m-d'));
-                            $taskDeadline = strtotime($task->deadline);
-                            $daysDifference = round(($taskDeadline - $today) / (60 * 60 * 24));
+                            $deadlineDate = null;
+                            if ($task->deadline != null) {
+                                $today = strtotime(date('Y-m-d'));
+                                $taskDeadline = strtotime($task->deadline);
+                                $daysDifference = round(($taskDeadline - $today) / (60 * 60 * 24));
+
+                                // Check if strtotime was successful before using the date
+                                if ($taskDeadline !== false) {
+                                    $deadlineDate = date('d-m-Y', $taskDeadline);
+                                }
+                            }
                         @endphp
-                        @if($daysDifference <= 5)
-                            <td>
-                                <p class="deadline">{{date('d-m-Y', $task->deadline)}}</p><span>🔥</span>
-                            </td>
-                        @else
-                            <td>
-                                <p class="deadline">{{date('d-m-Y', strtotime($task->deadline))}}</p>
-                            </td>
+
+                        @if($task->deadline != null)
+                            @if($daysDifference <= 5)
+                                <td>
+                                    <p class="deadline">{{ $deadlineDate }} 🔥</p>
+                                </td>
+                            @else
+                                <td>
+                                    <p class="deadline">{{ $deadlineDate }}</p>
+                                </td>
+                            @endif
                         @endif
+
 
                         {{-- Status --}}
 

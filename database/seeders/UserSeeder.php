@@ -21,16 +21,18 @@ class UserSeeder extends Seeder
             'role_id' => 2,
             'customer_id' => 1,
             'department_id' => 2,
+            'color' => 'green'
         ]);
 
-        User::create([
-            'name' => 'Silvin van Haestregt',
-            'email' => 'stage@thesequel.nl',
-            'password' => bcrypt('password'),
-            'role_id' => 2,
-            'customer_id' => 1,
-            'department_id' => 2,
-        ]);
+        // User::create([
+        //     'name' => 'Silvin van Haestregt',
+        //     'email' => 'stage@thesequel.nl',
+        //     'password' => bcrypt('password'),
+        //     'role_id' => 2,
+        //     'customer_id' => 1,
+        //     'department_id' => 2,
+        //     'color' => 'green'
+        // ]);
 
         // User::create([
         //     'name' => 'admin',
@@ -46,6 +48,7 @@ class UserSeeder extends Seeder
             'role_id' => 2, // customer
             'customer_id' => 1,
             'department_id' => 1,
+            'color' => 'chocolate'
         ]);
 
         User::create([
@@ -53,6 +56,7 @@ class UserSeeder extends Seeder
             'email' => 'quintin@thesequel.nl',
             'password' => bcrypt('password'),
             'role_id' => 1, // admin
+            'color' => 'chocolate'
         ]);
 
         User::create([
@@ -61,6 +65,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => 2,
             'customer_id' => 4,
+            'color' => 'chocolate'
         ]);
 
         User::create([
@@ -69,6 +74,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'role_id' => 2,
             'customer_id' => 3,
+            'color' => 'chocolate'
         ]);
     }
 }

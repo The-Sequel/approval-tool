@@ -30,6 +30,7 @@ return new class extends Migration
                 ->on('departments');
             $table->text('phone_number')->nullable();
             $table->date('deleted_at')->nullable();
+            $table->text('color')->nullable();
             $table->timestamps();
         });
     }

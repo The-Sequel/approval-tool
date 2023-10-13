@@ -9,7 +9,7 @@
                     <h3>{{$user->name}}</h3>
                     <div class="user-card-body">
                         <div>
-                            <p class="user-card-logo">{{substr($user->name, 0, 1)}}</p>
+                            <p style="background-color: {{$user->color}};" class="user-card-logo">{{substr($user->name, 0, 1)}}</p>
                         </div>
                         <div>
                             <p><span>Naam:</span> {{$user->name}}</p>

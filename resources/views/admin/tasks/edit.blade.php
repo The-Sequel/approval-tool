@@ -23,6 +23,23 @@
                     <label for="image">Afbeelding</label>
                     <input class="form-control" type="file" name="image" id="image">
                 </div>
+
+                @if($task->project->id == null)
+                    <div class="form-group">
+                        <label for="department_id">Afdeling</label>
+                        <select class="form-control" name="department_id" id="department_id">
+                            <option value="">Selecteer afdeling</option>
+                            @foreach($departments as $department)
+                                @if($department->id == $task->department_id)
+                                    <option value="{{$department->id}}" selected>{{$department->title}}</option>
+                                @else
+                                    <option value="{{$department->id}}">{{$department->title}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
+
                 <div>
                     <p style="margin-bottom: 8px;">Voeg gebruikers toe aan taak</p>
                     @foreach($users as $user)
@@ -67,6 +84,23 @@
                     <label for="image">Afbeelding</label>
                     <input class="form-control" type="file" name="image" id="image">
                 </div>
+
+                @if($task->project->id == null)
+                    <div class="form-group">
+                        <label for="department_id">Afdeling</label>
+                        <select class="form-control" name="department_id" id="department_id">
+                            <option value="">Selecteer afdeling</option>
+                            @foreach($departments as $department)
+                                @if($department->id == $task->department_id)
+                                    <option value="{{$department->id}}" selected>{{$department->title}}</option>
+                                @else
+                                    <option value="{{$department->id}}">{{$department->title}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
+
                 <div>
                     <p style="margin-bottom: 8px;">Voeg gebruikers toe aan taak</p>
                     @foreach($users as $user)

@@ -41,10 +41,10 @@
                                 @foreach($users as $user)
                                     @if($user->customer_id == $project->customer_id)
                                         <div class="user-information">
-                                            <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                            <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
                                             <span class="user-information-content">
                                                 <div class="user-information-content-logo">
-                                                    <p class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                                    <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
                                                 </div>
                                                 <div class="user-information-content-data">
                                                     <p>{{$user->name}}</p>

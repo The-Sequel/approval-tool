@@ -65,4 +65,18 @@
         left: 0;
         padding: 10px;
     }
+
+    .amount{
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: red;
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 13px;
+        margin-left: 25px;
+    }
 }

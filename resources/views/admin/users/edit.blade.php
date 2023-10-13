@@ -27,6 +27,19 @@
             </div>
 
             <div class="form-group">
+                <label for="color">Logo kleur</label>
+                <select name="color" id="color">
+                    <option value="">Selecteer een kleur</option>
+                    <option value="green" @if($user->color == 'green') selected @endif>Groen</option>
+                    <option value="purple" @if($user->color == 'purple') selected @endif>Paars</option>
+                    <option value="crimson" @if($user->color == 'crimson') selected @endif>Karmozijnrood</option>
+                    <option value="gray" @if($user->color == 'gray') selected @endif>Grijs</option>
+                    <option value="indigo" @if($user->color == 'indigo') selected @endif>Indigo</option>
+                    <option value="chocolate" @if($user->color == 'chocolate') selected @endif>Bruin</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="status">Status</label>
                 <select name="status" id="status">
                     @if($user->status == 'active')

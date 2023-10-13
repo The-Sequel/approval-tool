@@ -75,8 +75,8 @@ class UserController extends Controller
             'role_id' => 'required',
             'customer_id' => 'nullable',
             'department_id' => 'nullable',
+            'color' => 'nullable',
         ]);
-
 
         // Create the user
         User::create($attributes);
@@ -95,6 +95,7 @@ class UserController extends Controller
         $user->role_id = $request->role_id;
         $user->customer_id = $request->customer_id;
         $user->department_id = $request->department_id;
+        $user->color = $request->color;
 
         $user->update();
 

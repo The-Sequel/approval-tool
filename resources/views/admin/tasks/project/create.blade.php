@@ -20,8 +20,18 @@
     </div>
 
     <div class="form-group">
-        <label for="image">Afbeelding</label>
-        <input class="form-control" type="file" name="image" id="image">
+        <label for="images">Afbeeldingen</label>
+        <input class="form-control" type="file" name="images[]" id="images" multiple>
+    </div>
+
+    <div class="form-group">
+        <label for="department_id">Afdeling</label>
+        <select class="form-control" name="department_id" id="department_id">
+            <option value="">Selecteer afdeling</option>
+            @foreach($departments as $department)
+                <option value="{{$department->id}}">{{$department->title}}</option>
+            @endforeach
+        </select>
     </div>
 
     <div style="height: 60px; margin-top: 30px;">

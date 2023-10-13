@@ -27,6 +27,19 @@
             </div>
 
             <div class="form-group">
+                <label for="color">Logo kleur</label>
+                <select name="color" id="color">
+                    <option value="">Selecteer een kleur</option>
+                    <option value="green">Groen</option>
+                    <option value="purple">Paars</option>
+                    <option value="crimson">Karmozijnrood</option>
+                    <option value="gray">Grijs</option>
+                    <option value="indigo">Indigo</option>
+                    <option value="chocolate">Bruin</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="role">Rol</label>
                 <select name="role_id" id="role_id">
                     <option value="">Selecteer een rol</option>

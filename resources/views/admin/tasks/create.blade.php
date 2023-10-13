@@ -19,9 +19,14 @@
         <input class="form-control" type="date" name="deadline" id="deadline">
     </div>
 
-    <div class="form-group">
+    {{-- <div class="form-group">
         <label for="image">Afbeelding</label>
         <input class="form-control" type="file" name="image" id="image">
+    </div> --}}
+
+    <div class="form-group">
+        <label for="images">Afbeeldingen</label>
+        <input class="form-control" type="file" name="images[]" id="images" multiple>
     </div>
 
     <div class="form-group">

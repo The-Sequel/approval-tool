@@ -116,6 +116,9 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->description);
+        // dd(nl2br($request->description));
+
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -136,15 +139,26 @@ class TaskController extends Controller
             $project_id = null;
         }
 
-        if($file = $request->file('image')){
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads', $fileName, 'public');
-        } else {
-            $filePath = null;
+        $images = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $fileName = $image->getClientOriginalName();
+                $filePath = $image->storeAs('uploads', $fileName, 'public');
+                $images[] = $filePath;
+            }
         }
+
+        // if($file = $request->file('image')){
+        //     $fileName = $file->getClientOriginalName();
+        //     $filePath = $file->storeAs('uploads', $fileName, 'public');
+        // } else {
+        //     $filePath = null;
+        // }
         
         $task = Task::create([
             'title' => $request->title,
+            // 'description' => nl2br($request->description),
             'description' => $request->description,
             'deadline' => $request->deadline,
             'status' => $request->status,
@@ -153,7 +167,8 @@ class TaskController extends Controller
             'customer_id' => $request->customer_id,
             'user_id' => $request->created_by,
             'project_id' => $project_id,
-            'image' => $filePath,
+            // 'image' => $filePath,
+            'images' => json_encode($images),
             'assigned_to' => $assignedTo,
         ]);
 
@@ -259,17 +274,30 @@ class TaskController extends Controller
     {
         $assignedUsers = json_decode($task->assigned_to);
         $users = User::where('role_id', 1)->where('deleted_at', null)->get();
+        $departments = Department::all();
 
-        return view('admin.tasks.edit', compact('task', 'users', 'assignedUsers'));
+        return view('admin.tasks.edit', compact('task', 'users', 'assignedUsers', 'departments'));
     }
 
     public function update(Task $task, Request $request)
     {
-        if($file = $request->file('image')){
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads', $fileName, 'public');
-        } else {
-            $filePath = null;
+
+        
+        // if($file = $request->file('image')){
+        //     $fileName = $file->getClientOriginalName();
+        //     $filePath = $file->storeAs('uploads', $fileName, 'public');
+        // } else {
+        //     $filePath = null;
+        // }
+
+        $images = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $fileName = $image->getClientOriginalName();
+                $filePath = $image->storeAs('uploads', $fileName, 'public');
+                $images[] = $filePath;
+            }
         }
 
         $userIds = $request->input('user_ids', []);
@@ -278,8 +306,15 @@ class TaskController extends Controller
         $task->title = $request->title;
         $task->description = $request->description;
         $task->deadline = $request->deadline;
-        $task->image = $filePath;
+        // $task->image = $filePath;
+        $task->images = json_encode($images);
         $task->assigned_to = $assignedTo;
+
+        if($request->department_id != null) {
+            $task->department_id = $request->department_id;
+        } else {
+            $task->department_id = null;
+        }
         
         $task->save();
 

@@ -28,11 +28,6 @@
                     @endif
                 </select>
             </div>
-        
-            <div class="form-group">
-                <label for="debtor_number">Debiteur nummer</label>
-                <input type="text" class="form-control" name="debtor_number" id="debtor_number" value="{{$customer->debtor_number}}">
-            </div>
 
             <div class="form-group">
                 <label for="name">Adres</label>

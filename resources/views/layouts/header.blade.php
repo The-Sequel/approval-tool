@@ -132,7 +132,7 @@
                     </div>
                 </span>
             </div>
-            <p class="user-image">{{$firstLetter}}</p>
+            <p style="background-color: {{ Auth::user()->color }};" class="user-image">{{$firstLetter}}</p>
             <div class="header-3">
                 <p>{{ Auth::user()->name }}</p>
                 <p class="header-customer-name">{{ $customer }}</p>

@@ -15,11 +15,6 @@
         </div>
 
         <div class="form-group">
-            <label for="name">Debiteur nummer</label>
-            <input class="form-control" type="text" name="debtor_number" id="debtor_number" placeholder="Vereist">
-        </div>
-
-        <div class="form-group">
             <label for="name">Adres</label>
             <input class="form-control" type="text" name="address" id="address" placeholder="Optioneel">
         </div>
