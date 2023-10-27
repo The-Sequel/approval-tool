@@ -1,6 +1,8 @@
 /* Table */
 .table{
+    // margin-left: 270px;
     margin-top: 50px;
+    // width: 85%;
     width: 100%;
     border-collapse: collapse;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -83,6 +85,14 @@
         border-radius: 5%;
         padding: 6px 12px 6px 12px;
         width: fit-content;
+    }
+
+    .deadline-main{
+        display: flex;
+
+        span{
+            margin-top: 3px;
+        }
     }
 
     .deadline{

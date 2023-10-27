@@ -56,9 +56,36 @@
                                 @endforeach
                             </div>
                         </td>
-                        <td>
-                            <p class="deadline">{{$project->deadline}}</p>
-                        </td>
+
+                        {{-- Deadline --}}
+
+                        @php
+                            $deadlineDate = null;
+                            if ($project->deadline != null) {
+                                $today = strtotime(date('Y-m-d'));
+                                $projectDeadline = strtotime($project->deadline);
+                                $daysDifference = round(($projectDeadline - $today) / (60 * 60 * 24));
+
+                                // Check if strtotime was successful before using the date
+                                if ($projectDeadline !== false) {
+                                    $deadlineDate = date('d-m-Y', $projectDeadline);
+                                }
+                            }
+                        @endphp
+
+                        @if($project->deadline != null)
+                            @if($daysDifference <= 5)
+                                <td>
+                                    <p class="deadline">{{ $deadlineDate }} 🔥</p>
+                                </td>
+                            @else
+                                <td>
+                                    <p class="deadline">{{ $deadlineDate }}</p>
+                                </td>
+                            @endif
+                        @endif
+
+                        
                         <td>
                             <p class="department">{{$project->department->title}}</p>
                         </td>
