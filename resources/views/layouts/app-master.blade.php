@@ -13,7 +13,7 @@
 </head>
 <body>
     @include('layouts.sidebar')
-    <main class="container">
+    <main class="page-container">
         @include('layouts.header')
         <div class="content">
             @yield('content')

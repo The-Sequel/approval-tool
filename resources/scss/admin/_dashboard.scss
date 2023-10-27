@@ -2,7 +2,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.task-card{
+.task-card {
     display: flex;
     flex-wrap: wrap;
     width: 400px;
@@ -285,3 +285,33 @@
 //         width: 100%;
 //     }
 // }
+
+// RESPONSIVE
+
+@mixin dashboard--1400() {
+    // .task-card {
+    //     background-color: black;
+    // }
+}
+
+@mixin dashboard--1200() {
+    // .task-card {
+    //     background-color: red;
+    // }
+}
+
+@mixin dashboard--992() {
+    // .task-card {
+    //     background-color: yellow;
+    // }
+}
+
+@mixin dashboard--768() {
+    .project-card{
+        margin-top: 50px;
+    }
+}
+
+@mixin dashboard--576() {
+
+}

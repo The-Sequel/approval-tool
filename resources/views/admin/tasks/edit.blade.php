@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid">
+<div class="grid" style="margin-left: 270px;">
     @if($task->image != null)
         <div class="col-8">
             <form action="{{route('admin.tasks.update', $task)}}" method="POST" enctype="multipart/form-data">

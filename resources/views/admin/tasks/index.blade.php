@@ -4,18 +4,20 @@
 <div class="grid">
     {{-- @include('sections.table' , $table) --}}
     <div class="col-12">
-        <form action="{{route('admin.search.tasks')}}" method="GET">
-            @csrf
-            @method('GET')
-            <div class="search-form-group">
-                <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
-            </div>
-        </form>
-        <form action="{{route('admin.tasks.index')}}" method="GET">
-            @csrf
-            @method('GET')
-            <button>Reset</button>
-        </form>
+        <div class="filter-table">
+            <form style="margin-left: 270px;" action="{{route('admin.search.tasks')}}" method="GET">
+                @csrf
+                @method('GET')
+                <div class="search-form-group">
+                    <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
+                </div>
+            </form>
+            <form style="margin-left: 270px;" action="{{route('admin.tasks.index')}}" method="GET">
+                @csrf
+                @method('GET')
+                <button>Reset</button>
+            </form>
+        </div>
         {{-- <form action="" method="GET">
             @csrf
             @method('GET')
@@ -130,15 +132,20 @@
                 @endforeach
             </tbody>
         </table>
+        {{-- <div class="task-information-index"> --}}
+            {{-- Hier moet informatie komen over de taak --}}
+        {{-- </div> --}}
     </div>
     <div class="col-12">
-        <form action='{{route('admin.tasks.create')}}' method="GET">
-            @csrf
-            @method('GET')
-            <div class="form-group">
-                <button type="submit">Maak nieuwe taak</button>
-            </div>
-        </form>
+        <div class="create-button-table">
+            <form style="margin-left: 270px;" action='{{route('admin.tasks.create')}}' method="GET">
+                @csrf
+                @method('GET')
+                <div class="form-group">
+                    <button type="submit">Maak nieuwe taak</button>
+                </div>
+            </form>
+        </div>
         
         {{-- Hidden forms --}}
         <form id="delete-form" action="{{route('admin.tasks.destroy', $task)}}" method="POST">

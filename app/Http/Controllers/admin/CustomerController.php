@@ -68,9 +68,10 @@ class CustomerController extends Controller
     }
 
     public function store(Request $request){
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
-            'debtor_number' => 'required',
+            'debtor_number' => 'nullable',
         ]);
 
         if($file = $request->file('logo')){
@@ -85,7 +86,7 @@ class CustomerController extends Controller
 
         Customer::create([
             'name' => $request->name,
-            'debtor_number' => $request->debtor_number,
+            'debtor_number' => 12312312,
             'logo' => $filePath,
             'address' => $request->address,
             'postal_code' => $request->zipcode,
@@ -101,9 +102,9 @@ class CustomerController extends Controller
     }
 
     public function destroy(Customer $customer){
-        dd($customer);
+        $customer->delete();
 
-        return redirect('/admin')->with('success', 'Klant is verwijderd!');
+        return redirect('/admin/customers')->with('success', 'Klant is verwijderd!');
     }
 
     public function edit(Customer $customer)

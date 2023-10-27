@@ -61,6 +61,7 @@ Route::middleware(['auth', 'verified', 'admin.access'])->group(function () {
     Route::delete('/admin/project/{project}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
     Route::get('/admin/projects/edit/{project}', [ProjectController::class, 'edit'])->name('admin.projects.edit');
     Route::put('/admin/projects/{project}', [ProjectController::class, 'update'])->name('admin.projects.update');
+    Route::post('/admin/projects', [ProjectController::class, 'store'])->name('admin.projects.store');
 
     // Task
     Route::get('/admin/tasks', [TaskController::class, 'adminIndex'])->name('admin.tasks.index');
@@ -115,6 +116,10 @@ Route::middleware(['auth', 'verified', 'customer.access'])->group(function () {
         $task = App\Models\Task::find(1);
         return new App\Mail\Tasks\NewTaskMail($task);
     });
+});
+
+Route::get('/test', function () {
+    return view('test');
 });
 
 // Project routes

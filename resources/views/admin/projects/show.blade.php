@@ -112,7 +112,7 @@
                 @endforeach
             </tbody>
         </table>
-        <form action='{{route('admin.tasks.project.create', $project)}}' method="GET">
+        <form style="margin-left: 270px;" action='{{route('admin.tasks.project.create', $project)}}' method="GET">
             @csrf
             @method('GET')
             <div class="form-group">

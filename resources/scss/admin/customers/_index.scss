@@ -1,0 +1,38 @@
+.create-project {
+    position: relative;
+    display: inline-block;
+    /* border-bottom: 1px dotted black; */
+}
+
+.create-project .create-project-content {
+    visibility: hidden;
+    width: 120px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    // top: -20px;
+    top: -800px;
+    left: 105%;
+    // width: 300px;
+    // height: 40px;
+    width: 800px;
+    height: 660px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.create-project-content{
+    display: flex;
+    gap: 12px;
+}
+
+// .create-project:hover .create-project-content {
+//     visibility: visible;
+// }

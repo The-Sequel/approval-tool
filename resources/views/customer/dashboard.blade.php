@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid">
+<div class="grid" style="margin-left: 270px;">
     <div class="col-4">
         <h2>Taken in brand <span style="color: grey;">(05)</span>🔥</h2>
         @foreach($tasks as $task)

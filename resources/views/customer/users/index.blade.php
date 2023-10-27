@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid">
+<div class="grid" style="margin-left: 270px;">
     <div class="col-8">
         <div class="user-row">
             @foreach($users as $user)

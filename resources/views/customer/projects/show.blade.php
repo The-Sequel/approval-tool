@@ -69,18 +69,29 @@
                         {{-- Deadline --}}
 
                         @php
-                            $today = strtotime(date('Y-m-d'));
-                            $taskDeadline = strtotime($task->deadline);
-                            $daysDifference = round(($taskDeadline - $today) / (60 * 60 * 24));
+                            $deadlineDate = null;
+                            if ($project->deadline != null) {
+                                $today = strtotime(date('Y-m-d'));
+                                $projectDeadline = strtotime($project->deadline);
+                                $daysDifference = round(($projectDeadline - $today) / (60 * 60 * 24));
+
+                                // Check if strtotime was successful before using the date
+                                if ($projectDeadline !== false) {
+                                    $deadlineDate = date('d-m-Y', $projectDeadline);
+                                }
+                            }
                         @endphp
-                        @if($daysDifference <= 5)
-                            <td>
-                                <p class="deadline">{{$task->deadline}}</p><span>🔥</span>
-                            </td>
-                        @else
-                            <td>
-                                <p class="deadline">{{$task->deadline}}</p>
-                            </td>
+
+                        @if($project->deadline != null)
+                            @if($daysDifference <= 5)
+                                <td>
+                                    <p class="deadline">{{ $deadlineDate }} 🔥</p>
+                                </td>
+                            @else
+                                <td>
+                                    <p class="deadline">{{ $deadlineDate }}</p>
+                                </td>
+                            @endif
                         @endif
 
 

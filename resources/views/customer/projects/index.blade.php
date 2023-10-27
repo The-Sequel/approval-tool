@@ -3,14 +3,14 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
-        <form action="{{route('customer.search.projects')}}" method="GET">
+        <form style="margin-left: 270px;" action="{{route('customer.search.projects')}}" method="GET">
             @csrf
             @method('GET')
             <div class="search-form-group">
                 <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
             </div>
         </form>
-        <form action="{{route('customer.projects.index')}}" method="GET">
+        <form style="margin-left: 270px;" action="{{route('customer.projects.index')}}" method="GET">
             @csrf
             @method('GET')
             <button>Reset</button>
@@ -56,18 +56,29 @@
                         {{-- Deadline --}}
 
                         @php
-                            $today = strtotime(date('Y-m-d'));
-                            $projectDeadline = strtotime($project->deadline);
-                            $daysDifference = round(($projectDeadline - $today) / (60 * 60 * 24));
+                            $deadlineDate = null;
+                            if ($project->deadline != null) {
+                                $today = strtotime(date('Y-m-d'));
+                                $projectDeadline = strtotime($project->deadline);
+                                $daysDifference = round(($projectDeadline - $today) / (60 * 60 * 24));
+
+                                // Check if strtotime was successful before using the date
+                                if ($projectDeadline !== false) {
+                                    $deadlineDate = date('d-m-Y', $projectDeadline);
+                                }
+                            }
                         @endphp
-                        @if($daysDifference <= 5)
-                            <td>
-                                <p class="deadline">{{$project->deadline}}</p><span>🔥</span>
-                            </td>
-                        @else
-                            <td>
-                                <p class="deadline">{{$project->deadline}}</p>
-                            </td>
+
+                        @if($project->deadline != null)
+                            @if($daysDifference <= 5)
+                                <td>
+                                    <p class="deadline">{{ $deadlineDate }} 🔥</p>
+                                </td>
+                            @else
+                                <td>
+                                    <p class="deadline">{{ $deadlineDate }}</p>
+                                </td>
+                            @endif
                         @endif
 
                         <td>

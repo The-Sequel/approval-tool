@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid">
+<div class="grid" style="margin-left: 270px;">
     <div class="col-12">
         <form action="{{route('admin.customers.update', $customer)}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -79,7 +79,7 @@
 
 <script>
     function deleteCustomer() {
-        var result = confirm("Weet je zeker dat je deze taak wilt verwijderen?");
+        var result = confirm("Weet je zeker dat je deze klant wilt verwijderen?");
 
         if(result){
             document.getElementById('delete-form').submit();

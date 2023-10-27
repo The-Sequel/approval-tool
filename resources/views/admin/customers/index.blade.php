@@ -4,14 +4,14 @@
 <div class="grid">
     {{-- @include('sections.table' , $table) --}}
     <div class="col-12">
-        <form action="{{route('admin.search.customers')}}" method="GET">
+        <form style="margin-left: 270px;" action="{{route('admin.search.customers')}}" method="GET">
             @csrf
             @method('GET')
             <div class="search-form-group">
                 <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
             </div>
         </form>
-        <form action="{{route('admin.customers.index')}}" method="GET">
+        <form style="margin-left: 270px;" action="{{route('admin.customers.index')}}" method="GET">
             @csrf
             @method('GET')
             <button>Reset</button>
@@ -68,13 +68,95 @@
                 @endforeach
             </tbody>
         </table>
-        <form action="{{route('admin.customers.create')}}" method="GET">
+        <form style="margin-left: 270px;" action="{{route('admin.customers.create')}}" method="GET">
             @csrf 
             @method('GET')
             <div class="form-group">
                 <button class="button" type="submit">Maak nieuwe klant</button>
             </div>
         </form>
+
+        <div style="margin-left: 270px;" class="create-project">
+            <p onclick="toggleFormVisibility()">hover over dit element</p>
+            <span class="create-project-content">
+                {{-- <div class="user-information-content-logo">
+                    <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                </div> --}}
+                <div class="create-project-content-data">
+                    <form action="{{route('admin.customers.store')}}" method="POST" enctype="multipart/form-data" id="customer-form">
+                        @csrf
+                        @method('POST')
+                        <div class="form-group">
+                            <label for="name">Naam</label>
+                            <input class="form-control" type="text" name="name" id="name" placeholder="Vereist">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Logo</label>
+                            <input class="form-control" type="file" name="logo" id="logo">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Adres</label>
+                            <input class="form-control" type="text" name="address" id="address" placeholder="Optioneel">
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="name">Postcode</label>
+                            <input class="form-control" type="text" name="postal_code" id="postal_code" placeholder="Optioneel">
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="name">Plaats</label>
+                            <input class="form-control" type="text" name="city" id="city" placeholder="Optioneel">
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="name">Telefoonnummer</label>
+                            <input class="form-control" type="text" name="phone_number" id="phone_number" placeholder="Optioneel">
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="name">Email</label>
+                            <input class="form-control" type="text" name="email" id="email" placeholder="Optioneel">
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="name">KVK nummer</label>
+                            <input class="form-control" type="text" name="kvk_number" id="kvk_number" placeholder="Optioneel">
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="name">BTW nummer</label>
+                            <input class="form-control" type="text" name="btw_number" id="btw_number" placeholder="Optioneel">
+                        </div>
+                            
+                        <div class="">
+                            <button onclick="submitCustomerForm();">Maak nieuwe klant</button>
+                        </div>
+                    </form>
+                </div>
+            </span>
+        </div>
     </div>
 </div>
 @endsection
+
+
+<script>
+
+    function toggleFormVisibility(){
+        var form = document.querySelector('.create-project-content')
+        visibility = form.style.visibility;
+
+        if(visibility == 'hidden') {
+            form.style.visibility = 'visible';
+        } else {
+            form.style.visibility = 'hidden';
+        }
+    }
+
+    function submitCustomerForm() {
+        event.preventDefault();
+        console.log('test');
+        document.getElementById('customer-form').submit();
+    }
+</script>

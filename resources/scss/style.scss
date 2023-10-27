@@ -8,7 +8,32 @@
 @import "admin/dashboard.scss";
 @import "admin/tasks/show.scss";
 @import "admin/tasks/edit.scss";
+@import "admin/tasks/index.scss";
+@import "admin/customers/index.scss";
 @import "customers/dashboard";
 @import "customers/users/index.scss";
 @import "customers/tasks/show.scss";
 @import "customers/tasks/approve.scss";
+
+// RESPONSIVE 
+@media (max-width: 1400px) {
+    @include dashboard--1400();
+}
+
+@media (max-width: 1200px) {
+    @include dashboard--1200();
+}
+
+@media (max-width: 992px) {
+    @include dashboard--992();
+}
+
+@media (max-width: 768px) {
+    @include dashboard--768();
+    @include sidebar--768();
+}
+
+@media (max-width: 576px) {
+    @include dashboard--576();
+    @include sidebar--576();
+}

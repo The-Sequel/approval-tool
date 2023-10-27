@@ -3,7 +3,7 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
-        <form action="{{route('customer.search.tasks')}}" method="GET">
+        <form style="margin-left: 270px;" action="{{route('customer.search.tasks')}}" method="GET">
             @csrf
             @method('GET')
             <div class="search-form-group">
