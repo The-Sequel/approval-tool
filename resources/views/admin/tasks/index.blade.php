@@ -35,7 +35,7 @@
                     <th>Akkoord door</th>
                     <th>Gemaakt op:</th>
                     <th>Bewerkt op:</th>
-                    <th>Bewerk</th>
+                    <th>Acties</th>
                 </tr>
             </thead>
             <tbody>

@@ -54,7 +54,7 @@
     </div>
     
     <div class="col-4">
-        <h2>Lopende projecten <span style="color: grey;">(03)</span></h2>
+        <h2 style="margin-bottom: 14.5px;">Lopende projecten <span style="color: grey;">(03)</span></h2>
         @foreach($projects as $project)
             <div onclick="window.location.href='{{ route('customer.projects.show', ['project' => $project]) }}';" class="project-card">
                 <div class="project-card-head">

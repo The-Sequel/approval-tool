@@ -154,4 +154,96 @@
         </div>
     </div>
 </div>
+
+@if(count($tasksWithDeadline) != 0)
+    <div style="" class="popup">
+        <span class="popuptext" id="myPopup">
+            <div onclick="closePopup()">
+                <svg style="position: relative; left: 150px;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+            </div>
+            <svg style="margin-bottom: 10px;font-size: 80px; border-style: solid; width: 80px; border-radius: 50%;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 64 512"><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V320c0 17.7 14.3 32 32 32s32-14.3 32-32V64zM32 480a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>
+            <h2 style="margin-bottom: 20px;">Deadline vandaag</h2>
+            @foreach($tasksWithDeadline as $task)
+                <p style="margin-bottom: 12px;">
+                    <a style="text-decoration: none; color: black;" href="{{route('admin.tasks.show', $task)}}">{{$task->title}}</a>
+                </p>
+            @endforeach
+            {{-- @foreach($tasks as $task)
+                @if($task->deadline == date('Y-m-d'))
+                    <p style="margin-bottom: 12px;">
+                        <a style="text-decoration: none; color: black;" href="{{route('admin.tasks.show', $task)}}">{{$task->title}}</a>
+                    </p>
+                @endif
+            @endforeach --}}
+            <p style="margin-top: 30px; color: gray;">{{now()->format('D M Y')}}</p>
+        </span>
+    </div>
+@endif
+
+<script>
+
+    // var currentDate = "Thu Nov 1 2023";
+
+    // if(localStorage.getItem('test') === null) {
+    //     console.log('popup wordt hier nu getoond');
+    //     localStorage.setItem('test', currentDate);
+    // } else {
+    //     var storedDate = localStorage.getItem('test');
+
+    //     if(storedDate !== currentDate) {
+    //         console.log('popup wordt hier nu getoond omdat the gestorde data anders is.')
+    //         localStorage.setItem('test', currentDate);
+    //     } else {
+    //         console.log('popup is al getoond');
+    //     }
+    // }
+
+
+    function myFunction() {
+        // var popup = document.getElementById("myPopup");
+        // popup.classList.toggle("show");
+        var currentDate = new Date().toDateString();
+
+        if(localStorage.getItem('popupShownDate') === null) {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+            localStorage.setItem('popupShownDate', currentDate);
+            console.log('popup wordt hier nu getoond');
+        } else {
+            var storedDate = localStorage.getItem('popupShownDate');
+
+            if(storedDate !== currentDate) {
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                localStorage.setItem('popupShownDate', currentDate);
+                console.log('popup wordt hier nu getoond omdat the gestorde data anders is.')
+            } else {
+                console.log('popup is al getoond');
+            }
+        }
+    }
+
+    function closePopup(){
+        var popup = document.getElementById("myPopup");
+        popup.classList.remove("show");
+        document.body.classList.remove("popup-open");
+    }
+
+    document.body.addEventListener("click", function(event) {
+        var popup = document.getElementById("myPopup");
+        var popupContainer = document.querySelector(".popup");
+
+        if (!popupContainer.contains(event.target) && event.target !== popupContainer) {
+            popup.classList.remove("show");
+            document.body.classList.remove("popup-open");
+
+        }
+    });
+
+    window.onload = function() {
+        myFunction();
+    };
+</script>
+
+
 @endsection()
