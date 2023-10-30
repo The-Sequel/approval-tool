@@ -31,9 +31,11 @@
 @media (max-width: 768px) {
     @include dashboard--768();
     @include sidebar--768();
+    @include header--768();
 }
 
 @media (max-width: 576px) {
     @include dashboard--576();
     @include sidebar--576();
+    @include header--576();
 }

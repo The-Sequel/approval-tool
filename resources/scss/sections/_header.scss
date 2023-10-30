@@ -110,3 +110,16 @@
         margin-left: 20px;
     }
 }
+
+
+@mixin header--768() {
+    .header{
+        width: 100%;
+    }
+}
+
+@mixin header--576() {
+    .header{
+        width: 100%;
+    }
+}

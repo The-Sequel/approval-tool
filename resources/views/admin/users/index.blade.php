@@ -33,18 +33,30 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->status}}</td>
-                        {{-- Check if department not null --}}
+
+                        {{-- Department --}}
+
                         @if($user->department)
                             <td>{{$user->department->title}}</td>
                         @else
                             <td>-</td>
                         @endif
+
+                        {{-- Customer --}}
+
                         @if($user->customer)
                             <td>{{$user->customer->name}}</td>
                         @else
                             <td>-</td>
                         @endif
-                        <td>{{$user->role->name}}</td>
+
+                        {{-- Role --}}
+
+                        @if($user->role->name == 'admin')
+                            <td>Admin</td>
+                        @else
+                            <td>Klant</td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

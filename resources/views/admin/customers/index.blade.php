@@ -76,12 +76,11 @@
             </div>
         </form>
 
+        {{-- Dit is een optie maar dit hoeft niet gebruikt te worden dit is nog in de maak --}}
+
         <div style="margin-left: 270px;" class="create-project">
             <p onclick="toggleFormVisibility()">hover over dit element</p>
             <span class="create-project-content">
-                {{-- <div class="user-information-content-logo">
-                    <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                </div> --}}
                 <div class="create-project-content-data">
                     <form action="{{route('admin.customers.store')}}" method="POST" enctype="multipart/form-data" id="customer-form">
                         @csrf

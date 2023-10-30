@@ -6,8 +6,6 @@
     padding: 1rem;
     // resize: none;
     // float: left;
-
-
     position: fixed;
     top: 0;
     bottom: 0;
@@ -94,12 +92,32 @@
 
 @mixin sidebar--768() {
     .sidebar{
-        display: block;
+        // For developing the display is set to 'none'
+        display: none;
+
+        width: 200px;
+        padding: 0.1rem;
+
+        .sidebar-logo{
+            img{
+                width: 95%;
+            }
+        }
     }
 }
 
 @mixin sidebar--576() {
     .sidebar{
-        display: block;
+        // For developing the display is set to 'none'
+        display: none;
+
+        width: 200px;
+        padding: 0.1rem;
+
+        .sidebar-logo{
+            img{
+                width: 95%;
+            }
+        }
     }
 }

@@ -307,11 +307,35 @@
 }
 
 @mixin dashboard--768() {
-    .project-card{
-        margin-top: 50px;
+    h2{
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .dashboard-cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .create-customer-card{
+        margin-top: 20px;
     }
 }
 
 @mixin dashboard--576() {
+    h2{
+        margin-top: 20px;
+        text-align: center;
+    }
 
+    .dashboard-cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .create-customer-card{
+        margin-top: 20px;
+    }
 }
