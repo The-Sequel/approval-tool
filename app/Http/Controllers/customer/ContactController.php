@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('customer.contact');
+        $value = $request->value; 
+
+        return view('customer.contact', compact('value'));
     }
 
     public function send(Request $request)

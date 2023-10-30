@@ -90,13 +90,40 @@
     transition: all 0.3s;
 }
 
-@mixin sidebar--768() {
-    .sidebar{
-        // For developing the display is set to 'none'
-        display: none;
+.sidebar.active{
+    display: block;
+}
 
-        width: 200px;
+.sidebar-toggle{
+    display: none;
+    margin-top: 6px;
+    margin-left: 6px;
+}
+
+@mixin sidebar--768() {
+    // .sidebar{
+    //     // For developing the display is set to 'none'
+    //     // display: none;
+
+    //     width: 200px;
+    //     padding: 0.1rem;
+
+    //     .sidebar-logo{
+    //         img{
+    //             width: 95%;
+    //         }
+    //     }
+    // }
+
+    .sidebar{
+        display: none;
+        position: absolute;
+        width: 100%;
         padding: 0.1rem;
+        
+        .sidebar-item{
+            width: 100%;
+        }
 
         .sidebar-logo{
             img{
@@ -104,20 +131,31 @@
             }
         }
     }
+
+    .sidebar-toggle{
+        display: block;
+    }
 }
 
 @mixin sidebar--576() {
     .sidebar{
-        // For developing the display is set to 'none'
         display: none;
-
-        width: 200px;
+        position: absolute;
+        width: 100%;
         padding: 0.1rem;
+        
+        .sidebar-item{
+            width: 100%;
+        }
 
         .sidebar-logo{
             img{
                 width: 95%;
             }
         }
+    }
+
+    .sidebar-toggle{
+        display: block;
     }
 }

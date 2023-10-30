@@ -32,7 +32,16 @@
                     <tr onclick="window.location.href='{{ route('admin.users.edit', ['user' => $user]) }}';">
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->status}}</td>
+
+                        {{-- Status --}}
+
+                        @if($user->status == 'active')
+                            <td>
+                                <p class="status-completed">Actief</p>
+                            </td>
+                        @else
+                            <td>Inactief</td>
+                        @endif
 
                         {{-- Department --}}
 

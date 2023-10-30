@@ -122,7 +122,7 @@
             <div class="questions-card">
                 <h3>Vragen?</h3>
                 <p>Deze nemen wij graag weg</p>
-                <form action="{{route('customer.contact')}}" method="GET">
+                <form action="{{route('customer.contact', 0)}}" method="GET">
                     @csrf
                     @method('GET')
                     <button>Contact</button>
@@ -131,7 +131,7 @@
             <div class="problem-card">
                 <h3>Technische problemen?</h3>
                 <p>Dat is natuurlijk niet de bedoeling</p>
-                <form action="{{route('customer.contact')}}" method="GET">
+                <form action="{{route('customer.contact', 1)}}" method="GET">
                     @csrf
                     @method('GET')
                     <button>Contact</button>

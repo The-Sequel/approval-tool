@@ -10,6 +10,9 @@
                     <div class="user-information-content-data">
                         <p>{{$user->name}}</p>
                         <p>{{$user->email}}</p>
+                        @if($user->phone_number != null)
+                            <p>{{$user->phone_number}}</p>
+                        @endif
                     </div>
                 </span>
             </div>

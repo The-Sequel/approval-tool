@@ -45,3 +45,57 @@
         cursor: pointer;
     }
 }
+
+// RESPONSIVE
+
+@mixin dashboard--1400() {
+    // .task-card {
+    //     background-color: black;
+    // }
+}
+
+@mixin dashboard--1200() {
+    // .task-card {
+    //     background-color: red;
+    // }
+}
+
+@mixin dashboard--992() {
+    // .task-card {
+    //     background-color: yellow;
+    // }
+}
+
+@mixin dashboard--768() {
+    h2{
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .dashboard-cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .create-customer-card{
+        margin-top: 20px;
+    }
+}
+
+@mixin dashboard--576() {
+    h2{
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .dashboard-cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .create-customer-card{
+        margin-top: 20px;
+    }
+}

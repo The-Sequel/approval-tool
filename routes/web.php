@@ -86,7 +86,7 @@ Route::middleware(['auth', 'verified', 'admin.access'])->group(function () {
 
 Route::middleware(['auth', 'verified', 'customer.access'])->group(function () {
     Route::get('/', [CustomerCustomerController::class, 'index'])->name('customer.dashboard');
-    Route::get('/contact', [CustomerContactController::class, 'index'])->name('customer.contact');
+    Route::get('/contact/{value}', [CustomerContactController::class, 'index'])->name('customer.contact');
     Route::post('/contact', [CustomerContactController::class, 'send'])->name('customer.contact.send');
 
     // User

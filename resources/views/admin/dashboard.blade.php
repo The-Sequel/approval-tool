@@ -4,6 +4,7 @@
 <div class="flex" style="margin-left: 270px;">
     <div class="col-4">
         <h2>Taken in brand <span style="color: grey;">(05)</span>🔥</h2>
+        {{-- <h2>Taken in brand <span style="color: grey;">(05)</span></h2> --}}
         @foreach($tasks as $task)
             <div class="task-card" onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
                 <div class="task-card-head">
@@ -55,11 +56,11 @@
                 </div>
             </div>
         @endforeach
-        <a href="/admin/tasks">Bekijk alle taken</a>
+        <a class="all-tasks-button" href="/admin/tasks">Bekijk alle taken</a>
     </div>
 
     <div class="col-4">
-        <h2>Lopende projecten <span style="color: grey;">(03)</span></h2>
+        <h2 >Lopende projecten <span style="color: grey;">(03)</span>🚀</h2>
         @foreach($projects as $project)
             <div onclick="window.location.href='{{ route('admin.projects.show', ['project' => $project]) }}';" class="project-card">
                 <div class="project-card-head">
@@ -123,7 +124,7 @@
                
             </div>
         @endforeach
-        <a href="/admin/projects">Bekijk alle projecten</a>
+        <a class="all-projects-button" href="/admin/projects">Bekijk alle projecten</a>
 
     </div>
     <div class="col-4">

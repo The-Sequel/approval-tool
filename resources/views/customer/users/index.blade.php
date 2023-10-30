@@ -42,7 +42,7 @@
             <div class="information-card">
                 <h3>Gegevens aanpassen?</h3>
                 <p>Laten we dit meteen regelen</p>
-                <form action="{{route('customer.contact')}}" method="GET">
+                <form action="{{route('customer.contact', 3)}}" method="GET">
                     @csrf
                     @method('GET')
                     <button>Dien aanvraag in</button>
@@ -51,7 +51,7 @@
             <div class="new-user-card">
                 <h3>Nieuwe gebruiker nodig?</h3>
                 <p>Laten we dit meteen regelen</p>
-                <form action="{{route('customer.contact')}}" method="GET">
+                <form action="{{route('customer.contact', 2)}}" method="GET">
                     @csrf
                     @method('GET')
                     <button>Dien aanvraag in</button>

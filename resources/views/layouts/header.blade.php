@@ -76,6 +76,11 @@
         $routeTitles['tasks/approve/' . $task->id] = 'Taak goedkeuren: ' . $task->title;
     }
 
+    // foreach 0 to 3
+    for ($i = 0; $i < 4; $i++) {
+        $routeTitles['contact/' . $i] = 'Contact';
+    }
+
     $route = Request::path();
     
     // use customer model
