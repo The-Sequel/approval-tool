@@ -156,27 +156,22 @@
 </div>
 
 @if(count($tasksWithDeadline) != 0)
-    <div style="" class="popup">
+    <div class="popup">
         <span class="popuptext" id="myPopup">
             <div style="cursor: default;" onclick="closePopup()">
                 <span style="position: relative; left: 150px;" class="material-symbols-outlined">
                     close
                 </span>
             </div>
-            <svg style="margin-bottom: 10px;font-size: 80px; border-style: solid; width: 80px; border-radius: 50%;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 64 512"><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V320c0 17.7 14.3 32 32 32s32-14.3 32-32V64zM32 480a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></svg>
+            <span style="margin-bottom: 10px; font-size: 80px; border-style: solid; width: 80px; border-radius: 50%;" class="material-symbols-outlined">
+                exclamation
+            </span>
             <h2 style="margin-bottom: 20px;">Deadline vandaag</h2>
             @foreach($tasksWithDeadline as $task)
                 <p style="margin-bottom: 12px;">
                     <a style="text-decoration: none; color: black;" href="{{route('admin.tasks.show', $task)}}">{{$task->title}}</a>
                 </p>
             @endforeach
-            {{-- @foreach($tasks as $task)
-                @if($task->deadline == date('Y-m-d'))
-                    <p style="margin-bottom: 12px;">
-                        <a style="text-decoration: none; color: black;" href="{{route('admin.tasks.show', $task)}}">{{$task->title}}</a>
-                    </p>
-                @endif
-            @endforeach --}}
             <p style="margin-top: 30px; color: gray;">{{now()->format('D M Y')}}</p>
         </span>
     </div>
