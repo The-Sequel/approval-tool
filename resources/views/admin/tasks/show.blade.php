@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <button>Voltooi taak</button>
-                <button class="delete" onclick="event.preventDefault(); deleteTask();">Verwijder taak</button>
+                <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
             </div>
         </form>
         <form id="delete-form" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
@@ -47,7 +47,39 @@
                     <p>{{$task->reason}}</p>
                 </div>
             </div>
+            <div class="task-information-card">
+                <div class="task-information-card-body">
+                    <h2>{{$task->title}}</h2>
+                    <p><span>Klant:</span> {{$task->customer->name}}</p>
+                    <p>{!! nl2br($task->description) !!}</p>
+                    <p><span>Deadline:</span> {{$task->deadline}}</p>
+                    <p><span>Status:</span> {{$task->status}}</p>
+                    @if($task->images)
+                        @php
+                            $imagesArray = json_decode($task->images, true);
+                        @endphp
+
+                        @if(is_array($imagesArray) && count($imagesArray) > 0)
+                            <div class="image-gallery">
+                                @foreach($imagesArray as $image)
+                                    <a href="{{ asset('storage/' . $image) }}">
+                                        <img src="{{ asset('storage/' . $image) }}" style="width: 70%; height: auto; margin-bottom: 10px;">
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endif
+                    @endif
+
+                    {{-- @if($task->images)
+                        @foreach($task->images as $image)
+                            <a href="{{asset('storage/' . $image->image)}}"><img src="{{asset('storage/' . $image->image)}}" style="width: 100%; height: 100%;"></a>
+                        @endforeach
+                        <a href="{{asset('storage/' . $task->image)}}"><img src="{{asset('storage/' . $task->image)}}" style="width: 100%; height: 100%;"></a>
+                    @endif --}}
+                </div>
+            </div>
         </div>
+        
     @else
         <div class="col-4">
             <div class="task-information-card">
@@ -85,7 +117,32 @@
     @endif
 </div>
 
+<div class="delete-popup">
+    <span class="delete-popuptext" id="delete-popup">
+        <span onclick="deleteTaskPopup()" class="material-symbols-outlined close-button">
+            close
+        </span>
+        <span class="material-symbols-outlined delete-icon">
+            cancel
+            </span>
+        <h1 class="delete-title">Weet je het zeker?</h1>
+        <p class="delete-text">Wil je echt deze taak verwijderen?</p>
+        <button class="cancel-button" onclick="deleteTaskPopup()">Annuleer</button>
+        <button class="delete-button" onclick="deleteTask()">Verwijder</button
+    </span>
+</div>
+
 <script>
+    function deleteTaskPopup() {
+        document.getElementById('delete-popup').classList.toggle('show');
+    }
+
+    function deleteTask() {
+        document.getElementById('delete-form').submit();
+    }
+</script>
+
+{{-- <script>
     function deleteTask() {
         var result = confirm("Weet je zeker dat je deze taak wilt verwijderen?");
 
@@ -93,5 +150,5 @@
             document.getElementById('delete-form').submit();
         }
     }
-</script>
+</script> --}}
 @endsection

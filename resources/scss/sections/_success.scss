@@ -1,0 +1,51 @@
+// // success popup
+
+.success-popup{
+    position: relative;
+    display: inline-block;
+}
+
+.success-popup .success-popuptext{
+    visibility: hidden;
+    width: 400px;
+    height: 40px;
+    background-color: #d4edda;
+    box-shadow: 0 0 5px #999;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+
+    border: 1px solid #c3e6cb;
+
+    position: fixed;
+    left: 50%;
+    top: 17%;
+
+    transform: translate(-50%, -50%);
+}
+
+.success-popup .success-popuptext::after{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.success-popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}

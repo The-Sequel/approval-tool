@@ -136,6 +136,9 @@
     </div>
 </div>
 
+@include('sections.error')
+@include('sections.success')
+
 <script>
     function redirectToTaskPage(status, taskId) {
         if (status === 'completed') {

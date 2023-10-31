@@ -19,7 +19,8 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        $tasks = Task::where('project_id', $project->id)->get();
+        // $tasks = Task::where('project_id', $project->id)->get();
+        $tasks = Task::where('project_id', $project->id)->orderBy('created_at', 'desc')->get();
         $users = User::Where('role_id', 1)->where('deleted_at', null)->get();
         $normalUsers = User::where('deleted_at', null)->get();
         return view('customer.projects.show', compact('project', 'tasks', 'users', 'normalUsers'));

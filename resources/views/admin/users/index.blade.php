@@ -79,4 +79,7 @@
         </form>
     </div>
 </div>
+
+@include('sections.success')
+
 @endsection

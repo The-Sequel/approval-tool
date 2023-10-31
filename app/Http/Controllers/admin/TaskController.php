@@ -197,7 +197,11 @@ class TaskController extends Controller
             }
         }
 
-        return redirect('/admin/tasks');
+        if($request->project_id != null){
+            return redirect('/admin/projects/show/' . $request->project_id)->with('success', 'Taak is aangemaakt!');
+        }
+
+        return redirect('/admin/tasks')->with('success', 'Taak is aangemaakt!');
     }
 
     public function show(Task $task)

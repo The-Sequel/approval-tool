@@ -137,6 +137,9 @@
         </div>
     </div>
 </div>
+
+@include('sections.success')
+
 @endsection
 
 

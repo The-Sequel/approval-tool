@@ -65,6 +65,12 @@ class TaskController extends Controller
                 'name' => 'Er is een taak goedgekeurd! 🎉',
             ]);
 
+            if($task->project_id != null) {
+                return redirect()->route('customer.projects.show', ['project' => $task->project_id])->with('success', 'Je hebt de taak goedgekeurd!');
+            } else {
+                return redirect()->route('customer.tasks.index')->with('success', 'Je hebt de taak goedgekeurd!');
+            }
+
             // $users = User::where('role_id', 1)->where('deleted_at', null)->get();
             
             // foreach ($users as $user) {
@@ -84,6 +90,18 @@ class TaskController extends Controller
                 'task_id' => $task->id,
                 'name' => 'Er is een taak afgekeurd! 😢',
             ]);
+
+            // if($task->project_id != null){
+            //     return redirect()->route('customer.projects.show', ['project' => $task->project_id])->with('error', 'Je hebt de taak afgekeurd!')
+            // } else {
+            //     return redirect()->route('customer.tasks.index')->with('error', 'Je hebt de taak afgekeurd!');
+            // }
+
+            if($task->project_id != null) {
+                return redirect()->route('customer.projects.show', ['project' => $task->project_id])->with('error', 'Je hebt de taak afgekeurd!');
+            } else {
+                return redirect()->route('customer.tasks.index')->with('error', 'Je hebt de taak afgekeurd!');
+            }
 
             // $users = User::where('role_id', 1)->where('deleted_at', null)->get();
 

@@ -117,7 +117,7 @@
             @method('GET')
             <div class="form-group">
                 <button type="submit">Maak nieuwe taak</button>
-                <button class="delete" onclick="event.preventDefault(); deleteProject();">Verwijder project</button>
+                <button class="delete" onclick="event.preventDefault(); deleteProjectPopup();">Verwijder project</button>
             </div>
         </form>
 
@@ -135,13 +135,28 @@
     </div>
 </div>
 
-<script>
-    function deleteProject() {
-        var result = confirm("Weet je zeker dat je dit project wilt verwijderen? hierbij verwijder je ook alle taken toegewezen aan het project");
+<div class="delete-popup">
+    <span class="delete-popuptext" id="delete-popup">
+        <span onclick="deleteProjectPopup()" class="material-symbols-outlined close-button">
+            close
+        </span>
+        <span class="material-symbols-outlined delete-icon">
+            cancel
+            </span>
+        <h1 class="delete-title">Weet je het zeker?</h1>
+        <p class="delete-text">Wil je echt dit project verwijderen? Hierbij verwijder je ook alle taken toegewezen aan het project.</p>
+        <button class="cancel-button" onclick="deleteProjectPopup()">Annuleer</button>
+        <button class="delete-button" onclick="deleteProject()">Verwijder</button
+    </span>
+</div>
 
-        if(result){
-            document.getElementById('delete-form-project').submit();
-        }
+<script>
+    function deleteProjectPopup() {
+        document.getElementById('delete-popup').classList.toggle('show');
+    }
+
+    function deleteProject() {
+        document.getElementById('delete-form-project').submit();
     }
 
     function destroyTask() {

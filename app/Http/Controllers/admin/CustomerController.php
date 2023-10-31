@@ -98,7 +98,7 @@ class CustomerController extends Controller
         ]);
        
         // Redirect the user
-        return redirect('/admin/customers');
+        return redirect('/admin/customers')->with('success', 'Klant is aangemaakt!');
     }
 
     public function destroy(Customer $customer){

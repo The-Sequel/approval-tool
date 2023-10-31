@@ -133,6 +133,8 @@
     </div>
 </div>
 
+@include('sections.success')
+
 <script>
     document.querySelectorAll('td:last-child').forEach(td => {
         td.addEventListener('click', (e) => {

@@ -70,19 +70,19 @@
 
                         @php
                             $deadlineDate = null;
-                            if ($project->deadline != null) {
+                            if ($task->deadline != null) {
                                 $today = strtotime(date('Y-m-d'));
-                                $projectDeadline = strtotime($project->deadline);
-                                $daysDifference = round(($projectDeadline - $today) / (60 * 60 * 24));
+                                $taskDeadline = strtotime($task->deadline);
+                                $daysDifference = round(($taskDeadline - $today) / (60 * 60 * 24));
 
                                 // Check if strtotime was successful before using the date
-                                if ($projectDeadline !== false) {
-                                    $deadlineDate = date('d-m-Y', $projectDeadline);
+                                if ($taskDeadline !== false) {
+                                    $deadlineDate = date('d-m-Y', $taskDeadline);
                                 }
                             }
                         @endphp
 
-                        @if($project->deadline != null)
+                        @if($task->deadline != null)
                             @if($daysDifference <= 5)
                                 <td>
                                     <p class="deadline">{{ $deadlineDate }} 🔥</p>
@@ -129,6 +129,9 @@
         </table>
     </div>
 </div>
+
+@include('sections.error')
+@include('sections.success')
 
 <script>
     function redirectToTaskPage(status, taskId) {

@@ -8,7 +8,6 @@
         @else
             <h2>Taken in brand <span style="color: grey;">({{$tasksWithDeadlineCount}})</span>🔥</h2>
         @endif
-        {{-- <h2>Taken in brand <span style="color: grey;">(05)</span></h2> --}}
         @foreach($tasks as $task)
             <div class="task-card" onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
                 <div class="task-card-head">
