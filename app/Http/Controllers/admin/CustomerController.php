@@ -68,11 +68,11 @@ class CustomerController extends Controller
     }
 
     public function store(Request $request){
-        // dd($request->all());
-        $request->validate([
-            'name' => 'required',
-            'debtor_number' => 'nullable',
-        ]);
+        if($request->name == null){
+            return redirect()->back()->with('error', 'Vul een naam in!');
+        } elseif($request->logo == null){
+            return redirect()->back()->with('error', 'Upload een logo!');
+        }
 
         if($file = $request->file('logo')){
             $fileName = $file->getClientOriginalName();

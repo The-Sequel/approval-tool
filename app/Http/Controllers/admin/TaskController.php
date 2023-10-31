@@ -116,18 +116,25 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->description);
-        // dd(nl2br($request->description));
+        // $request->validate([
+        //     'title' => 'required',
+        //     'description' => 'required',
+        //     'customer_id' => 'required',
+        //     'department_id' => 'nullable',
+        //     'deadline' => 'nullable',
+        //     'created_by' => 'required',
+        //     'user_ids' => 'required',
+        // ]);
 
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'customer_id' => 'required',
-            'department_id' => 'nullable',
-            'deadline' => 'nullable',
-            'created_by' => 'required',
-            'user_ids' => 'required',
-        ]);
+        if($request->title == null){
+            return redirect()->back()->with('error', 'Vul een titel in!');
+        } elseif($request->description == null){
+            return redirect()->back()->with('error', 'Vul een beschrijving in!');
+        } elseif($request->customer_id == null){
+            return redirect()->back()->with('error', 'Selecteer een klant!');
+        } elseif($request->user_ids == null){
+            return redirect()->back()->with('error', 'Selecteer een persoon!');
+        }
 
         $userIds = $request->input('user_ids', []);
 

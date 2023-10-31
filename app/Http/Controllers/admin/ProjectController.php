@@ -128,12 +128,22 @@ class ProjectController extends Controller
         //     $filePath = null;
         // }
 
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'department' => 'required',
-            'customer_id' => 'required',
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'description' => 'required',
+        //     'department' => 'required',
+        //     'customer_id' => 'required',
+        // ]);
+
+        if($request->title == null){
+            return redirect()->back()->with('error', 'Vul een titel in!');
+        } elseif($request->description == null){
+            return redirect()->back()->with('error', 'Vul een beschrijving in!');
+        } elseif($request->department == null){
+            return redirect()->back()->with('error', 'Vul een afdeling in!');
+        } elseif($request->customer_id == null){
+            return redirect()->back()->with('error', 'Vul een klant in!');
+        }
 
         $project = Project::create([
             'title' => $request->title,

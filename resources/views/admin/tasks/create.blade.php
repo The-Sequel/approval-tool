@@ -64,6 +64,10 @@
     </div>
 </div>
 
+@include('sections.error')
+
+
+
 {{-- <script>
     var customerSelect = document.getElementById('customer_id');
 

@@ -60,4 +60,7 @@
         </form>
     </div>
 </div>
+
+@include('sections.error')
+
 @endsection

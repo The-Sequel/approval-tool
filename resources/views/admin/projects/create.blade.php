@@ -3,13 +3,6 @@
 @section('content')
 <div class="grid" style="margin-left: 270px;">
     <div class="col-12">
-        @if (session('error'))
-            <div class="col-12">
-                <div class="alert alert-success">
-                    {{ session('error') }}
-                </div>
-            </div>
-        @endif
         <form action="{{route('admin.projects.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
@@ -71,4 +64,7 @@
         </form>
     </div>
 </div>
+
+@include('sections.error')
+
 @endsection

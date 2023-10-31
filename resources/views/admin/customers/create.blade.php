@@ -7,12 +7,12 @@
             @csrf
             @method('POST')
             <div class="form-group">
-                <label for="name">Naam</label>
+                <label for="name">Naam *</label>
                 <input class="form-control" type="text" name="name" id="name" placeholder="Vereist">
             </div>
     
             <div class="form-group">
-                <label for="name">Logo</label>
+                <label for="name">Logo *</label>
                 <input class="form-control" type="file" name="logo" id="logo">
             </div>
     
@@ -58,4 +58,7 @@
         </form>
     </div>
 </div>
+
+@include('sections.error')
+
 @endsection

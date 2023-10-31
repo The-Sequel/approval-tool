@@ -7,17 +7,17 @@
             @csrf
             @method('POST')
             <div class="form-group">
-                <label for="name">Naam</label>
+                <label for="name">Naam *</label>
                 <input type="text" name="name" id="name">
             </div>
 
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email *</label>
                 <input type="text" name="email" id="email">
             </div>
 
             <div class="form-group">
-                <label for="password">Wachtwoord</label>
+                <label for="password">Wachtwoord *</label>
                 <input type="password" name="password" id="password">
             </div>
 
@@ -40,7 +40,7 @@
             </div>
 
             <div class="form-group">
-                <label for="role">Rol</label>
+                <label for="role">Rol *</label>
                 <select name="role_id" id="role_id">
                     <option value="">Selecteer een rol</option>
                     @foreach ($roles as $role)
@@ -50,7 +50,7 @@
             </div>
 
             <div class="form-group">
-                <label for="customer_id">Klant</label>
+                <label for="customer_id">Klant *</label>
                 <select name="customer_id" id="customer_id">
                     <option value="">Selecteer een klant</option>
                     @foreach ($customers as $customer)
@@ -75,6 +75,8 @@
         </form>
     </div>
 </div>
+
+@include('sections.error')
 
 <script>
     var roleSelect = document.getElementById('role_id');

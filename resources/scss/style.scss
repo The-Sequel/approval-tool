@@ -3,12 +3,14 @@
 @import "sections/sidebar.scss";
 @import "sections/header.scss";
 @import "sections/footer.scss";	
+@import "sections/error.scss";
 @import "customers/index.scss";
 @import "sections/form.scss";
 @import "admin/dashboard.scss";
 @import "admin/tasks/show.scss";
 @import "admin/tasks/edit.scss";
 @import "admin/tasks/index.scss";
+@import "admin/tasks/create.scss";
 @import "admin/customers/index.scss";
 @import "customers/dashboard";
 @import "customers/users/index.scss";

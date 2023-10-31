@@ -66,17 +66,25 @@ class UserController extends Controller
         return view('admin.users.create', compact('customers', 'roles', 'departments'));
     }
 
-    public function store(){
-        $attributes = request()->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'phone_number' => 'nullable',
-            'role_id' => 'required',
-            'customer_id' => 'nullable',
-            'department_id' => 'nullable',
-            'color' => 'nullable',
-        ]);
+    public function store(Request $request){
+        if($request->name == null){
+            return redirect()->back()->with('error', 'Vul een naam in!');
+        } elseif($request->email == null){
+            return redirect()->back()->with('error', 'Vul een email in!');
+        } elseif($request->password == null){
+            return redirect()->back()->with('error', 'Vul een wachtwoord in!');
+        } elseif($request->role_id == null){
+            return redirect()->back()->with('error', 'Vul een rol in!');
+        } elseif($request->role_id == 2){
+            if($request->customer_id == null){
+                return redirect()->back()->with('error', 'Vul een klant in!');
+            }
+            if($request->department_id == null){
+                return redirect()->back()->with('error', 'Vul een afdeling in!');
+            }
+        }
+
+        $attributes = request()->all();
 
         // Create the user
         User::create($attributes);
