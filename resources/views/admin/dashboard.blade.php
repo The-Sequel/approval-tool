@@ -3,7 +3,11 @@
 @section('content')
 <div class="flex" style="margin-left: 270px;">
     <div class="col-4">
-        <h2>Taken in brand <span style="color: grey;">(05)</span>🔥</h2>
+        @if($tasksWithDeadlineCount < 10)
+            <h2>Taken in brand <span style="color: grey;">(0{{$tasksWithDeadlineCount}})</span>🔥</h2>
+        @else
+            <h2>Taken in brand <span style="color: grey;">({{$tasksWithDeadlineCount}})</span>🔥</h2>
+        @endif
         {{-- <h2>Taken in brand <span style="color: grey;">(05)</span></h2> --}}
         @foreach($tasks as $task)
             <div class="task-card" onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
@@ -56,11 +60,18 @@
                 </div>
             </div>
         @endforeach
-        <a class="all-tasks-button" href="/admin/tasks">Bekijk alle taken</a>
+        <div class="tasks-button">
+            <a href="/admin/tasks">Bekijk alle taken</a>
+            <span class="material-icons">navigate_next</span>
+        </div>
     </div>
 
     <div class="col-4">
-        <h2 >Lopende projecten <span style="color: grey;">(03)</span>🚀</h2>
+        @if($projectsCount < 10)
+            <h2>Lopende projecten <span style="color: grey;">(0{{$projectsCount}})</span>🚀</h2>
+        @else
+            <h2>Lopende projecten <span style="color: grey;">({{$projectsCount}})</span>🚀</h2>
+        @endif
         @foreach($projects as $project)
             <div onclick="window.location.href='{{ route('admin.projects.show', ['project' => $project]) }}';" class="project-card">
                 <div class="project-card-head">
@@ -124,7 +135,10 @@
                
             </div>
         @endforeach
-        <a class="all-projects-button" href="/admin/projects">Bekijk alle projecten</a>
+        <div class="projects-button">
+            <a href="/admin/projects">Bekijk alle projecten</a>
+            <span class="material-icons">navigate_next</span>
+        </div>
 
     </div>
     <div class="col-4">

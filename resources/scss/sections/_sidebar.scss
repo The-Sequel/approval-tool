@@ -57,10 +57,17 @@
 
     .sidebar-item{
         display: flex;
+        margin-bottom: 5px;
 
         svg{
             margin-top: 15px;
             margin-left: 15px;
+        }
+
+        span{
+            margin-top: 13px;
+            margin-left: 9px;
+            font-size: 24px;
         }
     }
 
@@ -69,6 +76,11 @@
         bottom: 0;
         left: 0;
         padding: 10px;
+
+        span{
+            margin-left: 200px;
+            margin-bottom: 12px;
+        }
     }
 
     .amount{

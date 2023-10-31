@@ -2,12 +2,40 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.all-tasks-button{
-    margin-left: 284px;
+.projects-button{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    margin-left: 238px;
+
+    a{
+        text-decoration: none;
+        color: #C1C1C1;
+    }
+
+    span{
+        font-size: 24px;
+        margin-left: 6px;
+        color: #C1C1C1;
+    }
 }
 
-.all-projects-button{
-    margin-left: 261px;
+.tasks-button{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    margin-left: 264px;
+
+    a{
+        text-decoration: none;
+        color: #C1C1C1;
+    }
+
+    span{
+        font-size: 24px;
+        margin-left: 6px;
+        color: #C1C1C1;
+    }
 }
 
 .task-card {
