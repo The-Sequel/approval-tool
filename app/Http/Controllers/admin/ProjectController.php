@@ -207,9 +207,11 @@ class ProjectController extends Controller
         $tasks = Task::where('project_id', $project->id)->get();
 
         foreach($tasks as $task){
+            $task->messages()->delete();
             $task->delete();
         }
 
+        $project->messages()->delete();
         $project->delete();
         return redirect('/admin/projects/')->with('success', 'Project is verwijderd!');
     }

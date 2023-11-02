@@ -3,8 +3,10 @@
 @section('content')
 <div class="grid" style="margin-left: 270px;">
     <div class="col-4">
-        @if($tasksWithDeadlineCount < 10)
-            <h2>Tasks in brand <span style="color: grey;">(0{{$tasksWithDeadlineCount}})</span>🔥</h2>
+        @if($tasksWithDeadlineCount == 0)
+            <h2>Taken in brand <span style="color: grey;">(0)</span>🔥</h2>
+        @elseif($tasksWithDeadlineCount < 10)
+            <h2>Taken in brand <span style="color: grey;">(0{{$tasksWithDeadlineCount}})</span>🔥</h2>
         @else
             <h2>Taken in brand <span style="color: grey;">({{$tasksWithDeadlineCount}})</span>🔥</h2>
         @endif
@@ -16,20 +18,24 @@
                 <div class="task-card-info">
                     <div class="task-card-image">
                         {{-- Get the first image --}}
-                        @if(count(json_decode($task->images, true)) > 0)
-                            @php
-                                $imagesArray = json_decode($task->images, true);
-                            @endphp
+                        @if($task->images)
+                            @if(count(json_decode($task->images, true)) > 0)
+                                @php
+                                    $imagesArray = json_decode($task->images, true);
+                                @endphp
 
-                            @if(is_array($imagesArray) && count($imagesArray) > 0)
-                                <div class="image-gallery">
-                                    @php
-                                        $firstImage = reset($imagesArray); // Get the first image from the array
-                                    @endphp
-                                    <a href="{{ asset('storage/' . $firstImage) }}">
-                                        <img src="{{ asset('storage/' . $firstImage) }}" style="width: 70%; height: auto; margin-bottom: 10px;">
-                                    </a>
-                                </div>
+                                @if(is_array($imagesArray) && count($imagesArray) > 0)
+                                    <div class="image-gallery">
+                                        @php
+                                            $firstImage = reset($imagesArray); // Get the first image from the array
+                                        @endphp
+                                        <a href="{{ asset('storage/' . $firstImage) }}">
+                                            <img src="{{ asset('storage/' . $firstImage) }}" style="width: 70%; height: auto; margin-bottom: 10px;">
+                                        </a>
+                                    </div>
+                                @endif
+                            @else
+                                <img src="{{ asset('storage/'.$task->customer->logo) }}" alt="{{ $task->customer->logo }}" width="50">
                             @endif
                         @else
                             <img src="{{ asset('storage/'.$task->customer->logo) }}" alt="{{ $task->customer->logo }}" width="50">
@@ -72,7 +78,9 @@
     </div>
     
     <div class="col-4">
-        @if($projectsCount < 10)
+        @if($projectsCount == 0)
+            <h2>Lopende projecten <span style="color: grey;">(0)</span>🚀</h2>
+        @elseif($projectsCount < 10)
             <h2>Lopende projecten <span style="color: grey;">(0{{$projectsCount}})</span>🚀</h2>
         @else
             <h2>Lopende projecten <span style="color: grey;">({{$projectsCount}})</span>🚀</h2>

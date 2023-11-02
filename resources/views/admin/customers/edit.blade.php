@@ -66,18 +66,20 @@
 
             <div class="form-group">
                 <button>Bewerk klant</button>
-                <button class="delete" onclick="event.preventDefault(); deleteCustomer();">Verwijder klant</button>
+                <button class="delete" onclick="event.preventDefault(); deleteCustomerPopup();">Verwijder klant</button>
             </div>
         </form>
         
-        <form id="delete-form" action="{{route('admin.customers.destroy', $customer)}}" method="POST">
+        <form id="delete-form-customer" action="{{route('admin.customers.destroy', $customer)}}" method="POST">
             @csrf
             @method('DELETE')
         </form>
     </div>
 </div>
 
-<script>
+@include('sections.delete.customer')
+
+{{-- <script>
     function deleteCustomer() {
         var result = confirm("Weet je zeker dat je deze klant wilt verwijderen?");
 
@@ -85,5 +87,5 @@
             document.getElementById('delete-form').submit();
         }
     }
-</script>
+</script> --}}
 @endsection

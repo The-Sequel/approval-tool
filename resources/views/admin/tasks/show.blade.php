@@ -34,7 +34,7 @@
                 <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
             </div>
         </form>
-        <form id="delete-form" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
+        <form id="delete-form-task" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
             @csrf
             @method('DELETE')
         </form>
@@ -117,38 +117,6 @@
     @endif
 </div>
 
-<div class="delete-popup">
-    <span class="delete-popuptext" id="delete-popup">
-        <span onclick="deleteTaskPopup()" class="material-symbols-outlined close-button">
-            close
-        </span>
-        <span class="material-symbols-outlined delete-icon">
-            cancel
-            </span>
-        <h1 class="delete-title">Weet je het zeker?</h1>
-        <p class="delete-text">Wil je echt deze taak verwijderen?</p>
-        <button class="cancel-button" onclick="deleteTaskPopup()">Annuleer</button>
-        <button class="delete-button" onclick="deleteTask()">Verwijder</button
-    </span>
-</div>
+@include('sections.delete.task')
 
-<script>
-    function deleteTaskPopup() {
-        document.getElementById('delete-popup').classList.toggle('show');
-    }
-
-    function deleteTask() {
-        document.getElementById('delete-form').submit();
-    }
-</script>
-
-{{-- <script>
-    function deleteTask() {
-        var result = confirm("Weet je zeker dat je deze taak wilt verwijderen?");
-
-        if(result){
-            document.getElementById('delete-form').submit();
-        }
-    }
-</script> --}}
 @endsection

@@ -85,3 +85,85 @@ $warning-color: red;
 
     margin-right: 10px;
 }
+
+.delete-popup-project {
+    position: relative;
+    display: inline-block;
+
+    .delete-popup-projecttext {
+        visibility: hidden;
+        width: 350px;
+        height: 380px;
+        background-color: $highlight-color;
+        box-shadow: 0 0 5px #999;
+        color: black;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 0;
+        border: 1px solid $highlight-color;
+
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        &::after {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+    }
+
+    .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 0.5s;
+        animation: fadeIn 0.5s;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: default;
+    }
+}
+
+.delete-icon {
+    font-size: 100px;
+    color: $warning-color;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.delete-title {
+    // color: $main-color;
+    color: black;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.delete-text {
+    color: #{$main-color};
+    margin-bottom: 50px;
+    font-size: 15px;
+}
+
+.cancel-button,
+.delete-button {
+    background-color: $highlight-color;
+    border: 1px solid $main-color;
+    color: $main-color;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    &.delete-button {
+        background-color: $main-color;
+        color: $highlight-color;
+    }
+
+    margin-right: 10px;
+}

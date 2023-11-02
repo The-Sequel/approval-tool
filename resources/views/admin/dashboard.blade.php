@@ -3,7 +3,9 @@
 @section('content')
 <div class="flex" style="margin-left: 270px;">
     <div class="col-4">
-        @if($tasksWithDeadlineCount < 10)
+        @if($tasksWithDeadlineCount == 0)
+            <h2>Taken in brand <span style="color: grey;">(0)</span>🔥</h2>
+        @elseif($tasksWithDeadlineCount < 10)
             <h2>Taken in brand <span style="color: grey;">(0{{$tasksWithDeadlineCount}})</span>🔥</h2>
         @else
             <h2>Taken in brand <span style="color: grey;">({{$tasksWithDeadlineCount}})</span>🔥</h2>
@@ -66,7 +68,9 @@
     </div>
 
     <div class="col-4">
-        @if($projectsCount < 10)
+        @if($projectsCount == 0)
+            <h2>Lopende projecten <span style="color: grey;">(0)</span>🚀</h2>
+        @elseif($projectsCount < 10)
             <h2>Lopende projecten <span style="color: grey;">(0{{$projectsCount}})</span>🚀</h2>
         @else
             <h2>Lopende projecten <span style="color: grey;">({{$projectsCount}})</span>🚀</h2>

@@ -277,8 +277,10 @@ class TaskController extends Controller
     }
 
     public function destroy(Task $task){
-        $task->deleted_at = date('Y-m-d H:i:s');
-        return redirect('/admin/tasks');
+        $task->messages()->delete();
+        $task->delete();
+
+        return redirect('/admin/tasks')->with('success', 'Taak is verwijderd!');
     }
 
     public function edit(Task $task)
