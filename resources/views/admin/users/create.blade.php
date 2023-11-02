@@ -8,17 +8,17 @@
             @method('POST')
             <div class="form-group">
                 <label for="name">Naam *</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" placeholder="Vereist">
             </div>
 
             <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="text" name="email" id="email">
+                <input type="text" name="email" id="email" placeholder="Vereist">
             </div>
 
             <div class="form-group">
                 <label for="password">Wachtwoord *</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" placeholder="Vereist">
             </div>
 
             <div class="form-group">

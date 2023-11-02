@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 @foreach($users as $user)
-                    <tr onclick="window.location.href='{{ route('admin.users.edit', ['user' => $user]) }}';">
+                    <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
 

@@ -61,10 +61,12 @@
                 </div>
             </div>
         @endforeach
-        <div class="tasks-button">
-            <a href="/admin/tasks">Bekijk alle taken</a>
-            <span class="material-icons">navigate_next</span>
-        </div>
+        @if(count($tasks) != 0)
+            <div class="tasks-button">
+                <a href="/admin/tasks">Bekijk alle taken</a>
+                <span class="material-icons">navigate_next</span>
+            </div>
+        @endif
     </div>
 
     <div class="col-4">
@@ -138,11 +140,12 @@
                
             </div>
         @endforeach
-        <div class="projects-button">
-            <a href="/admin/projects">Bekijk alle projecten</a>
-            <span class="material-icons">navigate_next</span>
-        </div>
-
+        @if(count($projects) != 0)
+            <div class="projects-button">
+                <a href="/admin/projects">Bekijk alle projecten</a>
+                <span class="material-icons">navigate_next</span>
+            </div>
+        @endif
     </div>
     <div class="col-4">
         <div class="dashboard-cards">

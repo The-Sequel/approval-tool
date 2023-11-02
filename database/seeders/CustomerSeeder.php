@@ -27,33 +27,5 @@ class CustomerSeeder extends Seeder
             'kvk' => '12345678',
             'btw' => 'NL123456789B01',
         ]);
-
-        Customer::create([
-            'name' => 'The Sequel',
-            'logo' => 'uploads/thesequel.png',
-            'status' => 'active',
-            'debtor_number' => '987654321',
-        ]);
-
-        Customer::create([
-            'name' => 'Apple',
-            'logo' => 'uploads/apple.png',
-            'status' => 'active',
-            'debtor_number' => '123456789',
-        ]);
-
-        Customer::create([
-            'name' => 'Microsoft',
-            'logo' => 'uploads/microsoft.png',
-            'status' => 'active',
-            'debtor_number' => '987654321',
-        ]);
-
-        Customer::create([
-            'name' => 'Google',
-            'logo' => 'uploads/google.png',
-            'status' => 'active',
-            'debtor_number' => '123456789',
-        ]);
     }
 }

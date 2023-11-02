@@ -16,65 +16,10 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Silvin van Haestregt',
-            'email' => 'silvinvanhaestregt@outlook.com',
+            'email' => 'silvin@thesequel.nl',
             'password' => bcrypt('password'),
-            'role_id' => 2,
-            'customer_id' => 1,
-            'department_id' => 2,
+            'role_id' => 1,
             'color' => 'green'
-        ]);
-
-        // User::create([
-        //     'name' => 'Silvin van Haestregt',
-        //     'email' => 'stage@thesequel.nl',
-        //     'password' => bcrypt('password'),
-        //     'role_id' => 2,
-        //     'customer_id' => 1,
-        //     'department_id' => 2,
-        //     'color' => 'green'
-        // ]);
-
-        // User::create([
-        //     'name' => 'admin',
-        //     'email' => 'admin@thesequel.nl',
-        //     'password' => bcrypt('password'),
-        //     'role_id' => 1, // admin
-        // ]);
-
-        User::create([
-            'name' => 'Adawosgi Ameyalli',
-            'email' => 'adawosgiameyalli@gmail.com',
-            'password' => bcrypt('password'),
-            'role_id' => 2, // customer
-            'customer_id' => 1,
-            'department_id' => 1,
-            'color' => 'chocolate'
-        ]);
-
-        User::create([
-            'name' => 'Quintin',
-            'email' => 'quintin@thesequel.nl',
-            'password' => bcrypt('password'),
-            'role_id' => 1, // admin
-            'color' => 'chocolate'
-        ]);
-
-        User::create([
-            'name' => 'Bill Gates',
-            'email' => 'billgates@microsoft.com',
-            'password' => bcrypt('password'),
-            'role_id' => 2,
-            'customer_id' => 4,
-            'color' => 'chocolate'
-        ]);
-
-        User::create([
-            'name' => 'Steve Jobs',
-            'email' => 'stevejobs@apple.com',
-            'password' => bcrypt('password'),
-            'role_id' => 2,
-            'customer_id' => 3,
-            'color' => 'chocolate'
         ]);
     }
 }

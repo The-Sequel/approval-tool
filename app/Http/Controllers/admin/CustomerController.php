@@ -76,7 +76,6 @@ class CustomerController extends Controller
 
         if($file = $request->file('logo')){
             $fileName = $file->getClientOriginalName();
-            // can you store the file to this path public\storage/uploads/
             $filePath = $file->storeAs('uploads', $fileName, 'public');
 
             // $filePath = $file->storeAs('uploads', $fileName);

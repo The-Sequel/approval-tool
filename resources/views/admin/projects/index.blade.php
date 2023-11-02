@@ -126,10 +126,12 @@
             </div>
         </form>
 
-        <form id="delete-form-project" action="{{route('admin.projects.destroy', $project)}}" method="POST">
-            @csrf
-            @method('DELETE')
-        </form>
+        @if(count($projects) != 0)
+            <form id="delete-form-project" action="{{route('admin.projects.destroy', $project)}}" method="POST">
+                @csrf
+                @method('DELETE')
+            </form>
+        @endif
     </div>
 </div>
 
