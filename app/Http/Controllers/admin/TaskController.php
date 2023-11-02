@@ -24,7 +24,7 @@ class TaskController extends Controller
         $normalUsers = User::where('deleted_at', null)->get();
         $today = date('Y-m-d');
 
-        return view('admin.tasks.index', compact('table', 'tasks', 'today', 'users', 'normalUsers'));
+        return view('admin.tasks.index', compact('tasks', 'today', 'users', 'normalUsers'));
     }
 
     public function adminCreate()

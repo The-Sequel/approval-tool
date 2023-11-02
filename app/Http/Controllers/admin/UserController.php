@@ -55,7 +55,7 @@ class UserController extends Controller
         //     'tbody' => $tbody,
         // ];
 
-        return view('admin.users.index', compact('table', 'users'));
+        return view('admin.users.index', compact('users'));
     }
 
     public function create(){

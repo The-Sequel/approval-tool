@@ -5,10 +5,12 @@
     <div class="col-6">
         {{-- <h1>{{$task->title}}</h1> --}}
         <div class="task-information">
-            <h3 style="margin-bottom: 20px;">Beschrijving</h3>
-            <div class="task-information-description">
-                {{$task->description_completed}}
-            </div>
+            @if($task->description_completed != null)
+                <h3 style="margin-bottom: 20px;">Beschrijving</h3>
+                <div class="task-information-description">
+                    {{$task->description_completed}}
+                </div>
+            @endif
             <div class="task-information-completed_by">
                 @php
                     $user = \App\Models\User::where('id', $task->completed_by)->first();
@@ -32,24 +34,29 @@
             </div>
         </form>
     </div>
-    <div class="col-6">
-        @if($task->image_completed != null)
-            <div class="task-information">
-                @if($task->image_completed != null)
-                    <div class="task-information-images">
-                        @php
-                            $imagePaths = json_decode($task->image_completed, true);
-                        @endphp
-                        @foreach($imagePaths as $image)
-                            <a href="{{ asset('storage/' . $image) }}">
-                                <img src="{{ asset('storage/' . $image) }}" style="width: 50%; width: 200px; margin-bottom: 10px;">
-                            </a>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-        @endif
-    </div>
+    @php
+        $images = json_decode($task->image_completed, true);
+    @endphp
+    @if(count($images) > 0)
+        <div class="col-6">
+            @if($task->image_completed != null)
+                <div class="task-information">
+                    @if($task->image_completed != null)
+                        <div class="task-information-images">
+                            @php
+                                $imagePaths = json_decode($task->image_completed, true);
+                            @endphp
+                            @foreach($imagePaths as $image)
+                                <a href="{{ asset('storage/' . $image) }}">
+                                    <img src="{{ asset('storage/' . $image) }}" style="width: 50%; width: 200px; margin-bottom: 10px;">
+                                </a>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            @endif
+        </div>
+    @endif
 </div>
 
 <script>

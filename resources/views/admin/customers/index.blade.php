@@ -28,8 +28,7 @@
             </thead>
             <tbody>
                 @foreach($customers as $customer)
-                    <tr onclick="window.location.href='{{ route('admin.customers.edit', ['customer' => $customer]) }}';">
-
+                    <tr>
                         <td>
                             <p id="customer-name-{{$customer->id}}">{{$customer->name}}</p>
                         </td>

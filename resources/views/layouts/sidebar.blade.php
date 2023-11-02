@@ -132,7 +132,12 @@
             <img style="margin-bottom: 50px; margin-left: 20px;" class="logout" src="{{ asset('storage/'.Auth::user()->customer->logo) }}" width="50px">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><li>Uitloggen</li></a>
+                <div class="logout">
+                    <a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><li>Uitloggen</li></a>
+                    <span class="material-icons logout">
+                        lock
+                        </span>
+                </div>
             </form>
         @endif
     </ul>

@@ -39,6 +39,7 @@
                     <th>Status</th>
                     <th>Akkoord door</th>
                     <th>Bewerkt op:</th>
+                    <th>Acties</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,6 +124,14 @@
                             @endforeach
                         @endif
                         <td>{{$task->updated_at}}</td>
+                        <td>
+                            <div class="table-icons">
+                                <a class="table-icons-item" href="{{route('customer.tasks.show', $task)}}" target="_blank"><span style="color: black;" class="material-icons">open_in_new</span></a>
+                                @if($task->status == 'completed')
+                                    <a class="table-icons-item" href="{{route('customer.tasks.approve', $task)}}" target="_blank"><span style="color: black;" class="material-icons">check_circle</span></a>
+                                @endif
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

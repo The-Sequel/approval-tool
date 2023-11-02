@@ -24,7 +24,7 @@
                     <input class="form-control" type="file" name="image" id="image">
                 </div>
 
-                @if($task->project->id == null)
+                @if($task->project !== null && $task->project->id === null)
                     <div class="form-group">
                         <label for="department_id">Afdeling</label>
                         <select class="form-control" name="department_id" id="department_id">
@@ -85,7 +85,7 @@
                     <input class="form-control" type="file" name="image" id="image">
                 </div>
 
-                @if($task->project->id == null)
+                @if($task->project !== null && $task->project->id === null)
                     <div class="form-group">
                         <label for="department_id">Afdeling</label>
                         <select class="form-control" name="department_id" id="department_id">

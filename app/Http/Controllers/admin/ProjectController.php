@@ -22,7 +22,7 @@ class ProjectController extends Controller
 
         $users = User::where('deleted_at', null)->get();
 
-        return view('admin.projects.index', compact('table', 'projects', 'users'));
+        return view('admin.projects.index', compact('projects', 'users'));
     }
 
     public function create(){

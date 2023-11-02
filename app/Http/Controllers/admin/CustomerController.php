@@ -13,7 +13,7 @@ class CustomerController extends Controller
 
         $customers = Customer::all();
         
-        return view('admin.customers.index', compact('table', 'customers'));
+        return view('admin.customers.index', compact('customers'));
     }
 
     public function create(){

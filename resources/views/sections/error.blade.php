@@ -13,7 +13,7 @@
         errorPopup.style.visibility = 'visible';
         setTimeout(function() {
             errorPopup.style.visibility = 'hidden';
-        }, 7000); // 5000 milliseconds = 5 seconds
+        }, 5000); // 5000 milliseconds = 5 seconds
     }
 });
 

@@ -33,7 +33,7 @@
             </thead>
             <tbody>
                 @foreach($tasks as $task)
-                    <tr onclick="window.location.href='{{ route('admin.tasks.show', ['task' => $task]) }}';">
+                    <tr>
                         <td>{{$task->title}}</a></td>
                         <td>{{$task->customer->name}}</td>
                         <td>

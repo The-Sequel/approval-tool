@@ -20,11 +20,12 @@
                     <th>Akkoord door</th>
                     <th>Gemaakt op:</th>
                     <th>Bewerkt op:</th>
+                    <th>Acties</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($tasks as $task)
-                    <tr onclick="redirectToTaskPage('{{ $task->status }}', '{{ $task->id }}')">
+                    <tr>
                         <td>{{$task->title}}</td>
                         <td>
                             <div class="user-logo-main">
@@ -129,6 +130,14 @@
                                 </span>
                             </div>
                         </td>
+                        <td>
+                            <div class="table-icons">
+                                <a class="table-icons-item" href="{{route('customer.tasks.show', $task)}}" target="_blank"><span style="color: black;" class="material-icons">open_in_new</span></a>
+                                @if($task->status == 'completed')
+                                    <a class="table-icons-item" href="{{route('customer.tasks.approve', $task)}}" target="_blank"><span style="color: black;" class="material-icons">check_circle</span></a>
+                                @endif
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -139,7 +148,7 @@
 @include('sections.error')
 @include('sections.success')
 
-<script>
+{{-- <script>
     function redirectToTaskPage(status, taskId) {
         if (status === 'completed') {
             console.log('redirecting to approve page');
@@ -149,5 +158,5 @@
             window.location.href = '{{ route('customer.tasks.show', ['task' => ':taskId']) }}'.replace(':taskId', taskId);
         }
     }
-</script>
+</script> --}}
 @endsection
