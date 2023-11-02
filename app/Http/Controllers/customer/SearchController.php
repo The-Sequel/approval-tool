@@ -16,8 +16,6 @@ class SearchController extends Controller
         $user = auth()->user();
         $normalUsers = User::where('deleted_at', null)->get();
 
-        // dd($request->project_id);
-
         if($request->project_id == null)
         {
             $tasks = Task::where('customer_id', $user->customer_id)->where('title', 'like', '%' . $request->search . '%')->get();
@@ -29,8 +27,6 @@ class SearchController extends Controller
             $tasks = Task::where('project_id', $request->project_id)->where('customer_id', $user->customer_id)
                 ->where('title', 'like', '%' . $request->search . '%')
                 ->get();
-
-            // dd('customer.project.show');
 
             return view('customer.projects.show', compact('tasks', 'users', 'project'));
         }

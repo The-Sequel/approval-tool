@@ -34,6 +34,6 @@ class ContactController extends Controller
         //     Mail::to($user->email)->send(new ContactMail($contact));
         // }
 
-        return redirect()->route('/')->with('success', 'Uw bericht is verzonden!');
+        return redirect()->route('customer.dashboard')->with('success', 'Uw bericht is verzonden!');
     }
 }

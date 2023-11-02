@@ -12,53 +12,6 @@ class CustomerController extends Controller
     public function index(){
 
         $customers = Customer::all();
-
-        $options_array = Customer::get()->toArray();
-
-        foreach ($options_array as $key => $value) {
-            $options_array[$key]['users'] = Customer::find($value['id'])->users()->get()->toArray();
-        }
-
-        $tbody = [];
-        foreach ($options_array as $key => $value) {
-            $tbody[$value['id']] = [
-                [
-                    'field' => 'link',
-                    'content' => $value['name'],
-                    'href' => '/admin/customers/edit' . $value['id'] . '/edit',
-                ],
-                [
-                    'field' => 'image',
-                    'content' => $value['logo'] ? '/storage/' . $value['logo'] : 'No image',
-                    'class' => 'table img',
-                    
-                ],
-                [
-                    'field' => 'text',
-                    'content' => $value['status'],
-                ],
-                [
-                    'field' => 'text',
-                    'content' => $value['users'] ? implode(', ', array_column($value['users'], 'name')) : '-',
-                ],
-                [
-                    'field' => 'text',
-                    'content' => $value['debtor_number'],
-                ],
-            ];
-        }
-
-        $table = [
-            'thead' => [
-                'Klanten',
-                'Logo',
-                'Status',
-                'Contactpersoon',
-                'Debiteur nummer',
-            ],
-
-            'tbody' => $tbody,
-        ];
         
         return view('admin.customers.index', compact('table', 'customers'));
     }
