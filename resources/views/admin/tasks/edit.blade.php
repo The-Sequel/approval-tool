@@ -52,7 +52,7 @@
                         @endif
                     @endforeach
                 </div>
-                
+
                 <div class="form-group">
                     <button>Opslaan</button>
                     <button class="delete" onclick="event.preventDefault(); deleteTask();">Verwijder taak</button>
@@ -113,7 +113,7 @@
                         @endif
                     @endforeach
                 </div>
-                
+
                 <div class="form-group">
                     <button>Opslaan</button>
                     <button class="delete" onclick="event.preventDefault(); deleteTask();">Verwijder taak</button>
@@ -132,7 +132,7 @@
                     <h3>Afbeeldingen</h3>
                 </div>
                 <div class="task-images-card-images">
-                    <img src="{{asset('storage/' . $task->image)}}" alt="" width=450>
+                    <img src="{{asset('storage/' . $task->image)}}" alt="" width="450">
                 </div>
             </div>
         </div>

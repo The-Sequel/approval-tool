@@ -4,7 +4,6 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\Task;
 use App\Models\User;
-use App\Mail\EventMail;
 use App\Models\Message;
 use App\Models\Project;
 use App\Models\Customer;
@@ -13,7 +12,6 @@ use Illuminate\Http\Request;
 use App\Mail\Tasks\NewTaskMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Tasks\CompletedTaskMail;
 
 class TaskController extends Controller
 {
@@ -87,16 +85,8 @@ class TaskController extends Controller
             }
         }
 
-        // if($file = $request->file('image')){
-        //     $fileName = $file->getClientOriginalName();
-        //     $filePath = $file->storeAs('uploads', $fileName, 'public');
-        // } else {
-        //     $filePath = null;
-        // }
-        
         $task = Task::create([
             'title' => $request->title,
-            // 'description' => nl2br($request->description),
             'description' => $request->description,
             'deadline' => $request->deadline,
             'status' => $request->status,
@@ -105,7 +95,6 @@ class TaskController extends Controller
             'customer_id' => $request->customer_id,
             'user_id' => $request->created_by,
             'project_id' => $project_id,
-            // 'image' => $filePath,
             'images' => json_encode($images),
             'assigned_to' => $assignedTo,
         ]);
@@ -182,10 +171,10 @@ class TaskController extends Controller
         // if ($request->send_mail == 'on') {
         //     $task = Task::find($task->id);
         //     $assignedUsers = json_decode($task->assigned_users);
-        
+
         //     if ($assignedUsers) {
         //         $users = User::where('deleted_at', null)->get();
-        
+
         //         foreach ($users as $user) {
         //             foreach ($assignedUsers as $assignedUser) {
         //                 if ((int) $user->id === (int) $assignedUser) {
@@ -225,15 +214,6 @@ class TaskController extends Controller
 
     public function update(Task $task, Request $request)
     {
-
-        
-        // if($file = $request->file('image')){
-        //     $fileName = $file->getClientOriginalName();
-        //     $filePath = $file->storeAs('uploads', $fileName, 'public');
-        // } else {
-        //     $filePath = null;
-        // }
-
         $images = [];
 
         if ($request->hasFile('images')) {
@@ -250,7 +230,6 @@ class TaskController extends Controller
         $task->title = $request->title;
         $task->description = $request->description;
         $task->deadline = $request->deadline;
-        // $task->image = $filePath;
         $task->images = json_encode($images);
         $task->assigned_to = $assignedTo;
 
@@ -259,7 +238,7 @@ class TaskController extends Controller
         } else {
             $task->department_id = null;
         }
-        
+
         $task->save();
 
         return redirect('/admin/tasks');

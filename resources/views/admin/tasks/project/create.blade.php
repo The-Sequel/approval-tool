@@ -10,22 +10,22 @@
                 <label for="title">Titel *</label>
                 <input class="form-control" type="text" name="title" id="title">
             </div>
-        
+
             <div class="form-group">
                 <label for="description">Beschrijving *</label>
                 <textarea class="form-control" name="description" id="description"></textarea>
             </div>
-        
+
             <div class="form-group">
                 <label for="deadline">Deadline</label>
                 <input class="form-control" type="date" name="deadline" id="deadline">
             </div>
-        
+
             <div class="form-group">
                 <label for="images">Afbeeldingen</label>
                 <input class="form-control" type="file" name="images[]" id="images" multiple>
             </div>
-        
+
             <div class="form-group">
                 <label for="department_id">Afdeling</label>
                 <select class="form-control" name="department_id" id="department_id">
@@ -35,7 +35,7 @@
                     @endforeach
                 </select>
             </div>
-        
+
             <div style="height: 60px; margin-top: 30px;">
                 <p style="margin-bottom: 8px;">Voeg gebruikers toe aan taak</p>
                 @foreach($users as $user)
@@ -43,17 +43,17 @@
                     {{$user->name}} <br>
                 @endforeach
             </div>
-        
+
             <div style="margin-bottom: 20px; margin-top: 20px;">
                 <input type="checkbox" name="send_mail" id="send_mail">
                 <label for="send_mail">Stuur mail</label>
             </div>
-        
+
             <input type="hidden" type="text" name="status" id="status" value="pending">
-            <input type="hidden" type="text" name="created_by" id="created_by" value={{Auth::user()->id}}>
-            <input type="hidden" type="text" name="project_id" id="project_id" value={{$project->id}}>
-            <input type="hidden" type="text" name="customer_id" id="customer_id" value={{$project->customer->id}}>
-        
+            <input type="hidden" type="text" name="created_by" id="created_by" value="{{Auth::user()->id}}">
+            <input type="hidden" type="text" name="project_id" id="project_id" value="{{$project->id}}">
+            <input type="hidden" type="text" name="customer_id" id="customer_id" value="{{$project->customer->id}}">
+
             <div class="form-group">
                 <button>Maak nieuwe taak</button>
             </div>

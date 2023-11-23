@@ -41,9 +41,9 @@
 
             @foreach($customers as $customer)
                 @if($customer->id == $user->customer_id)
-                    <input type="hidden" type="text" name="customer_id" id="customer_id" value={{$customer->id}}>
-                    <input type="hidden" type="text" name="user_id" id="user_id" value={{$user->id}}>
-                    <input type="hidden" type="text" name="created_by" id="created_by" value={{$user->name}}>
+                    <input type="hidden" type="text" name="customer_id" id="customer_id" value="{{$customer->id}}">
+                    <input type="hidden" type="text" name="user_id" id="user_id" value="{{$user->id}}">
+                    <input type="hidden" type="text" name="created_by" id="created_by" value="{{$user->name}}">
                 @endif
             @endforeach
 
@@ -98,8 +98,8 @@
 
             @foreach($customers as $customer)
                 @if($customer->id == $user->customer_id)
-                    <input type="hidden" type="text" name="user_id" id="user_id" value={{$user->id}}>
-                    <input type="hidden" type="text" name="created_by" id="created_by" value={{$user->name}}>
+                    <input type="hidden" type="text" name="user_id" id="user_id" value="{{$user->id}}">
+                    <input type="hidden" type="text" name="created_by" id="created_by" value="{{$user->name}}">
                 @endif
             @endforeach
 

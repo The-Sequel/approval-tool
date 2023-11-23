@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="grid">
-    {{-- @include('sections.table' , $table) --}}
     <div class="col-12">
         <table class="table">
             <thead>
@@ -89,7 +88,7 @@
                                 <p class="status-denied">Afgekeurd</p>
                             </td>
                         @endif
-                        
+
                         @if($task->approved_by == null)
                             <td>-</td>
                         @else

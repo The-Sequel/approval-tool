@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\User;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +11,7 @@ class CustomerController extends Controller
     public function index(){
 
         $customers = Customer::all();
-        
+
         return view('admin.customers.index', compact('customers'));
     }
 
@@ -31,7 +30,6 @@ class CustomerController extends Controller
             $fileName = $file->getClientOriginalName();
             $filePath = $file->storeAs('uploads', $fileName, 'public');
 
-            // $filePath = $file->storeAs('uploads', $fileName);
         } else {
             $filePath = null;
         }
@@ -48,7 +46,7 @@ class CustomerController extends Controller
             'kvk' => $request->kvk,
             'btw' => $request->btw,
         ]);
-       
+
         // Redirect the user
         return redirect('/admin/customers')->with('success', 'Klant is aangemaakt!');
     }
@@ -85,7 +83,7 @@ class CustomerController extends Controller
         }
 
         $customer->logo = $filePath;
-        
+
         $customer->update();
 
         return redirect('/admin/customers')->with('success', 'Klant is aangepast!');

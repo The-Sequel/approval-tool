@@ -69,17 +69,10 @@
                             </div>
                         @endif
                     @endif
-
-                    {{-- @if($task->images)
-                        @foreach($task->images as $image)
-                            <a href="{{asset('storage/' . $image->image)}}"><img src="{{asset('storage/' . $image->image)}}" style="width: 100%; height: 100%;"></a>
-                        @endforeach
-                        <a href="{{asset('storage/' . $task->image)}}"><img src="{{asset('storage/' . $task->image)}}" style="width: 100%; height: 100%;"></a>
-                    @endif --}}
                 </div>
             </div>
         </div>
-        
+
     @else
         <div class="col-4">
             <div class="task-information-card">
@@ -104,13 +97,6 @@
                             </div>
                         @endif
                     @endif
-
-                    {{-- @if($task->images)
-                        @foreach($task->images as $image)
-                            <a href="{{asset('storage/' . $image->image)}}"><img src="{{asset('storage/' . $image->image)}}" style="width: 100%; height: 100%;"></a>
-                        @endforeach
-                        <a href="{{asset('storage/' . $task->image)}}"><img src="{{asset('storage/' . $task->image)}}" style="width: 100%; height: 100%;"></a>
-                    @endif --}}
                 </div>
             </div>
         </div>

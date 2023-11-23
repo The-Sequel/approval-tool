@@ -9,7 +9,7 @@
         <h1 class="delete-title">Weet je het zeker?</h1>
         <p class="delete-text">Wil je echt deze klant verwijderen?</p>
         <button class="cancel-button" onclick="deleteCustomerPopup()">Annuleer</button>
-        <button class="delete-button" onclick="deleteCustomer()">Verwijder</button
+        <button class="delete-button" onclick="deleteCustomer()">Verwijder</button>
     </span>
 </div>
 

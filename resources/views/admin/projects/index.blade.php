@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="grid">
-    {{-- @include('sections.table' , $table) --}}
     <div class="col-12">
         <form style="margin-left: 270px;" action="{{route('admin.search.projects')}}" method="GET">
             @csrf
@@ -85,7 +84,7 @@
                             @endif
                         @endif
 
-                        
+
                         <td>
                             <p class="department">{{$project->department->title}}</p>
                         </td>

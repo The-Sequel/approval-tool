@@ -10,9 +10,7 @@
                 <p>{{$task->description}}</p>
                 <p><span>Deadline:</span> {{$task->deadline}}</p>
                 <p><span>Status:</span> {{$task->status}}</p>
-                {{-- @if($task->image)
-                    <a href="{{asset('storage/' . $task->image)}}"><img src="{{asset('storage/' . $task->image)}}" style="width: 50%; height: 100%;"></a>
-                @endif --}}
+
                 @if($task->images)
                     @php
                         $imagePaths = json_decode($task->images, true);
