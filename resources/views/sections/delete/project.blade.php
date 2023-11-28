@@ -9,7 +9,7 @@
         <h1 class="delete-title">Weet je het zeker?</h1>
         <p class="delete-text">Wil je echt dit project verwijderen? Hierbij verwijder je ook alle taken toegewezen aan het project.</p>
         <button class="cancel-button" onclick="deleteProjectPopup()">Annuleer</button>
-        <button class="delete-button" onclick="deleteProject()">Verwijder</button
+        <button class="delete-button" onclick="deleteProject()">Verwijder</button>
     </span>
 </div>
 

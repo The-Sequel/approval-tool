@@ -80,7 +80,6 @@
 
 <script>
     var roleSelect = document.getElementById('role_id');
-    // var customerSelect = document.getElementById('customer_id');
 
     roleSelect.addEventListener('change', function() {
         var selectedRoleId = this.value;

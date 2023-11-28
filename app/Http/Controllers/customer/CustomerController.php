@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\customer;
 
 use App\Models\Task;
-use App\Models\User;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
 

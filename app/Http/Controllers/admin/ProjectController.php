@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\Log;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Message;
@@ -11,13 +10,9 @@ use App\Models\Customer;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Projects\NewProjectMail;
-
 class ProjectController extends Controller
 {
     public function index(){
-        // $projects = Project::where('status', '!=', 'Afgerond')->get();
         $projects = Project::all();
 
         $users = User::where('deleted_at', null)->get();
@@ -31,13 +26,6 @@ class ProjectController extends Controller
         $departments = Department::all();
         return view('admin.projects.create', compact('customers', 'users', 'departments'));
     }
-
-    // public function index()
-    // {
-    //     $user = auth()->user();
-    //     $customers = Customer::all();
-    //     return view('project.index', compact('customers', 'user'));
-    // }
 
     public function store(Request $request){
         // $request->validate([
@@ -118,9 +106,9 @@ class ProjectController extends Controller
         if($request->status != null){
             $project->status = $request->status;
         }
-        
+
         $project->save();
-        
+
         return redirect('/admin/projects')->with('success', 'Project is aangepast!');
     }
 

@@ -6,7 +6,6 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Customer;
-use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -25,7 +24,7 @@ class SearchController extends Controller
                 $query->where('name', 'like', '%' . $request->search . '%');
             })
             ->get();
-    
+
         return view('admin.tasks.index', compact('tasks', 'users', 'normalUsers'));
     }
 

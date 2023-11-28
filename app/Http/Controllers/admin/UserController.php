@@ -14,47 +14,6 @@ class UserController extends Controller
     public function index(){
         $users = User::where('deleted_at', null)->get();
 
-        // $options_array = User::get()->toArray();;
-
-        // $tbody = [];
-        // foreach ($options_array as $key => $value) {
-        //     $tbody[$value['id']] = [
-        //         [
-        //             'field' => 'text',
-        //             'content' => $value['name'],
-        //         ],
-        //         [
-        //             'field' => 'text',
-        //             'content' => $value['email'],
-        //         ],
-        //         [
-        //             'field' => 'text',
-        //             // get department name
-        //             'content' => $value['department_id'] ? Department::find($value['department_id'])->title : '-',
-        //         ],
-        //         [
-        //             'field' => 'text',
-        //             'content' => $value['customer_id'] ? Customer::find($value['customer_id'])->name : '-',
-        //         ],
-        //         [
-        //             'field' => 'text',
-        //             'content' => $value['role_id'] ? Role::find($value['role_id'])->name : '',
-        //         ],
-        //     ];
-        // }
-
-        // $table = [
-        //     'thead' => [
-        //         'Gebruikers naam',
-        //         'Email',
-        //         'Afdeling',
-        //         'Klant',
-        //         'Rol',
-        //     ],
-
-        //     'tbody' => $tbody,
-        // ];
-
         return view('admin.users.index', compact('users'));
     }
 

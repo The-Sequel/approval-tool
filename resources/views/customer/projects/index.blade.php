@@ -31,7 +31,6 @@
             </thead>
             <tbody>
                 @foreach($projects as $project)
-                    {{-- <tr onclick="window.location.href='{{ route('customer.projects.show', ['project' => $project]) }}';"> --}}
                     <tr>
                         <td>{{$project->title}}</td>
                         <td>

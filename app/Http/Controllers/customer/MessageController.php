@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\customer;
 
 use App\Models\Message;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class MessageController extends Controller
