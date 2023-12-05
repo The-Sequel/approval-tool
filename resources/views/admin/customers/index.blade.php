@@ -3,14 +3,14 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
-        <form style="margin-left: 270px;" action="{{route('admin.search.customers')}}" method="GET">
+        <form class="search-form" action="{{route('admin.search.customers')}}" method="GET">
             @csrf
             @method('GET')
             <div class="search-form-group">
                 <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
             </div>
         </form>
-        <form style="margin-left: 270px;" action="{{route('admin.customers.index')}}" method="GET">
+        <form class="search-reset" action="{{route('admin.customers.index')}}" method="GET">
             @csrf
             @method('GET')
             <button>Reset</button>
@@ -28,22 +28,22 @@
             <tbody>
                 @foreach($customers as $customer)
                     <tr>
-                        <td>
+                        <td data-label="Klanten">
                             <p id="customer-name-{{$customer->id}}">{{$customer->name}}</p>
                         </td>
-                        <td><img src="{{ asset('storage/'.$customer->logo) }}" alt="{{$customer->name}}" width="50"></td>
+                        <td data-label="Logo"><img src="{{ asset('storage/'.$customer->logo) }}" alt="{{$customer->name}}" width="50"></td>
 
                         @if($customer->status == 'active')
-                            <td id="customer-status">
+                            <td data-label="Status" id="customer-status">
                                 <p class="status-active">Actief</p>
                             </td>
                         @else
-                            <td id="customer-status">
+                            <td data-label="Status" id="customer-status">
                                 <p class="status-inactive">Non-Actief</p>
                             </td>
                         @endif
 
-                        <td>
+                        <td data-label="Contact personen">
                             <div class="user-logo-main">
                                 @foreach($customer->users as $user)
                                     @if($user->deleted_at == null)
@@ -63,7 +63,7 @@
                                 @endforeach
                             </div>
                         </td>
-                        <td>
+                        <td data-label="Acties">
                             <div class="table-icons">
                                 <a class="table-icons-item" href="{{route('admin.customers.edit', $customer)}}"><span style="color: black;" class="material-icons">edit</span></a>
                                 <a class="table-icons-item" href="#" onclick="deleteCustomerPopup();"><span style="color: black;" class="material-icons">delete</span></a>
@@ -73,7 +73,7 @@
                 @endforeach
             </tbody>
         </table>
-        <form style="margin-left: 270px;" action="{{route('admin.customers.create')}}" method="GET">
+        <form class="create-button" action="{{route('admin.customers.create')}}" method="GET">
             @csrf
             @method('GET')
             <div class="form-group">

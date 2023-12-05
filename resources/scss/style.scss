@@ -6,6 +6,8 @@
 @import "sections/error.scss";
 @import "sections/success.scss";
 @import "sections/delete-popup.scss";
+@import "sections/mobile-sidebar.scss";
+@import "sections/search.scss";
 @import "customers/index.scss";
 @import "sections/form.scss";
 @import "admin/dashboard.scss";
@@ -22,6 +24,7 @@
 // RESPONSIVE 
 @media (max-width: 1400px) {
     @include dashboard--1400();
+    @include header--1400();
 }
 
 @media (max-width: 1200px) {
@@ -33,13 +36,18 @@
 }
 
 @media (max-width: 768px) {
-    @include dashboard--768();
     @include sidebar--768();
     @include header--768();
+    @include dashboard--768();
+    @include grid--768();
+    @include mobile-sidebar--768();
+    @include table--768();
+    @include search--768();
 }
 
 @media (max-width: 576px) {
     @include dashboard--576();
     @include sidebar--576();
     @include header--576();
+    @include mobile-sidebar--576();
 }

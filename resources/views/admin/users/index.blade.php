@@ -3,14 +3,14 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
-        <form style="margin-left: 270px;" action="{{route('admin.search.users')}}" method="GET">
+        <form class="search-form" action="{{route('admin.search.users')}}" method="GET">
             @csrf
             @method('GET')
             <div class="search-form-group">
                 <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
             </div>
         </form>
-        <form style="margin-left: 270px;" action="{{route('admin.users.index')}}" method="GET">
+        <form class="search-reset" action="{{route('admin.users.index')}}" method="GET">
             @csrf
             @method('GET')
             <button>Reset</button>
@@ -30,44 +30,44 @@
             <tbody>
                 @foreach($users as $user)
                     <tr>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
+                        <td data-label="Gebruikers naam">{{$user->name}}</td>
+                        <td data-label="Email">{{$user->email}}</td>
 
                         {{-- Status --}}
 
                         @if($user->status == 'active')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-completed">Actief</p>
                             </td>
                         @else
-                            <td>Inactief</td>
+                            <td data-label="Status">Inactief</td>
                         @endif
 
                         {{-- Department --}}
 
                         @if($user->department)
-                            <td>{{$user->department->title}}</td>
+                            <td data-label="Afdeling">{{$user->department->title}}</td>
                         @else
-                            <td>-</td>
+                            <td data-label="Afdeling">-</td>
                         @endif
 
                         {{-- Customer --}}
 
                         @if($user->customer)
-                            <td>{{$user->customer->name}}</td>
+                            <td data-label="Klant">{{$user->customer->name}}</td>
                         @else
-                            <td>-</td>
+                            <td data-label="Klant">-</td>
                         @endif
 
                         {{-- Role --}}
 
                         @if($user->role->name == 'admin')
-                            <td>Admin</td>
+                            <td data-label="Rol">Admin</td>
                         @else
-                            <td>Klant</td>
+                            <td data-label="Rol">Klant</td>
                         @endif
 
-                        <td>
+                        <td data-label="Acties">
                             <div class="table-icons">
                                 <a class="table-icons-item" href="{{route('admin.users.edit', $user)}}"><span style="color: black;" class="material-icons">edit</span></a>
                                 <a class="table-icons-item" href="#" onclick="deleteUserPopup();"><span style="color: black;" class="material-icons">delete</span></a>
@@ -77,7 +77,7 @@
                 @endforeach
             </tbody>
         </table>
-        <form style="margin-left: 270px;" action="{{route('admin.users.create')}}" method="GET">
+        <form class="create-button" action="{{route('admin.users.create')}}" method="GET">
             @csrf
             @method('GET')
             <div class="form-group">

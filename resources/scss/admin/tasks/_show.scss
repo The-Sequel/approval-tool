@@ -66,9 +66,8 @@
     }
 }
 
-/* .task-information-card{
-    width: 100%;
-    height: 256px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    margin-top: 25px;
-} */
+@mixin task-show--768(){
+    .grid{
+        margin-left: 0;
+    }
+}

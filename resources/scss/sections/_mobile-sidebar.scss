@@ -1,0 +1,82 @@
+#mobile-menu{
+    display: none;
+
+    #mobile-content{
+        display: none;
+        width: 100%;
+        background-color: #f2f2f2;
+        position: fixed;
+        left: 0;
+        bottom: 30px;
+        overflow-y: auto;
+
+        #item{
+            padding: 8px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            #projectCount,
+            #taskCount{
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background-color: red;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 13px;
+                margin-left: 10px;
+            }
+
+            li{
+                list-style-type: none;
+            }
+            
+            a{
+                margin-left: 5px;
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+
+    #mobile-bar{
+        position: fixed;
+        bottom: 0px;
+        left: 0;
+        padding: 5px 0;
+        width: 100%;
+        z-index: 999;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-around;
+        transition: bottom 0.5s ease-in-out;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+        svg{
+            &:first-of-type{
+                display: block;
+            }
+        }
+
+        svg{
+            &:last-child{
+                display: none;
+            }
+        }
+    }
+}
+
+@mixin mobile-sidebar--768() {
+    #mobile-menu{
+        display: block;
+    }
+}
+
+@mixin mobile-sidebar--576() {
+    #mobile-menu{
+        display: block;
+    }
+}

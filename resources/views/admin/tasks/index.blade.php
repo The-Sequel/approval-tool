@@ -4,20 +4,21 @@
 <div class="grid">
     <div class="col-12">
         <div class="filter-table">
-            <form style="margin-left: 270px;" action="{{route('admin.search.tasks')}}" method="GET">
+            <form class="search-form" action="{{route('admin.search.tasks')}}" method="GET">
                 @csrf
                 @method('GET')
                 <div class="search-form-group">
                     <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
                 </div>
             </form>
-            <form style="margin-left: 270px;" action="{{route('admin.tasks.index')}}" method="GET">
+            <form class="search-reset" action="{{route('admin.tasks.index')}}" method="GET">
                 @csrf
                 @method('GET')
                 <button>Reset</button>
             </form>
         </div>
-        <table class="table">
+
+        <table>
             <thead>
                 <tr>
                     <th>Taken</th>
@@ -26,17 +27,17 @@
                     <th>Deadline</th>
                     <th>Status</th>
                     <th>Akkoord door</th>
-                    <th>Gemaakt op:</th>
-                    <th>Bewerkt op:</th>
+                    <th>Gemaakt op</th>
+                    <th>Bewerkt op</th>
                     <th>Acties</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($tasks as $task)
                     <tr>
-                        <td>{{$task->title}}</a></td>
-                        <td>{{$task->customer->name}}</td>
-                        <td>
+                        <td data-label="Taken">{{$task->title}}</a></td>
+                        <td data-label="Klant">{{$task->customer->name}}</td>
+                        <td data-label="Persoon">
                             <div class="user-logo-main">
                                 @foreach($users as $user)
                                     @if(in_array($user->id, json_decode($task->assigned_to)))
@@ -57,7 +58,6 @@
                             </div>
                         </td>
 
-                        {{-- Deadline --}}
 
                         @php
                             $deadlineDate = null;
@@ -75,46 +75,46 @@
 
                         @if($task->deadline != null)
                             @if($daysDifference <= 5)
-                                <td>
+                                <td data-label="Deadline">
                                     <p class="deadline">{{ $deadlineDate }} 🔥</p>
                                 </td>
                             @else
-                                <td>
+                                <td data-label="Deadline">
                                     <p class="deadline">{{ $deadlineDate }}</p>
                                 </td>
                             @endif
                         @endif
 
                         @if($task->status == 'pending')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-pending">In afwachting</p>
                             </td>
                         @elseif($task->status == 'completed')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-completed">Afgerond</p>
                             </td>
                         @elseif($task->status == 'approved')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-approved">Akkoord</p>
                             </td>
                         @elseif($task->status == 'denied')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-denied">Afgekeurd</p>
                             </td>
                         @endif
 
                         @if($task->approved_by == null)
-                            <td>-</td>
+                            <td data-label="Akkoord door">-</td>
                         @else
                             @foreach($normalUsers as $user)
                                 @if($user->id == $task->approved_by)
-                                    <td>{{$user->name}}</td>
+                                    <td data-label="Akkoord door">{{$user->name}}</td>
                                 @endif
                             @endforeach
                         @endif
-                        <td>{{$task->created_at->format('d-m-Y')}}</td>
-                        <td>{{$task->updated_at->format('d-m-Y')}}</td>
-                        <td>
+                        <td data-label="Gemaakt op">{{$task->created_at->format('d-m-Y')}}</td>
+                        <td data-label="Bewerkt op">{{$task->updated_at->format('d-m-Y')}}</td>
+                        <td data-label="Acties">
                             <div class="table-icons">
                                 <a class="table-icons-item" href="{{route('admin.tasks.edit', $task)}}"><span style="color: black;" class="material-icons">edit</span></a>
                                 <a class="table-icons-item" href="#" onclick="event.preventDefault(); deleteTaskPopup();"><span style="color: black;" class="material-icons">delete</span></a>
@@ -131,7 +131,7 @@
     </div>
     <div class="col-12">
         <div class="create-button-table">
-            <form style="margin-left: 270px;" action='{{route('admin.tasks.create')}}' method="GET">
+            <form class="create-button" action='{{route('admin.tasks.create')}}' method="GET">
                 @csrf
                 @method('GET')
                 <div class="form-group">

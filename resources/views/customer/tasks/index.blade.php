@@ -3,12 +3,17 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
-        <form style="margin-left: 270px;" action="{{route('customer.search.tasks')}}" method="GET">
+        <form class="search-form" action="{{route('customer.search.tasks')}}" method="GET">
             @csrf
             @method('GET')
             <div class="search-form-group">
                 <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
             </div>
+        </form>
+        <form class="search-reset" action="{{route('customer.tasks.index')}}" method="GET">
+            @csrf
+            @method('GET')
+            <button>Reset</button>
         </form>
         <table class="table">
             <thead>
@@ -26,8 +31,8 @@
             <tbody>
                 @foreach($tasks as $task)
                     <tr>
-                        <td>{{$task->title}}</td>
-                        <td>
+                        <td data-label="Taken">{{$task->title}}</td>
+                        <td data-label="Personen">
                             <div class="user-logo-main">
                                 @foreach($users as $user)
                                     @if(in_array($user->id, json_decode($task->assigned_to)))
@@ -66,11 +71,11 @@
 
                         @if($task->deadline != null)
                             @if($daysDifference <= 5)
-                                <td>
+                                <td data-label="Deadline">
                                     <p class="deadline">{{ $deadlineDate }} 🔥</p>
                                 </td>
                             @else
-                                <td>
+                                <td data-label="Deadline">
                                     <p class="deadline">{{ $deadlineDate }}</p>
                                 </td>
                             @endif
@@ -80,19 +85,19 @@
                         {{-- Status --}}
 
                         @if($task->status == 'pending')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-pending">In afwachting</p>
                             </td>
                         @elseif($task->status == 'completed')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-completed">Afgerond</p>
                             </td>
                         @elseif($task->status == 'approved')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-approved">Akkoord</p>
                             </td>
                         @elseif($task->status == 'denied')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-denied">Afgekeurd</p>
                             </td>
                         @endif
@@ -100,15 +105,15 @@
                         {{-- Approved by --}}
 
                         @if($task->approved_by == null)
-                            <td>-</td>
+                            <td data-label="Akkoord door">-</td>
                         @else
                             @foreach($normalUsers as $user)
                                 @if($user->id == $task->approved_by)
-                                    <td>{{$user->name}}</td>
+                                    <td data-label="Akkoord door">{{$user->name}}</td>
                                 @endif
                             @endforeach
                         @endif
-                        <td>
+                        <td data-label="Gemaakt op">
                             <div class="timestamp-information">
                                 <p>{{date('d-m-Y', strtotime($task->created_at))}}</p>
                                 <span class="timestamp-information-content">
@@ -119,7 +124,7 @@
                                 </span>
                             </div>
                         </td>
-                        <td>
+                        <td data-label="Bewerkt op">
                             <div class="timestamp-information">
                                 <p>{{date('d-m-Y', strtotime($task->updated_at))}}</p>
                                 <span class="timestamp-information-content">
@@ -130,7 +135,7 @@
                                 </span>
                             </div>
                         </td>
-                        <td>
+                        <td data-label="Acties">
                             <div class="table-icons">
                                 <a class="table-icons-item" href="{{route('customer.tasks.show', $task)}}" target="_blank"><span style="color: black;" class="material-icons">open_in_new</span></a>
                                 @if($task->status == 'completed')

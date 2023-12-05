@@ -2,11 +2,15 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.flex{
+    margin-left: 270px;
+}
+
 .projects-button{
     margin-top: 20px;
     display: flex;
     align-items: center;
-    margin-left: 238px;
+    // margin-left: 238px;
 
     a{
         text-decoration: none;
@@ -24,7 +28,7 @@
     margin-top: 20px;
     display: flex;
     align-items: center;
-    margin-left: 264px;
+    // margin-left: 264px;
 
     a{
         text-decoration: none;
@@ -366,72 +370,69 @@
     to {opacity:1 ;}
 }
 
-
-
-// @media (max-width: 768px) {
-//     .card-container {
-//         width: 100%;
-//     }
-
-//     .dashboard-cards {
-//         justify-content: center;
-//     }
-
-//     .dashboard-cards .card {
-//         width: 100%;
-//     }
-// }
-
 // RESPONSIVE
 
 @mixin dashboard--1400() {
-    // .task-card {
-    //     background-color: black;
-    // }
+
 }
 
 @mixin dashboard--1200() {
-    // .task-card {
-    //     background-color: red;
-    // }
+    
 }
 
 @mixin dashboard--992() {
-    // .task-card {
-    //     background-color: yellow;
-    // }
+    
 }
 
 @mixin dashboard--768() {
+    .col-4{
+        width: 100%;
+    }
+
+    .flex{
+        .col-4{
+            .task-card{
+                width: 100%;
+                // background-color: black;
+            }
+
+            .project-card{
+                width: 100%;
+            }
+        }
+    }
+
+    .dashboard-cards{
+        .active-users-card,
+        .create-user-card,
+        .create-customer-card,
+        .questions-card,
+        .problem-card{
+            width: 100%;
+        }
+
+        .active-users-card,
+        .problem-card{
+            margin-bottom: 20px;
+        }
+    }
+
+    .projects-button,
+    .tasks-button{
+        justify-content: right;
+    }
+
     h2{
         margin-top: 20px;
         text-align: center;
     }
 
     .dashboard-cards{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .create-customer-card{
-        margin-top: 20px;
+        margin-top: 100px;
+        width: 100%;
     }
 }
 
 @mixin dashboard--576() {
-    h2{
-        margin-top: 20px;
-        text-align: center;
-    }
 
-    .dashboard-cards{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .create-customer-card{
-        margin-top: 20px;
-    }
 }

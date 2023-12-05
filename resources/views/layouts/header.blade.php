@@ -114,23 +114,9 @@
                 </span>
                 <span class="notification-content">
                     <div class="notification-content-data">
-                        <p>Deze functie is nog niet beschikbaar</p>
-                        {{-- @dd($messages) --}}
-                        {{-- @if($messages != null)
-                            @foreach($messages as $message)
-                                @if($user->role_id == 2)
-                                    @if($message->task_id != null)
-                                        <p><a class="notification-item" href="{{route('customer.tasks.show', $message->task_id)}}">{{ date('d F Y', strtotime($message->created_at))}}: {{$message->name}}</a></p>
-                                    @elseif($message->project_id)
-                                        <p><a class="notification-item" href="{{route('customer.projects.show', $message->project_id)}}">{{ date('d F Y', strtotime($message->created_at))}}: {{$message->name}}</a></p>
-                                    @endif
-                                @else
-                                    
-                                @endif
-                            @endforeach
-                        @else
-                            <p>Geen nieuwe berichten</p>
-                        @endif --}}
+                        @foreach($messages as $message)
+                            
+                        @endforeach
                     </div>
                 </span>
             </div>

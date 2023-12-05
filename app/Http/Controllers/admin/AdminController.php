@@ -17,7 +17,7 @@ class AdminController extends Controller
         $customers = Customer::all();
         $projects = Project::orderBy('created_at', 'desc')->take(3)->get();
         $projectsCount = count(Project::all());
-        $tasks = Task::orderBy('created_at', 'desc')->take(3)->get();
+        $tasks = Task::orderBy('created_at', 'desc')->where('status', '=', 'pending')->take(3)->get();
         $users = User::where('deleted_at', null)->get();
         return view('admin.dashboard', compact('customers', 'projects', 'users', 'tasks', 'tasksWithDeadline', 'tasksWithDeadlineCount', 'projectsCount'));
     }

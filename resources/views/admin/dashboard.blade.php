@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="flex" style="margin-left: 270px;">
+<div class="flex">
     <div class="col-4">
         @if($tasksWithDeadlineCount == 0)
             <h2>Taken in brand <span style="color: grey;">(0)</span>🔥</h2>

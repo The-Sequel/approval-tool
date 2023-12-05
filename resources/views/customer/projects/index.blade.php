@@ -3,14 +3,14 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
-        <form style="margin-left: 270px;" action="{{route('customer.search.projects')}}" method="GET">
+        <form class="search-form" action="{{route('customer.search.projects')}}" method="GET">
             @csrf
             @method('GET')
             <div class="search-form-group">
                 <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
             </div>
         </form>
-        <form style="margin-left: 270px;" action="{{route('customer.projects.index')}}" method="GET">
+        <form class="search-reset" action="{{route('customer.projects.index')}}" method="GET">
             @csrf
             @method('GET')
             <button>Reset</button>
@@ -32,8 +32,8 @@
             <tbody>
                 @foreach($projects as $project)
                     <tr>
-                        <td>{{$project->title}}</td>
-                        <td>
+                        <td data-label="Projecten">{{$project->title}}</td>
+                        <td data-label="Personen">
                             <div class="user-logo-main">
                                 @foreach($project->customer->users as $user)
                                     @if($user->deleted_at == null)
@@ -72,45 +72,45 @@
 
                         @if($project->deadline != null)
                             @if($daysDifference <= 5)
-                                <td>
+                                <td data-label="Deadline">
                                     <p class="deadline">{{ $deadlineDate }} 🔥</p>
                                 </td>
                             @else
-                                <td>
+                                <td data-label="Deadline">
                                     <p class="deadline">{{ $deadlineDate }}</p>
                                 </td>
                             @endif
                         @endif
 
-                        <td>
+                        <td data-label="Afdeling">
                             <p class="department">{{$project->department->title}}</p>
                         </td>
 
                         @if($project->status == 'pending')
-                            <td>
+                            <td data-label="status">
                                 <p class="status-pending">In afwachting</p>
                             </td>
                         @elseif($project->status == 'completed')
-                            <td>
+                            <td data-label="status">
                                 <p class="status-completed">Afgerond</p>
                             </td>
                         @elseif($project->status == 'approved')
-                            <td>
+                            <td data-label="status">
                                 <p class="status-approved">Akkoord</p>
                             </td>
                         @elseif($project->status == 'declined')
-                            <td>
+                            <td data-label="status">
                                 <p class="status-denied">Afgekeurd</p>
                             </td>
                         @endif
                         @if($project->approved_by == null)
-                            <td>-</td>
+                            <td data-label="Akkoord door">-</td>
                         @else
-                            <td>{{$project->approved_by}}</td>
+                            <td data-label="Akkoord door">{{$project->approved_by}}</td>
                         @endif
-                        <td>{{date('d-m-Y', strtotime($project->created_at))}}</td>
-                        <td>{{date('d-m-Y', strtotime($project->updated_at))}}</td>
-                        <td>
+                        <td data-label="Gemaakt op">{{date('d-m-Y', strtotime($project->created_at))}}</td>
+                        <td data-label="Bewerkt op">{{date('d-m-Y', strtotime($project->updated_at))}}</td>
+                        <td data-label="Acties">
                             <div>
                                 <a class="table-icons-item" href="{{route('customer.projects.show', $project)}}"><span style="color: black;" class="material-icons">open_in_new</span></a>
                             </div>

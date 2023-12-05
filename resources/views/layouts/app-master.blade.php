@@ -16,6 +16,7 @@
         <div class="content">
             @yield('content')
         </div>
+        @include('layouts.mobile-sidebar')
         @include('layouts.footer')
     </div>
 </body>
