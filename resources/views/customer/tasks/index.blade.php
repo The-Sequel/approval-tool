@@ -137,9 +137,9 @@
                         </td>
                         <td data-label="Acties">
                             <div class="table-icons">
-                                <a class="table-icons-item" href="{{route('customer.tasks.show', $task)}}" target="_blank"><span style="color: black;" class="material-icons">open_in_new</span></a>
+                                <a class="table-icons-item" href="{{route('customer.tasks.show', $task)}}"><span style="color: black;" class="material-icons">open_in_new</span></a>
                                 @if($task->status == 'completed')
-                                    <a class="table-icons-item" href="{{route('customer.tasks.approve', $task)}}" target="_blank"><span style="color: black;" class="material-icons">check_circle</span></a>
+                                    <a class="table-icons-item" href="{{route('customer.tasks.approve', $task)}}"><span style="color: black;" class="material-icons">check_circle</span></a>
                                 @endif
                             </div>
                         </td>

@@ -60,7 +60,7 @@
 
 .search-form-group{
     .search-form-input{
-        width: 10%;
+        width: 50%;
         padding: 12px;
         margin: 8px 0;
         display: inline-block;
@@ -80,6 +80,18 @@
         border-radius: 5px;
         border: none;
     }
+}
+
+@mixin form--1400(){
+    
+}
+
+@mixin form--1200(){
+
+}
+
+@mixin form--992(){
+
 }
 
 @mixin form--768(){
