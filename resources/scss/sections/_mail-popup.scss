@@ -3,7 +3,7 @@
     display: inline-block;
 
     .text-container{
-        visibility: visible;
+        visibility: hidden;
         width: 350px;
         min-height: 200px;
         background-color: white;
@@ -39,20 +39,14 @@
 
         #buttons{
             margin-top: 80px;
+            margin-bottom: 15px;
 
             button{
                 padding: 12px;
                 color: white;
                 border: none;
                 border-radius: 5px;
-
-                &:first-child{
-                    background-color: #4caf50;
-                }
-
-                &:last-child{
-                    background-color: #f44336;
-                }
+                background-color: #4caf50;
             }
         }
     }

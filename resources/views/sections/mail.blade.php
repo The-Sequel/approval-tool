@@ -14,8 +14,7 @@
         </div>
 
         <div id="buttons">
-            <button onclick="event.preventDefault(); finishTask();">Voltooi</button>
-            <button onclick="event.preventDefault(); closeMailPopup();">Doorgaan zonder</button>
+            <button onclick="event.preventDefault(); finishTask();">Verzenden</button>
         </div>
     </div>
 </div>
@@ -24,10 +23,18 @@
 
 <script>
     function finishTask(){
-        // get the button the user clicked
-        let button = event.target;
-        console.log(button);
+        let form = document.getElementById('finish-form');
+        let input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'send_mail');
+        input.setAttribute('value', 'true');
+        form.appendChild(input);
 
-        // document.getElementById('finish-form').submit();
+        document.getElementById('finish-form').submit();
+    }
+
+    function openMailPopup(){
+        // set visibility to visible of mail popup
+        document.querySelector('.mail-popup').style.visibility = 'visible';
     }
 </script>

@@ -33,7 +33,7 @@
                 @endforeach --}}
             {{-- </div> --}}
             <div class="form-group" id="form-group">
-                <button onclick="event.preventDefault(); ">Voltooi taak</button>
+                <button onclick="event.preventDefault(); openMailPopup();">Voltooi taak</button>
                 <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
             </div>
         </form>
@@ -108,6 +108,12 @@
         </div>
     @endif
 </div>
+
+<script>
+    function openMailPopup(){
+        document.querySelector('.mail-popup .text-container').style.visibility = 'visible';
+    }
+</script>
 
 @include('sections.delete.task')
 

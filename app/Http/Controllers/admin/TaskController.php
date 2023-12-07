@@ -152,7 +152,7 @@ class TaskController extends Controller
 
         $task->image_completed = json_encode($filePaths);
         $task->description_completed = $request->description;
-        $task->assigned_users = json_encode($request->assigned_users);
+        // $task->assigned_users = json_encode($request->assigned_users);
         $task->date_completed = date('Y-m-d');
         $task->completed_by = Auth()->user()->id;
         $task->status = 'completed';
@@ -167,23 +167,24 @@ class TaskController extends Controller
         ]);
 
 
-        // Email
-        // if ($request->send_mail == 'on') {
-        //     $task = Task::find($task->id);
-        //     $assignedUsers = json_decode($task->assigned_users);
-
-        //     if ($assignedUsers) {
-        //         $users = User::where('deleted_at', null)->get();
-
-        //         foreach ($users as $user) {
-        //             foreach ($assignedUsers as $assignedUser) {
-        //                 if ((int) $user->id === (int) $assignedUser) {
-        //                     Mail::to($user->email)->send(new CompletedTaskMail($task));
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+        if($request->send_mail == "true"){
+            // if ($request->send_mail == 'on') {
+            //     $task = Task::find($task->id);
+            //     $assignedUsers = json_decode($task->assigned_users);
+    
+            //     if ($assignedUsers) {
+            //         $users = User::where('deleted_at', null)->get();
+    
+            //         foreach ($users as $user) {
+            //             foreach ($assignedUsers as $assignedUser) {
+            //                 if ((int) $user->id === (int) $assignedUser) {
+            //                     Mail::to($user->email)->send(new CompletedTaskMail($task));
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+        }
 
         // Message
         // Message::create([
