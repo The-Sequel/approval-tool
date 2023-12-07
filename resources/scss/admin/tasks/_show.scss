@@ -1,6 +1,6 @@
 .denied-card {
     width: 100%;
-    height: 256px;
+    min-height: 256px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-top: 25px;
     display: flex;
@@ -13,6 +13,17 @@
         .denied-card-reason-header {
             margin-bottom: 10px;
         }
+
+        .button-container{
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+
+            button{
+                
+            }
+        }
+
     }
 }
 
