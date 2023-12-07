@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid" style="margin-left: 270px;">
+<div class="grid">
     @if($task->image != null)
         <div class="col-8">
             <form action="{{route('admin.tasks.update', $task)}}" method="POST" enctype="multipart/form-data">
@@ -53,7 +53,7 @@
                     @endforeach
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="form-group">
                     <button>Opslaan</button>
                     <button class="delete" onclick="event.preventDefault(); deleteTask();">Verwijder taak</button>
                 </div>
@@ -114,7 +114,7 @@
                     @endforeach
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="form-group">
                     <button>Opslaan</button>
                     <button class="delete" onclick="event.preventDefault(); deleteTask();">Verwijder taak</button>
                 </div>

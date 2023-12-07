@@ -38,6 +38,7 @@
                     <th>Deadline</th>
                     <th>Status</th>
                     <th>Akkoord door</th>
+                    <th>Gemaakt op:</th>
                     <th>Bewerkt op:</th>
                     <th>Acties</th>
                 </tr>
@@ -45,8 +46,8 @@
             <tbody>
                 @foreach($tasks as $task)
                     <tr onclick="redirectToTaskPage('{{ $task->status }}', '{{ $task->id }}')">
-                        <td>{{$task->title}}</td>
-                        <td>
+                        <td data-label="Taken">{{$task->title}}</td>
+                        <td data-label="Personen">
                             <div class="user-logo-main">
                                 @foreach($users as $user)
                                     @if(in_array($user->id, json_decode($task->assigned_to)))
@@ -85,11 +86,11 @@
 
                         @if($task->deadline != null)
                             @if($daysDifference <= 5)
-                                <td>
+                                <td data-label="Deadline">
                                     <p class="deadline">{{ $deadlineDate }} 🔥</p>
                                 </td>
                             @else
-                                <td>
+                                <td data-label="Deadline">
                                     <p class="deadline">{{ $deadlineDate }}</p>
                                 </td>
                             @endif
@@ -98,33 +99,34 @@
 
                         
                         @if($task->status == 'pending')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-pending">In afwachting</p>
                             </td>
                         @elseif($task->status == 'completed')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-completed">Afgerond</p>
                             </td>
                         @elseif($task->status == 'approved')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-approved">Akkoord</p>
                             </td>
                         @elseif($task->status == 'denied')
-                            <td>
+                            <td data-label="Status">
                                 <p class="status-denied">Afgekeurd</p>
                             </td>
                         @endif
                         @if($task->approved_by == null)
-                            <td>-</td>
+                            <td data-label="Akkoord door">-</td>
                         @else
                             @foreach($normalUsers as $user)
                                 @if($user->id == $task->approved_by)
-                                    <td>{{$user->name}}</td>
+                                    <td data-label="Akkoord door">{{$user->name}}</td>
                                 @endif
                             @endforeach
                         @endif
-                        <td>{{$task->updated_at}}</td>
-                        <td>
+                        <td data-label="Gemaakt op">{{$task->created_at}}</td>
+                        <td data-label="Bewerkt op">{{$task->updated_at}}</td>
+                        <td data-label="Acties">
                             <div class="table-icons">
                                 <a class="table-icons-item" href="{{route('customer.tasks.show', $task)}}" target="_blank"><span style="color: black;" class="material-icons">open_in_new</span></a>
                                 @if($task->status == 'completed')

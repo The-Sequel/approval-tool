@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid" style="margin-left: 270px;">
+<div class="grid">
     <div class="col-12">
         <form action="{{route('admin.customers.update', $customer)}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -64,7 +64,7 @@
                 <input class="form-control" type="text" name="btw_number" id="btw_number" placeholder="Optioneel" value="{{$customer->btw}}">
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="form-group">
                 <button>Bewerk klant</button>
                 <button class="delete" onclick="event.preventDefault(); deleteCustomerPopup();">Verwijder klant</button>
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid" style="margin-left: 270px;">
+<div class="grid">
     <div class="col-12">
         <form action="{{route('admin.projects.update', $project)}}" method="POST">
             @csrf
@@ -35,7 +35,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="form-group">
                 <button>Opslaan</button>
                 <button class="delete" onclick="event.preventDefault(); deleteProject();">Verwijder project</button>
             </div>

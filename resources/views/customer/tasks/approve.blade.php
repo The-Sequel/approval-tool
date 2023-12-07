@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid" style="margin-left: 270px;">
+<div class="grid">
     <div class="col-6">
         {{-- <h1>{{$task->title}}</h1> --}}
         <div class="task-information">

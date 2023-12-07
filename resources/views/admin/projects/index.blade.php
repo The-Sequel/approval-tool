@@ -110,7 +110,7 @@
                             <div class="table-icons">
                                 <a class="table-icons-item" href="{{route('admin.projects.edit', $project)}}"><span style="color: black;" class="material-icons">edit</span></a>
                                 <a class="table-icons-item" href="#" onclick="event.preventDefault(); deleteProjectPopup();"><span style="color: black;" class="material-icons">delete</span></a>
-                                <a class="table-icons-item" href="{{route('admin.projects.show', $project)}}" target="_blank"><span style="color: black;" class="material-icons">open_in_new</span></a>
+                                <a class="table-icons-item" href="{{route('admin.projects.show', $project)}}"><span style="color: black;" class="material-icons">open_in_new</span></a>
                             </div>
                         </td>
                     </tr>

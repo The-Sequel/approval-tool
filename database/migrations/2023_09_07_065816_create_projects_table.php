@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->enum('status', ['approved', 'denied', 'pending', 'completed'])->default('pending');
             $table->string('created_by');
             $table->string('approved_by')->nullable();

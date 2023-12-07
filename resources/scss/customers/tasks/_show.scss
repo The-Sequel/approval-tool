@@ -41,3 +41,16 @@
         }
     }
 }
+
+@mixin customer-task-show--768(){
+    .task-card-information{
+        .task-card-information-body{
+            p{
+                &:nth-child(3){
+                    width: auto;
+                    height: auto;
+                }
+            }
+        }
+    }
+}

@@ -29,10 +29,17 @@
 // }
 
 .task-information-description{
-    height: 100px;
-    width: 350px;
+    // height: 100px;
+    // width: 350px;
 }
 
 .task-information-completed_by{
     margin-top: 20px;
+}
+
+@mixin approve-task--768(){
+    .col-6{
+        grid-column: span 12;
+        flex: 0 0 calc(100% / 12 * 12);
+    }
 }

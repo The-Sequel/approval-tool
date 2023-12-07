@@ -43,6 +43,11 @@
     @include mobile-sidebar--768();
     @include table--768();
     @include search--768();
+    @include form--768();
+    @include task-show--768();
+    
+    @include customer-task-show--768();
+    @include approve-task--768();
 }
 
 @media (max-width: 576px) {

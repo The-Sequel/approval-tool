@@ -44,7 +44,7 @@
 
     button{
         background-color: #4CAF50;
-        width: 15%;
+        // width: 15%;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
@@ -59,7 +59,6 @@
 }
 
 .search-form-group{
-    
     .search-form-input{
         width: 10%;
         padding: 12px;
@@ -71,6 +70,29 @@
 
         &:focus{
             outline: none;
+        }
+    }
+}
+
+.search-reset{
+    button{
+        padding: 8px 15px;
+        border-radius: 5px;
+        border: none;
+    }
+}
+
+@mixin form--768(){
+    .form-group{
+        button{
+            width: 100%;
+        }
+    }
+
+    #form-group{
+        display: flex;
+        button{
+            width: 50%;
         }
     }
 }

@@ -321,8 +321,9 @@
 
 .popup .popuptext {
     visibility: hidden;
-    width: 350px;
-    height: 270px;
+    // width: 350px;
+    height: auto;
+    min-height: 270px;
     background-color: white;
     box-shadow: 0 0 5px #999;
     color: black;
@@ -373,7 +374,13 @@
 // RESPONSIVE
 
 @mixin dashboard--1400() {
-
+    #customer-dashboard > .col-4{
+        &:nth-child(1),
+        &:nth-child(2){
+            grid-column: span 6;
+            flex: 0 0 calc(100% / 12 * 6);
+        }
+    }
 }
 
 @mixin dashboard--1200() {

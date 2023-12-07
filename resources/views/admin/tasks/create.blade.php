@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid" style="margin-left: 270px;">
+<div class="grid">
     <div class="col-12">
         <form action="{{route('admin.tasks.store')}}" method="POST" enctype="multipart/form-data">
             @csrf

@@ -39,7 +39,7 @@
             }
 
             &:nth-child(3){
-                width: 400px;
+                // width: 400px;
                 height: 250px;
                 margin-bottom: 10px;
                 padding: 10px;
@@ -67,7 +67,9 @@
 }
 
 @mixin task-show--768(){
-    .grid{
-        margin-left: 0;
+    .col-8,
+    .col-4{
+        grid-column: span 12;
+        flex: 0 0 calc(100% / 12 * 12);
     }
 }

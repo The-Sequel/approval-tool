@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid" style="margin-left: 270px;">
+<div class="grid">
     <div class="col-8">
         <form action="{{route('admin.tasks.finish', $task)}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -29,7 +29,7 @@
                     @endif
                 @endforeach
             </div>
-            <div class="form-group">
+            <div class="form-group" id="form-group">
                 <button>Voltooi taak</button>
                 <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
             </div>
@@ -63,7 +63,7 @@
                             <div class="image-gallery">
                                 @foreach($imagesArray as $image)
                                     <a href="{{ asset('storage/' . $image) }}">
-                                        <img src="{{ asset('storage/' . $image) }}" style="width: 70%; height: auto; margin-bottom: 10px;">
+                                        <img src="{{ asset('storage/' . $image) }}" style="width: 50%; height: auto; margin-bottom: 10px;">
                                     </a>
                                 @endforeach
                             </div>
@@ -91,7 +91,7 @@
                             <div class="image-gallery">
                                 @foreach($imagesArray as $image)
                                     <a href="{{ asset('storage/' . $image) }}">
-                                        <img src="{{ asset('storage/' . $image) }}" style="width: 70%; height: auto; margin-bottom: 10px;">
+                                        <img src="{{ asset('storage/' . $image) }}" style="width: 50%; height: auto; margin-bottom: 10px;">
                                     </a>
                                 @endforeach
                             </div>

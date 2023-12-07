@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid" style="margin-left: 270px;">
+<div class="grid">
     <div class="col-12">
         <form action="{{route('admin.customers.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -52,8 +52,10 @@
             </div>
                 
     
-            <div class="form-group">
-                <button>Maak nieuwe klant</button>
+            <div class="create-button">
+                <div class="form-group">
+                    <button>Maak nieuwe klant</button>
+                </div>
             </div>
         </form>
     </div>

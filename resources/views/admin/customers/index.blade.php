@@ -88,7 +88,7 @@
 
         {{-- Dit is een optie maar dit hoeft niet gebruikt te worden dit is nog in de maak --}}
 
-        <div style="margin-left: 270px;" class="create-project">
+        {{-- <div style="margin-left: 270px;" class="create-project">
             <span class="create-project-content">
                 <div class="create-project-content-data">
                     <form action="{{route('admin.customers.store')}}" method="POST" enctype="multipart/form-data" id="customer-form">
@@ -143,7 +143,7 @@
                     </form>
                 </div>
             </span>
-        </div>
+        </div> --}}
     </div>
 </div>
 
