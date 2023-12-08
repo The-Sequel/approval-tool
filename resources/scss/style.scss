@@ -7,6 +7,7 @@
 @import "sections/success.scss";
 @import "sections/delete-popup.scss";
 @import "sections/mobile-sidebar.scss";
+@import "sections/mail-popup.scss";
 @import "customers/index.scss";
 @import "sections/form.scss";
 @import "admin/dashboard.scss";
@@ -28,6 +29,8 @@
 
 @media (max-width: 1200px) {
     @include dashboard--1200();
+    @include header--1200();
+    @include table--1200();
 }
 
 @media (max-width: 992px) {

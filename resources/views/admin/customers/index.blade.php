@@ -81,10 +81,13 @@
             </div>
         </form>
 
-        <form id="delete-form-customer" action="{{route('admin.customers.destroy', $customer)}}" method="POST">
-            @csrf
-            @method('DELETE')
-        </form>
+        @if(count($customers) > 0)
+            <form id="delete-form-customer" action="{{route('admin.customers.destroy', $customer)}}" method="POST">
+                @csrf
+                @method('DELETE')
+            </form>
+        @endif
+
 
         {{-- Dit is een optie maar dit hoeft niet gebruikt te worden dit is nog in de maak --}}
 

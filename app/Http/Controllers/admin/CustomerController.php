@@ -65,7 +65,7 @@ class CustomerController extends Controller
     public function update(Customer $customer, Request $request)
     {
         $customer->name = $request->name;
-        $customer->debtor_number = $request->debtor_number;
+        $customer->debtor_number = 1234;
         $customer->status = $request->status;
         $customer->address = $request->address;
         $customer->postal_code = $request->postal_code;
