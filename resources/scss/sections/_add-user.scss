@@ -1,4 +1,4 @@
-.mail-popup{
+.add-user-popup{
     position: relative;
     display: inline-block;
 
@@ -37,17 +37,17 @@
             margin-top: 20px;
         }
 
-        #buttons{
-            margin-top: 80px;
-            margin-bottom: 15px;
-
-            button{
-                padding: 12px;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                background-color: #4caf50;
-            }
+        button{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            cursor: pointer;
         }
 
         .close-button{
@@ -56,11 +56,5 @@
             right: 0;
             padding: 12px;
         }
-    }
-
-    .show{
-        visibility: visible;
-        -webkit-animation: fadeIn 0.5s;
-        animation: fadeIn 0.5s;
     }
 }
