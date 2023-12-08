@@ -20,7 +20,8 @@ return new class extends Migration
             $table->foreignId('customer_id')
                 ->nullable()
                 ->references('id')
-                ->on('customers');
+                ->on('customers')
+                ->onDelete('cascade');
             $table->foreignId('project_id')
                 ->nullable()
                 ->references('id')

@@ -21,5 +21,14 @@ class UserSeeder extends Seeder
             'role_id' => 1,
             'color' => 'green'
         ]);
+
+        User::create([
+            'name' => 'Silvin Customer',
+            'email' => 'stage@thesequel.nl',
+            'password' => bcrypt('password'),
+            'role_id' => 2,
+            'customer_id' => 1,
+            'color' => 'green'
+        ]);
     }
 }

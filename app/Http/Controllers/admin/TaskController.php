@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Models\Project;
 use App\Models\Customer;
 use App\Models\Department;
+use App\Models\Reason;
 use Illuminate\Http\Request;
 use App\Mail\Tasks\NewTaskMail;
 use App\Http\Controllers\Controller;
@@ -127,7 +128,8 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         $users = User::where('deleted_at', null)->get();
-        return view('admin.tasks.show', compact('task', 'users'));
+        $reasons = Reason::where('task_id', $task->id)->get();
+        return view('admin.tasks.show', compact('task', 'users', 'reasons'));
     }
 
     public function complete(Task $task)

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->foreignId('customer_id')->nullable()
                 ->references('id')
-                ->on('customers');
+                ->on('customers')
+                ->onDelete('set null');
             $table->foreignId('role_id')->nullable()
                 ->references('id')
                 ->on('roles');

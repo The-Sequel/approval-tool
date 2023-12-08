@@ -5,6 +5,7 @@ namespace App\Http\Controllers\customer;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Message;
+use App\Models\Reason;
 use Illuminate\Http\Request;
 use App\Mail\Tasks\DeniedTaskMail;
 use App\Http\Controllers\Controller;
@@ -72,9 +73,15 @@ class TaskController extends Controller
                 return redirect()->route('customer.tasks.index')->with('success', 'Je hebt de taak goedgekeurd!');
 
         } else {
+            Reason::create([
+                'task_id' => $task->id,
+                'reason' => $request->message,
+            ]);
+
             $task->update([
                 'status' => 'denied',
-                'reason' => $request->message
+                // 'reason' => $request->message,
+                // 'reasons' => json_encode(['reason' => $request->message]),
             ]);
 
             Message::create([

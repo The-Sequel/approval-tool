@@ -1,4 +1,4 @@
-<div class="mail-popup">
+<div class="mail-popup" id="mail-popup">
     <div class="text-container">
         <div id="title">
             <h2>Stuur mail naar gebruikers</h2>
@@ -33,8 +33,12 @@
         document.getElementById('finish-form').submit();
     }
 
-    function openMailPopup(){
-        // set visibility to visible of mail popup
-        document.querySelector('.mail-popup').style.visibility = 'visible';
-    }
+    // document.addEventListener('click', function(event) {
+    //     let mailPopup = document.querySelector('.mail-popup .text-container');
+        
+    //     // Check if the click is outside the popup
+    //     if (!mailPopup.contains(event.target)) {
+    //         mailPopup.style.visibility = 'hidden';
+    //     }
+    // });
 </script>

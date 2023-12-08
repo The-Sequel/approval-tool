@@ -17,21 +17,6 @@
 
             @include('sections.mail')
 
-            {{-- <div style="margin-bottom: 20px;">
-                <p style="margin-bottom: 10px">Verstuur mail</p>
-                <input type="checkbox" name="send_mail" id="send_mail">
-                <label for="send_mail">Stuur mail</label>
-            </div> --}}
-            {{-- <div> --}}
-
-                {{-- <p style="margin-bottom: 10px;">Gebruikers voor mail</p>
-                @foreach($users as $user)
-                    @if($task->customer == $user->customer)
-                        <input type="checkbox" id="user_{{$user->id}}" name="assigned_users[]" value="{{$user->id}}">
-                        <label for="user_{{$user->id}}">{{$user->name}}</label><br>
-                    @endif
-                @endforeach --}}
-            {{-- </div> --}}
             <div class="form-group" id="form-group">
                 <button onclick="event.preventDefault(); openMailPopup();">Voltooi taak</button>
                 <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
@@ -47,7 +32,9 @@
             <div class="denied-card">
                 <div class="denied-card-reason">
                     <h3 class="denied-card-reason-header">Reden(en) van afwijzing</h3>
-                    <p>{{$task->reason}}</p>
+                    @foreach($reasons as $reason)
+                        <p>{{$reason->reason}}</p>
+                    @endforeach
                     <div class="button-container">
                         <button onclick="">Toon meer</button>
                     </div>
@@ -110,6 +97,10 @@
 </div>
 
 <script>
+    // function openMailPopup(){
+    //     document.querySelector('.mail-popup .text-container').style.visibility = 'visible';
+    // }
+
     function openMailPopup(){
         document.querySelector('.mail-popup .text-container').style.visibility = 'visible';
     }

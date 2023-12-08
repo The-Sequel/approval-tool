@@ -34,4 +34,9 @@ class Task extends Model
     {
         return $this->hasMany(Message::class);
     }
+
+    public function reasons()
+    {
+        return $this->hasMany(Reason::class);
+    }
 }

@@ -49,6 +49,8 @@ return new class extends Migration
                 ->on('users');
             $table->json('assigned_users')->nullable();
             $table->text('reason')->nullable();
+
+            $table->json('reasons')->nullable();
             $table->timestamps();
         });
     }
