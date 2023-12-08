@@ -19,9 +19,6 @@
             justify-content: center;
             margin-top: 10px;
 
-            button{
-                
-            }
         }
 
     }
@@ -52,11 +49,10 @@
             &:nth-child(3){
                 // width: 400px;
                 // height: 250px;
-                min-height: 250px;
                 margin-bottom: 10px;
                 padding: 10px;
                 border: 1px solid #ccc;
-                // overflow:scroll;
+                overflow:scroll;
             }
 
             &:nth-child(4){
