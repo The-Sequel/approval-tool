@@ -112,21 +112,16 @@
 }
 
 @mixin header--1400() {
-    .header{
-        width: 78%;
-    }
+
 }
 
 @mixin header--1200(){
-    .header{
-        width: 75%;
-    }
+
 }
 
 
 @mixin header--768() {
     .header{
-        width: 95%;
         margin-left: 18px;
 
         h1{
@@ -136,7 +131,5 @@
 }
 
 @mixin header--576() {
-    .header{
-        width: 100%;
-    }
+
 }

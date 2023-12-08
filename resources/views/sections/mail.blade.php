@@ -1,5 +1,9 @@
 <div class="mail-popup" id="mail-popup">
     <div class="text-container">
+        <span onclick="closeFinishTaskPopup()" class="material-symbols-outlined close-button">
+            close
+        </span>
+
         <div id="title">
             <h2>Stuur mail naar gebruikers</h2>
         </div>
@@ -22,6 +26,10 @@
 {{-- Script --}}
 
 <script>
+    function closeFinishTaskPopup(){
+        document.querySelector('.mail-popup .text-container').style.visibility = 'hidden';
+    }
+
     function finishTask(){
         let form = document.getElementById('finish-form');
         let input = document.createElement('input');

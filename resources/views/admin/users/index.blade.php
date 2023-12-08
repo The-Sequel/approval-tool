@@ -84,10 +84,13 @@
                 <button>Maak nieuwe gebruiker</button>
             </div>
         </form>
-        <form id="delete-form-user" action="{{route('admin.users.destroy', $user)}}" method="POST">
-            @csrf
-            @method('DELETE')
-        </form>
+
+        @if(count($users) > 0)
+            <form id="delete-form-user" action="{{route('admin.users.destroy', $user)}}" method="POST">
+                @csrf
+                @method('DELETE')
+            </form>
+        @endif
     </div>
 </div>
 
