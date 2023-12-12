@@ -113,11 +113,15 @@
                     </svg>
                 </span>
                 <span class="notification-content">
-                    <div class="notification-content-data">
-                        @foreach($messages as $message)
-                            
-                        @endforeach
-                    </div>
+                    <h3>Meldingen</h3>
+                    <div class="border"></div>
+                    @foreach($messages as $message)
+                        <div class="notification-content-data">
+                            <div id="header-container">
+                                {{ $message }}
+                            </div>
+                        </div>
+                    @endforeach
                 </span>
             </div>
             <p style="background-color: {{ Auth::user()->color }};" class="user-image">{{$firstLetter}}</p>

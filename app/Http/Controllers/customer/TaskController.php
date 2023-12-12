@@ -41,24 +41,27 @@ class TaskController extends Controller
                 'approved_by' => auth()->user()->id,
             ]);
 
-            $project = $task->project()->get()->first();
-
-            // check if all of the tasks of the project are approved
-            $tasks = Task::where('project_id', $project->id)->get();
-
-            $allApproved = true;
-
-            foreach($tasks as $task){
-                if($task->status != 'approved'){
-                    $allApproved = false;
+            if($task->project_id != null) {
+                $project = $task->project()->get()->first();
+    
+                // check if all of the tasks of the project are approved
+                $tasks = Task::where('project_id', $project->id)->get();
+    
+                $allApproved = true;
+    
+                foreach($tasks as $task){
+                    if($task->status != 'approved'){
+                        $allApproved = false;
+                    }
+                }
+    
+                if($allApproved){
+                    $project->update([
+                        'status' => 'approved'
+                    ]);
                 }
             }
 
-            if($allApproved){
-                $project->update([
-                    'status' => 'approved'
-                ]);
-            }
 
             Message::create([
                 'user_id' => auth()->user()->id,

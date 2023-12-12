@@ -27,7 +27,7 @@
             @method('DELETE')
         </form>
     </div>
-    @if($task->status == 'denied')
+    @if(count($reasons) > 0)
         <div class="col-4">
             <div class="denied-card">
                 <div class="denied-card-reason">
