@@ -386,7 +386,14 @@
 }
 
 @mixin dashboard--1200() {
-    
+    #admin-dashboard{
+        .col-4{
+            &:nth-child(1){
+                grid-column: span 12;
+                flex: 0 0 calc(100% / 12 * 12);
+            }
+        }
+    }
 }
 
 @mixin dashboard--992() {

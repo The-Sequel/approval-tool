@@ -37,7 +37,7 @@
 
                         @if($user->status == 'active')
                             <td data-label="Status">
-                                <p class="status-completed">Actief</p>
+                                <p class="status-active">Actief</p>
                             </td>
                         @else
                             <td data-label="Status">Inactief</td>
