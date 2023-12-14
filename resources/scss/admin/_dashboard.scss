@@ -378,8 +378,8 @@
         .col-4{
             &:nth-child(1),
             &:nth-child(2){
-                grid-column: span 6;
-                flex: 0 0 calc(100% / 12 * 6);
+                grid-column: span 5;
+                flex: 0 0 calc(100% / 12 * 5);
             }
         }   
     }
@@ -387,9 +387,21 @@
 
 @mixin dashboard--1200() {
     #admin-dashboard{
+        display: flex;
         .col-4{
             &:nth-child(1){
-                grid-column: span 12;
+                order: 1;
+                grid-column: span 4;
+                flex: 0 0 calc(100% / 12 * 12);
+            }
+            &:nth-child(2){
+                order: 3;
+                grid-column: span 4;
+                flex: 0 0 calc(100% / 12 * 12);
+            }
+            &:nth-child(3){
+                order: 2;
+                grid-column: span 4;
                 flex: 0 0 calc(100% / 12 * 12);
             }
         }
