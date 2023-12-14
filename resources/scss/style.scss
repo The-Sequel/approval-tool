@@ -27,6 +27,7 @@
 @media (max-width: 1400px) {
     @include dashboard--1400();
     @include header--1400();
+    @include customer-users--1400();
 }
 
 @media (max-width: 1200px) {
