@@ -1,6 +1,6 @@
 @vite(['resources/css/style.css', 'resources/js/customers.js'])
 
-<div class="grid">
+<div class="grid-login">
     <div class="col-12">
         <div class="login-container">
 

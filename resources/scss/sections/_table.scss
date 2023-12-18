@@ -321,6 +321,13 @@ table{
     visibility: visible;
 }
 
+.no-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
 // Responsive
 
 @mixin table--1200(){
@@ -384,7 +391,8 @@ table{
     }
 
     .user-information .user-information-content{
-        left: -1500%;
+        left: -150;
+        top: -90;
     }
 }
 
@@ -449,6 +457,7 @@ table{
     }
 
     .user-information .user-information-content{
-        left: -1500%;
+        left: -250;
+        top: -90;
     }
 }

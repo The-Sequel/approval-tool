@@ -34,10 +34,12 @@
     @include dashboard--1200();
     @include header--1200();
     @include table--1200();
+    @include customer-users--1200();
 }
 
 @media (max-width: 992px) {
     @include dashboard--992();
+    @include customer-users--992();
 }
 
 @media (max-width: 768px) {
@@ -52,6 +54,7 @@
     
     @include customer-task-show--768();
     @include approve-task--768();
+    @include customer-users--768();
 }
 
 @media (max-width: 576px) {
@@ -59,4 +62,5 @@
     @include sidebar--576();
     @include header--576();
     @include mobile-sidebar--576();
+    @include customer-users--576();
 }

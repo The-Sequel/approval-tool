@@ -15,6 +15,13 @@ div {
     margin-left: 270px;
 }
 
+.grid-login {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 24px;
+    row-gap: 24px;
+}
+
 .flex {
     max-width: 1600px;
     display: flex;

@@ -2,31 +2,33 @@
 
 @section('content')
 <div class="grid">
-    <div class="col-8">
-        <form action="{{route('admin.tasks.finish', $task)}}" method="POST" enctype="multipart/form-data" id="finish-form">
-            @csrf
-            @method('PUT')
-            <div class="form-group">
-                <label for="files">Bestanden</label>
-                <input type="file" name="files[]" id="files" multiple>
-            </div>
-            <div class="form-group">
-                <label for="description">Beschrijving</label>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
-            </div>
+    @if($task->status != 'completed')
+        <div class="col-8">
+            <form action="{{route('admin.tasks.finish', $task)}}" method="POST" enctype="multipart/form-data" id="finish-form">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="files">Bestanden</label>
+                    <input type="file" name="files[]" id="files" multiple>
+                </div>
+                <div class="form-group">
+                    <label for="description">Beschrijving</label>
+                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                </div>
 
-            @include('sections.mail')
+                @include('sections.mail')
 
-            <div class="form-group" id="form-group">
-                <button onclick="event.preventDefault(); openMailPopup();">Voltooi taak</button>
-                <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
-            </div>
-        </form>
-        <form id="delete-form-task" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
-            @csrf
-            @method('DELETE')
-        </form>
-    </div>
+                <div class="form-group" id="form-group">
+                    <button onclick="event.preventDefault(); openMailPopup();">Voltooi taak</button>
+                    <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
+                </div>
+            </form>
+            <form id="delete-form-task" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
+                @csrf
+                @method('DELETE')
+            </form>
+        </div>
+    @endif
     @if(count($reasons) > 0)
         <div class="col-4">
             <div class="denied-card">
