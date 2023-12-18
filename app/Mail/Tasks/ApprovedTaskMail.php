@@ -29,7 +29,8 @@ class ApprovedTaskMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Approved Task Mail',
+            subject: 'Taak goedgekeurd',
+            from: 'info@approval.thesequel.nl',
         );
     }
 
@@ -39,7 +40,7 @@ class ApprovedTaskMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.tasks.approved',
+            view: 'mail.Tasks.approved',
         );
     }
 

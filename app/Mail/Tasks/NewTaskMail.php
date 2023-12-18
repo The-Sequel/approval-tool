@@ -29,7 +29,8 @@ class NewTaskMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Task Mail',
+            subject: 'Nieuw taak aangemaakt',
+            from: 'info@approval.thesequel.nl',
         );
     }
 

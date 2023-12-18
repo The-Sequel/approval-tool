@@ -29,7 +29,8 @@ class NewProjectMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Project Mail',
+            subject: 'Niew project aangemaakt',
+            from: 'info@approval.thesequel.nl',
         );
     }
 
