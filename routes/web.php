@@ -122,6 +122,11 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::get('/mail', function () {
+    $task = App\Models\Task::find(1);
+    return new App\Mail\Tasks\NewTaskMail($task);
+});
+
 // Project routes
 
 // Route::middleware(['auth', 'verified'])->group(function () {
