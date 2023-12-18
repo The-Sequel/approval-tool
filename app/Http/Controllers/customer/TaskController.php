@@ -11,6 +11,7 @@ use App\Mail\Tasks\DeniedTaskMail;
 use App\Http\Controllers\Controller;
 use App\Mail\Tasks\ApprovedTaskMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class TaskController extends Controller
 {
@@ -40,6 +41,23 @@ class TaskController extends Controller
                 'status' => 'approved',
                 'approved_by' => auth()->user()->id,
             ]);
+
+            // Email
+            if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
+                dd($task);
+                $assignedUsers = json_decode($task->assigned_to);
+
+                $users = [];
+    
+                foreach($assignedUsers as $user) {
+                    $users[] = User::where('id', $user)->get();
+                }
+
+                foreach($users as $user){
+                    Mail::to($user[0]->email)->send(new ApprovedTaskMail($task));
+                }
+
+            }
 
             if($task->project_id != null) {
                 $project = $task->project()->get()->first();

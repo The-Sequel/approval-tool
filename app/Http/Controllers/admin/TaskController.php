@@ -14,6 +14,7 @@ use App\Mail\Tasks\NewTaskMail;
 use App\Mail\Tasks\CompletedTaskMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class TaskController extends Controller
 {
@@ -110,24 +111,26 @@ class TaskController extends Controller
 
         
         // Email
-        $task_id = $task->id;
-        $task = Task::where('id', $task_id)->first();
-
-        $assignedUsers = json_decode($task->assigned_to);
-        $customerUsers = User::where('customer_id', $task->customer_id)->get();
-
-        $users = [];
-
-        foreach($assignedUsers as $user) {
-            $users[] = User::where('id', $user)->get();
-        }
-
-        foreach($customerUsers as $user) {
-            $users[] = User::where('id', $user->id)->get();
-        }
-        
-        foreach($users as $user){
-            Mail::to($user[0]->email)->send(new NewTaskMail($task));
+        if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
+            $task_id = $task->id;
+            $task = Task::where('id', $task_id)->first();
+    
+            $assignedUsers = json_decode($task->assigned_to);
+            $customerUsers = User::where('customer_id', $task->customer_id)->get();
+    
+            $users = [];
+    
+            foreach($assignedUsers as $user) {
+                $users[] = User::where('id', $user)->get();
+            }
+    
+            foreach($customerUsers as $user) {
+                $users[] = User::where('id', $user->id)->get();
+            }
+            
+            foreach($users as $user){
+                Mail::to($user[0]->email)->send(new NewTaskMail($task));
+            }
         }
 
         if($request->project_id != null){
@@ -180,11 +183,14 @@ class TaskController extends Controller
             'name' => 'Er is een taak copmleet! 🎉',
         ]);
 
-        $customerUsers = User::where('customer_id', $task->customer_id)->get();
-
-        foreach($customerUsers as $user) {
-            Mail::to($user->email)->send(new CompletedTaskMail($task));
+        if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
+            $customerUsers = User::where('customer_id', $task->customer_id)->get();
+    
+            foreach($customerUsers as $user) {
+                Mail::to($user->email)->send(new CompletedTaskMail($task));
+            }
         }
+
 
         // Message
         // Message::create([

@@ -29,7 +29,8 @@ class DeniedTaskMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Denied Task Mail',
+            subject: 'Taak afgekeurd',
+            from: 'info@approval.thesequel.nl',
         );
     }
 
