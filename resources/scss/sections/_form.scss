@@ -91,7 +91,11 @@
 }
 
 @mixin form--992(){
-
+    .search-form-group{
+        .search-form-input{
+            width: 100%;
+        }
+    }
 }
 
 @mixin form--768(){
