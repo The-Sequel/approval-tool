@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\Tasks;
+namespace App\Mail\User;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,18 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CompletedTaskMail extends Mailable
+class UserCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $task;
+    public $user;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($task)
+    public function __construct($user)
     {
-        $this->task = $task;
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +29,7 @@ class CompletedTaskMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Taak voltooid',
+            subject: 'Gebruiker aangemaakt!',
             from: 'info@approval.thesequel.nl',
         );
     }
@@ -40,7 +40,7 @@ class CompletedTaskMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.Tasks.completed',
+            view: 'mail.Users.created',
         );
     }
 

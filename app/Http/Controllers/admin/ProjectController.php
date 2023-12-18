@@ -8,8 +8,12 @@ use App\Models\Message;
 use App\Models\Project;
 use App\Models\Customer;
 use App\Models\Department;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Projects\NewProjectMail;
+
 class ProjectController extends Controller
 {
     public function index(){
@@ -73,16 +77,17 @@ class ProjectController extends Controller
             // 'file_path' => $filePath, // Save the file path in the database
         ]);
 
-        // if($request->send_mail == 'on'){
-        //     $project = Project::where('title', $request->title)->first();
-        //     $users = User::where('deleted_at', null)->get();
-        //     foreach($users as $user){
-        //         if($user->customer_id == $request->customer_id){
-        //             Mail::to($user->email)->send(new NewProjectMail($project));
-        //         }
-        //     }
-        // }
-
+        // Email
+        if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
+            $project_id = $project->id;
+            $project = Project::where('id', $project_id)->first();
+    
+            $customerUsers = User::where('customer_id', $project->customer_id)->get();
+    
+            foreach($customerUsers as $user) {
+                Mail::to($user->email)->send(new NewProjectMail($project));
+            }
+        }
 
         // Message
         Message::create([

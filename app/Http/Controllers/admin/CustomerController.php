@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\Customer;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -34,7 +35,7 @@ class CustomerController extends Controller
             $filePath = null;
         }
 
-        Customer::create([
+        $customer = Customer::create([
             'name' => $request->name,
             'debtor_number' => 12312312,
             'logo' => $filePath,
