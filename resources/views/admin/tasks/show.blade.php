@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="grid">
-    @if($task->status != 'completed')
+    @if($task->status != 'completed' and $task->status != 'approved')
         <div class="col-8">
             <form action="{{route('admin.tasks.finish', $task)}}" method="POST" enctype="multipart/form-data" id="finish-form">
                 @csrf

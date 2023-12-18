@@ -44,7 +44,6 @@ class TaskController extends Controller
 
             // Email
             if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
-                dd($task);
                 $assignedUsers = json_decode($task->assigned_to);
 
                 $users = [];
@@ -97,13 +96,29 @@ class TaskController extends Controller
             Reason::create([
                 'task_id' => $task->id,
                 'reason' => $request->message,
-            ]);
+            ]);            
 
             $task->update([
                 'status' => 'denied',
                 // 'reason' => $request->message,
                 // 'reasons' => json_encode(['reason' => $request->message]),
             ]);
+
+            // Email
+            if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
+                $assignedUsers = json_decode($task->assigned_to);
+
+                $users = [];
+    
+                foreach($assignedUsers as $user) {
+                    $users[] = User::where('id', $user)->get();
+                }
+
+                foreach($users as $user){
+                    Mail::to($user[0]->email)->send(new DeniedTaskMail($task));
+                }
+
+            }
 
             Message::create([
                 'user_id' => auth()->user()->id,

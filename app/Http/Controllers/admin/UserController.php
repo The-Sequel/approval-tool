@@ -6,8 +6,11 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\Department;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\User\UserCreated;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -46,7 +49,11 @@ class UserController extends Controller
         $attributes = request()->all();
 
         // Create the user
-        User::create($attributes);
+        $user = User::create($attributes);
+
+        if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
+            Mail::to($user->email)->send(new UserCreated($user));
+        }
 
         // Redirect the user
         return redirect('/admin/users')->with('success', 'Gebruiker is aangemaakt!');
