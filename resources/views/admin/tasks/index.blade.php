@@ -81,7 +81,7 @@
                                     </td>
                                 @else
                                     <td data-label="Deadline">
-                                        <p class="deadline">{{ $deadlineDate }}</p>
+                                        <p class="deadline-without">{{ $deadlineDate }}</p>
                                     </td>
                                 @endif
                             @else

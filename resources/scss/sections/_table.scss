@@ -101,6 +101,14 @@ table{
         // margin-right: auto;
     }
 
+    .deadline-without{
+        background-color: #4a4a4a;
+        color: #ffffff;
+        border-radius: 5%;
+        padding: 7.5px 12px 7.5px 12px;
+        width: fit-content;
+    }
+
     .table-icons{
         display:flex;
         gap: 10px;
