@@ -108,15 +108,20 @@ class TaskController extends Controller
         ]);
 
         // Email
-        if($request->send_mail == 'on'){
-            $task = Task::where('title', $request->title)->first();
-            $users = User::where('deleted_at', null)->get();
-            foreach($users as $user){
-                if($user->customer_id == $request->customer_id){
-                    Mail::to($user->email)->send(new NewTaskMail($task));
-                }
-            }
-        }
+        $task = Task::where('title', $request->title)->first();
+        $users = User::where('deleted_at', null)->get();
+
+        Mail::to("stage@thesequel.nl")->send(new NewTaskMail($task));
+
+        // if($request->send_mail == 'on'){
+        //     $task = Task::where('title', $request->title)->first();
+        //     $users = User::where('deleted_at', null)->get();
+        //     foreach($users as $user){
+        //         if($user->customer_id == $request->customer_id){
+        //             Mail::to($user->email)->send(new NewTaskMail($task));
+        //         }
+        //     }
+        // }
 
         if($request->project_id != null){
             return redirect('/admin/projects/show/' . $request->project_id)->with('success', 'Taak is aangemaakt!');

@@ -163,5 +163,24 @@
 }
 
 @mixin header--576() {
+    .header{
 
+        h1{
+            font-size: 19px;
+        }
+
+        .header-p{
+            font-size: 15px;
+        }
+
+        .header-2{
+            .notification-icon{
+                margin-right: 20px;
+                height: 25px;
+                width: 36px;
+                font-size: 30px;
+            }
+        }
+
+    }
 }

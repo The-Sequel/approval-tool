@@ -3,24 +3,30 @@
 @section('content')
 <div class="grid">
     <div class="col-8">
-        <div class="user-row">
-            @foreach($users as $user)
-                <div class="user-card">
-                    <h3>{{$user->name}}</h3>
-                    <div class="user-card-body">
-                        <div>
-                            <p style="background-color: {{$user->color}};" class="user-card-logo">{{substr($user->name, 0, 1)}}</p>
-                        </div>
-                        <div>
-                            <p><span>Naam:</span> {{$user->name}}</p>
-                            <p><span>Functie:</span> {{$user->department->title}}</p>
-                            <p>{{$user->phone_number}}</p>
-                            <p>{{$user->email}}</p>
+        @if(count($users) > 0)
+            <div class="user-row">
+                @foreach($users as $user)
+                    <div class="user-card">
+                        <h3>{{$user->name}}</h3>
+                        <div class="user-card-body">
+                            <div>
+                                <p style="background-color: {{$user->color}};" class="user-card-logo">{{substr($user->name, 0, 1)}}</p>
+                            </div>
+                            <div>
+                                <p><span>Naam:</span> {{$user->name}}</p>
+                                <p><span>Functie:</span> {{$user->department->title}}</p>
+                                <p>{{$user->phone_number}}</p>
+                                <p>{{$user->email}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @else
+            <div class="no-content">
+                <h3>Er zijn geen gebruikers gevonden</h3>
+            </div>
+        @endif
     </div>
     <div class="col-4">
         <div class="customer-information-card">

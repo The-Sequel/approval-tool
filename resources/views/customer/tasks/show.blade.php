@@ -17,7 +17,7 @@
                     @endphp
                     @foreach($imagePaths as $image)
                         <a href="{{ asset('storage/' . $image) }}">
-                            <img src="{{ asset('storage/' . $image) }}" style="width: 20%;">
+                            <img src="{{ asset('storage/' . $image) }}" style="width: 50%; height: auto; margin-bottom: 10px;">
                         </a>
                     @endforeach
                 @endif

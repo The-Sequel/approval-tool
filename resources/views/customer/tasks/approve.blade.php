@@ -6,7 +6,7 @@
         {{-- <h1>{{$task->title}}</h1> --}}
         <div class="task-information">
             @if($task->description_completed != null)
-                <h3 style="margin-bottom: 20px;">Beschrijving</h3>
+                <h3>Beschrijving</h3>
                 <div class="task-information-description">
                     {{$task->description_completed}}
                 </div>
@@ -22,7 +22,7 @@
         <form action="{{route('customer.tasks.finish', $task)}}" method="POST">
             @csrf
             @method('PUT')
-            <div class="form-group">
+            <div class="form-group" id="form-group">
                 <button name="accept" value="accept" id="accept">Goedkeuren</button>
                 <button style="background-color: red;" id="decline" onclick="event.preventDefault();">Afkeuren</button>
             </div>

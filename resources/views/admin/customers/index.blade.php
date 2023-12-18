@@ -3,76 +3,82 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
-        <form class="search-form" action="{{route('admin.search.customers')}}" method="GET">
-            @csrf
-            @method('GET')
-            <div class="search-form-group">
-                <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
-            </div>
-        </form>
-        <form class="search-reset" action="{{route('admin.customers.index')}}" method="GET">
-            @csrf
-            @method('GET')
-            <button>Reset</button>
-        </form>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Klanten</th>
-                    <th>Logo</th>
-                    <th>Status</th>
-                    <th>Contact personen</th>
-                    <th>Acties</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($customers as $customer)
+        @if(count($customers) > 0)
+            <form class="search-form" action="{{route('admin.search.customers')}}" method="GET">
+                @csrf
+                @method('GET')
+                <div class="search-form-group">
+                    <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
+                </div>
+            </form>
+            <form class="search-reset" action="{{route('admin.customers.index')}}" method="GET">
+                @csrf
+                @method('GET')
+                <button>Reset</button>
+            </form>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td data-label="Klanten">
-                            <p id="customer-name-{{$customer->id}}">{{$customer->name}}</p>
-                        </td>
-                        <td data-label="Logo"><img src="{{ asset('storage/'.$customer->logo) }}" alt="{{$customer->name}}" width="50"></td>
-
-                        @if($customer->status == 'active')
-                            <td data-label="Status" id="customer-status">
-                                <p class="status-active">Actief</p>
-                            </td>
-                        @else
-                            <td data-label="Status" id="customer-status">
-                                <p class="status-inactive">Non-Actief</p>
-                            </td>
-                        @endif
-
-                        <td data-label="Contact personen">
-                            <div class="user-logo-main">
-                                @foreach($customer->users as $user)
-                                    @if($user->deleted_at == null)
-                                        <div class="user-information">
-                                            <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                                            <span class="user-information-content">
-                                                <div class="user-information-content-logo">
-                                                    <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                                                </div>
-                                                <div class="user-information-content-data">
-                                                    <p>{{$user->name}}</p>
-                                                    <p>{{$user->email}}</p>
-                                                </div>
-                                            </span>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            </div>
-                        </td>
-                        <td data-label="Acties">
-                            <div class="table-icons">
-                                <a class="table-icons-item" href="{{route('admin.customers.edit', $customer)}}"><span style="color: black;" class="material-icons">edit</span></a>
-                                <a class="table-icons-item" href="#" onclick="deleteCustomerPopup();"><span style="color: black;" class="material-icons">delete</span></a>
-                            </div>
-                        </td>
+                        <th>Klanten</th>
+                        <th>Logo</th>
+                        <th>Status</th>
+                        <th>Contact personen</th>
+                        <th>Acties</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach($customers as $customer)
+                        <tr>
+                            <td data-label="Klanten">
+                                <p id="customer-name-{{$customer->id}}">{{$customer->name}}</p>
+                            </td>
+                            <td data-label="Logo"><img src="{{ asset('storage/'.$customer->logo) }}" alt="{{$customer->name}}" width="50"></td>
+
+                            @if($customer->status == 'active')
+                                <td data-label="Status" id="customer-status">
+                                    <p class="status-active">Actief</p>
+                                </td>
+                            @else
+                                <td data-label="Status" id="customer-status">
+                                    <p class="status-inactive">Non-Actief</p>
+                                </td>
+                            @endif
+
+                            <td data-label="Contact personen">
+                                <div class="user-logo-main">
+                                    @foreach($customer->users as $user)
+                                        @if($user->deleted_at == null)
+                                            <div class="user-information">
+                                                <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                                <span class="user-information-content">
+                                                    <div class="user-information-content-logo">
+                                                        <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                                    </div>
+                                                    <div class="user-information-content-data">
+                                                        <p>{{$user->name}}</p>
+                                                        <p>{{$user->email}}</p>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </td>
+                            <td data-label="Acties">
+                                <div class="table-icons">
+                                    <a class="table-icons-item" href="{{route('admin.customers.edit', $customer)}}"><span style="color: black;" class="material-icons">edit</span></a>
+                                    <a class="table-icons-item" href="#" onclick="deleteCustomerPopup();"><span style="color: black;" class="material-icons">delete</span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @else
+            <div class="no-content">
+                <h3>Geen klanten gevonden</h3>
+            </div>
+        @endif
         <form class="create-button" action="{{route('admin.customers.create')}}" method="GET">
             @csrf
             @method('GET')

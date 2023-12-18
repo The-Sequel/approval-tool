@@ -1,9 +1,9 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid" style="margin-left: 270px;">
+<div class="grid">
     <div class="col-12">
-        <form action="{{route('admin.tasks.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.tasks.store')}}" method="POST" enctype="multipart/form-data" id="add-user-form">
             @csrf
             @method('POST')
             <div class="form-group">
@@ -36,13 +36,15 @@
                 </select>
             </div>
 
-            <div style="height: 60px; margin-top: 30px;">
+            @include('sections.add-user')
+
+            {{-- <div style="height: 60px; margin-top: 30px;">
                 <p style="margin-bottom: 8px;">Voeg gebruikers toe aan taak</p>
                 @foreach($users as $user)
                     <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}">
                     {{$user->name}} <br>
                 @endforeach
-            </div>
+            </div> --}}
 
             <div style="margin-bottom: 20px; margin-top: 20px;">
                 <input type="checkbox" name="send_mail" id="send_mail">
@@ -55,12 +57,18 @@
             <input type="hidden" type="text" name="customer_id" id="customer_id" value="{{$project->customer->id}}">
 
             <div class="form-group">
-                <button>Maak nieuwe taak</button>
+                <button onclick="event.preventDefault(); openAddUsersToTaskPopup();">Maak nieuwe taak</button>
             </div>
         </form>
     </div>
 </div>
 
 @include('sections.error')
+
+<script>
+    function openAddUsersToTaskPopup(){
+        document.querySelector('.add-user-popup .text-container').style.visibility = 'visible';
+    }
+</script>
 
 @endsection
