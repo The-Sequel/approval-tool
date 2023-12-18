@@ -109,9 +109,25 @@ class TaskController extends Controller
 
         // Email
         $task = Task::where('title', $request->title)->first();
-        $users = User::where('deleted_at', null)->get();
 
-        Mail::to("stage@thesequel.nl")->send(new NewTaskMail($task));
+        $assignedUsers = json_decode($task->assigned_to);
+        $customerUsers = User::where('customer_id', $task->customer_id)->get();
+
+        $users = [];
+
+        foreach($assignedUsers as $user) {
+            $users[] = User::where('id', $user)->get();
+        }
+
+        foreach($customerUsers as $user) {
+            $users[] = User::where('id', $user->id)->get();
+        }
+        
+        foreach($users as $user){
+            Mail::to($user->email)->send(new NewTaskMail($task));
+        }
+
+        // Mail::to("stage@thesequel.nl")->send(new NewTaskMail($task));
 
         // if($request->send_mail == 'on'){
         //     $task = Task::where('title', $request->title)->first();
