@@ -80,6 +80,8 @@
                                         <p class="deadline">{{ $deadlineDate }}</p>
                                     </td>
                                 @endif
+                            @else
+                                <td data-label="Deadline">-</td>
                             @endif
 
 
