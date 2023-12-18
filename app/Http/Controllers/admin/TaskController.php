@@ -11,6 +11,7 @@ use App\Models\Department;
 use App\Models\Reason;
 use Illuminate\Http\Request;
 use App\Mail\Tasks\NewTaskMail;
+use App\Mail\Tasks\CompletedTaskMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
@@ -107,8 +108,10 @@ class TaskController extends Controller
             'name' => 'Er is een nieuwe taak aangemaakt! 🎉 ',
         ]);
 
+        
         // Email
-        $task = Task::where('title', $request->title)->first();
+        $task_id = $task->id;
+        $task = Task::where('id', $task_id)->first();
 
         $assignedUsers = json_decode($task->assigned_to);
         $customerUsers = User::where('customer_id', $task->customer_id)->get();
@@ -124,20 +127,8 @@ class TaskController extends Controller
         }
         
         foreach($users as $user){
-            Mail::to($user->email)->send(new NewTaskMail($task));
+            Mail::to($user[0]->email)->send(new NewTaskMail($task));
         }
-
-        // Mail::to("stage@thesequel.nl")->send(new NewTaskMail($task));
-
-        // if($request->send_mail == 'on'){
-        //     $task = Task::where('title', $request->title)->first();
-        //     $users = User::where('deleted_at', null)->get();
-        //     foreach($users as $user){
-        //         if($user->customer_id == $request->customer_id){
-        //             Mail::to($user->email)->send(new NewTaskMail($task));
-        //         }
-        //     }
-        // }
 
         if($request->project_id != null){
             return redirect('/admin/projects/show/' . $request->project_id)->with('success', 'Taak is aangemaakt!');
@@ -189,24 +180,10 @@ class TaskController extends Controller
             'name' => 'Er is een taak copmleet! 🎉',
         ]);
 
+        $customerUsers = User::where('customer_id', $task->customer_id)->get();
 
-        if($request->send_mail == "true"){
-            // if ($request->send_mail == 'on') {
-            //     $task = Task::find($task->id);
-            //     $assignedUsers = json_decode($task->assigned_users);
-    
-            //     if ($assignedUsers) {
-            //         $users = User::where('deleted_at', null)->get();
-    
-            //         foreach ($users as $user) {
-            //             foreach ($assignedUsers as $assignedUser) {
-            //                 if ((int) $user->id === (int) $assignedUser) {
-            //                     Mail::to($user->email)->send(new CompletedTaskMail($task));
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
+        foreach($customerUsers as $user) {
+            Mail::to($user->email)->send(new CompletedTaskMail($task));
         }
 
         // Message
