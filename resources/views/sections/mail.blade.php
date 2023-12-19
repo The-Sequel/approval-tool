@@ -17,6 +17,9 @@
             @endforeach
         </div>
 
+        <input type="checkbox" id="select_all" onclick="selectAll()">
+        <label for="select_all">Selecteer alle gebruikers</label><br>
+
         <div id="buttons">
             <button onclick="event.preventDefault(); finishTask();">Verzenden</button>
         </div>
@@ -39,6 +42,21 @@
         form.appendChild(input);
 
         document.getElementById('finish-form').submit();
+    }
+
+    function selectAll(){
+        let checkboxes = document.querySelectorAll('#users input[type="checkbox"]');
+        let selectAll = document.getElementById('select_all');
+
+        if(selectAll.checked){
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+        }else{
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        }
     }
 
     // document.addEventListener('click', function(event) {
