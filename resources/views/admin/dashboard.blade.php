@@ -18,9 +18,9 @@
                 <div class="task-card-info">
                     <div class="task-card-image">
                         @if($task->image != null)
-                            <img src="{{ asset('storage/app/public/'.$task->image) }}" alt="{{$task->image}}" width="50">
+                            <img src="{{ asset('storage/'.$task->image) }}" alt="{{$task->image}}" width="50">
                         @else
-                            <img src="{{ asset('storage/app/public/'.$task->customer->logo) }}" alt="{{$task->customer->logo}}" width="50">
+                            <img src="{{ asset('storage/'.$task->customer->logo) }}" alt="{{$task->customer->logo}}" width="50">
                         @endif
                     </div>
                     <div class="task-card-body">
