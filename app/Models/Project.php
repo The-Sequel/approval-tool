@@ -15,10 +15,10 @@ class Project extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function subProjects()
-    {
-        return $this->hasMany(SubProject::class);
-    }
+    // public function subProjects()
+    // {
+    //     return $this->hasMany(SubProject::class);
+    // }
 
     public function tasks()
     {
