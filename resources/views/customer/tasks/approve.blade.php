@@ -27,7 +27,7 @@
                 <button style="background-color: red;" id="decline" onclick="event.preventDefault();">Afkeuren</button>
             </div>
             <div class="form-group">
-                <textarea style="display: none;" name="message" id="message" cols="30" rows="10" placeholder="Bericht"></textarea>
+                <textarea style="display: none;" name="message" id="decline-textblock" cols="30" rows="10" placeholder="Bericht"></textarea>
             </div>
             <div class="form-group">
                 <button name="accept" value="decline" style="display: none;" id="send">Verstuur</button>
@@ -62,11 +62,11 @@
 <script>
     // when the decline button is clicked, show the textarea
     document.getElementById('decline').addEventListener('click', function() {
-        if(document.getElementById('message').style.display == 'none'){
-            document.getElementById('message').style.display = 'block';
+        if(document.getElementById('decline-textblock').style.display == 'none'){
+            document.getElementById('decline-textblock').style.display = 'block';
             document.getElementById('send').style.display = 'block';
         } else {
-            document.getElementById('message').style.display = 'none';
+            document.getElementById('decline-textblock').style.display = 'none';
             document.getElementById('send').style.display = 'none';
         }
     });

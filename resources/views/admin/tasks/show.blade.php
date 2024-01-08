@@ -47,7 +47,9 @@
                     <h2>{{$task->title}}</h2>
                     <p><span>Klant:</span> {{$task->customer->name}}</p>
                     <p>{!! nl2br($task->description) !!}</p>
-                    <p><span>Deadline:</span> {{$task->deadline}}</p>
+                    @if($task->deadline != null)
+                        <p><span>Deadline:</span> {{$task->deadline}}</p>
+                    @endif
                     <p><span>Status:</span> afgekeurd</p>
                     @if($task->images)
                         @php
@@ -75,7 +77,9 @@
                     <h2>{{$task->title}}</h2>
                     <p><span>Klant:</span> {{$task->customer->name}}</p>
                     <p>{!! nl2br($task->description) !!}</p>
-                    <p><span>Deadline:</span> {{$task->deadline}}</p>
+                    @if($task->deadline != null)
+                        <p><span>Deadline:</span> {{$task->deadline}}</p>
+                    @endif
                     <p><span>Status:</span> goedgekeurd</p>
                     @if($task->images)
                         @php
