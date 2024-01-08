@@ -129,9 +129,13 @@
                             <div class="notification-content-data">
                                 <div id="header-container">
                                     @if($message->project_id != null)
-                                        <h2>{{$message->project->title}}</h2>
+                                        @if($message->project->title != null)
+                                            <h2>{{$message->project->title}}</h2>
+                                        @endif
                                     @elseif($message->task_id != null)
-                                        <h2>{{$message->task->title}}</h2>
+                                        @if($message->project->title != null)
+                                            <h2>{{$message->task->title}}</h2>
+                                        @endif
                                     @endif
 
                                     <h4>{{$message->created_at}}</h4>
