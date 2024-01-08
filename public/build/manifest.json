@@ -1,16 +1,22 @@
 {
+  "_axios-82afda87.js": {
+    "file": "assets/axios-82afda87.js"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-2fffaaac.css",
+    "file": "assets/app-da42fca0.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/css/style.css": {
-    "file": "assets/style-22e547c4.css",
+    "file": "assets/style-d566593e.css",
     "isEntry": true,
     "src": "resources/css/style.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-6e0eadfb.js",
+    "file": "assets/app-b069f410.js",
+    "imports": [
+      "_axios-82afda87.js"
+    ],
     "isEntry": true,
     "src": "resources/js/app.js"
   },
@@ -18,5 +24,13 @@
     "file": "assets/customers-4ed993c7.js",
     "isEntry": true,
     "src": "resources/js/customers.js"
+  },
+  "resources/js/notifications.js": {
+    "file": "assets/notifications-edf7a916.js",
+    "imports": [
+      "_axios-82afda87.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/notifications.js"
   }
 }
