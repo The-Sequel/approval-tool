@@ -102,10 +102,19 @@ class TaskController extends Controller
             'assigned_to' => $assignedTo,
         ]);
 
+        $customerUsers = User::where('customer_id', $task->customer_id)->get();
+
+        $users = [];
+
+        foreach($customerUsers as $user){
+            $users[] = $user->id;
+        }
+
         Message::create([
             'user_id' => auth()->user()->id,
             'customer_id' => $task->customer_id,
             'task_id' => $task->id,
+            'users' => json_encode($users),
             'name' => 'Er is een nieuwe taak aangemaakt! 🎉 ',
         ]);
 
@@ -176,10 +185,19 @@ class TaskController extends Controller
 
         $task->save();
 
+        $customerUsers = User::where('customer_id', $task->customer_id)->get();
+
+        $users = [];
+
+        foreach($customerUsers as $user){
+            $users[] = $user->id;
+        }
+
         Message::create([
             'user_id' => auth()->user()->id,
             'customer_id' => $task->customer_id,
             'task_id' => $task->id,
+            'users' => json_encode($users),
             'name' => 'Er is een taak copmleet! 🎉',
         ]);
 

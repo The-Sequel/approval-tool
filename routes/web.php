@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\MessageController;
 use App\Http\Controllers\admin\SearchController;
 use App\Http\Controllers\admin\FilterController;
+use App\Http\Controllers\NotificationController;
 
 // Customer Controllers
 use App\Http\Controllers\customer\ProjectController as CustomerProjectController;
@@ -110,6 +111,9 @@ Route::middleware(['auth', 'verified', 'customer.access'])->group(function () {
     Route::get('/status/tasks', [CustomerSearchController::class, 'statusTask'])->name('customer.status.tasks');
     Route::get('/search/projects', [CustomerSearchController::class, 'searchProject'])->name('customer.search.projects');
 
+    // Notifications
+
+
 
     // Test mails
     Route::get('/mail', function () {
@@ -127,13 +131,6 @@ Route::get('/mail', function () {
     return new App\Mail\Tasks\NewTaskMail($task);
 });
 
-// Project routes
-
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
-//     Route::get('/project/show/{project}', [ProjectController::class, 'show'])->name('project.show');
-//     Route::post('/project', [ProjectController::class, 'store'])->name('project.store');
-//     Route::put('/project/{project}', [ProjectController::class, 'updateProject'])->name('project.update');
-// });
+Route::post('/notifications/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-as-read');
 
 require __DIR__.'/auth.php';

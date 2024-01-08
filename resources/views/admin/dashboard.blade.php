@@ -18,9 +18,9 @@
                 <div class="task-card-info">
                     <div class="task-card-image">
                         @if($task->image != null)
-                            <img src="{{ asset('storage/'.$task->image) }}" alt="{{$task->image}}" width="50">
+                            <img src="{{ asset('storage/app/public/'.$task->image) }}" alt="{{$task->image}}" width="50">
                         @else
-                            <img src="{{ asset('storage/'.$task->customer->logo) }}" alt="{{$task->customer->logo}}" width="50">
+                            <img src="{{ asset('storage/app/public/'.$task->customer->logo) }}" alt="{{$task->customer->logo}}" width="50">
                         @endif
                     </div>
                     <div class="task-card-body">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="project-card-info">
                     <div class="project-card-image">
-                        <img src="{{ asset('storage/'.$project->customer->logo) }}" alt="{{$project->customer->name}}" width="50">
+                        <img src="{{ asset('storage/app/public/'.$project->customer->logo) }}" alt="{{$project->customer->name}}" width="50">
                     </div>
                     <div class="project-card-body">
                         <p class="project-card-customer">Klant: {{$project->customer->name}}</p>

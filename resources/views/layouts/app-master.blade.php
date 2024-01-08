@@ -7,7 +7,7 @@
     <title>Approval Tool</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-    @vite(['resources/css/style.css', 'resources/js/customers.js'])
+    @vite(['resources/css/style.css', 'resources/js/customers.js', 'resources/js/notifications.js'])
 </head>
 <body>
     @include('layouts.sidebar')
