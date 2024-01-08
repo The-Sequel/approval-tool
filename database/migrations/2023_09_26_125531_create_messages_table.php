@@ -30,6 +30,8 @@ return new class extends Migration
                 ->nullable()
                 ->references('id')
                 ->on('tasks');
+            $table->json('users');
+            $table->boolean('seen')->default(false);
             $table->timestamps();
         });
     }
@@ -39,6 +41,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::table('messages', function (Blueprint $table) {
+            $table->dropColumn('users');
+        });
     }
 };

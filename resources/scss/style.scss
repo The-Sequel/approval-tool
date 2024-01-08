@@ -24,9 +24,13 @@
 @import "customers/tasks/approve.scss";
 
 // Mail
-@import "sections/mail/Tasks/new.scss";
+// @import "sections/mail/Tasks/new.scss";
 
 // RESPONSIVE 
+// @media (max-width: 2000px) {
+//     @include dashboard--2000();
+// }
+
 @media (max-width: 1400px) {
     @include dashboard--1400();
     @include header--1400();

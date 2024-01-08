@@ -6,7 +6,10 @@
     use App\Models\Message;
 
     // get 3 latest messages and check if the message is within the last 24 hours and if the message is for the current user
-    $messages = Message::where('created_at', '>=', \Carbon\Carbon::now()->subDays(1))->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(3)->get();
+    // $messages = Message::where('created_at', '>=', \Carbon\Carbon::now()->subDays(1))->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(3)->get();
+
+    // get all of the messages where the json users column contains the current user id
+    $messages = Message::whereJsonContains('users', Auth::user()->id)->orderBy('created_at', 'desc')->where('seen', false)->take(3)->get();
 
 
     $routeTitles = [
@@ -105,23 +108,61 @@
             <p class="header-p">Laten we samen aan de slag gaan</p>
         </div>
         <div class="header-2">
-            <div class="notification" onclick="toogleNotificationContent(this)">
+            <div class="notification">
                 <span class="material-symbols-outlined md-48 notification-icon">
                     notifications
-                    <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="position: relative; right: 50px;">
-                        <circle cx="10" cy="4" r="4" fill="red" />
-                    </svg>
+                    <?php if (count($messages) > 0) : ?>
+                        <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="position: relative; right: 50px;">
+                            <circle cx="10" cy="4" r="4" fill="red" />
+                        </svg>
+                    <?php else : ?>
+                        <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="position: relative; right: 50px;">
+                            
+                        </svg>
+                    <?php endif; ?>
                 </span>
                 <span class="notification-content">
                     <h3>Meldingen</h3>
                     <div class="border"></div>
-                    @foreach($messages as $message)
-                        <div class="notification-content-data">
-                            <div id="header-container">
-                                {{ $message }}
+                    <?php if (count($messages) > 0) : ?>
+                        @foreach($messages as $message)
+                            <div class="notification-content-data">
+                                <div id="header-container">
+                                    @if($message->project_id != null)
+                                        <h2>{{$message->project->title}}</h2>
+                                    @elseif($message->task_id != null)
+                                        <h2>{{$message->task->title}}</h2>
+                                    @endif
+
+                                    <h4>{{$message->created_at}}</h4>
+                                </div>
+
+                                <div id="message">
+
+                                    <div class="user-logo-main">
+                                        <div class="user-information">
+                                            <p style="background-color: {{$message->user->color}};" class="user-logo">{{substr($message->user->name, 0, 1)}}</p>
+                                            <span class="user-information-content">
+                                                <div class="user-information-content-logo">
+                                                    <p style="background-color: {{$message->user->color}};" class="user-logo">{{substr($message->user->name, 0, 1)}}</p>
+                                                </div>
+                                                <div class="user-information-content-data">
+                                                    <p>{{$message->user->name}}</p>
+                                                    <p>{{$message->user->email}}</p>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <p>{{$message->name}}</p>
+                                </div>
                             </div>
+                        @endforeach
+                    <?php else : ?>
+                        <div class="no-notifications">
+                            Geen meldingen
                         </div>
-                    @endforeach
+                    <?php endif; ?>
                 </span>
             </div>
             <p style="background-color: {{ Auth::user()->color }};" class="user-image">{{$firstLetter}}</p>
@@ -135,34 +176,7 @@
         </div>
     @endif
 </div>
-  
-  
-  
 
 <script>
-    function toggleNotificationContent(notification) {
-        notification.classList.toggle('open');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const notifications = document.querySelectorAll('.notification');
-
-        // Toggle notification content on click
-        notifications.forEach(notification => {
-            notification.addEventListener('click', () => {
-                toggleNotificationContent(notification);
-            });
-        });
-
-        // Close notification content when clicking outside
-        document.addEventListener('click', (event) => {
-            const target = event.target;
-
-            for (const notification of notifications) {
-                if (!notification.contains(target)) {
-                    notification.classList.remove('open');
-                }
-            }
-        });
-    });
+    let messages = [].concat(@json($messages));
 </script>

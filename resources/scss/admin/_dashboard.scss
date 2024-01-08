@@ -373,6 +373,14 @@
 
 // RESPONSIVE
 
+// @mixin dashboard--2000() {
+//     #admin-dashboard{
+//         .col-4{
+//             display: none;
+//         }
+//     }
+// }
+
 @mixin dashboard--1400() {
     #admin-dashboard{
         .col-4{

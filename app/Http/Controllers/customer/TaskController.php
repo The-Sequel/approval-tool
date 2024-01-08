@@ -79,10 +79,16 @@ class TaskController extends Controller
                 }
             }
 
+            $users = [];
+
+            foreach(json_decode($task->assigned_to, true) as $user){
+                $users[] = (int)$user;
+            }
 
             Message::create([
                 'user_id' => auth()->user()->id,
                 'task_id' => $task->id,
+                'users' => json_encode($users),
                 'name' => 'Er is een taak goedgekeurd! 🎉',
             ]);
 
@@ -117,12 +123,18 @@ class TaskController extends Controller
                 foreach($users as $user){
                     Mail::to($user[0]->email)->send(new DeniedTaskMail($task));
                 }
+            }
 
+            $users = [];
+
+            foreach(json_decode($task->assigned_to, true) as $user){
+                $users[] = (int)$user;
             }
 
             Message::create([
                 'user_id' => auth()->user()->id,
                 'task_id' => $task->id,
+                'users' => json_encode($users),
                 'name' => 'Er is een taak afgekeurd! 😢',
             ]);
 

@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/css/style.css',
                 'resources/js/app.js',
                 'resources/js/customers.js',
+                'resources/js/notifications.js'
             ],
             refresh: true,
         }),
