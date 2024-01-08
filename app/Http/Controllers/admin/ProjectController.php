@@ -89,11 +89,20 @@ class ProjectController extends Controller
             }
         }
 
+        $customerUsers = User::where('customer_id', $project->customer_id)->get();
+
+        $users = [];
+
+        foreach($customerUsers as $user){
+            $users[] = $user->id;
+        }
+
         // Message
         Message::create([
             'user_id' => auth()->user()->id,
             'customer_id' => $request->customer_id,
             'project_id' => $project->id,
+            'users' => json_encode($users),
             'name' => 'Er is een nieuw project aangemaakt! 🎉 ',
         ]);
 

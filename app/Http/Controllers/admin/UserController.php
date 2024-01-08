@@ -48,11 +48,20 @@ class UserController extends Controller
 
         $attributes = request()->all();
 
-        // Create the user
-        $user = User::create($attributes);
+        // check if there arleady is a user with the same email
+        $user = User::where('email', $attributes['email'])->first();
+
+        if($user){
+            return redirect()->back()->with('error', 'Er is al een gebruiker met dit email adres!');
+        } else {
+            // Create the user
+            $user = User::create($attributes);
+        }
 
         if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
-            Mail::to($user->email)->send(new UserCreated($user));
+            if($user->role_id == 2){
+                Mail::to($user->email)->send(new UserCreated($user));
+            }
         }
 
         // Redirect the user
