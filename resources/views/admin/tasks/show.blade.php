@@ -19,7 +19,7 @@
                 @include('sections.mail')
 
                 <div class="form-group" id="form-group">
-                    <button onclick="event.preventDefault(); openMailPopup();">Voltooi taak</button>
+                    <button>Voltooi taak</button>
                     <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
                 </div>
             </form>
@@ -35,13 +35,20 @@
                 <div class="denied-card-reason">
                     <h3 class="denied-card-reason-header">Reden(en) van afwijzing</h3>
                     @foreach($reasons as $reason)
-                        @if($loop->first)
-                            <p class="denied-card-reason-text">{{$reason->reason}}</p>
+                        {{-- Show only the first reason and put the other reasons on display none --}}
+                        @if($loop->index == 0)
+                            <div id="reason-container-none">
+                                <p class="denied-card-reason-text">{{$reason->reason}}</p>
+                            </div>
+                        @else
+                            <div id="reason-container">
+                                <p class="denied-card-reason-text">{{$reason->reason}}</p>
+                            </div>
                         @endif
                     @endforeach
                     @if(count($reasons) > 1)
                         <div class="button-container">
-                            <button onclick="">Toon meer</button>
+                            <button onclick="showMoreReasons();">Toon meer</button>
                         </div>
                     @endif
                 </div>
@@ -113,6 +120,20 @@
 
     function openMailPopup(){
         document.querySelector('.mail-popup .text-container').style.visibility = 'visible';
+    }
+
+
+    function showMoreReasons(){
+        const reasons = document.querySelectorAll('#reason-container');
+
+
+        if(document.querySelector('.button-container button').innerHTML == 'Toon meer'){
+            reasons.forEach(reason => reason.style.display = 'block');
+            document.querySelector('.button-container button').innerHTML = 'Toon minder';
+        } else {
+            reasons.forEach(reason => reason.style.display = 'none');
+            document.querySelector('.button-container button').innerHTML = 'Toon meer';
+        }
     }
 </script>
 
