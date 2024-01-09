@@ -40,14 +40,14 @@
                     @endif
                 </div>
             
-                <div class="block mt-4">
+                <div class="remember_me">
                         <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
                             <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                         </label>
                     </div>
             
-                    <div class="">
+                    <div class="test">
                         @if (Route::has('password.request'))
                             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                                 {{ __('Forgot your password?') }}
@@ -65,26 +65,26 @@
 </div>
 
 <style>
-    .login-container {
+    /* .login-container {
         width: 500px;
         margin: 0 auto;
         margin-top: 200px;
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center horizontally */
-        justify-content: center; /* Center vertically */
+        align-items: center;
+        justify-content: center;
     }
 
     .login-logo {
-        margin-bottom: 20px; /* Add some spacing between the logo and the form */
+        margin-bottom: 20px;
     }
 
     .login-logo img {
         width: 200px;
-        height: auto; /* Maintain aspect ratio */
+        height: auto;
     }
 
     .button{
         width: 60px;
-    }
+    } */
 </style>

@@ -116,10 +116,10 @@ Route::middleware(['auth', 'verified', 'customer.access'])->group(function () {
 
 
     // Test mails
-    Route::get('/mail', function () {
-        $task = App\Models\Task::find(1);
-        return new App\Mail\Tasks\NewTaskMail($task);
-    });
+    // Route::get('/mail', function () {
+    //     $task = App\Models\Task::find(1);
+    //     return new App\Mail\Tasks\NewTaskMail($task);
+    // });
 });
 
 Route::get('/test', function () {
