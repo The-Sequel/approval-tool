@@ -48,6 +48,8 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
+
         // $request->validate([
         //     'title' => 'required',
         //     'description' => 'required',
@@ -134,7 +136,7 @@ class TaskController extends Controller
             }
     
             foreach($customerUsers as $user) {
-                $users[] = User::where('id', $user->id)->get();
+                $users[] = User::where('id', $user->id)->where('department_id', $task->department_id)->get();
             }
             
             foreach($users as $user){

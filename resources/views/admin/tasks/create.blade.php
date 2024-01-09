@@ -36,6 +36,16 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="department_id">Afdeling</label>
+                <select class="form-control" name="department_id" id="department_id">
+                    <option value="">Selecteer afdeling</option>
+                    @foreach($departments as $department)
+                        <option value="{{$department->id}}">{{$department->title}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             @include('sections.add-user')
 
             {{-- <div>

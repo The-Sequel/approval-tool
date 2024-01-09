@@ -1,3 +1,8 @@
+@php
+    use Illuminate\Support\Str;
+    $route = Request::path();
+@endphp
+
 <div class="add-user-popup" id="add-user-popup">
     <div class="text-container">
         <span onclick="closeAddUsersToTaskPopup()" class="material-symbols-outlined close-button">
@@ -11,11 +16,8 @@
         <div id="users">
             @foreach($users as $user)
                 @if($user->status == 'active')
-                    @php
-                        $route = Request::path();
-                    @endphp
-                    @if($route == 'admin/tasks/create')
-                        <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}" checked>
+                    @if(Str::contains($route, 'admin/tasks/create/') || Str::contains($route, 'admin/tasks/create'))
+                        <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}">
                         {{$user->name}} <br>
                     @else
                         @if(in_array($user->id, $assignedUsers))
