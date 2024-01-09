@@ -5,14 +5,14 @@
 </head>
 <body>
     
-    <table width="100%" cellspacing="0" cellpadding="0" border="1">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
         <tr>
             <td>
                 {{-- Header --}}
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                    <tr>
+                    <tr style="border: 1px solid red;">
                         <td>
-                            <img width="100%" height="122" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" class="attachment-full size-full entered lazyloaded" alt="" decoding="async" data-lazy-src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" style="display: block; margin: 0; padding: 0;">
+                            <img width="100%" height="100" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" class="attachment-full size-full entered lazyloaded" alt="" decoding="async" data-lazy-src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" style="display: block; margin: 0; padding: 0;">
                         </td>
                     </tr>
                 </table>
@@ -24,19 +24,51 @@
                             <h3 style="font-family:Arial, Helvetica, sans-serif; text-align: center;">Er is een nieuwe taak aangemaakt</h3>
                         </td>
                     </tr>
+                </table>
 
-                    <tr style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
                         <td>
-                            <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">Gemaakt door: Silvin van Haestregt</p>
-                        </td>
-                        <td>
-                            <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">Deadline: 10-01-2024</p>
-                        </td>
-                        <td>
-                            <a style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-top: 12px;">Link naar taak</a>
+                            <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">Gemaakt door: {{$task->user->name}}</p>
                         </td>
                     </tr>
                 </table>
+
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        @if($task->deadline != null)
+                            <td>
+                                <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">Deadline: {{$task->deadline}}</p>
+                            </td>
+                        @endif
+                    </tr>
+                </table>
+
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td>
+                            <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">Toegewezen aan: 
+                                @foreach(json_decode($task->assigned_to) as $assignedUser)
+                                    @php
+                                        $assignedUser = App\Models\User::find($assignedUser);
+                                    @endphp
+                                    {{$assignedUser->name}},
+                                @endforeach
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; margin-top: 20px;">
+                                <a style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;" href="{{route('customer.tasks.show', $task)}}"><button style="padding: 12px 24px;">Klik hier</button></a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
             </td>
         </tr>
     </table>

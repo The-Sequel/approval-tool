@@ -350,6 +350,12 @@ table{
     table {
         border: 0;
 
+        td{
+            p{
+                margin: unset;
+            }
+        }
+
         thead{
             border: none;
             clip: rect(0 0 0 0);

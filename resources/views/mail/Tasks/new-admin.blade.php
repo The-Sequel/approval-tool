@@ -21,7 +21,7 @@
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
                     <tr>
                         <td>
-                            <h3 style="font-family:Arial, Helvetica, sans-serif; text-align: center;">Er is een taak goedgekeurd</h3>
+                            <h3 style="font-family:Arial, Helvetica, sans-serif; text-align: center;">Er is een nieuwe taak aangemaakt</h3>
                         </td>
                     </tr>
                 </table>
@@ -29,11 +29,31 @@
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
                     <tr>
                         <td>
-                            <p style="font-family:Arial, Helvetica, sans-serif; text-align: center;">Goedgekeurd door: 
-                                @php
-                                    $user = App\Models\User::find($task->approved_by);
-                                @endphp
-                                {{$user->name}}
+                            <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">Gemaakt door: {{$task->user->name}}</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        @if($task->deadline != null)
+                            <td>
+                                <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">Deadline: {{$task->deadline}}</p>
+                            </td>
+                        @endif
+                    </tr>
+                </table>
+
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td>
+                            <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">Toegewezen aan: 
+                                @foreach(json_decode($task->assigned_to) as $assignedUser)
+                                    @php
+                                        $assignedUser = App\Models\User::find($assignedUser);
+                                    @endphp
+                                    {{$assignedUser->name}},
+                                @endforeach
                             </p>
                         </td>
                     </tr>
@@ -43,13 +63,15 @@
                     <tr>
                         <td>
                             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; margin-top: 20px;">
-                                <a style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;" href="{{route('admin.tasks.approve', $task)}}"><button style="padding: 12px 24px;">Klik hier</button></a>
+                                <a style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;" href="{{route('admin.tasks.show', $task)}}"><button style="padding: 12px 24px;">Klik hier</button></a>
                             </div>
                         </td>
                     </tr>
                 </table>
+
             </td>
         </tr>
     </table>
+
 </body>
 </html>
