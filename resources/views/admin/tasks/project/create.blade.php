@@ -42,19 +42,6 @@
 
             @include('sections.add-user')
 
-            {{-- <div style="height: 60px; margin-top: 30px;">
-                <p style="margin-bottom: 8px;">Voeg gebruikers toe aan taak</p>
-                @foreach($users as $user)
-                    <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}">
-                    {{$user->name}} <br>
-                @endforeach
-            </div> --}}
-
-            <div style="margin-bottom: 20px; margin-top: 20px;">
-                <input type="checkbox" name="send_mail" id="send_mail">
-                <label for="send_mail">Stuur mail</label>
-            </div>
-
             <input type="hidden" type="text" name="status" id="status" value="pending">
             <input type="hidden" type="text" name="created_by" id="created_by" value="{{Auth::user()->id}}">
             <input type="hidden" type="text" name="project_id" id="project_id" value="{{$project->id}}">
