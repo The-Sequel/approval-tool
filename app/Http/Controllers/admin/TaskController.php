@@ -130,18 +130,12 @@ class TaskController extends Controller
             $assignedUsers = json_decode($task->assigned_to);
             $customerUsers = User::where('customer_id', $task->customer_id)->get();
         
-            $users = collect(); // Initialize an empty collection
-        
             foreach($assignedUsers as $userId) {
                 $user = User::find($userId);
 
                 if(isset($user->email)){
                     Mail::to($user->email)->send(new NewTaskMailAdmin($task));
                 }
-
-                // if ($user) {
-                //     $users->push($user);
-                // }
             }
         
             foreach($customerUsers as $user) {
@@ -151,14 +145,6 @@ class TaskController extends Controller
                     }
                 }
             }
-        
-            // $uniqueUsers = $users->unique('id'); // Remove duplicate users
-        
-            // foreach($uniqueUsers as $user) {
-            //     if(isset($user->email)){
-            //         Mail::to($user->email)->send(new NewTaskMail($task));
-            //     }
-            // }
         }
 
         if($request->project_id != null){

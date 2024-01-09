@@ -30,6 +30,10 @@
         .notification {
             position: relative;
             display: inline-block;
+            
+            svg{
+                cursor: pointer;
+            }
           
             .notification-content {
                 visibility: hidden;
