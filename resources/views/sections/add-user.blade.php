@@ -11,12 +11,20 @@
         <div id="users">
             @foreach($users as $user)
                 @if($user->status == 'active')
-                    @if(in_array($user->id, $assignedUsers))
+                    @php
+                        $route = Request::path();
+                    @endphp
+                    @if($route == 'admin/tasks/create')
                         <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}" checked>
                         {{$user->name}} <br>
                     @else
-                        <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}">
-                        {{$user->name}} <br>
+                        @if(in_array($user->id, $assignedUsers))
+                            <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}" checked>
+                            {{$user->name}} <br>
+                        @else
+                            <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}">
+                            {{$user->name}} <br>
+                        @endif
                     @endif
                 @endif
             @endforeach
