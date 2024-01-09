@@ -122,25 +122,34 @@ class TaskController extends Controller
 
         
         // Email
-        if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
+        if(Str::contains(url('/'), 'approval.thesequel.nl')) {
             $task_id = $task->id;
             $task = Task::where('id', $task_id)->first();
-    
+        
             $assignedUsers = json_decode($task->assigned_to);
             $customerUsers = User::where('customer_id', $task->customer_id)->get();
-    
-            $users = [];
-    
-            foreach($assignedUsers as $user) {
-                $users[] = User::where('id', $user)->get();
+        
+            $users = collect(); // Initialize an empty collection
+        
+            foreach($assignedUsers as $userId) {
+                $user = User::find($userId);
+                if ($user) {
+                    $users->push($user);
+                }
             }
-    
+        
             foreach($customerUsers as $user) {
-                $users[] = User::where('id', $user->id)->where('department_id', $task->department_id)->get();
+                if($user->department_id == $task->department_id) {
+                    $users->push($user);
+                }
             }
-            
-            foreach($users as $user){
-                Mail::to($user[0]->email)->send(new NewTaskMail($task));
+        
+            $uniqueUsers = $users->unique('id'); // Remove duplicate users
+        
+            foreach($uniqueUsers as $user) {
+                if(isset($user->email)){
+                    Mail::to($user->email)->send(new NewTaskMail($task));
+                }
             }
         }
 
@@ -204,13 +213,12 @@ class TaskController extends Controller
         ]);
 
         if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
-            $customerUsers = User::where('customer_id', $task->customer_id)->get();
+            $customerUsers = User::where('customer_id', $task->customer_id)->where('department_id', $task->department_id)->get();
     
             foreach($customerUsers as $user) {
                 Mail::to($user->email)->send(new CompletedTaskMail($task));
             }
         }
-
 
         // Message
         // Message::create([
