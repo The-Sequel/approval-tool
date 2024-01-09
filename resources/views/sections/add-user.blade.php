@@ -10,8 +10,10 @@
 
         <div id="users">
             @foreach($users as $user)
-                <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}">
-                {{$user->name}} <br>
+                @if($user->status == 'active')
+                    <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}">
+                    {{$user->name}} <br>
+                @endif
             @endforeach
         </div>
 

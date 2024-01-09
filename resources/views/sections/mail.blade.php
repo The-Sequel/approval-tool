@@ -10,9 +10,11 @@
 
         <div id="users">
             @foreach($users as $user)
-                @if($task->customer == $user->customer)
-                    <input type="checkbox" id="user_{{$user->id}}" name="assigned_users[]" value="{{$user->id}}">
-                    <label for="user_{{$user->id}}">{{$user->name}}</label><br>
+                @if($user->status == 'active')
+                    @if($task->customer == $user->customer)
+                        <input type="checkbox" id="user_{{$user->id}}" name="assigned_users[]" value="{{$user->id}}">
+                        <label for="user_{{$user->id}}">{{$user->name}}</label><br>
+                    @endif
                 @endif
             @endforeach
         </div>

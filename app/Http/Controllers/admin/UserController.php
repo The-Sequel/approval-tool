@@ -29,6 +29,9 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+
+        // dd($request->all());
+
         if($request->name == null){
             return redirect()->back()->with('error', 'Vul een naam in!');
         } elseif($request->email == null){

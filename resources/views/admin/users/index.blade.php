@@ -40,7 +40,9 @@
                                 <p class="status-active">Actief</p>
                             </td>
                         @else
-                            <td data-label="Status">Inactief</td>
+                            <td data-label="Status">
+                                <p class="status-inactive">Inactief</p>
+                            </td>
                         @endif
 
                         {{-- Department --}}
