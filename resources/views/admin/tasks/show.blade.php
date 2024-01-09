@@ -35,11 +35,15 @@
                 <div class="denied-card-reason">
                     <h3 class="denied-card-reason-header">Reden(en) van afwijzing</h3>
                     @foreach($reasons as $reason)
-                        <p>{{$reason->reason}}</p>
+                        @if($loop->first)
+                            <p class="denied-card-reason-text">{{$reason->reason}}</p>
+                        @endif
                     @endforeach
-                    <div class="button-container">
-                        <button onclick="">Toon meer</button>
-                    </div>
+                    @if(count($reasons) > 1)
+                        <div class="button-container">
+                            <button onclick="">Toon meer</button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="task-information-card">

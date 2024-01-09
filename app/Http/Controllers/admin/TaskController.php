@@ -223,6 +223,7 @@ class TaskController extends Controller
 
     public function destroy(Task $task){
         $task->messages()->delete();
+        $task->reasons()->delete();
         $task->delete();
 
         return redirect('/admin/tasks')->with('success', 'Taak is verwijderd!');

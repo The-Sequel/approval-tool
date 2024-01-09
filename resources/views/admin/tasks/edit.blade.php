@@ -65,7 +65,7 @@
         </div>
     @else
         <div class="col-12">
-            <form action="{{route('admin.tasks.update', $task)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.tasks.update', $task)}}" method="POST" enctype="multipart/form-data" id="add-user-form">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -101,22 +101,11 @@
                     </div>
                 @endif
 
-                <div>
-                    <p style="margin-bottom: 8px;">Voeg gebruikers toe aan taak</p>
-                    @foreach($users as $user)
-                        @if(in_array($user->id, $assignedUsers))
-                            <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}" checked>
-                            {{$user->name}} <br>
-                        @else
-                            <input type="checkbox" name="user_ids[]" id="user_id_{{$user->id}}" value="{{$user->id}}">
-                            {{$user->name}} <br>
-                        @endif
-                    @endforeach
-                </div>
+                @include('sections.add-user')
 
                 <div class="form-group" id="form-group">
-                    <button>Opslaan</button>
-                    <button class="delete" onclick="event.preventDefault(); deleteTask();">Verwijder taak</button>
+                    <button onclick="event.preventDefault(); openAddUsersToTaskPopup();">Opslaan</button>
+                    <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
                 </div>
             </form>
             <form id="delete-form" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
@@ -139,11 +128,16 @@
     @endif
 </div>
 
+@include('sections.delete.task')
+
+<form id="delete-form-task" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
+    @csrf
+    @method('DELETE')
+</form>
+
 <script>
-    function deleteTask(){
-        if(confirm('Weet je zeker dat je deze taak wilt verwijderen?')){
-            document.getElementById('delete-form').submit();
-        }
+    function openAddUsersToTaskPopup(){
+        document.querySelector('.add-user-popup .text-container').style.visibility = 'visible';
     }
 </script>
 @endsection
