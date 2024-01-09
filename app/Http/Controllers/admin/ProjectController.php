@@ -82,7 +82,7 @@ class ProjectController extends Controller
             $project_id = $project->id;
             $project = Project::where('id', $project_id)->first();
     
-            $customerUsers = User::where('customer_id', $project->customer_id)->get();
+            $customerUsers = User::where('customer_id', $project->customer_id)->where('department_id', $project->department_id)->get();
     
             foreach($customerUsers as $user) {
                 Mail::to($user->email)->send(new NewProjectMail($project));
