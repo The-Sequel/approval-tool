@@ -192,7 +192,7 @@
                     <a style="text-decoration: none; color: black;" href="{{route('admin.tasks.show', $task)}}">{{$task->title}}</a>
                 </p>
             @endforeach
-            <p style="margin-top: 30px; color: gray;">{{now()->format('D M Y')}}</p>
+            <p style="margin-top: 30px; color: gray;">{{now()->format('d-m-Y')}}</p>
         </span>
     </div>
 @endif
