@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
-<body style="margin: 0; padding: 0;">
-    <table role="presentation" style="width: 100%; border-collapse: collapse; border: 0; border-spacing: 0; background:#ffffff;">
+<body>
+    
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
         <tr>
-            @yield('content')
+            <td>
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr style="border: 1px solid red;">
+                        <td>
+                            <img width="100%" height="100" src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" class="attachment-full size-full entered lazyloaded" alt="" decoding="async" data-lazy-src="https://thesequel.nl/wp-content/uploads/2022/09/logo.svg" style="display: block; margin: 0; padding: 0;">
+                        </td>
+                    </tr>
+                </table>
+
+                @yield('content')
+            </td>
         </tr>
     </table>
 </body>
 </html>
-
-<style>
-    body{
-        margin: 0;
-        padding: 0;
-    }
-
-    table{
-
-    }
-</style>

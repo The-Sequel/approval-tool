@@ -4,17 +4,18 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Reason;
 use App\Models\Message;
 use App\Models\Project;
 use App\Models\Customer;
 use App\Models\Department;
-use App\Models\Reason;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\Tasks\NewTaskMail;
-use App\Mail\Tasks\CompletedTaskMail;
 use App\Http\Controllers\Controller;
+use App\Mail\Tasks\NewTaskMailAdmin;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
+use App\Mail\Tasks\CompletedTaskMail;
 
 class TaskController extends Controller
 {
@@ -133,24 +134,31 @@ class TaskController extends Controller
         
             foreach($assignedUsers as $userId) {
                 $user = User::find($userId);
-                if ($user) {
-                    $users->push($user);
+
+                if(isset($user->email)){
+                    Mail::to($user->email)->send(new NewTaskMailAdmin($task));
                 }
+
+                // if ($user) {
+                //     $users->push($user);
+                // }
             }
         
             foreach($customerUsers as $user) {
                 if($user->department_id == $task->department_id) {
-                    $users->push($user);
+                    if(isset($user->email)){
+                        Mail::to($user->email)->send(new NewTaskMail($task));
+                    }
                 }
             }
         
-            $uniqueUsers = $users->unique('id'); // Remove duplicate users
+            // $uniqueUsers = $users->unique('id'); // Remove duplicate users
         
-            foreach($uniqueUsers as $user) {
-                if(isset($user->email)){
-                    Mail::to($user->email)->send(new NewTaskMail($task));
-                }
-            }
+            // foreach($uniqueUsers as $user) {
+            //     if(isset($user->email)){
+            //         Mail::to($user->email)->send(new NewTaskMail($task));
+            //     }
+            // }
         }
 
         if($request->project_id != null){
