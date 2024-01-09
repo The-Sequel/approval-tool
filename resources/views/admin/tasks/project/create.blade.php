@@ -6,6 +6,10 @@
         <form action="{{route('admin.tasks.store')}}" method="POST" enctype="multipart/form-data" id="add-user-form">
             @csrf
             @method('POST')
+            @php
+                $route = Request::path();
+                // dd($route)
+            @endphp
             <div class="form-group">
                 <label for="title">Titel *</label>
                 <input class="form-control" type="text" name="title" id="title">
