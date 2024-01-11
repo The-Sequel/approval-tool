@@ -1,5 +1,5 @@
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .flex{
@@ -85,6 +85,7 @@
 
             .task-card-customer{
                 margin-bottom: 20px;
+                font-weight: 700;
             }
 
             .task-card-items{
@@ -180,6 +181,7 @@
 
             .project-card-customer{
                 margin-bottom: 15px;
+                font-weight: 700;
             }
 
             .project-card-items{
@@ -248,6 +250,10 @@
             margin-top: 10px;
         }
 
+        h3{
+            font-size: 16px;
+        }
+
         button{
             margin-top: 10px;
             background-color: gray;
@@ -273,6 +279,11 @@
             margin-top: 10px;
         }
 
+        h3{
+            font-size: 16px;
+        }
+
+
         button{
             margin-top: 10px;
             background-color: black;
@@ -293,6 +304,10 @@
         background-color: #90a424;
         padding-top: 25px;
         padding-left: 20px;
+
+        h3{
+            font-size: 16px;
+        }
 
         p{
             margin-top: 5px;
