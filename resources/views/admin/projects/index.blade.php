@@ -21,7 +21,7 @@
                     <tr>
                         <th>Projecten</th>
                         <th>Klant</th>
-                        <th>Personen</th>
+                        <th>Gemaakt door</th>
                         <th>Deadline</th>
                         <th>Afdelingen</th>
                         <th>Status</th>
@@ -36,7 +36,7 @@
                         <tr>
                             <td data-label="Projecten">{{$project->title}}</td>
                             <td data-label="Klant">{{$project->customer->name}}</td>
-                            <td data-label="Personen">
+                            <td data-label="Gemaakt door">
                                 <div class="user-logo-main">
                                     @foreach($users as $user)
                                         @if($user->customer_id == $project->customer_id)

@@ -84,7 +84,7 @@
                 </div>
                 <div class="project-card-info">
                     <div class="project-card-image">
-                        <img src="{{ asset('storage/app/public/'.$project->customer->logo) }}" alt="{{$project->customer->name}}" width="50">
+                        <img src="{{ asset('storage/'.$project->customer->logo) }}" alt="{{$project->customer->name}}" width="50">
                     </div>
                     <div class="project-card-body">
                         <p class="project-card-customer">Klant: {{$project->customer->name}}</p>

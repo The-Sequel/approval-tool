@@ -122,7 +122,7 @@ class TaskController extends Controller
                 }
 
                 foreach($users as $user){
-                    Mail::to($user[0]->email)->send(new DeniedTaskMail($task));
+                    Mail::to($user->email)->send(new DeniedTaskMail($task));
                 }
             }
 
