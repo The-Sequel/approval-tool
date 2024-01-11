@@ -29,7 +29,12 @@
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
                     <tr>
                         <td>
-                            <h3 style="font-family:Arial, Helvetica, sans-serif; text-align: center;">Geweigerd door: Silvin van Haestregt</h3>
+                            <h3 style="font-family:Arial, Helvetica, sans-serif; text-align: center;">Geweigerd door: 
+                                @php
+                                    $user = \App\Models\User::find($task->denied_by);
+                                @endphp
+                                {{$user->name}}
+                            </h3>
                         </td>
                     </tr>
                 </table>
