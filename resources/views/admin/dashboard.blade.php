@@ -34,8 +34,8 @@
                         <div class="task-card-items" style="margin-top: 25px;">
                             <div class="task-card-data">
                                 <p class="task-card-created_at">{{date('d-m-Y', strtotime($task->created_at))}}</p>
-                                @if($task->project_id != null)
-                                    <p class="task-card-department">{{$task->project->department->title}}</p>
+                                @if($task->department_id != null)
+                                    <p class="task-card-department">{{$task->department->title}}</p>
                                 @endif
                             </div>
                             <div class="task-card-persons">

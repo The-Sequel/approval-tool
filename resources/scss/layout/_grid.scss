@@ -23,10 +23,11 @@ div {
 }
 
 .flex {
-    max-width: 1600px;
+    // max-width: 1600px;
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    // width: 100%;
+    width: calc(100% - 270px);
 }
 
 // .container {
