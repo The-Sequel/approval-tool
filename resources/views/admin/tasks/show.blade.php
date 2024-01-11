@@ -59,9 +59,9 @@
                     <p><span>Klant:</span> {{$task->customer->name}}</p>
                     <p>{!! nl2br($task->description) !!}</p>
                     @if($task->deadline != null)
-                        <p><span>Deadline:</span> {{$task->deadline}}</p>
+                        <p><span>Deadline:</span> {{ \Carbon\Carbon::parse($task->deadline)->format('d-m-Y') }}</p>
                     @endif
-                    <p><span>Status:</span> afgekeurd</p>
+                    <p><span>Status:</span> Afgekeurd</p>
                     @if($task->images)
                         @php
                             $imagesArray = json_decode($task->images, true);
@@ -89,9 +89,9 @@
                     <p><span>Klant:</span> {{$task->customer->name}}</p>
                     <p>{!! nl2br($task->description) !!}</p>
                     @if($task->deadline != null)
-                        <p><span>Deadline:</span> {{$task->deadline}}</p>
+                        <p><span>Deadline:</span> {{ \Carbon\Carbon::parse($task->deadline)->format('d-m-Y') }}</p>
                     @endif
-                    <p><span>Status:</span> goedgekeurd</p>
+                    <p><span>Status:</span> Goedgekeurd</p>
                     @if($task->images)
                         @php
                             $imagesArray = json_decode($task->images, true);

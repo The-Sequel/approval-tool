@@ -83,6 +83,8 @@ Route::middleware(['auth', 'verified', 'admin.access'])->group(function () {
     Route::get('/admin/search/users', [SearchController::class, 'searchUser'])->name('admin.search.users');
     Route::get('/admin/search/customers', [SearchController::class, 'searchCustomer'])->name('admin.search.customers');
     Route::get('/admin/filter/tasks', [FilterController::class, 'taskApproved'])->name('admin.filter.tasks');
+
+    Route::get('/admin/messages/search', [MessageController::class, 'filter'])->name('admin.messages.filter');
 });
 
 Route::middleware(['auth', 'verified', 'customer.access'])->group(function () {

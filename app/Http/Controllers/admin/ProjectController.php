@@ -85,7 +85,9 @@ class ProjectController extends Controller
             $customerUsers = User::where('customer_id', $project->customer_id)->where('department_id', $project->department_id)->get();
     
             foreach($customerUsers as $user) {
-                Mail::to($user->email)->send(new NewProjectMail($project));
+                if($user->status == 'active'){
+                    Mail::to($user->email)->send(new NewProjectMail($project));
+                }
             }
         }
 

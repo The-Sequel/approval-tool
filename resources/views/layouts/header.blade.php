@@ -28,6 +28,7 @@
         'admin/users/create' => 'Gebruiker aanmaken',
         'admin/search/users' => 'Gebruikers',
         'admin/messages' => 'Berichten',
+        'admin/messages/search' => 'Berichten',
         // Customer side
         '/' => 'Hi, ' . Auth::user()->name,
         'projects' => 'Projecten',
