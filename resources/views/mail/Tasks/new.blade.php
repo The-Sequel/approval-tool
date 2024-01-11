@@ -38,7 +38,9 @@
                     <tr>
                         @if($task->deadline != null)
                             <td>
-                                <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">Deadline: {{$task->deadline}}</p>
+                                <p style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;">
+                                    Deadline: {{ \Carbon\Carbon::parse($task->deadline)->format('d-m-Y') }}
+                                </p>
                             </td>
                         @endif
                     </tr>
