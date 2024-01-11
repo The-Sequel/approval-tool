@@ -106,6 +106,7 @@ class TaskController extends Controller
 
             $task->update([
                 'status' => 'denied',
+                'denied_by' => auth()->user()->id,
                 // 'reason' => $request->message,
                 // 'reasons' => json_encode(['reason' => $request->message]),
             ]);
