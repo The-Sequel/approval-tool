@@ -25,5 +25,9 @@ class DepartmentSeeder extends Seeder
         Department::create([
             'title' => 'Sales',
         ]);
+
+        Department::create([
+            'title' => 'Support',
+        ]);
     }
 }

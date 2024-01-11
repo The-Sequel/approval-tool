@@ -134,14 +134,18 @@ class TaskController extends Controller
                 $user = User::find($userId);
 
                 if(isset($user->email)){
-                    Mail::to($user->email)->send(new NewTaskMailAdmin($task));
+                    if($user->status == 'active'){
+                        Mail::to($user->email)->send(new NewTaskMailAdmin($task));
+                    }
                 }
             }
         
             foreach($customerUsers as $user) {
                 if($user->department_id == $task->department_id) {
                     if(isset($user->email)){
-                        Mail::to($user->email)->send(new NewTaskMail($task));
+                        if($user->status == 'active'){
+                            Mail::to($user->email)->send(new NewTaskMail($task));
+                        }
                     }
                 }
             }
@@ -210,7 +214,9 @@ class TaskController extends Controller
             $customerUsers = User::where('customer_id', $task->customer_id)->where('department_id', $task->department_id)->get();
     
             foreach($customerUsers as $user) {
-                Mail::to($user->email)->send(new CompletedTaskMail($task));
+                if($user->status == 'active'){
+                    Mail::to($user->email)->send(new CompletedTaskMail($task));
+                }
             }
         }
 

@@ -43,7 +43,7 @@
                     <tr>
                         <td>
                             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; margin-top: 20px;">
-                                <a style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;" href="{{route('admin.tasks.approve', $task)}}"><button style="padding: 12px 24px;">Klik hier</button></a>
+                                <a style="font-family:Arial, Helvetica, sans-serif; text-align: center; margin-bottom: 0;" href="{{route('admin.tasks.show', $task)}}"><button style="padding: 12px 24px;">Klik hier</button></a>
                             </div>
                         </td>
                     </tr>

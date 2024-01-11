@@ -31,55 +31,5 @@ class UserSeeder extends Seeder
             'color' => 'green',
             'department_id' => 2,
         ]);
-
-        User::create([
-            'name' => 'Silvin Customer 2',
-            'email' => 'stage2@thesequel.nl',
-            'password' => bcrypt('password'),
-            'role_id' => 2,
-            'customer_id' => 1,
-            'color' => 'green',
-            'department_id' => 2,
-        ]);
-
-        User::create([
-            'name' => 'Silvin Customer 3',
-            'email' => 'stage3@thesequel.nl',
-            'password' => bcrypt('password'),
-            'role_id' => 2,
-            'customer_id' => 1,
-            'color' => 'green',
-            'department_id' => 2,
-        ]);
-
-        User::create([
-            'name' => 'Silvin Customer 4',
-            'email' => 'stage4@thesequel.nl',
-            'password' => bcrypt('password'),
-            'role_id' => 2,
-            'customer_id' => 1,
-            'color' => 'green',
-            'department_id' => 2,
-        ]);
-
-        User::create([
-            'name' => 'Silvin Customer 5',
-            'email' => 'stage5@thesequel.nl',
-            'password' => bcrypt('password'),
-            'role_id' => 2,
-            'customer_id' => 1,
-            'color' => 'green',
-            'department_id' => 2,
-        ]);
-        
-        User::create([
-            'name' => 'Silvin Customer 6',
-            'email' => 'stage6@thesequel.nl',
-            'password' => bcrypt('password'),
-            'role_id' => 2,
-            'customer_id' => 1,
-            'color' => 'green',
-            'department_id' => 2,
-        ]);
     }
 }
