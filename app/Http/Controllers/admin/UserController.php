@@ -61,11 +61,11 @@ class UserController extends Controller
             $user = User::create($attributes);
         }
 
-        if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
-            if($user->role_id == 2){
-                Mail::to($user->email)->send(new UserCreated($user));
-            }
-        }
+        // if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
+        //     if($user->role_id == 2){
+        //         Mail::to($user->email)->send(new UserCreated($user));
+        //     }
+        // }
 
         // Redirect the user
         return redirect('/admin/users')->with('success', 'Gebruiker is aangemaakt!');
