@@ -21,20 +21,7 @@
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
                     <tr>
                         <td>
-                            <h3 style="font-family: 'Open Sans', sans-serif; text-align: center;">Er is een taak goedgekeurd</h3>
-                        </td>
-                    </tr>
-                </table>
-
-                <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                    <tr>
-                        <td>
-                            <p style="font-family: 'Open Sans', sans-serif; text-align: center;">Goedgekeurd door: 
-                                @php
-                                    $user = App\Models\User::find($task->approved_by);
-                                @endphp
-                                {{$user->name}}
-                            </p>
+                            <h3 style="font-family: 'Open Sans', sans-serif; text-align: center;">Er is een project voltooid</h3>
                         </td>
                     </tr>
                 </table>
@@ -43,13 +30,15 @@
                     <tr>
                         <td>
                             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; margin-top: 20px;">
-                                <a style="font-family: 'Open Sans', sans-serif; text-align: center; margin-bottom: 0;" href="{{route('admin.tasks.show', $task)}}"><button style="padding: 12px 24px;">Klik hier</button></a>
+                                <a style="font-family: 'Open Sans', sans-serif; text-align: center; margin-bottom: 0;" href="{{route('customer.projects.show', $project)}}"><button style="padding: 12px 24px;">Klik hier</button></a>
                             </div>
                         </td>
                     </tr>
                 </table>
+
             </td>
         </tr>
     </table>
+
 </body>
 </html>

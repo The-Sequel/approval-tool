@@ -76,6 +76,17 @@ class TaskController extends Controller
                     $project->update([
                         'status' => 'approved'
                     ]);
+
+                    // Email
+                    if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
+                        // get all users with the role 'admin'
+                        $adminUsers = User::where('role_id', 1)->get();
+
+                        foreach($adminUsers as $user){
+                            Mail::to($user->email)->send(new ApprovedTaskMail($task));
+                        }
+
+                    }
                 }
             }
 
