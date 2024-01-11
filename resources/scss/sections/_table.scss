@@ -252,8 +252,8 @@ table{
 }
 
 .user-logo {
-    height: 20px;
-    width: 20px;
+    height: 12px;
+    width: 12px;
     border-radius: 50%;
     background-color: #bbb;
     padding: 10px;
@@ -261,6 +261,7 @@ table{
     justify-content: center;
     align-items: center;
     color: white;
+    margin-left: 3px;
 }
 
 .user-information {
@@ -281,7 +282,7 @@ table{
     position: absolute;
     z-index: 1;
     top: -20px;
-    left: 105%;
+    right: 105%;
     width: 300px;
     height: 40px;
     padding-top: 20px;
@@ -411,11 +412,6 @@ table{
     .user-logo-main{
         display: block;
     }
-
-    .user-information .user-information-content{
-        left: -150;
-        top: -90;
-    }
 }
 
 @mixin table--768() {
@@ -476,10 +472,5 @@ table{
 
     .user-logo-main{
         display: block;
-    }
-
-    .user-information .user-information-content{
-        left: -250;
-        top: -90;
     }
 }
