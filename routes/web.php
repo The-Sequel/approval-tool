@@ -78,13 +78,15 @@ Route::middleware(['auth', 'verified', 'admin.access'])->group(function () {
     // Messages
     Route::get('/admin/messages', [MessageController::class, 'index'])->name('admin.messages.index');
 
-    Route::get('/admin/search/tasks', [SearchController::class, 'searchTasks'])->name('admin.search.tasks');
     Route::get('/admin/search/projects', [SearchController::class, 'searchProjects'])->name('admin.search.projects');
-    Route::get('/admin/search/users', [SearchController::class, 'searchUser'])->name('admin.search.users');
-    Route::get('/admin/search/customers', [SearchController::class, 'searchCustomer'])->name('admin.search.customers');
+    Route::get('/admin/search/tasks', [SearchController::class, 'searchTasks'])->name('admin.search.tasks');
+    Route::get('/admin/search/customers', [SearchController::class, 'searchCustomers'])->name('admin.search.customers');
+    Route::get('/admin/search/users', [SearchController::class, 'searchUsers'])->name('admin.search.users');
+    Route::get('/admin/search/messages', [SearchController::class, 'searchMessages'])->name('admin.search.messages');
+
     Route::get('/admin/filter/tasks', [FilterController::class, 'taskApproved'])->name('admin.filter.tasks');
 
-    Route::get('/admin/messages/search', [MessageController::class, 'filter'])->name('admin.messages.filter');
+    // Route::get('/admin/messages/search', [MessageController::class, 'filter'])->name('admin.messages.filter');
 });
 
 Route::middleware(['auth', 'verified', 'customer.access'])->group(function () {
@@ -109,23 +111,9 @@ Route::middleware(['auth', 'verified', 'customer.access'])->group(function () {
     Route::get('/messages', [CustomerMessageController::class, 'index'])->name('customer.messages.index');
 
     // Search
-    Route::get('/search/tasks', [CustomerSearchController::class, 'searchTask'])->name('customer.search.tasks');
-    Route::get('/status/tasks', [CustomerSearchController::class, 'statusTask'])->name('customer.status.tasks');
-    Route::get('/search/projects', [CustomerSearchController::class, 'searchProject'])->name('customer.search.projects');
-
-    // Notifications
-
-
-
-    // Test mails
-    // Route::get('/mail', function () {
-    //     $task = App\Models\Task::find(1);
-    //     return new App\Mail\Tasks\NewTaskMail($task);
-    // });
-});
-
-Route::get('/test', function () {
-    return view('test');
+    Route::get('/search/projects', [CustomerSearchController::class, 'searchProjects'])->name('customer.search.projects');
+    Route::get('/search/tasks', [CustomerSearchController::class, 'searchTasks'])->name('customer.search.tasks'); 
+    Route::get('/search/messages', [CustomerSearchController::class, 'searchMessages'])->name('customer.search.messages');
 });
 
 Route::get('/mail', function () {

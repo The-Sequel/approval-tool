@@ -1,5 +1,5 @@
 .login-container{
-    width: 500px;
+    // width: 500px;
     margin: 0 auto;
     margin-top: 200px;
     display: flex;
@@ -14,6 +14,10 @@
             width: 200px;
             height: auto;
         }
+    }
+
+    form{
+        // width: 80%;
     }
 }
 

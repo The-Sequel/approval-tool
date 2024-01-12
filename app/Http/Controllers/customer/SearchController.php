@@ -4,59 +4,77 @@ namespace App\Http\Controllers\customer;
 
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Message;
 use App\Models\Project;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
-    public function searchTask(Request $request)
-    {
-        $users = User::where('role_id', 1)->where('deleted_at', null)->get();
-        $user = auth()->user();
-        $normalUsers = User::where('deleted_at', null)->get();
+    public function searchProjects(Request $request){
+        $projectsArray = Project::query();
 
-        if($request->project_id == null)
-        {
-            $tasks = Task::where('customer_id', $user->customer_id)->where('title', 'like', '%' . $request->search . '%')->get();
+        $users = User::where('deleted_at', null)->get();
+        $departments = Department::all();
+        $departmentChoice = Department::where('id', $request['department'])->first();
+        $status = $request['status'];
+        $date = $request->date != null ? date('Y-m-d', strtotime($request->date)) : "";
 
-            return view('customer.tasks.index', compact('tasks', 'users', 'normalUsers'));
-        } else {
-            $project = Project::where('id', $request->project_id)->first();
+        if ($request['search'] != null) {
+            $projectsArray->where('title', 'like', '%' . $request['search'] . '%');
 
-            $tasks = Task::where('project_id', $request->project_id)->where('customer_id', $user->customer_id)
-                ->where('title', 'like', '%' . $request->search . '%')
-                ->get();
-
-            return view('customer.projects.show', compact('tasks', 'users', 'project'));
+        }
+        if ($request['date'] != null) {
+            $projectsArray->where('created_at', 'like', '%' . $date . '%');
+        }
+        if($request['status'] != null) {
+            $projectsArray->where('status', $request['status']);
+        }
+        if($request['department'] != null) {
+            $projectsArray->where('department_id', $request['department']);
         }
 
+        $projects = $projectsArray->with('customer', 'department')->get()->toArray();
+
+        return view('customer.projects.index', compact('projects', 'users', 'date', 'departments', 'departmentChoice', 'status'));
     }
 
-    public function searchProject(Request $request)
-    {
-        $users = User::where('role_id', 1)->where('deleted_at', null)->get();
+    public function searchTasks(Request $request){
+        $tasksArray = Task::query();
 
-        $user = auth()->user();
+        $users = User::where('deleted_at', null)->get();
+        $status = $request['status'];
 
-        $projects = Project::where('customer_id', $user->customer_id)->where('title', 'like', '%' . $request->search . '%')->get();
-
-        return view('customer.projects.index', compact('projects', 'users'));
-    }
-
-    public function statusTask(Request $request)
-    {
-        $users = User::where('role_id', 1)->where('deleted_at', null)->get();
-        $user = auth()->user();
-
-        if($request->project_id == null){
-            return view('customer.tasks.index', compact('users'));
-        } else {
-            $project = Project::where('id', $request->project_id)->first();
-
-            $tasks = Task::where('project_id', $request->project_id)->where('customer_id', $user->customer_id)->where('status', $request->status)->get();
-
-            return view('customer.projects.show', compact('users', 'project', 'tasks'));
+        if($request['search'] != null){
+            $tasksArray->where('title', 'like', '%' . $request['search'] . '%');
         }
+        if($request['date'] != null){
+            $tasksArray->where('created_at', 'like', '%' . $request['date'] . '%');
+        }
+        if($request['status'] != null){
+            $tasksArray->where('status', $request['status']);
+        }
+
+        $tasks = $tasksArray->with('customer', 'department')->get()->toArray();
+
+        return view('customer.tasks.index', compact('tasks', 'users', 'status'));
+    }
+
+    public function searchMessages(Request $request){
+        $messagesArray = Message::query();
+
+        $date = date('Y-m-d', strtotime($request->date));
+
+        if($request['search'] != null){
+            $messagesArray->where('title', 'like', '%' . $request['search'] . '%');
+        }
+        if($request['date'] != null){
+            $messagesArray->where('created_at', 'like', '%' . $date . '%');
+        }
+
+        $messages = $messagesArray->get()->toArray();
+
+        return view('customer.messages.index', compact('messages', 'date'));
     }
 }

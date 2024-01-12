@@ -3,19 +3,24 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
+        <form class="search-form" action="{{route('admin.search.customers')}}" method="GET">
+            @csrf
+            @method('GET')
+            <div class="search-form-group">
+                <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
+            </div>
+
+            <button>Zoeken</button>
+        </form>
+        <form class="search-reset" action="{{route('admin.customers.index')}}" method="GET">
+            @csrf
+            @method('GET')
+            <button>Reset</button>
+        </form>
+
+        <button class="filter-button" id="showFilters">Toon filters</button>
+
         @if(count($customers) > 0)
-            <form class="search-form" action="{{route('admin.search.customers')}}" method="GET">
-                @csrf
-                @method('GET')
-                <div class="search-form-group">
-                    <input type="text" name="search" id="search" class="search-form-input" placeholder="Zoeken">
-                </div>
-            </form>
-            <form class="search-reset" action="{{route('admin.customers.index')}}" method="GET">
-                @csrf
-                @method('GET')
-                <button>Reset</button>
-            </form>
             <table class="table">
                 <thead>
                     <tr>

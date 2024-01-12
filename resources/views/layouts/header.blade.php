@@ -29,6 +29,11 @@
         'admin/search/users' => 'Gebruikers',
         'admin/messages' => 'Berichten',
         'admin/messages/search' => 'Berichten',
+
+        // Filters admin
+        'admin/projects/deadline' => 'Projecten',
+        'admin/tasks/deadline' => 'Taken',
+
         // Customer side
         '/' => 'Hi, ' . Auth::user()->name,
         'projects' => 'Projecten',
@@ -38,6 +43,7 @@
         'contact' => 'Contact',
         'search/tasks' => 'Taken',
         'search/projects' => 'Projects',
+        'search/messages' => 'Berichten',
     ];
 
     foreach (User::all() as $user) {

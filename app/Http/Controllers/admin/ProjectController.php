@@ -18,10 +18,11 @@ class ProjectController extends Controller
 {
     public function index(){
         $projects = Project::all();
+        $departments = Department::all();
 
         $users = User::where('deleted_at', null)->get();
 
-        return view('admin.projects.index', compact('projects', 'users'));
+        return view('admin.projects.index', compact('projects', 'users', 'departments'));
     }
 
     public function create(){
