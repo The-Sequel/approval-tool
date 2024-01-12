@@ -8,7 +8,7 @@
     "src": "resources/css/app.css"
   },
   "resources/css/style.css": {
-    "file": "assets/style-d4206ec5.css",
+    "file": "assets/style-aec011f1.css",
     "isEntry": true,
     "src": "resources/css/style.css"
   },
@@ -24,6 +24,16 @@
     "file": "assets/customers-4ed993c7.js",
     "isEntry": true,
     "src": "resources/js/customers.js"
+  },
+  "resources/js/filters.js": {
+    "file": "assets/filters-1575072e.js",
+    "isEntry": true,
+    "src": "resources/js/filters.js"
+  },
+  "resources/js/mobile-menu.js": {
+    "file": "assets/mobile-menu-40faf4ee.js",
+    "isEntry": true,
+    "src": "resources/js/mobile-menu.js"
   },
   "resources/js/notifications.js": {
     "file": "assets/notifications-edf7a916.js",
