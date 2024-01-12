@@ -16,6 +16,7 @@
 
             <div class="search-form-group">
                 <select name="status" id="status">
+                    <option value="">Status</option>
                     @if(isset($status))
                         <option value="active" {{ $status == 'active' ? 'selected' : '' }}>Actief</option>
                         <option value="inactive" {{ $status == 'inactive' ? 'selected' : '' }}>Inactief</option>
