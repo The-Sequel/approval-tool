@@ -5,6 +5,7 @@ namespace App\Http\Controllers\customer;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Project;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class ProjectController extends Controller
     {
         $user = auth()->user();
         $projects = Project::where('customer_id', $user->customer_id)->get();
-        return view('customer.projects.index', compact('projects'));
+        $departments = Department::all();
+        $users = User::where('deleted_at', null)->get();
+        return view('customer.projects.index', compact('projects', 'departments', 'users'));
     }
 
     public function show(Project $project)

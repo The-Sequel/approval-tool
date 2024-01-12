@@ -115,7 +115,7 @@
                 <a href="{{route('customer.contact', 0)}}"><li>Contact</li></a>
             </div>
             {{-- logout --}}
-            <img style="margin-bottom: 50px; margin-left: 20px;" class="logout" src="{{ asset('storage/'.Auth::user()->customer->logo) }}" width="50px">
+            {{-- <img style="margin-bottom: 50px; margin-left: 20px;" class="logout" src="{{ asset('storage/'.Auth::user()->customer->logo) }}" width="50px"> --}}
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <div class="logout">

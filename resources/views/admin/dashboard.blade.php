@@ -39,7 +39,25 @@
                                 @endif
                             </div>
                             <div class="task-card-persons">
-                                @foreach($users as $user)
+                                @foreach(json_decode($task->assigned_to) as $user)
+                                    @php
+                                        $user = App\Models\User::find($user);
+                                    @endphp
+                                    <div class="user-information">
+                                        <p class="task-card-person">{{substr($user->name, 0, 1)}}</p>
+                                        <span class="user-information-content">
+                                            <div class="user-information-content-logo">
+                                                <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                            </div>
+                                            <div class="user-information-content-data">
+                                                <p>{{$user->name}}</p>
+                                                <p>{{$user->email}}</p>
+                                            </div>
+                                        </span>
+                                    </div>
+                                @endforeach
+
+                                {{-- @foreach($users as $user)
                                     @if($user->customer_id == $task->customer_id)
                                         <div class="user-information">
                                             <p class="task-card-person">{{substr($user->name, 0, 1)}}</p>
@@ -54,7 +72,7 @@
                                             </span>
                                         </div>
                                     @endif
-                                @endforeach
+                                @endforeach --}}
                             </div>
                         </div>
                     </div>
@@ -117,22 +135,21 @@
                                 <p class="project-card-department">{{$project->department->title}}</p>
                             </div>
                             <div class="project-card-persons">
-                                @foreach($users as $user)
-                                    @if($user->customer_id == $project->customer_id)
-                                        <div class="user-information">
-                                            <p class="project-card-person">{{substr($user->name, 0, 1)}}</p>
-                                            <span class="user-information-content">
-                                                <div class="user-information-content-logo">
-                                                    <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                                                </div>
-                                                <div class="user-information-content-data">
-                                                    <p>{{$user->name}}</p>
-                                                    <p>{{$user->email}}</p>
-                                                </div>
-                                            </span>
+                                @php
+                                    $user = App\Models\User::find($project->created_by);
+                                @endphp
+                                <div class="user-information">
+                                    <p class="project-card-person">{{substr($user->name, 0, 1)}}</p>
+                                    <span class="user-information-content">
+                                        <div class="user-information-content-logo">
+                                            <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
                                         </div>
-                                    @endif
-                                @endforeach
+                                        <div class="user-information-content-data">
+                                            <p>{{$user->name}}</p>
+                                            <p>{{$user->email}}</p>
+                                        </div>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>

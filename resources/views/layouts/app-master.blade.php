@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    @vite(['resources/css/style.css', 'resources/js/customers.js', 'resources/js/notifications.js'])
+    @vite(['resources/css/style.css', 'resources/js/customers.js', 'resources/js/notifications.js', 'resources/js/filters.js', 'resources/js/mobile-menu.js'])
 </head>
 <body>
     @include('layouts.sidebar')

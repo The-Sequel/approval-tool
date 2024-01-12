@@ -16,8 +16,10 @@ class UserController extends Controller
 {
     public function index(){
         $users = User::where('deleted_at', null)->get();
+        $departments = Department::all();
+        $roles = Role::all();
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users', 'departments', 'roles'));
     }
 
     public function create(){

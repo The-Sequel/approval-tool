@@ -3,6 +3,27 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
+        <form class="search-form" action="{{ route('customer.search.messages') }}" method="GET">
+            <div class="search-form-group">
+                @if(isset($date))
+                    <input type="date" id="date" name="date" class="date" value="{{ $date }}">
+                @else
+                    <input type="date" id="date" name="date" class="date">
+                @endif
+
+                <input type="hidden" id="name" name="name" value="messages"></input>
+            </div>
+
+            <button>Zoeken</button>
+        </form>
+        <form class="search-reset" action="{{route('customer.messages.index')}}" method="GET">
+            @csrf
+            @method('GET')
+            <button>Reset</button>
+        </form>
+
+        <button class="filter-button" id="showFilters">Toon filters</button>
+
         @if(count($messages) > 0)
             <table class="table">
                 <thead>
@@ -14,20 +35,22 @@
                 </thead>
                 <tbody>
                     @foreach($messages as $message)
-                        @if($message->customer_id == Auth::user()->customer_id)
+                        @if($message['customer_id'] == Auth::user()->customer_id)
                             <tr>
-                                <td data-label="Onderwerp">{{$message->name}}</td>
-                                <td data-label="Datum">{{$message->created_at}}</td>
-                                @if($message->task_id == null)
+                                <td data-label="Onderwerp">{{$message['name']}}</td>
+                                <td data-label="Datum">{{$message['created_at']}}</td>
+                                @if($message['task_id'] == null)
                                     <td data-label="Project/Taak">
                                         <div>
-                                            <a href="{{route('customer.projects.show', $message->project_id)}}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg></a>
+                                            <a href="{{route('customer.projects.show', $message['project_id'])}}">
+                                                <span style="color: black;" class="material-icons">open_in_new</span></a>
                                         </div>
                                     </td>
-                                @elseif($message->project_id == null)
+                                @elseif($message['project_id'] == null)
                                     <td data-label="Project/Taak">
                                         <div>
-                                            <a href="{{route('customer.tasks.show', $message->task_id)}}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg></a>
+                                            <a href="{{route('customer.tasks.show', $message['task_id'])}}">
+                                                <span style="color: black;" class="material-icons">open_in_new</span></a>
                                         </div>
                                     </td>
                                 @endif

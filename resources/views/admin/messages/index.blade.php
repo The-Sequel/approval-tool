@@ -3,7 +3,7 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
-        <form action="{{ route('admin.messages.filter') }}" method="GET">
+        <form class="search-form" action="{{ route('admin.search.messages') }}" method="GET">
             <div class="search-form-group">
                 @if(isset($date))
                     <input type="date" id="date" name="date" class="date" value="{{ $date }}">
@@ -12,16 +12,18 @@
                 @endif
 
                 <input type="hidden" id="name" name="name" value="messages"></input>
-
-                <button>Filter</button>
             </div>
-            
+
+            <button>Zoeken</button>
         </form>
-        <form class="search-reset" action="{{route('admin.messages.index')}}" method="GET">
+        <form class="search-reset" action="{{route('admin.search.messages')}}" method="GET">
             @csrf
             @method('GET')
             <button>Reset</button>
         </form>
+
+        <button class="filter-button" id="showFilters">Toon filters</button>
+
         @if(count($messages) > 0)
             <table>
                 <thead>

@@ -58,39 +58,58 @@
     }
 }
 
-.search-form-group{
-    .search-form-input{
-        width: 50%;
-        padding: 12px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
+.search-form{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
 
-        &:focus{
-            outline: none;
+    .search-form-group{
+
+        .search-form-input{
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+    
+            &:focus{
+                outline: none;
+            }
         }
+    
+        .date{
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    
+        select{
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
     }
-
-    .date{
-        width: 20%;
-        padding: 12px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
     button{
-        padding: 12px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
+        padding: 14px 15px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
     }
+
 }
 
 .search-reset{
@@ -100,6 +119,13 @@
         border: none;
         cursor: pointer;
     }
+}
+
+.filter-button{
+    display: none;
+    padding: 8px 15px;
+    width: 100%;
+    border: none;
 }
 
 @mixin form--1400(){
@@ -130,5 +156,30 @@
         button{
             width: 50%;
         }
+    }
+
+    .search-form{
+        flex-direction: column;
+        gap: 0;
+        align-items: unset;
+        margin-bottom: 10px;
+        display: none;
+        .search-form-group{
+            .search-form-input{
+                width: 100%;
+            }
+        }
+    }
+
+    .search-reset{
+        display: none;
+        button{
+            width: 100%;
+            margin-bottom: 25px;
+        }
+    }
+
+    .filter-button{
+        display: block;
     }
 }
