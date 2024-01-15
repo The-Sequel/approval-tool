@@ -95,6 +95,26 @@ class SearchController extends Controller
     public function searchMessages(Request $request){
         $messagesArray = Message::query();
 
-        dd($request->all());
+        if($request['date'] != null){
+            $messagesArray->where('created_at', 'like', '%' . $request['date'] . '%');
+        }
+
+        $messages = $messagesArray->with('user')->get()->toArray();
+
+        return view('admin.messages.index', compact('messages'));
+    }
+
+    public function searchCustomers(Request $request){
+        $customersArray = Customer::query();
+
+        $users = User::where('deleted_at', null)->get();
+
+        if($request['search'] != null){
+            $customersArray->where('name', 'like', '%' . $request['search'] . '%');
+        }
+
+        $customers = $customersArray->get()->toArray();
+
+        return view('admin.customers.index', compact('customers', 'users'));
     }
 }
