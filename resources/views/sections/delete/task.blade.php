@@ -14,12 +14,17 @@
 </div>
 
 <script>
-    function deleteTaskPopup() {
+    let currentTaskId = null;
+
+    function deleteTaskPopup(id) {
+        currentTaskId = id;
         document.getElementById('delete-popup').classList.toggle('show');
     }
 
     function deleteTask() {
-        document.getElementById('delete-form-task').submit();
+        document.getElementById('delete-form-task-' + currentTaskId).submit();
+
+        console.log('delete task: ' + currentTaskId);
     }
 
     document.querySelectorAll('td:last-child').forEach(td => {
