@@ -76,9 +76,13 @@
                             <td data-label="Acties">
                                 <div class="table-icons">
                                     <a class="table-icons-item" href="{{route('admin.customers.edit', $customer['id'])}}"><span style="color: black;" class="material-icons">edit</span></a>
-                                    <a class="table-icons-item" href="#" onclick="deleteCustomerPopup();"><span style="color: black;" class="material-icons">delete</span></a>
+                                    <a class="table-icons-item" href="#" onclick="deleteCustomerPopup({{$customer['id']}});"><span style="color: black;" class="material-icons">delete</span></a>
                                 </div>
                             </td>
+                            <form id="delete-form-customer-{{$customer['id']}}" action="{{route('admin.customers.destroy', $customer['id'])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </tr>
                     @endforeach
                 </tbody>
@@ -95,14 +99,6 @@
                 <button class="button" type="submit">Maak nieuwe klant</button>
             </div>
         </form>
-
-        @if(count($customers) > 0)
-            <form id="delete-form-customer" action="{{route('admin.customers.destroy', $customer['id'])}}" method="POST">
-                @csrf
-                @method('DELETE')
-            </form>
-        @endif
-
 
         {{-- Dit is een optie maar dit hoeft niet gebruikt te worden dit is nog in de maak --}}
 

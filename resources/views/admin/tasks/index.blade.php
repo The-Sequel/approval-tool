@@ -178,10 +178,16 @@
                             <td data-label="Acties">
                                 <div class="table-icons">
                                     <a class="table-icons-item" href="{{route('admin.tasks.edit', $task['id'])}}"><span style="color: black;" class="material-icons">edit</span></a>
-                                    <a class="table-icons-item" href="#" onclick="event.preventDefault(); deleteTaskPopup();"><span style="color: black;" class="material-icons">delete</span></a>
+                                    <a class="table-icons-item" href="#" onclick="event.preventDefault(); deleteTaskPopup({{$task['id']}});"><span style="color: black;" class="material-icons">delete</span></a>
                                     <a class="table-icons-item" href="{{route('admin.tasks.show', $task['id'])}}"><span style="color: black;" class="material-icons">open_in_new</span></a>
                                 </div>
                             </td>
+                            @if(count($tasks) != 0)
+                                <form id="delete-form-task-{{$task['id']}}" action="{{route('admin.tasks.destroy', $task['id'])}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
@@ -207,12 +213,12 @@
         </div>
         
         {{-- Hidden forms --}}
-        @if(count($tasks) != 0)
+        {{-- @if(count($tasks) != 0)
             <form id="delete-form-task" action="{{route('admin.tasks.destroy', $task['id'])}}" method="POST">
                 @csrf
                 @method('DELETE')
             </form>
-        @endif
+        @endif --}}
     </div>
 </div>
 

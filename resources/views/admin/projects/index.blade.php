@@ -172,10 +172,15 @@
                             <td data-label="Acties">
                                 <div class="table-icons">
                                     <a class="table-icons-item" href="{{route('admin.projects.edit', $project['id'])}}"><span style="color: black;" class="material-icons">edit</span></a>
-                                    <a class="table-icons-item" href="#" onclick="event.preventDefault(); deleteProjectPopup();"><span style="color: black;" class="material-icons">delete</span></a>
+                                    <a class="table-icons-item" href="#" onclick="event.preventDefault(); deleteProjectPopup({{$project['id']}});"><span style="color: black;" class="material-icons">delete</span></a>
                                     <a class="table-icons-item" href="{{route('admin.projects.show', $project['id'])}}"><span style="color: black;" class="material-icons">open_in_new</span></a>
                                 </div>
                             </td>
+
+                            <form id="delete-form-project-{{$project['id']}}" action="{{route('admin.projects.destroy', $project['id'])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </tr>
                     @endforeach
                 </tbody>
@@ -192,13 +197,6 @@
                 <button type="submit">Maak nieuw project</button>
             </div>
         </form>
-
-        @if(count($projects) != 0)
-            <form id="delete-form-project" action="{{route('admin.projects.destroy', $project['id'])}}" method="POST">
-                @csrf
-                @method('DELETE')
-            </form>
-        @endif
     </div>
 </div>
 

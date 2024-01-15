@@ -129,9 +129,13 @@
                             <td data-label="Acties">
                                 <div class="table-icons">
                                     <a class="table-icons-item" href="{{route('admin.users.edit', $user['id'])}}"><span style="color: black;" class="material-icons">edit</span></a>
-                                    <a class="table-icons-item" href="#" onclick="deleteUserPopup();"><span style="color: black;" class="material-icons">delete</span></a>
+                                    <a class="table-icons-item" href="#" onclick="deleteUserPopup({{$user['id']}});"><span style="color: black;" class="material-icons">delete</span></a>
                                 </div>
                             </td>
+                            <form id="delete-form-user-{{$user['id']}}" action="{{route('admin.users.destroy', $user['id'])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                         </tr>
                     @endforeach
                 </tbody>
@@ -148,13 +152,6 @@
                 <button>Maak nieuwe gebruiker</button>
             </div>
         </form>
-
-        @if(count($users) > 0)
-            <form id="delete-form-user" action="{{route('admin.users.destroy', $user['id'])}}" method="POST">
-                @csrf
-                @method('DELETE')
-            </form>
-        @endif
     </div>
 </div>
 
