@@ -30,9 +30,11 @@ class ContactController extends Controller
         $users = User::where('role_id', 1)->where('deleted_at', null)->get();
 
 
-        // foreach($users as $user) {
-        //     Mail::to($user->email)->send(new ContactMail($contact));
-        // }
+        foreach($users as $user) {
+            if($user->status == 'active'){
+                Mail::to($user->email)->send(new ContactMail($contact));
+            }
+        }
 
         return redirect()->route('customer.dashboard')->with('success', 'Uw bericht is verzonden!');
     }
