@@ -12,7 +12,13 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $tasksWithDeadline = Task::where('deadline', date('Y-m-d'))->where('status', '!=', 'completed')->get();
+        $today = date('Y-m-d');
+        $oneWeekLater = date('Y-m-d', strtotime('+1 week'));
+
+        $tasksWithDeadline = Task::whereBetween('deadline', [$today, $oneWeekLater])
+                         ->where('status', '!=', 'completed')
+                         ->get();
+                         
         $tasksWithDeadlineCount = count($tasksWithDeadline);
         $customers = Customer::all();
         $projects = Project::orderBy('created_at', 'desc')->take(3)->get();

@@ -20,10 +20,10 @@
 
                 <div class="form-group form-edit-buttons" id="form-group">
                     <button>Voltooi taak</button>
-                    <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
+                    <button class="delete" onclick="event.preventDefault(); deleteTaskPopup({{$task->id}});">Verwijder taak</button>
                 </div>
             </form>
-            <form id="delete-form-task" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
+            <form id="delete-form-task-{{$task->id}}" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
                 @csrf
                 @method('DELETE')
             </form>

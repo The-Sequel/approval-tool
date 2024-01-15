@@ -128,13 +128,13 @@
             @method('GET')
             <div class="form-group form-edit-buttons" id="form-group">
                 <button type="submit">Maak nieuwe taak</button>
-                <button class="delete" onclick="event.preventDefault(); deleteProjectPopup();">Verwijder project</button>
+                <button class="delete" onclick="event.preventDefault(); deleteProjectPopup({{$project->id}});">Verwijder project</button>
             </div>
         </form>
 
         {{-- Hidden forms --}}
 
-        <form id="delete-form-project" action="{{route('admin.projects.destroy', $project)}}" method="POST">
+        <form id="delete-form-project-{{$project->id}}" action="{{route('admin.projects.destroy', $project)}}" method="POST">
             @csrf
             @method('DELETE')
         </form>

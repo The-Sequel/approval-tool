@@ -55,10 +55,10 @@
 
                 <div class="form-group form-edit-buttons" id="form-group">
                     <button>Opslaan</button>
-                    <button class="delete" onclick="event.preventDefault(); deleteTask();">Verwijder taak</button>
+                    <button class="delete" onclick="event.preventDefault(); deleteTaskPopup({{$task->id}});">Verwijder taak</button>
                 </div>
             </form>
-            <form id="delete-form" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
+            <form id="delete-form-task-{{$task->id}}" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
                 @csrf
                 @method('DELETE')
             </form>
@@ -105,10 +105,10 @@
 
                 <div class="form-group form-edit-buttons" id="form-group">
                     <button onclick="event.preventDefault(); openAddUsersToTaskPopup();">Opslaan</button>
-                    <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
+                    <button class="delete" onclick="event.preventDefault(); deleteTaskPopup({{$task->id}});">Verwijder taak</button>
                 </div>
             </form>
-            <form id="delete-form" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
+            <form id="delete-form-task-{{$task->id}}" action="{{route('admin.tasks.destroy', $task)}}" method="POST">
                 @csrf
                 @method('DELETE')
             </form>

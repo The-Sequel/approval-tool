@@ -37,21 +37,16 @@
             </div>
             <div class="form-group form-edit-buttons" id="form-group">
                 <button>Opslaan</button>
-                <button class="delete" onclick="event.preventDefault(); deleteProject();">Verwijder project</button>
+                <button class="delete" onclick="event.preventDefault(); deleteProjectPopup({{$project->id}});">Verwijder project</button>
             </div>
         </form>
-        <form id="delete-form" action="{{route('admin.projects.destroy', $project)}}" method="POST">
+        <form id="delete-form-project-{{$project->id}}" action="{{route('admin.projects.destroy', $project)}}" method="POST">
             @csrf
             @method('DELETE')
         </form>
     </div>
 </div>
 
-<script>
-    function deleteProject() {
-        if(confirm('Weet je zeker dat je dit project wilt verwijderen?')){
-            document.getElementById('delete-form').submit();
-        }
-    }
-</script>
+@include('sections.delete.project')
+
 @endsection
