@@ -37,7 +37,7 @@
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
                     <tr>
                         <td>
-                            <p style="font-family: 'Open Sans', sans-serif; text-align: center;">Bericht: {{$mail->message}}</p>
+                            <p style="font-family: 'Open Sans', sans-serif; text-align: center;"><span style="font-weight: bold;">Bericht:</span> {{$mail->message}}</p>
                         </td>
                     </tr>
                 </table>
@@ -45,7 +45,7 @@
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
                     <tr>
                         <td>
-                            <p style="font-family: 'Open Sans', sans-serif; text-align: center;">Klant: {{$mail->customer}}</p>
+                            <p style="font-family: 'Open Sans', sans-serif; text-align: center;"><span style="font-weight: bold;">Klant:</span> {{$mail->customer}}</p>
                         </td>
                     </tr>
                 </table>
