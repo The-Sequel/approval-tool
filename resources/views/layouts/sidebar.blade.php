@@ -8,8 +8,17 @@
     } else
 
     if(Auth::user()->role_id == 2) {
-        $projectsCountCustomer = Project::where('customer_id', Auth::user()->customer->id)->where('status', '!=', 'completed')->count();
-        $tasksCountCustomer = Task::where('customer_id', Auth::user()->customer_id)->where('status', '!=', 'approved')->count();
+        $user = Auth::user();
+
+        $customerId = $user->customer_id;
+
+        if(isset($customerId) != null){
+            $projectsCountCustomer = Project::where('customer_id', $user->customer->id)->where('status', '!=', 'completed')->count();
+            $tasksCountCustomer = Task::where('customer_id', $user->customer_id)->where('status', '!=', 'approved')->count();
+        } else {
+            $projectsCountCustomer = 0;
+            $tasksCountCustomer = 0;
+        }
     }
 @endphp
 
