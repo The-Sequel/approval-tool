@@ -176,6 +176,14 @@
 
 }
 
+@mixin header--992() {
+    .header{
+        h1{
+            font-size: 23px;
+        }
+    }
+}
+
 
 @mixin header--768() {
     .header{

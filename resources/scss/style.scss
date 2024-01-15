@@ -49,6 +49,7 @@
     @include dashboard--992();
     @include customer-users--992();
     @include form--992();
+    @include header--992();
 }
 
 @media (max-width: 768px) {
