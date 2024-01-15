@@ -187,6 +187,12 @@
         }
     }
 
+    .form-edit-buttons{
+        display: flex;
+        justify-content: space-between;
+        gap: 50px;
+    }
+
     #form-group{
         display: flex;
         button{

@@ -64,7 +64,7 @@
                 <input class="form-control" type="text" name="btw_number" id="btw_number" placeholder="Optioneel" value="{{$customer->btw}}">
             </div>
 
-            <div class="form-group" id="form-group">
+            <div class="form-group form-edit-buttons" id="form-group">
                 <button>Bewerk klant</button>
                 <button class="delete" onclick="event.preventDefault(); deleteCustomerPopup();">Verwijder klant</button>
             </div>

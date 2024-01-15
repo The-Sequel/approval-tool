@@ -53,7 +53,7 @@
                     @endforeach
                 </div>
 
-                <div class="form-group" id="form-group">
+                <div class="form-group form-edit-buttons" id="form-group">
                     <button>Opslaan</button>
                     <button class="delete" onclick="event.preventDefault(); deleteTask();">Verwijder taak</button>
                 </div>
@@ -103,7 +103,7 @@
 
                 @include('sections.add-user')
 
-                <div class="form-group" id="form-group">
+                <div class="form-group form-edit-buttons" id="form-group">
                     <button onclick="event.preventDefault(); openAddUsersToTaskPopup();">Opslaan</button>
                     <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
                 </div>
