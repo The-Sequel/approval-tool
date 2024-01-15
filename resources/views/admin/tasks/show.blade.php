@@ -18,7 +18,7 @@
 
                 @include('sections.mail')
 
-                <div class="form-group" id="form-group">
+                <div class="form-group form-edit-buttons" id="form-group">
                     <button>Voltooi taak</button>
                     <button class="delete" onclick="event.preventDefault(); deleteTaskPopup();">Verwijder taak</button>
                 </div>
