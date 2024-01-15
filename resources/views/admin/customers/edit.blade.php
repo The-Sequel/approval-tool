@@ -66,11 +66,11 @@
 
             <div class="form-group form-edit-buttons" id="form-group">
                 <button>Bewerk klant</button>
-                <button class="delete" onclick="event.preventDefault(); deleteCustomerPopup();">Verwijder klant</button>
+                <button class="delete" onclick="event.preventDefault(); deleteCustomerPopup({{$customer->id}});">Verwijder klant</button>
             </div>
         </form>
         
-        <form id="delete-form-customer" action="{{route('admin.customers.destroy', $customer)}}" method="POST">
+        <form id="delete-form-customer-{{$customer->id}}" action="{{route('admin.customers.destroy', $customer)}}" method="POST">
             @csrf
             @method('DELETE')
         </form>

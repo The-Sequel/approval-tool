@@ -105,10 +105,10 @@
             <div class="form-group form-edit-buttons">
                 <button>Bewerk gebruiker</button>
                 {{-- put prevent default on this button --}}
-                <button class="delete" onclick="event.preventDefault(); deleteUserPopup();">Verwijder gebruiker</button>
+                <button class="delete" onclick="event.preventDefault(); deleteUserPopup({{$user->id}});">Verwijder gebruiker</button>
             </div>
         </form>
-        <form id="delete-form-user" action="{{route('admin.users.destroy', $user)}}" method="POST">
+        <form id="delete-form-user-{{$user->id}}" action="{{route('admin.users.destroy', $user)}}" method="POST">
             @csrf
             @method('DELETE')
         </form>

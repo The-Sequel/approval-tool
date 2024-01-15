@@ -22,9 +22,9 @@
     }
 
     function deleteTask() {
+        console.log('delete task: ' + currentTaskId);
         document.getElementById('delete-form-task-' + currentTaskId).submit();
 
-        console.log('delete task: ' + currentTaskId);
     }
 
     document.querySelectorAll('td:last-child').forEach(td => {

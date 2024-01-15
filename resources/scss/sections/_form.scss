@@ -127,8 +127,8 @@
         border-radius: 5px;
         border: none;
         cursor: pointer;
-        background-color: #f44336;
-        color: white;
+        // background-color: #f44336;
+        // color: white;
     }
 }
 
@@ -148,6 +148,13 @@
 }
 
 @mixin form--992(){
+    .search-reset{
+        button{
+            background-color: #f44336;
+            color: white;
+        }
+    }
+
     .search-form-group{
         .search-form-input{
             width: 100%;
