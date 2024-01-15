@@ -55,6 +55,13 @@
         transition: bottom 0.5s ease-in-out;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
 
+        #mobile-menu-button{
+            #openIcon,
+            #closeIcon{
+                height: 20px;
+            }
+        }
+
         svg{
             &:first-of-type{
                 display: block;
