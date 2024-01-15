@@ -14,7 +14,19 @@
                 @if(isset($date))
                     <input type="date" id="date" name="date" class="date" value="{{ $date }}">
                 @else
-                    <input type="date" id="date" name="date" class="date">
+                    <input type="text" id="date" name="date" class="date" placeholder="Zoeken op gemaakt op"
+                    onfocus="(this.type='date')"
+                    onblur="(this.type='text')">
+                @endif
+            </div>
+
+            <div class="search-form-group">
+                @if(isset($deadline))
+                    <input type="date" id="deadline" name="deadline" class="deadline" value="{{ $deadline }}">
+                @else
+                    <input type="text" id="deadline" name="deadline" class="deadline" placeholder="Zoeken op deadline"
+                    onfocus="(this.type='date')"
+                    onblur="(this.type='text')">
                 @endif
             </div>
 
