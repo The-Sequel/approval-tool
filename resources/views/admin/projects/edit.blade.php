@@ -35,7 +35,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group" id="form-group">
+            <div class="form-group form-edit-buttons" id="form-group">
                 <button>Opslaan</button>
                 <button class="delete" onclick="event.preventDefault(); deleteProject();">Verwijder project</button>
             </div>

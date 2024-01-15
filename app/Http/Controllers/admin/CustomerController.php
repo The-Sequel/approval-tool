@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\User;
 use App\Models\Customer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -12,8 +13,9 @@ class CustomerController extends Controller
     public function index(){
 
         $customers = Customer::all();
+        $users = User::where('deleted_at', null)->get();
 
-        return view('admin.customers.index', compact('customers'));
+        return view('admin.customers.index', compact('customers', 'users'));
     }
 
     public function create(){
@@ -76,14 +78,17 @@ class CustomerController extends Controller
         $customer->kvk = $request->kvk_number;
         $customer->btw = $request->btw_number;
 
-        if($file = $request->file('logo')){
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads', $fileName, 'public');
-        } else {
-            $filePath = '';
-        }
+       
+        if($request->file('logo') != null){
+            if($file = $request->file('logo')){
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeAs('uploads', $fileName, 'public');
+            } else {
+                $filePath = '';
+            }
 
-        $customer->logo = $filePath;
+            $customer->logo = $filePath;
+        }
 
         $customer->update();
 

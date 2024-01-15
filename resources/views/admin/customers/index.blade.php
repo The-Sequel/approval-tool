@@ -35,11 +35,11 @@
                     @foreach($customers as $customer)
                         <tr>
                             <td data-label="Klanten">
-                                <p id="customer-name-{{$customer->id}}">{{$customer->name}}</p>
+                                <p id="customer-name-{{$customer['id']}}">{{$customer['name']}}</p>
                             </td>
-                            <td data-label="Logo"><img src="{{ asset('storage/'.$customer->logo) }}" alt="{{$customer->name}}" width="50"></td>
+                            <td data-label="Logo"><img src="{{ asset('storage/'.$customer['logo']) }}" alt="{{$customer['name']}}" width="50"></td>
 
-                            @if($customer->status == 'active')
+                            @if($customer['status'] == 'active')
                                 <td data-label="Status" id="customer-status">
                                     <p class="status-active">Actief</p>
                                 </td>
@@ -51,29 +51,31 @@
 
                             <td data-label="Contact personen">
                                 <div class="user-logo-main">
-                                    @foreach($customer->users as $user)
-                                        @if($user->deleted_at == null)
-                                            <a href="mailto:{{$user->email}}">
-                                                <div class="user-information">
-                                                    <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                                                    <span class="user-information-content">
-                                                        <div class="user-information-content-logo">
-                                                            <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
-                                                        </div>
-                                                        <div class="user-information-content-data">
-                                                            <p>{{$user->name}}</p>
-                                                            <p>{{$user->email}}</p>
-                                                        </div>
-                                                    </span>
-                                                </div>
-                                            </a>
+                                    @foreach($users as $user)
+                                        @if($user->customer_id == $customer['id'])
+                                            @if($user->deleted_at == null)
+                                                <a href="mailto:{{$user->email}}">
+                                                    <div class="user-information">
+                                                        <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                                        <span class="user-information-content">
+                                                            <div class="user-information-content-logo">
+                                                                <p style="background-color: {{$user->color}};" class="user-logo">{{substr($user->name, 0, 1)}}</p>
+                                                            </div>
+                                                            <div class="user-information-content-data">
+                                                                <p>{{$user->name}}</p>
+                                                                <p>{{$user->email}}</p>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </div>
                             </td>
                             <td data-label="Acties">
                                 <div class="table-icons">
-                                    <a class="table-icons-item" href="{{route('admin.customers.edit', $customer)}}"><span style="color: black;" class="material-icons">edit</span></a>
+                                    <a class="table-icons-item" href="{{route('admin.customers.edit', $customer['id'])}}"><span style="color: black;" class="material-icons">edit</span></a>
                                     <a class="table-icons-item" href="#" onclick="deleteCustomerPopup();"><span style="color: black;" class="material-icons">delete</span></a>
                                 </div>
                             </td>
@@ -95,7 +97,7 @@
         </form>
 
         @if(count($customers) > 0)
-            <form id="delete-form-customer" action="{{route('admin.customers.destroy', $customer)}}" method="POST">
+            <form id="delete-form-customer" action="{{route('admin.customers.destroy', $customer['id'])}}" method="POST">
                 @csrf
                 @method('DELETE')
             </form>

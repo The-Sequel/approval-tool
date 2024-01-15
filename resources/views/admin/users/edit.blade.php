@@ -1,7 +1,7 @@
 @extends('layouts.app-master')
 
 @section('content')
-<div class="grid" style="margin-left: 270px;">
+<div class="grid">
     <div class="col-12">
         <form action="{{route('admin.users.update', $user)}}" method="POST">
             @csrf
@@ -102,7 +102,7 @@
                 </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group form-edit-buttons">
                 <button>Bewerk gebruiker</button>
                 {{-- put prevent default on this button --}}
                 <button class="delete" onclick="event.preventDefault(); deleteUserPopup();">Verwijder gebruiker</button>

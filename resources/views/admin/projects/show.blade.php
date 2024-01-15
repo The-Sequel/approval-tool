@@ -126,7 +126,7 @@
         <form action='{{route('admin.tasks.project.create', $project)}}' method="GET">
             @csrf
             @method('GET')
-            <div class="form-group" id="form-group">
+            <div class="form-group form-edit-buttons" id="form-group">
                 <button type="submit">Maak nieuwe taak</button>
                 <button class="delete" onclick="event.preventDefault(); deleteProjectPopup();">Verwijder project</button>
             </div>

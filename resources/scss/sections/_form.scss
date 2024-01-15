@@ -100,6 +100,15 @@
             box-sizing: border-box;
         }
         
+        .deadline{
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
     }
     button{
         padding: 14px 15px;
@@ -118,6 +127,8 @@
         border-radius: 5px;
         border: none;
         cursor: pointer;
+        background-color: #f44336;
+        color: white;
     }
 }
 
@@ -142,6 +153,31 @@
             width: 100%;
         }
     }
+
+    .search-form{
+        flex-direction: column;
+        gap: 0;
+        align-items: unset;
+        margin-bottom: 10px;
+        display: none;
+        .search-form-group{
+            .search-form-input{
+                width: 100%;
+            }
+        }
+    }
+
+    .search-reset{
+        display: none;
+        button{
+            width: 100%;
+            margin-bottom: 25px;
+        }
+    }
+
+    .filter-button{
+        display: block;
+    }
 }
 
 @mixin form--768(){
@@ -149,6 +185,12 @@
         button{
             width: 100%;
         }
+    }
+
+    .form-edit-buttons{
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
     }
 
     #form-group{

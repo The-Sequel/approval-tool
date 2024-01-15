@@ -188,6 +188,7 @@
                 display: flex;
                 justify-content: space-between;
                 margin-top: 11px;
+                flex-wrap: wrap;
 
                 .project-card-data{
                     display: flex;
@@ -402,7 +403,8 @@
             &:nth-child(1),
             &:nth-child(2){
                 grid-column: span 5;
-                flex: 0 0 calc(  100% / 12 * 5);
+                // flex: 0 0 calc(  100% / 12 * 5);
+                flex: 0 0 50%;
             }
         }   
     }
@@ -411,6 +413,11 @@
 @mixin dashboard--1200() {
     #admin-dashboard{
         display: flex;
+        .task-card,
+        .project-card{
+            width: 100%;
+        }
+
         .col-4{
             &:nth-child(1){
                 // order: 1;
@@ -432,10 +439,18 @@
 }
 
 @mixin dashboard--992() {
-    
+    .task-card,
+    .project-card{
+        width: 100%;
+    }
 }
 
 @mixin dashboard--768() {
+    .task-card,
+    .project-card{
+        width: 100%;
+    }
+
     .col-4{
         width: 100%;
     }
@@ -459,6 +474,7 @@
         .create-customer-card,
         .questions-card,
         .problem-card{
+            margin-top: 40px;
             width: 100%;
         }
 
@@ -485,5 +501,8 @@
 }
 
 @mixin dashboard--576() {
-
+    .task-card,
+    .project-card{
+        width: 100%;
+    }
 }

@@ -20,6 +20,7 @@ class SearchController extends Controller
         $departmentChoice = Department::where('id', $request['department'])->first();
         $status = $request['status'];
         $date = $request->date != null ? date('Y-m-d', strtotime($request->date)) : "";
+        $deadline = $request->deadline != null ? date('Y-m-d', strtotime($request->deadline)) : "";
 
         if ($request['search'] != null) {
             $projectsArray->where('title', 'like', '%' . $request['search'] . '%');
@@ -34,10 +35,13 @@ class SearchController extends Controller
         if($request['department'] != null) {
             $projectsArray->where('department_id', $request['department']);
         }
+        if($request['deadline'] != null){
+            $projectsArray->where('deadline', 'like', '%' . $request['deadline'] . '%');
+        }
 
         $projects = $projectsArray->with('customer', 'department')->get()->toArray();
 
-        return view('customer.projects.index', compact('projects', 'users', 'date', 'departments', 'departmentChoice', 'status'));
+        return view('customer.projects.index', compact('projects', 'users', 'date', 'departments', 'departmentChoice', 'status', 'deadline'));
     }
 
     public function searchTasks(Request $request){
@@ -45,6 +49,8 @@ class SearchController extends Controller
 
         $users = User::where('deleted_at', null)->get();
         $status = $request['status'];
+        $date = $request->date != null ? date('Y-m-d', strtotime($request->date)) : "";
+        $deadline = $request->deadline != null ? date('Y-m-d', strtotime($request->deadline)) : "";
 
         if($request['search'] != null){
             $tasksArray->where('title', 'like', '%' . $request['search'] . '%');
@@ -55,10 +61,13 @@ class SearchController extends Controller
         if($request['status'] != null){
             $tasksArray->where('status', $request['status']);
         }
+        if($request['deadline'] != null){
+            $tasksArray->where('deadline', 'like', '%' . $request['deadline'] . '%');
+        }
 
         $tasks = $tasksArray->with('customer', 'department')->get()->toArray();
 
-        return view('customer.tasks.index', compact('tasks', 'users', 'status'));
+        return view('customer.tasks.index', compact('tasks', 'users', 'status', 'date', 'deadline'));
     }
 
     public function searchMessages(Request $request){

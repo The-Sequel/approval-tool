@@ -29,7 +29,8 @@ class ContactMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact Mail',
+            subject: 'Taak goedgekeurd',
+            from: 'info@approval.thesequel.nl',
         );
     }
 

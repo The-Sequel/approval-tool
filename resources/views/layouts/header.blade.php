@@ -28,7 +28,7 @@
         'admin/users/create' => 'Gebruiker aanmaken',
         'admin/search/users' => 'Gebruikers',
         'admin/messages' => 'Berichten',
-        'admin/messages/search' => 'Berichten',
+        'admin/search/messages' => 'Berichten',
 
         // Filters admin
         'admin/projects/deadline' => 'Projecten',

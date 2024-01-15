@@ -349,6 +349,73 @@ table{
 
 // Responsive
 
+@mixin table--1400(){
+    table {
+        border: 0;
+
+        td{
+            p{
+                margin: unset;
+            }
+        }
+
+        thead{
+            border: none;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        tr{
+            display: block;
+            margin-bottom: .625em;
+        }
+
+        th,
+        td{
+            border-right: 0px solid #ddd;
+        }
+
+        td{
+            border-bottom: 1px solid #ddd;
+            display: block;
+            font-size: .8em;
+            text-align: right;
+
+            &::before{
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            &:last-child{
+                border-bottom: 0;
+            }
+
+            &:nth-child(3),
+            &:nth-child(4),
+            &:nth-child(5),
+            &:nth-child(6){
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .table-icons{
+            justify-content: right;
+        }
+    }
+
+    .user-logo-main{
+        display: block;
+    }
+}
+
 @mixin table--1200(){
     table {
         border: 0;
