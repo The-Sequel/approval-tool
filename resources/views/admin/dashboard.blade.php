@@ -246,8 +246,10 @@
 
             if(storedDate !== currentDate) {
                 var popup = document.getElementById("myPopup");
-                popup.classList.toggle("show");
-                localStorage.setItem('popupShownDate', currentDate);
+                if(popup != null){
+                    popup.classList.toggle("show");
+                    localStorage.setItem('popupShownDate', currentDate);
+                }
             } else {
                 //
             }
@@ -264,10 +266,12 @@
         var popup = document.getElementById("myPopup");
         var popupContainer = document.querySelector(".popup");
 
-        if (!popupContainer.contains(event.target) && event.target !== popupContainer) {
-            popup.classList.remove("show");
-            document.body.classList.remove("popup-open");
-
+        if(popupContainer != null){
+            if (!popupContainer.contains(event.target) && event.target !== popupContainer) {
+                popup.classList.remove("show");
+                document.body.classList.remove("popup-open");
+    
+            }
         }
     });
 

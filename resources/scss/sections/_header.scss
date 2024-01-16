@@ -198,6 +198,7 @@
 
 @mixin header--576() {
     .header{
+        display: flow;
 
         h1{
             font-size: 16px;
@@ -207,7 +208,15 @@
             font-size: 15px;
         }
 
+        .header-1{
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
         .header-2{
+            width: 100%;
+            display: flex;
+
             .notification-icon{
                 margin-right: 20px;
                 height: 25px;

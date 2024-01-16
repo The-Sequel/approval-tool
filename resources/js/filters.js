@@ -1,6 +1,8 @@
 let showFiltersButton = document.querySelector('#showFilters');
 
-showFiltersButton.addEventListener('click', showFilters);
+if(showFiltersButton){
+    showFiltersButton.addEventListener('click', showFilters);
+}
 
 function showFilters(){
     if(document.querySelector('.search-form').style.display == 'block'){
