@@ -69,11 +69,11 @@
 @endsection
 
 
-<script>
+{{-- <script>
     // on change of the select box, submit the form
     $(document).ready(function() {
         $('select').change(function() {
             $('form').submit();
         });
     });
-</script>
+</script> --}}
