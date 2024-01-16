@@ -152,6 +152,8 @@
                 <button>Maak nieuwe gebruiker</button>
             </div>
         </form>
+
+        @include('sections.create.user')
     </div>
 </div>
 
