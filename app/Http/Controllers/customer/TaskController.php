@@ -4,14 +4,15 @@ namespace App\Http\Controllers\customer;
 
 use App\Models\Task;
 use App\Models\User;
-use App\Models\Message;
 use App\Models\Reason;
+use App\Models\Message;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\Tasks\DeniedTaskMail;
 use App\Http\Controllers\Controller;
+use App\Mail\Projects\FinishedProjectMail;
 use App\Mail\Tasks\ApprovedTaskMail;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
 class TaskController extends Controller
 {
@@ -83,7 +84,7 @@ class TaskController extends Controller
                         $adminUsers = User::where('role_id', 1)->get();
 
                         foreach($adminUsers as $user){
-                            Mail::to($user->email)->send(new ApprovedTaskMail($task));
+                            Mail::to($user->email)->send(new FinishedProjectMail($project));
                         }
 
                     }
