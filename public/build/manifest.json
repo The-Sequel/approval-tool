@@ -8,7 +8,7 @@
     "src": "resources/css/app.css"
   },
   "resources/css/style.css": {
-    "file": "assets/style-66c58d12.css",
+    "file": "assets/style-11e8e679.css",
     "isEntry": true,
     "src": "resources/css/style.css"
   },
@@ -26,7 +26,7 @@
     "src": "resources/js/customers.js"
   },
   "resources/js/filters.js": {
-    "file": "assets/filters-1575072e.js",
+    "file": "assets/filters-4e127441.js",
     "isEntry": true,
     "src": "resources/js/filters.js"
   },
