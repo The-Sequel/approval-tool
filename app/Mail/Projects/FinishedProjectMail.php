@@ -29,7 +29,7 @@ class FinishedProjectMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Niew project aangemaakt',
+            subject: 'Project voltooid',
             from: 'info@approval.thesequel.nl',
         );
     }
