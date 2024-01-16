@@ -47,6 +47,8 @@
                 </select>
             </div>
 
+            <input type="hidden" name="project" id="project" value="{{$project->id}}">
+
             {{-- <div class="search-form-group">
                 <select name="department" id="department">
                     <option value="">Afdeling</option>
