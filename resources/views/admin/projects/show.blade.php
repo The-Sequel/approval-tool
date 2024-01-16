@@ -3,7 +3,7 @@
 @section('content')
 <div class="grid">
     <div class="col-12">
-        <form class="search-form" action="{{route('admin.search.tasks')}}" method="GET">
+        {{-- <form class="search-form" action="{{route('admin.search.tasks')}}" method="GET">
             @csrf
             @method('GET')
             <div class="search-form-group">
@@ -17,8 +17,7 @@
                     <input type="text" id="date" name="date" class="date" placeholder="Zoeken op gemaakt op"
                     onfocus="(this.type='date')"
                     onblur="(this.type='text')">
-                @endif
-            </div>
+                @endif\
 
             <div class="search-form-group">
                 @if(isset($deadline))
@@ -49,23 +48,6 @@
 
             <input type="hidden" name="project" id="project" value="{{$project->id}}">
 
-            {{-- <div class="search-form-group">
-                <select name="department" id="department">
-                    <option value="">Afdeling</option>
-                    @foreach($departments as $department)
-                        @if(isset($departmentChoice))
-                            @if($department->id == $departmentChoice['id'])
-                                <option selected value="{{$department['id']}}">{{$department['title']}}</option>
-                            @else
-                                <option value="{{$department['id']}}">{{$department['title']}}</option>
-                            @endif
-                        @else
-                            <option value="{{$department['id']}}">{{$department['title']}}</option>
-                        @endif
-                    @endforeach
-                </select>
-            </div> --}}
-
             <button>Zoeken</button>
         </form>
 
@@ -75,7 +57,7 @@
             <button>Reset</button>
         </form>
 
-        <button class="filter-button" id="showFilters">Toon filters</button>
+        <button class="filter-button" id="showFilters">Toon filters</button> --}}
         
         @if(count($tasks) > 0)
             <table>
