@@ -54,7 +54,9 @@ class TaskController extends Controller
                 }
 
                 foreach($users as $user){
-                    Mail::to($user[0]->email)->send(new ApprovedTaskMail($task));
+                    if($user->status == 'active'){
+                        Mail::to($user[0]->email)->send(new ApprovedTaskMail($task));
+                    }
                 }
 
             }
@@ -84,7 +86,9 @@ class TaskController extends Controller
                         $adminUsers = User::where('role_id', 1)->get();
 
                         foreach($adminUsers as $user){
-                            Mail::to($user->email)->send(new FinishedProjectMail($project));
+                            if($user->status == 'active'){
+                                Mail::to($user->email)->send(new FinishedProjectMail($project));
+                            }
                         }
 
                     }
