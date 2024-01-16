@@ -33,30 +33,6 @@ class ProjectController extends Controller
     }
 
     public function store(Request $request){
-        // $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'status' => 'required',
-        //     'deadline' => 'required',
-        //     'customer_id' => 'required',
-        // ]);
-
-        // Handle file upload
-        // if ($request->file('file')) {
-        //     $file = $request->file('file');
-        //     $fileName = time() . '_' . $file->getClientOriginalName();
-        //     $filePath = $file->storeAs('uploads', $fileName); // Store the file in the 'uploads' directory
-        // } else {
-        //     $filePath = null;
-        // }
-
-        // $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'department' => 'required',
-        //     'customer_id' => 'required',
-        // ]);
-
         if($request->title == null){
             return redirect()->back()->with('error', 'Vul een titel in!');
         } elseif($request->description == null){

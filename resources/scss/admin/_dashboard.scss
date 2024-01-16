@@ -263,6 +263,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            padding: 4px 8px;
         }
     }
     
@@ -293,6 +294,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            padding: 4px 8px;
         }
     }
 
@@ -388,14 +390,6 @@
 }
 
 // RESPONSIVE
-
-// @mixin dashboard--2000() {
-//     #admin-dashboard{
-//         .col-4{
-//             display: none;
-//         }
-//     }
-// }
 
 @mixin dashboard--1650(){
     #admin-dashboard{

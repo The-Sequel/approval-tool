@@ -59,15 +59,8 @@ class UserController extends Controller
         if($user){
             return redirect()->back()->with('error', 'Er is al een gebruiker met dit email adres!');
         } else {
-            // Create the user
             $user = User::create($attributes);
         }
-
-        // if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
-        //     if($user->role_id == 2){
-        //         Mail::to($user->email)->send(new UserCreated($user));
-        //     }
-        // }
 
         // Redirect the user
         return redirect('/admin/users')->with('success', 'Gebruiker is aangemaakt!');
