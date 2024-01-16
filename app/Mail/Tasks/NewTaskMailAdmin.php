@@ -29,7 +29,7 @@ class NewTaskMailAdmin extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Nieuw taak aangemaakt',
+            subject: 'Nieuwe taak aangemaakt',
             from: 'info@approval.thesequel.nl',
         );
     }
