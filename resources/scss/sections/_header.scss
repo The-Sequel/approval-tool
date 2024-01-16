@@ -140,7 +140,7 @@
         .user-image {
             height: 15px;
             width: 15px;
-            padding: 25px;
+            padding: 14px;
             background-color: #bbb;
             border-radius: 50%;
             display: flex;
@@ -148,6 +148,7 @@
             justify-content: center; /* Center horizontally */
             font-size: 18px; /* Adjust the font size as needed */
             color: white;
+            font-size: 20px;
 
             &:hover{
                 background-color: #999;

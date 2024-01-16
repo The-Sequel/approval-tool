@@ -31,6 +31,10 @@
 //     @include dashboard--2000();
 // }
 
+@media (max-width: 1650px) {
+    @include dashboard--1650();
+}
+
 @media (max-width: 1400px) {
     @include dashboard--1400();
     @include header--1400();

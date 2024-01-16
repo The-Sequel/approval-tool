@@ -61,7 +61,15 @@
                     @if($task->deadline != null)
                         <p><span>Deadline:</span> {{ \Carbon\Carbon::parse($task->deadline)->format('d-m-Y') }}</p>
                     @endif
-                    <p><span>Status:</span> Afgekeurd</p>
+                    @if($task->status == 'completed')
+                        <p><span>Status:</span> Voltooid</p>
+                    @elseif($task->status == 'approved')
+                        <p><span>Status:</span> Goedgekeurd</p>
+                    @elseif($task->status == 'denied')
+                        <p><span>Status:</span> Afgekeurd</p>
+                    @else
+                        <p><span>Status:</span> In behandeling</p>
+                    @endif
                     @if($task->images)
                         @php
                             $imagesArray = json_decode($task->images, true);
@@ -80,7 +88,6 @@
                 </div>
             </div>
         </div>
-
     @else
         <div class="col-4">
             <div class="task-information-card">
@@ -91,7 +98,15 @@
                     @if($task->deadline != null)
                         <p><span>Deadline:</span> {{ \Carbon\Carbon::parse($task->deadline)->format('d-m-Y') }}</p>
                     @endif
-                    <p><span>Status:</span> Goedgekeurd</p>
+                    @if($task->status == 'completed')
+                        <p><span>Status:</span> Voltooid</p>
+                    @elseif($task->status == 'approved')
+                        <p><span>Status:</span> Goedgekeurd</p>
+                    @elseif($task->status == 'denied')
+                        <p><span>Status:</span> Afgekeurd</p>
+                    @else
+                        <p><span>Status:</span> In behandeling</p>
+                    @endif
                     @if($task->images)
                         @php
                             $imagesArray = json_decode($task->images, true);

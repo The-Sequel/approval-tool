@@ -397,6 +397,19 @@
 //     }
 // }
 
+@mixin dashboard--1650(){
+    #admin-dashboard{
+        .col-4{
+            &:nth-child(1),
+            &:nth-child(2){
+                grid-column: span 5;
+                // flex: 0 0 calc(  100% / 12 * 5);
+                flex: 0 0 50%;
+            }
+        }   
+    }
+}
+
 @mixin dashboard--1400() {
     #admin-dashboard{
         .col-4{
@@ -436,12 +449,68 @@
             }
         }
     }
+
+    .task-card{
+        .task-card-info{
+            .task-card-body{
+                flex: none;
+
+                .task-card-items{
+                    .task-card-persons{
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    .project-card{
+        .project-card-info{
+            .project-card-body{
+                .project-card-items{
+                    justify-content: unset;
+
+                    .project-card-persons{
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @mixin dashboard--992() {
     .task-card,
     .project-card{
         width: 100%;
+    }
+
+    .task-card{
+        .task-card-info{
+            .task-card-body{
+                flex: none;
+
+                .task-card-items{
+                    .task-card-persons{
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    .project-card{
+        .project-card-info{
+            .project-card-body{
+                .project-card-items{
+                    justify-content: unset;
+
+                    .project-card-persons{
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -498,11 +567,67 @@
         margin-top: 100px;
         width: 100%;
     }
+
+    .task-card{
+        .task-card-info{
+            .task-card-body{
+                flex: none;
+
+                .task-card-items{
+                    .task-card-persons{
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    .project-card{
+        .project-card-info{
+            .project-card-body{
+                .project-card-items{
+                    justify-content: unset;
+
+                    .project-card-persons{
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @mixin dashboard--576() {
     .task-card,
     .project-card{
         width: 100%;
+    }
+
+    .task-card{
+        .task-card-info{
+            .task-card-body{
+                flex: none;
+
+                .task-card-items{
+                    .task-card-persons{
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    .project-card{
+        .project-card-info{
+            .project-card-body{
+                .project-card-items{
+                    justify-content: unset;
+
+                    .project-card-persons{
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
     }
 }
