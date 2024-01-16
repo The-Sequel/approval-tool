@@ -215,23 +215,6 @@
 @endif
 
 <script>
-
-    // var currentDate = "Thu Nov 1 2023";
-
-    // if(localStorage.getItem('test') === null) {
-    //     console.log('popup wordt hier nu getoond');
-    //     localStorage.setItem('test', currentDate);
-    // } else {
-    //     var storedDate = localStorage.getItem('test');
-
-    //     if(storedDate !== currentDate) {
-    //         console.log('popup wordt hier nu getoond omdat the gestorde data anders is.')
-    //         localStorage.setItem('test', currentDate);
-    //     } else {
-    //         console.log('popup is al getoond');
-    //     }
-    // }
-
     function myFunction() {
         // var popup = document.getElementById("myPopup");
         // popup.classList.toggle("show");

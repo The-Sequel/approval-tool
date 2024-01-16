@@ -70,7 +70,14 @@ class SearchController extends Controller
 
         $tasks = $tasksArray->with('customer', 'department')->get()->toArray();
 
-        return view('admin.tasks.index', compact('tasks', 'users', 'status', 'date', 'deadline'));
+        if($request->project == null){
+            return view('admin.tasks.index', compact('tasks', 'users', 'status', 'date', 'deadline'));
+        } else {
+            $project = $request->project;
+            // return view('admin.projects.show', compact('tasks', 'users', 'status', 'date', 'deadline', 'project'));
+
+            return view('admin.projects.show', compact('project', 'tasks', 'users', 'status', 'date', 'deadline'));
+        }
     }
 
     public function searchUsers(Request $request){

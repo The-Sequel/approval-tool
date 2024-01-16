@@ -49,18 +49,6 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-
-        // $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'customer_id' => 'required',
-        //     'department_id' => 'nullable',
-        //     'deadline' => 'nullable',
-        //     'created_by' => 'required',
-        //     'user_ids' => 'required',
-        // ]);
-
         if($request->title == null){
             return redirect()->back()->with('error', 'Vul een titel in!');
         } elseif($request->description == null){
