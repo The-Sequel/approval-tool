@@ -203,7 +203,7 @@ class TaskController extends Controller
             'customer_id' => $task->customer_id,
             'task_id' => $task->id,
             'users' => json_encode($users),
-            'name' => 'Er is een taak copmleet! 🎉',
+            'name' => 'Er is een taak compleet! 🎉',
         ]);
 
         if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
