@@ -30,7 +30,7 @@
                                             $firstImage = reset($imagesArray); // Get the first image from the array
                                         @endphp
                                         <a href="{{ asset('storage/' . $firstImage) }}">
-                                            <img src="{{ asset('storage/' . $firstImage) }}" style="width: 70%; height: auto; margin-bottom: 10px;">
+                                            <img src="{{ asset('storage/' . $firstImage) }}" style="width: 100%; height: auto; margin-bottom: 10px;">
                                         </a>
                                     </div>
                                 @endif
