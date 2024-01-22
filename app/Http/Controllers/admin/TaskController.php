@@ -150,6 +150,14 @@ class TaskController extends Controller
     {
         $users = User::where('deleted_at', null)->get();
         $reasons = Reason::where('task_id', $task->id)->get();
+
+        $pattern = '/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/';
+
+        if (preg_match($pattern, $task->description, $matches)) {
+            $url = $matches[0];
+            $task->description = preg_replace($pattern, "<a href='$url'>$url</a>",$task->description);
+        }
+
         return view('admin.tasks.show', compact('task', 'users', 'reasons'));
     }
 

@@ -27,6 +27,13 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
+        $pattern = '/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/';
+
+        if (preg_match($pattern, $task->description, $matches)) {
+            $url = $matches[0];
+            $task->description = preg_replace($pattern, "<a href='$url'>$url</a>",$task->description);
+        }
+
         return view('customer.tasks.show', compact('task'));
     }
 

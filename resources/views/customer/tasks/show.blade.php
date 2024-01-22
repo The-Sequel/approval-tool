@@ -7,7 +7,7 @@
             <div class="task-card-information-body">
                 <h2>{{$task->title}}</h2>
                 <p>{{$task->customer->name}}</p>
-                <p>{{$task->description}}</p>
+                <p>{!! nl2br($task->description) !!}</p>
                 <p><span>Deadline:</span> {{$task->deadline}}</p>
                 <p><span>Status:</span> {{$task->status}}</p>
 
