@@ -155,7 +155,7 @@ class TaskController extends Controller
 
         if (preg_match($pattern, $task->description, $matches)) {
             $url = $matches[0];
-            $task->description = preg_replace($pattern, "<a href='$url'>$url</a>",$task->description);
+            $task->description = preg_replace($pattern, "<a target='_blank' href='$url'>$url</a>",$task->description);
         }
 
         return view('admin.tasks.show', compact('task', 'users', 'reasons'));
@@ -255,6 +255,9 @@ class TaskController extends Controller
                 $images[] = $filePath;
             }
         }
+
+        $existingImages = json_decode($task->images);
+        $images = array_merge($existingImages, $images);
 
         $userIds = $request->input('user_ids', []);
         $assignedTo = json_encode($userIds);
