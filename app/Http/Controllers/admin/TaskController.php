@@ -256,6 +256,9 @@ class TaskController extends Controller
             }
         }
 
+        $existingImages = json_decode($task->images);
+        $images = array_merge($existingImages, $images);
+
         $userIds = $request->input('user_ids', []);
         $assignedTo = json_encode($userIds);
 

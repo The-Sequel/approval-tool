@@ -20,8 +20,8 @@
                     <input type="date" name="deadline" id="deadline" class="form-control" value="{{$task->deadline}}">
                 </div>
                 <div class="form-group">
-                    <label for="image">Afbeelding</label>
-                    <input class="form-control" type="file" name="image" id="image">
+                    <label for="images">Afbeeldingen</label>
+                    <input class="form-control" type="file" name="images[]" id="images" multiple value="{{$task->images}}">
                 </div>
 
                 @if($task->project !== null && $task->project->id === null)
@@ -81,8 +81,8 @@
                     <input type="date" name="deadline" id="deadline" class="form-control" value="{{$task->deadline}}">
                 </div>
                 <div class="form-group">
-                    <label for="image">Afbeelding</label>
-                    <input class="form-control" type="file" name="image" id="image">
+                    <label for="images">Afbeeldingen</label>
+                    <input class="form-control" type="file" name="images[]" id="images" multiple value="{{$task->images}}">
                 </div>
 
                 @if($task->project !== null && $task->project->id === null)
