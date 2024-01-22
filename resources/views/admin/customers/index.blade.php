@@ -100,9 +100,9 @@
             </div>
         </form>
 
-        @include('sections.create.customer')
+        {{-- @include('sections.create.customer')
 
-        <button onclick="openCustomerPopup();">Maak nieuwe klant</button>
+        <button onclick="openCustomerPopup();">Maak nieuwe klant</button> --}}
     </div>
 </div>
 
