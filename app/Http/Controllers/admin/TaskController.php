@@ -121,7 +121,6 @@ class TaskController extends Controller
         
             foreach($assignedUsers as $userId) {
                 $user = User::find($userId);
-
                 if(isset($user->email)){
                     if($user->status == 'active'){
                         Mail::to($user->email)->send(new NewTaskMailAdmin($task));
