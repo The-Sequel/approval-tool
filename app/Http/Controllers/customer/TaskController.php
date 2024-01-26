@@ -141,7 +141,7 @@ class TaskController extends Controller
                 $users = [];
     
                 foreach($assignedUsers as $user) {
-                    $users[] = User::where('id', $user)->get();
+                    $users[] = User::where('id', $user)->first();
                 }
 
                 foreach($users as $user){
