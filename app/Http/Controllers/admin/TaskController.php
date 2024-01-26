@@ -93,6 +93,12 @@ class TaskController extends Controller
             'assigned_to' => $assignedTo,
         ]);
 
+        if($task->project_id != null){
+            $project = Project::where('id', $project_id)->first();
+            $project->status = 'pending';
+            $project->save();
+        }
+
         $customerUsers = User::where('customer_id', $task->customer_id)->get();
 
         $users = [];
