@@ -15,6 +15,10 @@ class DepartmentSeeder extends Seeder
     public function run(): void
     {
         Department::create([
+            'title' => 'Management',
+        ]);
+
+        Department::create([
             'title' => 'Development',
         ]);
 
