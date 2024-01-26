@@ -57,12 +57,12 @@ class TaskController extends Controller
                 $users = [];
     
                 foreach($assignedUsers as $user) {
-                    $users[] = User::where('id', $user)->get();
+                    $users[] = User::where('id', $user)->first();
                 }
 
                 foreach($users as $user){
                     if($user->status == 'active'){
-                        Mail::to($user[0]->email)->send(new ApprovedTaskMail($task));
+                        Mail::to($user->email)->send(new ApprovedTaskMail($task));
                     }
                 }
 
@@ -141,7 +141,7 @@ class TaskController extends Controller
                 $users = [];
     
                 foreach($assignedUsers as $user) {
-                    $users[] = User::where('id', $user)->get();
+                    $users[] = User::where('id', $user)->first();
                 }
 
                 foreach($users as $user){
