@@ -116,7 +116,8 @@ class TaskController extends Controller
             $task = Task::where('id', $task_id)->first();
         
             $assignedUsers = json_decode($task->assigned_to);
-            $customerUsers = User::where('customer_id', $task->customer_id)->get();
+
+            $customerUsers = User::where('customer_id', $task->customer_id)->where('department_id', $task->department_id)->orWhere('department_id', 1)->get();
         
             foreach($assignedUsers as $userId) {
                 $user = User::find($userId);
@@ -207,7 +208,7 @@ class TaskController extends Controller
         ]);
 
         if(Str::contains(url('/'), 'approval.thesequel.nl') == true){
-            $customerUsers = User::where('customer_id', $task->customer_id)->where('department_id', $task->department_id)->get();
+            $customerUsers = User::where('customer_id', $task->customer_id)->where('department_id', $task->department_id)->orWhere('department_id', 1)->get();
     
             foreach($customerUsers as $user) {
                 if($user->status == 'active'){
