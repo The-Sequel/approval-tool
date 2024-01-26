@@ -130,11 +130,9 @@ class TaskController extends Controller
             }
         
             foreach($customerUsers as $user) {
-                if($user->department_id == $task->department_id) {
-                    if(isset($user->email)){
-                        if($user->status == 'active'){
-                            Mail::to($user->email)->send(new NewTaskMail($task));
-                        }
+                if(isset($user->email)){
+                    if($user->status == 'active'){
+                        Mail::to($user->email)->send(new NewTaskMail($task));
                     }
                 }
             }
