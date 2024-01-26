@@ -24,8 +24,8 @@ class AdminController extends Controller
         // get all projects where status is not completed
         
 
-        $projects = Project::orderBy('created_at', 'desc')->where('status', '!=', 'completed')->take(3)->get();
-        $projectsCount = count(Project::all()->where('status', '!=', 'completed'));
+        $projects = Project::orderBy('created_at', 'desc')->where('status', '!=', 'approved')->take(3)->get();
+        $projectsCount = count(Project::all()->where('status', '!=', 'approved'));
         $tasks = Task::orderBy('created_at', 'desc')->where('status', '=', 'pending')->take(3)->get();
         $users = User::where('deleted_at', null)->get();
         return view('admin.dashboard', compact('customers', 'projects', 'users', 'tasks', 'tasksWithDeadline', 'tasksWithDeadlineCount', 'projectsCount'));
