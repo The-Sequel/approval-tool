@@ -25,8 +25,8 @@ class CustomerController extends Controller
         //     ->count();
 
 
-        $projectsCount = count(Project::where('customer_id', $user->customer_id)->get());
-        $projects = Project::where('customer_id', $user->customer_id)->orderBy('created_at', 'desc')->take(3)->get();
+        $projectsCount = count(Project::where('customer_id', $user->customer_id)->where('status', '!=', 'completed')->get());
+        $projects = Project::where('customer_id', $user->customer_id)->where('status', '!=', 'completed')->orderBy('created_at', 'desc')->take(3)->get();
         return view('customer.dashboard', compact('tasks', 'projects', 'tasksWithDeadlineCount', 'projectsCount'));
     }
 }
